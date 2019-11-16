@@ -1,0 +1,68 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#front{
+    width: 1200px;
+    height: 800px;
+    background-color: #F0F8FF;
+    margin: 0.5em auto;
+    padding: 0.5em;
+}
+
+#canvasDisplay {
+    width: 60%;
+    height: 45%;
+    background-color: #F8F8FF;
+    border-radius: 0.5em;
+    margin: auto;
+    padding: 0.5em;
+}
+
+#dispOne {
+    width:310px;
+    float: left;
+    margin: auto;
+    padding: 0.5em;
+}
+
+#dispTwo {
+    width:310px;
+    float: right;
+    margin: auto;
+    padding: 0.5em;
+}
+
+#formDisplay {
+    height: 50%;
+    width: 70%;
+    background-color: #DCDCDC;
+    border-radius: 1em;
+    margin: auto;
+    margin-top: 1em;
+    padding: 0.5em;
+}
+
+#tiempoRever {
+    height: 5%;
+    width: 90%;
+    margin: auto;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    background-color: blue;
+}
+
+#dimRecinto, #dimFuente, #dimMicro{
+    height: 20%;
+    width: 90%;
+    margin: auto;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    background-color: red;
+}
