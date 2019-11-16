@@ -185,17 +185,17 @@ function drawSources(canvas,x,y,scale) {
 }
 
 function myCanvas(a,b) {
-  canvas_superior = document.getElementById("canvas_superior");
-  canvas_frontal = document.getElementById("canvas_frontal");
+  canvasSuperior = document.getElementById("canvasSuperior");
+  canvasFrontal = document.getElementById("canvasFrontal");
 
 
-  if (!canvas_superior && !canvas_frontal) {
+  if (!canvasSuperior && !canvasFrontal) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
   }
 
-  ctx_s = canvas_superior.getContext("2d");
-  ctx_f = canvas_frontal.getContext("2d");
+  ctx_s = canvasSuperior.getContext("2d");
+  ctx_f = canvasFrontal.getContext("2d");
 
   drawAxes(ctx_s);
   drawAxes(ctx_f);
@@ -230,27 +230,27 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     console.log("Distancia incorrecta");
   }
 
-  canvas_superior = document.getElementById("canvas_superior");
-  canvas_frontal = document.getElementById("canvas_frontal");
+  canvasSuperior = document.getElementById("canvasSuperior");
+  canvasFrontal = document.getElementById("canvasFrontal");
 
-  if (!canvas_superior && !canvas_frontal) {
+  if (!canvasSuperior && !canvasFrontal) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
   }
 
-  ctx_s = canvas_superior.getContext("2d");
-  ctx_f = canvas_frontal.getContext("2d");
+  ctx_s = canvasSuperior.getContext("2d");
+  ctx_f = canvasFrontal.getContext("2d");
 
-//  ctx_s.clearRect(0,0, canvas_superior.width, canvas_superior.height);
-//  ctx_f.clearRect(0,0, canvas_frontal.width, canvas_frontal.height);
+//  ctx_s.clearRect(0,0, canvasSuperior.width, canvasSuperior.height);
+//  ctx_f.clearRect(0,0, canvasFrontal.width, canvasFrontal.height);
 
   t_scale[0] = getScale(volume[0],m_scale);
   t_scale[1] = getScale(volume[1],m_scale);
   t_scale[2] = getScale(volume[2],m_scale);
 
-  drawRoom(canvas_superior,volume[0],volume[1], t_scale);
-  drawRoom(canvas_frontal,volume[0],volume[2], t_scale);
+  drawRoom(canvasSuperior,volume[0],volume[1], t_scale);
+  drawRoom(canvasFrontal,volume[0],volume[2], t_scale);
 
-  drawSources(canvas_superior,ps[0],ps[1],t_scale);
-  drawSources(canvas_frontal,ps[0],ps[2],t_scale);
+  drawSources(canvasSuperior,ps[0],ps[1],t_scale);
+  drawSources(canvasFrontal,ps[0],ps[2],t_scale);
 }
