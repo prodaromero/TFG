@@ -63,7 +63,7 @@ function getMinDistance(v,t) {
 
 var canvas;
 var ctx;
-var px_scale = 20;
+var pxScale = 20;
 var m_scale = 1;
 var xy_scale = [1,1];
 var xz_scale = [1,1];
@@ -71,6 +71,8 @@ var t_scale = [1,1,1];
 var max_long = 230;
 var min_long = 200;
 var start = 20;
+var red = "red";
+var blue = "blue";
 
 // FUNCTIONS
 
@@ -78,7 +80,7 @@ function getScale(n, scale) {
 
   var in_area = false;
   this.scale = scale;
-  var long = n*px_scale*this.scale;
+  var long = n*pxScale*this.scale;
   if (!in_area) {
     if (long > max_long) {
       this.scale = this.scale*0.90;
@@ -106,7 +108,13 @@ function drawLine(ctx,a,b,c,d) {
   ctx.restore();
 }
 
-function drawAxes(ctx) {
+function drawText(ctx,word,position) {
+
+    ctx.font = "20px Arial";
+    ctx.fillText(word,position[0],position[1]);
+}
+
+function drawAxes(ctx,word,position) {
 
   // Draw y-axe
   drawLine(ctx,10,10,10,290);
@@ -116,6 +124,7 @@ function drawAxes(ctx) {
 
 function drawRectangle(canvas,r_width,r_height) {
   var ctx = canvas.getContext("2d");
+  
   /*
           b___________2_________c
           |                    |
@@ -139,35 +148,31 @@ function drawRectangle(canvas,r_width,r_height) {
   drawLine(ctx,c[0],c[1],d[0],d[1]);
   // Draw 4
   drawLine(ctx,d[0],d[1],a[0],a[1]);
+
+//  drawText(ctx,r_width)
+//  drawText(ctx,r_height)
 }
 
 function drawRoom(canvas,a,b,scale) {
 
   var s = Math.min(scale[0],scale[1],scale[2]);
-  var length = a*s*px_scale;
-  var width  = b*s*px_scale;
+  var length = a*s*pxScale;
+  var width  = b*s*pxScale;
 
   drawRectangle(canvas,length,width);
 }
 
-function drawSources(canvas,x,y,scale) {
+function drawObjet(canvas,x,y,scale, color) {
   var ctx = canvas.getContext("2d");
 
   var s = Math.min(scale[0],scale[1],scale[2]);
 
-  var w = x*s*px_scale;
-  var h = y*s*px_scale;
+  var w = x*s*pxScale;
+  var h = y*s*pxScale;
 
 
   var scaleWidth  = start+w;
   var scaleHeight = canvas.height-(start+h);
-//  var scaleHeight = (canvas.height-(start+h))*s;
-//  var scaleWidth  = (start+w)*s;
-
-  console.log("x: "+x,"y: "+y,"scala:"+scale);
-  console.log("width"+w,"height"+h);
-  console.log(start);
-  console.log(scaleWidth,scaleHeight);
 
   ctx.save();
 
@@ -178,10 +183,41 @@ function drawSources(canvas,x,y,scale) {
   // ***** counter-clockwise
   ctx.arc(scaleWidth,scaleHeight,5, 0, 2*Math.PI, true);
 
-  ctx.fillStyle = "rgb(255, 0, 0)";
+  ctx.fillStyle = color;
   ctx.fill();
 
   ctx.restore();
+}
+
+function drawDistance(canvas,x,y,scale,dis) {
+
+    var ctx = canvas.getContext("2d");
+
+    var s = Math.min(scale[0],scale[1],scale[2]);
+
+    var w = x*s*pxScale;
+    var h = y*s*pxScale;
+    var d = dis*s*pxScale;
+
+
+    var scaleWidth  = start+w;
+    var scaleHeight = canvas.height-(start+h);
+
+    console.log("Distancia escalada: " + d);
+
+    ctx.globalAlpha = 0.3;
+    ctx.save();
+    ctx.beginPath();
+    // arc(center x, center y, radious, start angle, end angle, counterclockwise)
+    // ***** counterclockwise: Specifies whether the drawing hould be counterclockwise
+    // ***** or clockwise. False is default, and indicates clockwise, while true indicates
+    // ***** counter-clockwise
+    ctx.arc(scaleWidth,scaleHeight,d, 0, 2*Math.PI, true);
+
+    ctx.fillStyle = red;
+    ctx.fill();
+
+    ctx.restore();
 }
 
 function myCanvas(a,b) {
@@ -194,11 +230,15 @@ function myCanvas(a,b) {
     return false;
   }
 
-  ctx_s = canvasSuperior.getContext("2d");
-  ctx_f = canvasFrontal.getContext("2d");
+  ctxSuperior = canvasSuperior.getContext("2d");
+  ctxFrontal = canvasFrontal.getContext("2d");
 
-  drawAxes(ctx_s);
-  drawAxes(ctx_f);
+  drawAxes(ctxSuperior);
+  drawText(ctxSuperior,"x",[270,280]);
+  drawText(ctxSuperior,"y",[15,25]);
+  drawAxes(ctxFrontal);
+  drawText(ctxFrontal,"x",[270,280]);
+  drawText(ctxFrontal,"z",[15,25]);
 }
 
 function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
@@ -238,19 +278,32 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     return false;
   }
 
-  ctx_s = canvasSuperior.getContext("2d");
-  ctx_f = canvasFrontal.getContext("2d");
-
-//  ctx_s.clearRect(0,0, canvasSuperior.width, canvasSuperior.height);
-//  ctx_f.clearRect(0,0, canvasFrontal.width, canvasFrontal.height);
+  ctxSuperior = canvasSuperior.getContext("2d");
+  ctxFrontal = canvasFrontal.getContext("2d");
 
   t_scale[0] = getScale(volume[0],m_scale);
   t_scale[1] = getScale(volume[1],m_scale);
   t_scale[2] = getScale(volume[2],m_scale);
 
+  drawAxes(ctxSuperior);
+  drawText(ctxSuperior,"x",[270,280]);
+  drawText(ctxSuperior,"y",[15,25]);
+  drawAxes(ctxFrontal);
+  drawText(ctxFrontal,"x",[270,280]);
+  drawText(ctxFrontal,"z",[15,25]);
+
   drawRoom(canvasSuperior,volume[0],volume[1], t_scale);
   drawRoom(canvasFrontal,volume[0],volume[2], t_scale);
 
-  drawSources(canvasSuperior,ps[0],ps[1],t_scale);
-  drawSources(canvasFrontal,ps[0],ps[2],t_scale);
+  // draw the source
+  drawObjet(canvasSuperior,ps[0],ps[1],t_scale, red);
+  drawObjet(canvasFrontal,ps[0],ps[2],t_scale,red);
+
+  // draw the source
+  drawObjet(canvasSuperior,pm[0],pm[1],t_scale,blue);
+  drawObjet(canvasFrontal,pm[0],pm[2],t_scale,blue);
+
+  // draw the min distance
+  drawDistance(canvasSuperior,ps[0],ps[1],t_scale, dmin);
+  drawDistance(canvasFrontal,ps[0],ps[2],t_scale, dmin);
 }
