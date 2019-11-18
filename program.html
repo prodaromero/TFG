@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
-<!--    <link rel="stylesheet" href="productos.css"> -->
-    <script type="text/javascript" src="program.js" ></script>
+    <head>
+        <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="program.css">
+        <script type="text/javascript" src="program.js" ></script>
 <!--    <script type="text/javascript" src="canvas.js" ></script>-->
 
-</head>
-  <body onload="myCanvas()">
-    <div>
-      <canvas id="canvas_superior" width="300" height="300" style="border:1px solid #000000;">
-        Please use a browser that supports "canvas"
-    </div>
+    </head>
+    <body onload="myCanvas()">
+        <div id="front">
+            <div id="canvasDisplay">
 
-    <div>
-      <canvas id="canvas_frontal" width="300" height="300" style="border:1px solid #000000;">
-        Please use a browser that supports "canvas"
-    </div>
+                <div id="dispOne">
+                    <h2>Vista Superior</h2>
+                    <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
+                    Please use a browser that supports "canvas"
+                </div>
+                <div id="dispTwo">
+                    <h2>Vista Frontal</h2>
+                    <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+                    Please use a browser that supports "canvas"
 
-    <div>
-      <input id="t" onfocus="this.value=''" value="t [s]" autocomplete="off"/>
-    </div>
-    <div>
-      <input id="xv" onfocus="this.value=''" value="x [m]" autocomplete="off"/>
-      <input id="yv" onfocus="this.value=''" value="y [m]" autocomplete="off"/>
-      <input id="zv" onfocus="this.value=''" value="z [m]" autocomplete="off"/>
-    </div>
+                </div>
+            </div>
 
-    <div>
-      <input id="xs" onfocus="this.value=''" value="x [m]" autocomplete="off"/>
-      <input id="ys" onfocus="this.value=''" value="y [m]" autocomplete="off"/>
-      <input id="zs" onfocus="this.value=''" value="z [m]" autocomplete="off"/>
-    </div>
+            <div id="formDisplay">
 
-    <div>
-      <input id="xm" onfocus="this.value=''" value="x [m]" autocomplete="off"/>
-      <input id="ym" onfocus="this.value=''" value="y [m]" autocomplete="off"/>
-      <input id="zm" onfocus="this.value=''" value="z [m]" autocomplete="off"/>
-    </div>
-<!--    <input type="text" name="name" id="uniqueID" value="value" /> -->
-<!--  <button onclick="getPosition('xs', 'ys', 'zs')">Add</button>  -->
-  <button onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">Add</button>
-  </body>
+                <div id="tiempoRever">
+                    <p>Tiempo de reverberación esperado:
+                    <input id="t" onfocus="this.value=''" value="t [s]" autocomplete="off"/></p>
+                </div>
+
+                <div id="dimRecinto">
+                    <p>Dimensiones del recinto</p>
+                    <p>- A. Largo [m] : <input id="xv" onfocus="this.value=''" value="x [m]" autocomplete="off"/></p>
+                    <p>- B. Ancho [m] : <input id="yv" onfocus="this.value=''" value="y [m]" autocomplete="off"/></p>
+                    <p>- C. Alto  [m] : <input id="zv" onfocus="this.value=''" value="z [m]" autocomplete="off"/></p>
+                </div>
+
+                <div id="dimFuente">
+                    <p>Posición de la fuente</p>
+                    <p>- Distancia con A [m] : <input id="xs" onfocus="this.value=''" value="x [m]" autocomplete="off"/></p>
+                    <p>- Distancia con B [m] : <input id="ys" onfocus="this.value=''" value="y [m]" autocomplete="off"/></p>
+                    <p>- Distancia con C [m] : <input id="zs" onfocus="this.value=''" value="z [m]" autocomplete="off"/></p>
+                </div>
+
+                <div id="dimMicro">
+                    <p>Posición del micro</p>
+                    <p>- Distancia con A [m] : <input id="xm" onfocus="this.value=''" value="x [m]" autocomplete="off"/></p>
+                    <p>- Distancia con B [m] : <input id="ym" onfocus="this.value=''" value="y [m]" autocomplete="off"/></p>
+                    <p>- Distancia con C [m] : <input id="zm" onfocus="this.value=''" value="z [m]" autocomplete="off"/></p>
+                </div>
+
+                <button onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">Add</button>
+            </div>
+        </div>
+    </body>
 </html>
