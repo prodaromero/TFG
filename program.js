@@ -70,7 +70,7 @@ var xz_scale = [1,1];
 var t_scale = [1,1,1];
 var max_long = 230;
 var min_long = 200;
-var start = 20;
+var start = 40;
 var red = "red";
 var blue = "blue";
 
@@ -116,15 +116,15 @@ function drawText(ctx,word,position) {
 
 function drawAxes(ctx,word,position) {
 
-  // Draw y-axe
-  drawLine(ctx,10,10,10,290);
   // Draw x-axe
-  drawLine(ctx,10,290,290,290);
+  drawLine(ctx,30,270,290,270);
+  // Draw y-axe
+  drawLine(ctx,30,30,30,270);
 }
 
-function drawRectangle(canvas,r_width,r_height) {
+function drawRectangle(canvas,widthScaled,heightScaled,widthReal,heightReal) {
   var ctx = canvas.getContext("2d");
-  
+
   /*
           b___________2_________c
           |                    |
@@ -136,9 +136,9 @@ function drawRectangle(canvas,r_width,r_height) {
   */
 
   var a = [start,canvas.height-start];
-  var b = [start,canvas.height-(start+r_height)];
-  var c = [start+r_width,canvas.height-(start+r_height)];
-  var d = [start+r_width,canvas.height-start];
+  var b = [start,canvas.height-(start+heightScaled)];
+  var c = [start+widthScaled,canvas.height-(start+heightScaled)];
+  var d = [start+widthScaled,canvas.height-start];
 
   // Draw 1
   drawLine(ctx,a[0],a[1],b[0],b[1]);
@@ -149,17 +149,20 @@ function drawRectangle(canvas,r_width,r_height) {
   // Draw 4
   drawLine(ctx,d[0],d[1],a[0],a[1]);
 
-//  drawText(ctx,r_width)
-//  drawText(ctx,r_height)
+  var xMid = (b[0]+c[0])/2;
+  var yMid = (c[1]+d[1])/2;
+
+  drawText(ctx,widthReal,[xMid,295]);
+  drawText(ctx,heightReal,[5,yMid]);
 }
 
 function drawRoom(canvas,a,b,scale) {
 
   var s = Math.min(scale[0],scale[1],scale[2]);
-  var length = a*s*pxScale;
-  var width  = b*s*pxScale;
+  var lengthScaled = a*s*pxScale;
+  var widthScaled  = b*s*pxScale;
 
-  drawRectangle(canvas,length,width);
+  drawRectangle(canvas,lengthScaled,widthScaled,a,b);
 }
 
 function drawObjet(canvas,x,y,scale, color) {
@@ -234,11 +237,11 @@ function myCanvas(a,b) {
   ctxFrontal = canvasFrontal.getContext("2d");
 
   drawAxes(ctxSuperior);
-  drawText(ctxSuperior,"x",[270,280]);
-  drawText(ctxSuperior,"y",[15,25]);
+  drawText(ctxSuperior,"x [m]",[250,290]);
+  drawText(ctxSuperior,"y [m]",[10,20]);
   drawAxes(ctxFrontal);
-  drawText(ctxFrontal,"x",[270,280]);
-  drawText(ctxFrontal,"z",[15,25]);
+  drawText(ctxFrontal,"x [m]",[250,290]);
+  drawText(ctxFrontal,"z [m]",[10,20]);
 }
 
 function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
@@ -286,11 +289,11 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
   t_scale[2] = getScale(volume[2],m_scale);
 
   drawAxes(ctxSuperior);
-  drawText(ctxSuperior,"x",[270,280]);
-  drawText(ctxSuperior,"y",[15,25]);
+  drawText(ctxSuperior,"x [m]",[250,290]);
+  drawText(ctxSuperior,"y [m]",[10,20]);
   drawAxes(ctxFrontal);
-  drawText(ctxFrontal,"x",[270,280]);
-  drawText(ctxFrontal,"z",[15,25]);
+  drawText(ctxFrontal,"x [m]",[250,290]);
+  drawText(ctxFrontal,"z [m]",[10,20]);
 
   drawRoom(canvasSuperior,volume[0],volume[1], t_scale);
   drawRoom(canvasFrontal,volume[0],volume[2], t_scale);
