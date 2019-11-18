@@ -1,6 +1,6 @@
-/*********
+/******************
   ACOUSTIC FORMULAS
-**********/
+*********************/
 
 function difference(nf, np) {
   return Math.pow(nf - np, 2);
@@ -203,25 +203,32 @@ function drawDistance(canvas,x,y,scale,dis) {
 
     var w = x*s*pxScale;
     var h = y*s*pxScale;
-    var d = dis*s*pxScale;
+    var disScaled = dis*s*pxScale;
 
 
     var scaleWidth  = start+w;
     var scaleHeight = canvas.height-(start+h);
 
-    console.log("Distancia escalada: " + d);
+    drawLine(ctx,scaleWidth,scaleHeight,scaleWidth+disScaled,scaleHeight);
 
-    ctx.globalAlpha = 0.3;
+    var disRound = parseFloat(dis).toFixed(2);
+
+    ctx.font = "10px Arial";
+    ctx.fillText("dmin= "+disRound+"m",scaleWidth+5,scaleHeight-3);
+
     ctx.save();
+    ctx.globalAlpha = 0.3;
     ctx.beginPath();
     // arc(center x, center y, radious, start angle, end angle, counterclockwise)
     // ***** counterclockwise: Specifies whether the drawing hould be counterclockwise
     // ***** or clockwise. False is default, and indicates clockwise, while true indicates
     // ***** counter-clockwise
-    ctx.arc(scaleWidth,scaleHeight,d, 0, 2*Math.PI, true);
+    ctx.arc(scaleWidth,scaleHeight,disScaled, 0, 2*Math.PI, true);
 
     ctx.fillStyle = red;
     ctx.fill();
+
+
 
     ctx.restore();
 }
