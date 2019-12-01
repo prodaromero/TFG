@@ -2,10 +2,6 @@
   ACOUSTIC FORMULAS
 *********************/
 
-function difference(nf, np) {
-  return Math.pow(nf - np, 2);
-}
-
 function distance(s, m) {
 
   // X axis difference
@@ -236,7 +232,6 @@ function drawDistance(canvas,x,y,scale,dis) {
 function myCanvas(a,b) {
   canvasSuperior = document.getElementById("canvasSuperior");
   canvasFrontal = document.getElementById("canvasFrontal");
-
 
   if (!canvasSuperior && !canvasFrontal) {
     console.log('Failed to retrieve the <canvas> element');
