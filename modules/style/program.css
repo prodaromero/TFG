@@ -10,54 +10,66 @@ body, html {
 }
 
 button {
-    height: 30px;
-    width: 40px;
+    width: 150px;
+    height: 25px;
     margin: auto;
     margin-top: 0.5em;
+    margin-left: 40%;
     border-radius: 8px;
     background-color: #3CB371;
     border: 1px solid green;
+    font-weight: bold;
     color: white;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
 }
 
+#title {
+    width: 60%;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
 #front{
     width: 1200px;
-    height: 800px;
+    height: 900px;
     margin: 0.5em auto;
     padding: 0.5em;
 }
 
 #canvasDisplay {
-    width: 60%;
-    height: 45%;
+    width: 35%;
+    height: 80%;
     background-color: #A9A9A9;
     border-radius: 0.5em;
+    float: right;
     margin: auto;
     padding: 0.5em;
 }
 
 #dispOne {
     width:310px;
-    float: left;
+/*    float: left;*/
     margin: auto;
     padding: 0.5em;
 }
 
 #dispTwo {
     width:310px;
-    float: right;
+/*    float: right;*/
     margin: auto;
     padding: 0.5em;
 }
 
 #formDisplay {
+    width: 50%;
     height: 50%;
-    width: 70%;
     background-color :#A9A9A9;
     border-radius: 1em;
+    float: left;
     margin: auto;
     margin-top: 1em;
     padding: 0.5em;
