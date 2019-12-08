@@ -151,7 +151,13 @@ function drawDistance(canvas,x,y,scale,dis) {
     ctx.fillStyle = red;
     ctx.fill();
 
-
-
     ctx.restore();
+}
+
+function drawDistanceMsg(esok) {
+  if (esok) {
+    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg good">The micriophone is in correct position</div>'
+  } else {
+    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">The micriophone isn\'t in correct position</div>'
+  }
 }
