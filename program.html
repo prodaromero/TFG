@@ -1,66 +1,84 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-    <head>
-        <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="modules/style/program.css">
-        <script type="text/javascript" src="resources/program.js" ></script>
-        <script type="text/javascript" src="modules/services/acousticService.js"></script>
-        <script type="text/javascript" src="modules/services/canvasService.js"></script>
-        <script type="text/javascript" src="modules/values/valuesConst.js"></script>
+  <head>
+    <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="modules/style/program.css">
+    <script type="text/javascript" src="resources/program.js" ></script>
+    <script type="text/javascript" src="modules/services/acousticService.js"></script>
+    <script type="text/javascript" src="modules/services/canvasService.js"></script>
+    <script type="text/javascript" src="modules/services/displayService.js"></script>
+    <script type="text/javascript" src="modules/values/valuesConst.js"></script>
+  </head>
 
-    </head>
-    <body onload="myCanvas()">
-        <div id="front">
-          <div id="title">
-            <img src="modules/images/AcousticLabLogo.png">
+  <body onload="myCanvas()">
+<!--    <div id="front"> -->
+      <div id="title">
+        <img src="modules/images/AcousticLabLogo.png">
+      </div>
+
+      <div class="tab">
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'minDistance')">Calcular distancias mínimas</button>
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'reverTime')">Calcular tiempo de reverberación</button>
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'materials')">Consultar lista de materiales</button>
+      </div>
+
+      <div id="minDistance" class="tabcontent">
+        <div class="contenedorPrincipal">
+          <div class="canvasDisplay">
+            <div class="displayOne">
+              <h2>Vista Superior</h2>
+                <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
+                Please use a browser that supports "canvas"
+            </div>
+
+            <div class="displayTwo">
+              <h2>Vista Frontal</h2>
+                <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+                Please use a browser that supports "canvas"
+            </div>
           </div>
-            <div id="canvasDisplay">
 
-                <div id="dispOne">
-                    <h2>Vista Superior</h2>
-                    <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
-                    Please use a browser that supports "canvas"
-                </div>
-                <div id="dispTwo">
-                    <h2>Vista Frontal</h2>
-                    <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
-                    Please use a browser that supports "canvas"
+          <div id="msgSpace"></div>
 
-                </div>
+          <div class="formDisplay">
+            <div id="tiempoRever">
+              <p>Tiempo de reverberación esperado:
+              <input required id="t" onfocus="this.value=''" type="number"></p>
             </div>
 
-            <div id="msgSpace"></div>
-
-            <div id="formDisplay">
-
-                <div id="tiempoRever">
-                    <p>Tiempo de reverberación esperado:
-                    <input required id="t" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <div id="dimRecinto">
-                    <p>Dimensiones del recinto</p>
-                    <p>- A. Largo [m] : <input id="xv" onfocus="this.value=''" type="number"></p>
-                    <p>- B. Ancho [m] : <input id="yv" onfocus="this.value=''" type="number"></p>
-                    <p>- C. Alto  [m] : <input id="zv" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <div id="dimFuente">
-                    <p>Posición de la fuente</p>
-                    <p>- Distancia con A [m] : <input id="xs" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con B [m] : <input id="ys" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con C [m] : <input id="zs" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <div id="dimMicro">
-                    <p>Posición del micro</p>
-                    <p>- Distancia con A [m] : <input id="xm" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con B [m] : <input id="ym" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con C [m] : <input id="zm" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <button onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+            <div id="dimRecinto">
+              <p>Dimensiones del recinto</p>
+              <p>- A. Largo [m] : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- B. Ancho [m] : <input id="yv" onfocus="this.value=''" type="number"></p>
+              <p>- C. Alto  [m] : <input id="zv" onfocus="this.value=''" type="number"></p>
             </div>
+
+            <div id="dimFuente">
+              <p>Posición de la fuente</p>
+              <p>- Distancia con A [m] : <input id="xs" onfocus="this.value=''" type="number"></p>
+              <p>- Distancia con B [m] : <input id="ys" onfocus="this.value=''" type="number"></p>
+              <p>- Distancia con C [m] : <input id="zs" onfocus="this.value=''" type="number"></p>
+            </div>
+
+            <div id="dimMicro">
+              <p>Posición del micro</p>
+              <p>- Distancia con A [m] : <input id="xm" onfocus="this.value=''" type="number"></p>
+              <p>- Distancia con B [m] : <input id="ym" onfocus="this.value=''" type="number"></p>
+              <p>- Distancia con C [m] : <input id="zm" onfocus="this.value=''" type="number"></p>
+            </div>
+
+            <button class="calcButton" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+
+          </div>
         </div>
-    </body>
+      </div>
+
+      <div id="reverTime" class="tabcontent">
+      </div>
+
+      <div id="materials" class="tabcontent">
+      </div>
+
+  <!--   </div> -->
+  </body>
 </html>

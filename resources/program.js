@@ -43,6 +43,7 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     var dis = distance(ps, pm)
 
     var ok = isCorrect(dis, dmin)
+    
     if (ok) {
       console.log("Distancia correcta");
     } else {
@@ -90,7 +91,7 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
 
   } else {
 
-    alert("Parámetros fuera del rango.\n Por favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
+    alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
 
   }
 }
