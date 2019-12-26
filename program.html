@@ -11,7 +11,7 @@
   </head>
 
   <body onload="myCanvas()">
-<!--    <div id="front"> -->
+
       <div id="title">
         <img src="modules/images/AcousticLabLogo.png">
       </div>
@@ -42,26 +42,26 @@
 
           <div class="formDisplay">
             <div id="tiempoRever">
-              <p>Tiempo de reverberación esperado:
-              <input required id="t" onfocus="this.value=''" type="number"></p>
+              <h4>Tiempo de reverberación esperado</h4>
+              <input required id="t" onfocus="this.value=''" placeholder="Tiempo de reverberación [s]">
             </div>
 
             <div id="dimRecinto">
-              <p>Dimensiones del recinto</p>
+              <h4>Dimensiones del recinto</h4>
               <p>- A. Largo [m] : <input id="xv" onfocus="this.value=''" type="number"></p>
               <p>- B. Ancho [m] : <input id="yv" onfocus="this.value=''" type="number"></p>
               <p>- C. Alto  [m] : <input id="zv" onfocus="this.value=''" type="number"></p>
             </div>
 
             <div id="dimFuente">
-              <p>Posición de la fuente</p>
+              <h4>Posición de la fuente</h4>
               <p>- Distancia con A [m] : <input id="xs" onfocus="this.value=''" type="number"></p>
               <p>- Distancia con B [m] : <input id="ys" onfocus="this.value=''" type="number"></p>
               <p>- Distancia con C [m] : <input id="zs" onfocus="this.value=''" type="number"></p>
             </div>
 
             <div id="dimMicro">
-              <p>Posición del micro</p>
+              <h4>Posición del micro</h4>
               <p>- Distancia con A [m] : <input id="xm" onfocus="this.value=''" type="number"></p>
               <p>- Distancia con B [m] : <input id="ym" onfocus="this.value=''" type="number"></p>
               <p>- Distancia con C [m] : <input id="zm" onfocus="this.value=''" type="number"></p>
@@ -73,12 +73,47 @@
         </div>
       </div>
 
+<!--
+
+-->
+
       <div id="reverTime" class="tabcontent">
+        <div class="contenedorPrincipal">
+
+          <div class="formDisplay">
+            <h3>Tiempo de reverberación por Sabine</h3>
+
+            <div id="dimRecinto">
+              <p>Dimensiones del recinto</p>
+              <p>- A. Largo [m] : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- B. Ancho [m] : <input id="yv" onfocus="this.value=''" type="number"></p>
+              <p>- C. Alto  [m] : <input id="zv" onfocus="this.value=''" type="number"></p>
+            </div>
+
+            <button class="calcButton" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+
+            <div id="dimRecinto">
+              <p>Coeficientes de absorción</p>
+              <p>- Techo : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- Pared 1 : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- Pared 2 : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- Pared 3 : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- Pared 3 : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p>- Suelo : <input id="xv" onfocus="this.value=''" type="number"></p>
+            </div>
+
+            <button class="calcButton" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+
+          </div>
+        </div>
       </div>
+
+<!--
+
+-->
 
       <div id="materials" class="tabcontent">
       </div>
-
   <!--   </div> -->
   </body>
 </html>
