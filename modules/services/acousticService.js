@@ -2,9 +2,7 @@
   ACOUSTIC FORMULAS
 *********************/
 
-function difference(nf, np) {
-  return Math.pow(nf - np, 2);
-}
+function difference(nf, np) {return Math.pow(nf - np, 2);}
 
 function distance(s, m) {
 
