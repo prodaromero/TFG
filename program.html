@@ -10,7 +10,7 @@
     <script type="text/javascript" src="modules/services/displayService.js"></script>
 
     <script type="text/javascript" src="modules/values/valuesConst.js"></script>
-    <script type="text/javascript" src="  modules/objects/room.js"></script>
+    <script type="text/javascript" src="modules/objects/room.js"></script>
   </head>
 
   <body onload="myCanvas()">
@@ -47,40 +47,40 @@
             <div id="tiempoRever">
               <h4>Tiempo de reverberación esperado</h4>
               <div class="in-box">
-                  <input required id="t" class="effect" placeholder="Tiempo reverberación [s]">
-                  <span class="focus-border"></span>
+                <input required id="t" class="effect" placeholder="Tiempo reverberación [s]">
+                <span class="focus-border"></span>
               </div>
             </div>
 
             <div id="dimRecinto">
-              <h4>Dimensiones del recinto</h4>
+              <h4> del recinto</h4>
               <div class="in-box">
-                  <input required id="xv" class="effect" placeholder="Laro del recinto [m]">
-                  <span class="focus-border"></span>
+                <input required id="xv" class="effect" placeholder="Laro del recinto [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="yv" class="effect" placeholder="Ancho del recinto [m]">
-                  <span class="focus-border"></span>
+                <input required id="yv" class="effect" placeholder="Ancho del recinto [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="zv" class="effect" placeholder="Altura del recinto [m]">
-                  <span class="focus-border"></span>
+                <input required id="zv" class="effect" placeholder="Altura del recinto [m]">
+                <span class="focus-border"></span>
               </div>
             </div>
 
             <div id="dimFuente">
               <h4>Posición de la fuente</h4>
               <div class="in-box">
-                  <input required id="xs" class="effect" placeholder="Distancia con pared izq. [m]">
-                  <span class="focus-border"></span>
+                <input required id="xs" class="effect" placeholder="Distancia con pared izq. [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="ys" class="effect" placeholder="Distancia con pared inferior [m]">
-                  <span class="focus-border"></span>
+                <input required id="ys" class="effect" placeholder="Distancia con pared inferior [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="zs" class="effect" placeholder="Distancia con techo [m]">
-                  <span class="focus-border"></span>
+                <input required id="zs" class="effect" placeholder="Distancia con techo [m]">
+                <span class="focus-border"></span>
               </div>
 
             </div>
@@ -88,16 +88,16 @@
             <div id="dimMicro">
               <h4>Posición del micrófono</h4>
               <div class="in-box">
-                  <input required id="xm" class="effect" placeholder="Distancia con pared izq. [m]">
-                  <span class="focus-border"></span>
+                <input required id="xm" class="effect" placeholder="Distancia con pared izq. [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="ym" class="effect" placeholder="Distancia con pared inferior [m]">
-                  <span class="focus-border"></span>
+                <input required id="ym" class="effect" placeholder="Distancia con pared inferior [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="zm" class="effect" placeholder="Distancia con techo [m]">
-                  <span class="focus-border"></span>
+                <input required id="zm" class="effect" placeholder="Distancia con techo [m]">
+                <span class="focus-border"></span>
               </div>
             </div>
 
@@ -120,32 +120,58 @@
             <div id="dimRecinto">
               <h4>Dimensiones del recinto</h4>
               <div class="in-box">
-                  <input required id="x" class="effect" placeholder="Laro del recinto [m]">
-                  <span class="focus-border"></span>
+                <input required id="x" class="effect" placeholder="Laro del recinto [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="y" class="effect" placeholder="Ancho del recinto [m]">
-                  <span class="focus-border"></span>
+                <input required id="y" class="effect" placeholder="Ancho del recinto [m]">
+                <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                  <input required id="z" class="effect" placeholder="Altura del recinto [m]">
-                  <span class="focus-border"></span>
+                <input required id="z" class="effect" placeholder="Altura del recinto [m]">
+                <span class="focus-border"></span>
               </div>
             </div>
 
-            <button class="calcButton" onclick="optionGetReverberationTime('x', 'y', 'z')">CALCULAR</button>
+            <button class="calcButton" onclick="getRoomDimensions('x', 'y', 'z')">CALCULAR</button>
 
             <div id="dimRecinto">
               <h3>Coeficientes de absorción</h3>
-              <p>- Techo : <input id="xv" onfocus="this.value=''" type="number"></p>
-              <p>- Pared 1 : <input id="xv" onfocus="this.value=''" type="number"></p>
-              <p>- Pared 2 : <input id="xv" onfocus="this.value=''" type="number"></p>
-              <p>- Pared 3 : <input id="xv" onfocus="this.value=''" type="number"></p>
-              <p>- Pared 3 : <input id="xv" onfocus="this.value=''" type="number"></p>
-              <p>- Suelo : <input id="xv" onfocus="this.value=''" type="number"></p>
+              <p id="dim_techo">Superficie del techo: </p>
+              <div class="in-box">
+                <input required id="x" class="effect" placeholder="Coef. abs. Techo">
+                <span class="focus-border"></span>
+              </div>
+              <p id="dim_pared_a">Superficie de la pared 1: </p>
+              <div class="in-box">
+                <input required id="y" class="effect" placeholder="Coef. abs. Pared 1">
+                <span class="focus-border"></span>
+              </div>
+              <p id="dim_pared_b">Superficie de la pared 2: </p>
+              <div class="in-box">
+                <input required id="y" class="effect" placeholder="Coef. abs. Pared 2">
+                <span class="focus-border"></span>
+              </div>
+              <p id="dim_pared_c">Superficie de la pared 3: </p>
+              <div class="in-box">
+                <input required id="y" class="effect" placeholder="Coef. abs. Pared 3">
+                <span class="focus-border"></span>
+              </div>
+              <p id="dim_pared_d">Superficie de la pared 4: </p>
+              <div class="in-box">
+                <input required id="y" class="effect" placeholder="Coef. abs. Pared 4">
+                <span class="focus-border"></span>
+              </div>
+              <p id="dim_suelo">Superficie del suelo: </p>
+              <div class="in-box">
+                <input required id="y" class="effect" placeholder="Coef. abs. Suelo">
+                <span class="focus-border"></span>
+              </div>
             </div>
 
-            <button class="calcButton" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+            <button class="calcButton" onclick="optionGetReverberationTime('coef_techo',
+              'coef_pared_1', 'coef_pared_2', 'coef_pared_3', 'coef_pared_4', 'coef_suelo')">CALCULAR
+            </button>
 
           </div>
         </div>

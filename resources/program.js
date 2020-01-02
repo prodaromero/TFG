@@ -16,6 +16,7 @@ function myCanvas(a,b) {
   drawAxes(ctxFrontal);
   drawText(ctxFrontal,"x [m]",[250,290]);
   drawText(ctxFrontal,"z [m]",[10,20]);
+
 }
 
 function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
@@ -43,7 +44,7 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     var dis = distance(ps, pm)
 
     var ok = isCorrect(dis, dmin)
-    
+
     if (ok) {
       console.log("Distancia correcta");
     } else {
