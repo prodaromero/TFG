@@ -26,7 +26,7 @@
       </div>
 
       <div id="minDistance" class="tabcontent">
-        <div class="contenedorPrincipal">
+        <div class="contenedorPrincipal_1">
           <div class="canvasDisplay">
             <div class="displayOne">
               <h2><i>Vista Superior</i></h2>
@@ -53,7 +53,7 @@
             </div>
 
             <div id="dimRecinto">
-              <h4> del recinto</h4>
+              <h4>Dimensiones del recinto</h4>
               <div class="in-box">
                 <input required id="xv" class="effect" placeholder="Laro del recinto [m]">
                 <span class="focus-border"></span>
@@ -113,11 +113,10 @@
 
       <div id="reverTime" class="tabcontent">
         <div class="contenedorPrincipal">
-
-          <div class="formDisplay">
+          <div class="reverDisplay">
             <h3>Tiempo de reverberación por Sabine</h3>
 
-            <div id="dimRecinto">
+            <div id="supRecinto">
               <h4>Dimensiones del recinto</h4>
               <div class="in-box">
                 <input required id="x" class="effect" placeholder="Laro del recinto [m]">
@@ -133,44 +132,38 @@
               </div>
             </div>
 
-            <button class="calcButton" onclick="getRoomDimensions('x', 'y', 'z')">CALCULAR</button>
-
-            <div id="dimRecinto">
-              <h3>Coeficientes de absorción</h3>
-              <p id="dim_techo">Superficie del techo: </p>
+            <div id="coefRecinto">
+              <h4>Coeficientes de absorción</h4>
               <div class="in-box">
-                <input required id="x" class="effect" placeholder="Coef. abs. Techo">
+                <input required id="coef_techo" class="effect" placeholder="Coef. abs. Techo">
                 <span class="focus-border"></span>
               </div>
-              <p id="dim_pared_a">Superficie de la pared 1: </p>
               <div class="in-box">
-                <input required id="y" class="effect" placeholder="Coef. abs. Pared 1">
+                <input required id="coef_pared_1" class="effect" placeholder="Coef. abs. Pared 1">
                 <span class="focus-border"></span>
               </div>
-              <p id="dim_pared_b">Superficie de la pared 2: </p>
               <div class="in-box">
-                <input required id="y" class="effect" placeholder="Coef. abs. Pared 2">
+                <input required id="coef_pared_2" class="effect" placeholder="Coef. abs. Pared 2">
                 <span class="focus-border"></span>
               </div>
-              <p id="dim_pared_c">Superficie de la pared 3: </p>
               <div class="in-box">
-                <input required id="y" class="effect" placeholder="Coef. abs. Pared 3">
+                <input required id="coef_pared_3" class="effect" placeholder="Coef. abs. Pared 3">
                 <span class="focus-border"></span>
               </div>
-              <p id="dim_pared_d">Superficie de la pared 4: </p>
               <div class="in-box">
-                <input required id="y" class="effect" placeholder="Coef. abs. Pared 4">
+                <input required id="coef_pared_4" class="effect" placeholder="Coef. abs. Pared 4">
                 <span class="focus-border"></span>
               </div>
-              <p id="dim_suelo">Superficie del suelo: </p>
               <div class="in-box">
-                <input required id="y" class="effect" placeholder="Coef. abs. Suelo">
+                <input required id="coef_suelo" class="effect" placeholder="Coef. abs. Suelo">
                 <span class="focus-border"></span>
               </div>
             </div>
 
-            <button class="calcButton" onclick="optionGetReverberationTime('coef_techo',
-              'coef_pared_1', 'coef_pared_2', 'coef_pared_3', 'coef_pared_4', 'coef_suelo')">CALCULAR
+
+            <button class="calcButton" onclick="optionGetReverberationTime('x','y','z',
+              'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
+              'coef_suelo')">CALCULAR
             </button>
 
           </div>

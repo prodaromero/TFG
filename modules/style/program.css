@@ -32,13 +32,13 @@ input {
   margin-top: 10px;
 }
 
-.in-box{
-  width: 50%;
+.in-box {
+  width: 75%;
   margin: auto;
   position: relative;
 }
 
-:focus{outline: none;}
+:focus {outline: none;}
 
 .effect {
   border: 0;
@@ -125,23 +125,26 @@ button {
 }
 
 .contenedorPrincipal {
-    width:100%;
-    height:auto;
-    background-color: #ddd;
-    position:relative;
-    margin:auto;
-    padding: 0.5em;
-    border-radius: 0.5em;
+  width:100%;
+  background-color: #ddd;
+  position:relative;
+  margin:auto;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+.canvasDisplay, .formDisplay, .reverDisplay {
+  background-color: #A9A9A9;
+  text-align: center;
+  margin: auto;
+  border-radius: 1em;
+  margin-top: 1em;
+  padding: 1em;
 }
 
 .canvasDisplay {
   width: 60%;
   height: 45%;
-  background-color: #A9A9A9;
-  text-align: center;
-  border-radius: 0.5em;
-  margin: auto;
-  padding: 0.5em;
 }
 
 .displayOne {
@@ -162,28 +165,36 @@ button {
 .formDisplay {
   height: 50%;
   width: 50%;
-  background-color :#A9A9A9;
-  border-radius: 1em;
-  margin: auto;
-  margin-top: 1em;
-  padding: 0.5em;
 }
 
-#tiempoRever, #dimRecinto, #dimFuente, #dimMicro {
-  width: 90%;
+.reverDisplay {
+  width: 60%;
+  height: 90%;
+}
+
+#tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #dimRecinto, #supRecinto {
+  background-color: #DCDCDC;
   margin: auto;
   margin-top: 0.5em;
   padding: 0.5em;
-  background-color: #DCDCDC;
   border-radius: 0.5em;
+}
+
+#tiempoRever, #dimFuente, #dimMicro, #dimRecinto {
+  width: 90%;
 }
 
 #tiempoRever {
   height: 5%;;
 }
 
-#dimRecinto, #dimFuente, #dimMicro {
+#dimFuente, #dimMicro, #dimRecinto {
   height: 20%;
+}
+
+#coefRecinto, #supRecinto {
+  width: 60%;
+  height: auto;
 }
 
 .distanceMsg {
@@ -209,11 +220,11 @@ button {
 }
 
 .calcButton {
+  position: relative;
   width: 150px;
   height: 25px;
   margin: auto;
   margin-top: 0.5em;
-  margin-left: 40%;
   border-radius: 8px;
   background-color: #3CB371;
   border: 1px solid green;

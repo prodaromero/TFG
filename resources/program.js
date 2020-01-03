@@ -1,7 +1,7 @@
 function myCanvas(a,b) {
   canvasSuperior = document.getElementById("canvasSuperior");
   canvasFrontal = document.getElementById("canvasFrontal");
-
+  
   if (!canvasSuperior && !canvasFrontal) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
