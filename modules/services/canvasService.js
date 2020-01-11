@@ -154,10 +154,16 @@ function drawDistance(canvas,x,y,scale,dis) {
     ctx.restore();
 }
 
-function drawDistanceMsg(esok) {
-  if (esok) {
+function drawDistanceMsg(isok) {
+  if (isok) {
     document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg good">The micriophone is in correct position</div>'
   } else {
     document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">The micriophone isn\'t in correct position</div>'
   }
+}
+
+function drawReverTimeMsg(tr) {
+
+  document.getElementById("putReverTime").innerHTML = '<div class="divReverTime">Your reverberation time is: '+tr+' [s].</div>'
+
 }

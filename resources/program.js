@@ -1,7 +1,7 @@
 function myCanvas(a,b) {
   canvasSuperior = document.getElementById("canvasSuperior");
   canvasFrontal = document.getElementById("canvasFrontal");
-  
+
   if (!canvasSuperior && !canvasFrontal) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
@@ -44,12 +44,6 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     var dis = distance(ps, pm)
 
     var ok = isCorrect(dis, dmin)
-
-    if (ok) {
-      console.log("Distancia correcta");
-    } else {
-      console.log("Distancia incorrecta");
-    }
 
     drawDistanceMsg(ok);
 

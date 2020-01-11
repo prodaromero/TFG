@@ -61,24 +61,6 @@ input {
   transition: 0.4s;
 }
 
-/*
-button {
-    width: 150px;
-    height: 25px;
-    margin: auto;
-    margin-top: 0.5em;
-    margin-left: 40%;
-    border-radius: 8px;
-    background-color: #3CB371;
-    border: 1px solid green;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-}
-*/
-
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -114,6 +96,7 @@ button {
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+  margin: auto;
 }
 
 #title {
@@ -217,6 +200,20 @@ button {
 .error {
   background-color: red;
   border: darkred;
+}
+
+.divReverTime {
+  width: 60%;
+  height: 7%;
+  border-radius: 0.5em;
+  margin: auto;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid;
+  background-color: limegreen;
+  border: darkgreen;
 }
 
 .calcButton {
