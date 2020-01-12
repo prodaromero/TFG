@@ -63,13 +63,19 @@ input {
 
 /* Style the tab */
 .tab {
+  width: 80%;
+  margin: auto;
   overflow: hidden;
   border: 2px solid #ccc;
   background-color: #f1f1f1;
+  border-radius: 6px;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
+
 
 /* Style the buttons inside the tab */
 .tab button {
+  width: 33%;
   background-color: inherit;
   float: left;
   border: none;
@@ -108,12 +114,13 @@ input {
 }
 
 .contenedorPrincipal {
-  width:100%;
+  width:90%;
   background-color: #ddd;
   position:relative;
   margin:auto;
   padding: 0.5em;
   border-radius: 0.5em;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .canvasDisplay, .formDisplay, .reverDisplay {
@@ -230,4 +237,32 @@ input {
   text-align: center;
   font-size: 16px;
   cursor: pointer;
+}
+
+.coef_absorcion {
+  border: none;
+  background: #404040;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 20px;
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+}
+
+.coef_absorcion:hover {
+  color: #404040 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+.rever-container {
+  color: red;
+  width: 60%;
 }
