@@ -112,13 +112,13 @@
 
       <div id="reverTime" class="tabcontent">
         <div class="contenedorPrincipal">
-
-          <div class="rever-container">
-            <button href="funciones.js" class="tablinks" onclick="displayService2(event, 'sabine')">SABINE</button>
-            <button href="funciones.js" class="tablinks" onclick="displayService2(event, 'eiryng')">EIRYNG</button>
+          <div align="center">
+            <button href="funciones.js" class="tablinks options-menu s1" onclick="displayService2(event, 'sabine')">SABINE</button>
+            <button href="funciones.js" class="tablinks options-menu s1" onclick="displayService2(event, 'eyring')">EYRING</button>
           </div>
 
-          <div id="sabine" class="tabcontent2">
+
+          <div id="sabine" class="tabcontent-2">
             <div class="reverDisplay">
               <h3>Tiempo de reverberación por Sabine</h3>
 
@@ -166,19 +166,71 @@
                 </div>
               </div>
 
+              <div id="putReverTime"></div>
+
               <button class="calcButton" onclick="optionGetReverberationTime('x','y','z',
                 'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
-                'coef_suelo')">CALCULAR
+                'coef_suelo')">CALCULAR SABINE
               </button>
             </div>
           </div>
 
-          <div id="eiryng" class="tabcontent">
+          <div id="eyring" class="tabcontent-2">
+            <div class="reverDisplay">
+              <h3>Tiempo de reverberación por Eyring</h3>
+
+              <div id="supRecinto">
+                <h4>Dimensiones del recinto</h4>
+                <div class="in-box">
+                  <input required id="x" class="effect" placeholder="Laro del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="y" class="effect" placeholder="Ancho del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="z" class="effect" placeholder="Altura del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+
+              <div id="coefRecinto">
+                <h4>Coeficientes de absorción</h4>
+                <div class="in-box">
+                  <input required id="coef_techo" class="effect" placeholder="Coef. abs. Techo">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="coef_pared_1" class="effect" placeholder="Coef. abs. Pared 1">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="coef_pared_2" class="effect" placeholder="Coef. abs. Pared 2">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="coef_pared_3" class="effect" placeholder="Coef. abs. Pared 3">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="coef_pared_4" class="effect" placeholder="Coef. abs. Pared 4">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input required id="coef_suelo" class="effect" placeholder="Coef. abs. Suelo">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+
+              <div id="putReverTime"></div>
+
+              <button class="calcButton" onclick="optionGetReverberationTime('x','y','z',
+                'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
+                'coef_suelo')">CALCULAR EYRING
+              </button>
+            </div>
           </div>
-
-
-
-          <div id="putReverTime"></div>
 
 
         </div>
@@ -189,9 +241,11 @@
 -->
 
       <div id="materials" class="tabcontent">
-        <div align="center"><a class="coef_absorcion">Coeficientes de absoción Paredes</a></div>
-        <div align="center"><a class="coef_absorcion">Coeficientes de absoción Paredes</a></div>
-        <div align="center"><a class="coef_absorcion">Coeficientes de absoción Paredes</a></div>
+        <div align="center">
+          <button href="funciones.js" class="tablinks options-menu s2" onclick="displayService2(event, '')">Coeficientes de absoción Paredes</button>
+          <button href="funciones.js" class="tablinks options-menu s2" onclick="displayService2(event, '')">Coeficientes de absoción Techo</button>
+          <button href="funciones.js" class="tablinks options-menu s2" onclick="displayService2(event, '')">Coeficientes de absoción Suelo</button>
+        </div>
       </div>
   <!--   </div> -->
   </body>

@@ -17,7 +17,7 @@ function displayService(evt, cityName) {
 
 function displayService2(evt, cityName) {
     var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent2");
+    tabcontent = document.getElementsByClassName("tabcontent-2");
 
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
