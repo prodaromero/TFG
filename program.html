@@ -113,8 +113,8 @@
       <div id="reverTime" class="tabcontent">
         <div class="contenedorPrincipal">
           <div align="center">
-            <button href="funciones.js" class="tablinks options-menu s1" onclick="displayService2(event, 'sabine')">SABINE</button>
-            <button href="funciones.js" class="tablinks options-menu s1" onclick="displayService2(event, 'eyring')">EYRING</button>
+            <button href="funciones.js" class="tablinks-2 options-menu s1" onclick="displayService2(event, 'sabine')">Tiempo de reverberación por Sabine</button>
+            <button href="funciones.js" class="tablinks-2 options-menu s1" onclick="displayService2(event, 'eyring')">Tiempo de reverberación por Eyring</button>
           </div>
 
 
@@ -168,7 +168,7 @@
 
               <div id="putReverTime"></div>
 
-              <button class="calcButton" onclick="optionGetReverberationTime('x','y','z',
+              <button class="calcButton" onclick="optionGetReverberationTime('Sabine','x','y','z',
                 'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
                 'coef_suelo')">CALCULAR SABINE
               </button>
@@ -225,7 +225,7 @@
 
               <div id="putReverTime"></div>
 
-              <button class="calcButton" onclick="optionGetReverberationTime('x','y','z',
+              <button class="calcButton" onclick="optionGetReverberationTime('Eyring','x','y','z',
                 'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
                 'coef_suelo')">CALCULAR EYRING
               </button>
@@ -242,9 +242,9 @@
 
       <div id="materials" class="tabcontent">
         <div align="center">
-          <button href="funciones.js" class="tablinks options-menu s2" onclick="displayService2(event, '')">Coeficientes de absoción Paredes</button>
-          <button href="funciones.js" class="tablinks options-menu s2" onclick="displayService2(event, '')">Coeficientes de absoción Techo</button>
-          <button href="funciones.js" class="tablinks options-menu s2" onclick="displayService2(event, '')">Coeficientes de absoción Suelo</button>
+          <button href="funciones.js" class="tablinks options-menu" onclick="displayService2(event, '')">Coeficientes de absoción Paredes</button>
+          <button href="funciones.js" class="tablinks options-menu" onclick="displayService2(event, '')">Coeficientes de absoción Techo</button>
+          <button href="funciones.js" class="tablinks options-menu" onclick="displayService2(event, '')">Coeficientes de absoción Suelo</button>
         </div>
       </div>
   <!--   </div> -->

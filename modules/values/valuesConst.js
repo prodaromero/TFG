@@ -16,3 +16,4 @@ var blue = "blue";
 var inside = false;
 
 var sabine_conts = 0.16;
+var eyring_conts = 0.162;
