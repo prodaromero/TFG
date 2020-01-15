@@ -27,7 +27,9 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
   var tr_eyring, surface, ln;
 
   surface = getRoomSurface(roomObject);
+
   ln = -Math.log(1-(area_absorcion)/surface);
+
 
   return getRound2Decimals((eyring_conts*vol)/(surface*ln));
 }
@@ -72,16 +74,18 @@ function optionGetReverberationTime(option,x,y,z,coef_techo,coef_pared_1,coef_pa
 
   absortion_area = getRoomAbsortionArea(room);
 
+
   if (option == "Sabine") {
     reverTime = getReverTimeSabine(room,volume,absortion_area);
   }
 
   if (option == "Eyring") {
     console.log("hola");
+    console.log(room,volume,absortion_area);
     reverTime = getReverTimeEyring(room,volume,absortion_area);
   }
 
   console.log(reverTime);
 
-  drawReverTimeMsg(reverTime);
+  drawReverTimeMsg(option,reverTime);
 }

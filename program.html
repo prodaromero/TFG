@@ -47,7 +47,7 @@
             <div id="tiempoRever">
               <h4>Tiempo de reverberación esperado</h4>
               <div class="in-box">
-                <input required id="t" class="effect" placeholder="Tiempo reverberación [s]">
+                <input  id="t" class="effect" placeholder="Tiempo reverberación [s]">
                 <span class="focus-border"></span>
               </div>
             </div>
@@ -55,15 +55,15 @@
             <div id="dimRecinto">
               <h4>Dimensiones del recinto</h4>
               <div class="in-box">
-                <input required id="xv" class="effect" placeholder="Laro del recinto [m]">
+                <input  id="xv" class="effect" placeholder="Laro del recinto [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input required id="yv" class="effect" placeholder="Ancho del recinto [m]">
+                <input  id="yv" class="effect" placeholder="Ancho del recinto [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input required id="zv" class="effect" placeholder="Altura del recinto [m]">
+                <input  id="zv" class="effect" placeholder="Altura del recinto [m]">
                 <span class="focus-border"></span>
               </div>
             </div>
@@ -71,15 +71,15 @@
             <div id="dimFuente">
               <h4>Posición de la fuente</h4>
               <div class="in-box">
-                <input required id="xs" class="effect" placeholder="Distancia con pared izq. [m]">
+                <input  id="xs" class="effect" placeholder="Distancia con pared izq. [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input required id="ys" class="effect" placeholder="Distancia con pared inferior [m]">
+                <input  id="ys" class="effect" placeholder="Distancia con pared inferior [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input required id="zs" class="effect" placeholder="Distancia con techo [m]">
+                <input  id="zs" class="effect" placeholder="Distancia con techo [m]">
                 <span class="focus-border"></span>
               </div>
 
@@ -88,15 +88,15 @@
             <div id="dimMicro">
               <h4>Posición del micrófono</h4>
               <div class="in-box">
-                <input required id="xm" class="effect" placeholder="Distancia con pared izq. [m]">
+                <input  id="xm" class="effect" placeholder="Distancia con pared izq. [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input required id="ym" class="effect" placeholder="Distancia con pared inferior [m]">
+                <input  id="ym" class="effect" placeholder="Distancia con pared inferior [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input required id="zm" class="effect" placeholder="Distancia con techo [m]">
+                <input  id="zm" class="effect" placeholder="Distancia con techo [m]">
                 <span class="focus-border"></span>
               </div>
             </div>
@@ -125,15 +125,15 @@
               <div id="supRecinto">
                 <h4>Dimensiones del recinto</h4>
                 <div class="in-box">
-                  <input required id="x" class="effect" placeholder="Laro del recinto [m]">
+                  <input  id="x-1" class="effect" placeholder="Laro del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="y" class="effect" placeholder="Ancho del recinto [m]">
+                  <input  id="y-1" class="effect" placeholder="Ancho del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="z" class="effect" placeholder="Altura del recinto [m]">
+                  <input  id="z-1" class="effect" placeholder="Altura del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
               </div>
@@ -141,36 +141,36 @@
               <div id="coefRecinto">
                 <h4>Coeficientes de absorción</h4>
                 <div class="in-box">
-                  <input required id="coef_techo" class="effect" placeholder="Coef. abs. Techo">
+                  <input id="coef_techo-1" class="effect" placeholder="Coef. abs. Techo" />
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_1" class="effect" placeholder="Coef. abs. Pared 1">
+                  <input  id="coef_pared_1-1" class="effect" placeholder="Coef. abs. Pared 1">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_2" class="effect" placeholder="Coef. abs. Pared 2">
+                  <input  id="coef_pared_2-1" class="effect" placeholder="Coef. abs. Pared 2">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_3" class="effect" placeholder="Coef. abs. Pared 3">
+                  <input  id="coef_pared_3-1" class="effect" placeholder="Coef. abs. Pared 3">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_4" class="effect" placeholder="Coef. abs. Pared 4">
+                  <input  id="coef_pared_4-1" class="effect" placeholder="Coef. abs. Pared 4">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_suelo" class="effect" placeholder="Coef. abs. Suelo">
+                  <input  id="coef_suelo-1" class="effect" placeholder="Coef. abs. Suelo">
                   <span class="focus-border"></span>
                 </div>
               </div>
 
-              <div id="putReverTime"></div>
+              <div id="putSabineTR"></div>
 
-              <button class="calcButton" onclick="optionGetReverberationTime('Sabine','x','y','z',
-                'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
-                'coef_suelo')">CALCULAR SABINE
+              <button class="calcButton" onclick="optionGetReverberationTime('Sabine','x-1','y-1','z-1',
+                'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+                'coef_suelo-1')">CALCULAR SABINE
               </button>
             </div>
           </div>
@@ -182,15 +182,15 @@
               <div id="supRecinto">
                 <h4>Dimensiones del recinto</h4>
                 <div class="in-box">
-                  <input required id="x" class="effect" placeholder="Laro del recinto [m]">
+                  <input  id="x-2" class="effect" placeholder="Laro del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="y" class="effect" placeholder="Ancho del recinto [m]">
+                  <input  id="y-2" class="effect" placeholder="Ancho del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="z" class="effect" placeholder="Altura del recinto [m]">
+                  <input  id="z-2" class="effect" placeholder="Altura del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
               </div>
@@ -198,36 +198,36 @@
               <div id="coefRecinto">
                 <h4>Coeficientes de absorción</h4>
                 <div class="in-box">
-                  <input required id="coef_techo" class="effect" placeholder="Coef. abs. Techo">
+                  <input  id="coef_techo-2" class="effect" placeholder="Coef. abs. Techo">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_1" class="effect" placeholder="Coef. abs. Pared 1">
+                  <input  id="coef_pared_1-2" class="effect" placeholder="Coef. abs. Pared 1">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_2" class="effect" placeholder="Coef. abs. Pared 2">
+                  <input  id="coef_pared_2-2" class="effect" placeholder="Coef. abs. Pared 2">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_3" class="effect" placeholder="Coef. abs. Pared 3">
+                  <input  id="coef_pared_3-2" class="effect" placeholder="Coef. abs. Pared 3">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_pared_4" class="effect" placeholder="Coef. abs. Pared 4">
+                  <input  id="coef_pared_4-2" class="effect" placeholder="Coef. abs. Pared 4">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input required id="coef_suelo" class="effect" placeholder="Coef. abs. Suelo">
+                  <input  id="coef_suelo-2" class="effect" placeholder="Coef. abs. Suelo">
                   <span class="focus-border"></span>
                 </div>
               </div>
 
-              <div id="putReverTime"></div>
+              <div id="putEyringTR"></div>
 
-              <button class="calcButton" onclick="optionGetReverberationTime('Eyring','x','y','z',
-                'coef_techo','coef_pared_1','coef_pared_2', 'coef_pared_3', 'coef_pared_4',
-                'coef_suelo')">CALCULAR EYRING
+              <button class="calcButton" onclick="optionGetReverberationTime('Eyring','x-2','y-2','z-2',
+                'coef_techo-2','coef_pared_1-2','coef_pared_2-2', 'coef_pared_3-2', 'coef_pared_4-2',
+                'coef_suelo-2')">CALCULAR EYRING
               </button>
             </div>
           </div>
@@ -242,9 +242,608 @@
 
       <div id="materials" class="tabcontent">
         <div align="center">
-          <button href="funciones.js" class="tablinks options-menu" onclick="displayService2(event, '')">Coeficientes de absoción Paredes</button>
-          <button href="funciones.js" class="tablinks options-menu" onclick="displayService2(event, '')">Coeficientes de absoción Techo</button>
-          <button href="funciones.js" class="tablinks options-menu" onclick="displayService2(event, '')">Coeficientes de absoción Suelo</button>
+          <button href="funciones.js" class="tablinks-3 options-menu" onclick="displayService3(event, 'tabTecho')">Coeficientes de absoción Paredes</button>
+          <button href="funciones.js" class="tablinks-3 options-menu" onclick="displayService3(event, '')">Coeficientes de absoción Techo</button>
+          <button href="funciones.js" class="tablinks-3 options-menu" onclick="displayService3(event, '')">Coeficientes de absoción Suelo</button>
+        </div>
+
+        <div id="tabTecho" class="tabcontent-3">
+          <table class="tg">
+          <tr>
+            <th class="tg-lu7j" colspan="12">TECHOS</th>
+          </tr>
+          <tr>
+            <td class="tg-g8ho">MATERIAL</td>
+            <td class="tg-g8ho">NéMERO</td>
+            <td class="tg-g8ho">DESCRIPCION</td>
+            <td class="tg-g8ho">mm</td>
+            <td class="tg-g8ho">dens</td>
+            <td class="tg-g8ho">125</td>
+            <td class="tg-g8ho">250</td>
+            <td class="tg-g8ho">500</td>
+            <td class="tg-g8ho">1000</td>
+            <td class="tg-g8ho">2000</td>
+            <td class="tg-g8ho">4000</td>
+            <td class="tg-g8ho">NRC</td>
+          </tr>
+          <tr>
+            <td class="tg-luhm" rowspan="7">CIELORRASO DE FIBRA</td>
+            <td class="tg-73oq">1</td>
+            <td class="tg-73oq">Placas de fibra 19 mm Armstrong Suprafine 2200</td>
+            <td class="tg-wp8o">19</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.38</td>
+            <td class="tg-wp8o">0.29</td>
+            <td class="tg-wp8o">0.39</td>
+            <td class="tg-wp8o">0.56</td>
+            <td class="tg-wp8o">0.71</td>
+            <td class="tg-wp8o">0.78</td>
+            <td class="tg-wp8o">0.49</td>
+          </tr>
+          <tr>
+            <td class="tg-73oq">2</td>
+            <td class="tg-73oq">Placas de fibra 19 mm Armstrong Sec. Look</td>
+            <td class="tg-wp8o">19</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.34</td>
+            <td class="tg-wp8o">0.32</td>
+            <td class="tg-wp8o">0.48</td>
+            <td class="tg-wp8o">0.64</td>
+            <td class="tg-wp8o">0.71</td>
+            <td class="tg-wp8o">0.76</td>
+            <td class="tg-wp8o">0.54</td>
+          </tr>
+          <tr>
+            <td class="tg-73oq">3</td>
+            <td class="tg-73oq">Placas de fibra 16 mm Armstrong Minaboard</td>
+            <td class="tg-wp8o">16</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.30</td>
+            <td class="tg-wp8o">0.32</td>
+            <td class="tg-wp8o">0.54</td>
+            <td class="tg-wp8o">0.74</td>
+            <td class="tg-wp8o">0.67</td>
+            <td class="tg-wp8o">0.60</td>
+            <td class="tg-wp8o">0.57</td>
+          </tr>
+          <tr>
+            <td class="tg-73oq">4</td>
+            <td class="tg-73oq">Placas de fibra 16 mm Armstrong Minatone</td>
+            <td class="tg-wp8o">16</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.40</td>
+            <td class="tg-wp8o">0.30</td>
+            <td class="tg-wp8o">0.54</td>
+            <td class="tg-wp8o">0.78</td>
+            <td class="tg-wp8o">0.67</td>
+            <td class="tg-wp8o">0.48</td>
+            <td class="tg-wp8o">0.57</td>
+          </tr>
+          <tr>
+            <td class="tg-73oq">5</td>
+            <td class="tg-73oq">Placas lana de vidrio con lamina vinilo sin perforar</td>
+            <td class="tg-wp8o">16</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.57</td>
+            <td class="tg-wp8o">0.39</td>
+            <td class="tg-wp8o">0.41</td>
+            <td class="tg-wp8o">0.82</td>
+            <td class="tg-wp8o">0.89</td>
+            <td class="tg-wp8o">0.72</td>
+            <td class="tg-wp8o">0.63</td>
+          </tr>
+          <tr>
+            <td class="tg-73oq">6</td>
+            <td class="tg-73oq">Placas de fibra 19 mm Celotex Ultra</td>
+            <td class="tg-wp8o">19</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.32</td>
+            <td class="tg-wp8o">0.34</td>
+            <td class="tg-wp8o">0.71</td>
+            <td class="tg-wp8o">0.87</td>
+            <td class="tg-wp8o">0.87</td>
+            <td class="tg-wp8o">0.85</td>
+            <td class="tg-wp8o">0.70</td>
+          </tr>
+          <tr>
+            <td class="tg-73oq">7</td>
+            <td class="tg-73oq">Placas lana de vidrio con lamina vinilo perforada</td>
+            <td class="tg-wp8o">16</td>
+            <td class="tg-wp8o"></td>
+            <td class="tg-wp8o">0.65</td>
+            <td class="tg-wp8o">0.69</td>
+            <td class="tg-wp8o">0.61</td>
+            <td class="tg-wp8o">0.82</td>
+            <td class="tg-wp8o">0.87</td>
+            <td class="tg-wp8o">0.71</td>
+            <td class="tg-wp8o">0.75</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="3">CIELORRASO DE METAL</td>
+            <td class="tg-0pky">8</td>
+            <td class="tg-0pky">Cielorraso de perfiles met. ranurados 17% c/lana vidrio</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow">0.60</td>
+            <td class="tg-c3ow">0.73</td>
+            <td class="tg-c3ow">0.55</td>
+            <td class="tg-c3ow">0.62</td>
+            <td class="tg-c3ow">0.35</td>
+            <td class="tg-c3ow">0.39</td>
+            <td class="tg-c3ow">0.55</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">9</td>
+            <td class="tg-0pky">Cielorraso placas met licas perforadas 7%</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow">0.40</td>
+            <td class="tg-c3ow">0.60</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.70</td>
+            <td class="tg-c3ow">0.50</td>
+            <td class="tg-c3ow">0.72</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">10</td>
+            <td class="tg-0pky">Cielorraso placas met licas perforadas 25%</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow">0.40</td>
+            <td class="tg-c3ow">0.60</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.77</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="2">FASERIT</td>
+            <td class="tg-0pky" rowspan="2">11</td>
+            <td class="tg-0pky" rowspan="2">Revoque Faserit proyectado y fratasado</td>
+            <td class="tg-c3ow" rowspan="2"></td>
+            <td class="tg-c3ow" rowspan="2"></td>
+            <td class="tg-c3ow" rowspan="2">0.05</td>
+            <td class="tg-c3ow" rowspan="2">0.04</td>
+            <td class="tg-c3ow" rowspan="2">0.07</td>
+            <td class="tg-c3ow" rowspan="2">0.10</td>
+            <td class="tg-c3ow" rowspan="2">0.12</td>
+            <td class="tg-c3ow" rowspan="2">0.18</td>
+            <td class="tg-c3ow" rowspan="2">0.09</td>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="3">HORMIGŕN</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">Hormig˘n normal</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow">0.01</td>
+            <td class="tg-c3ow">0.01</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.02</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">13</td>
+            <td class="tg-0pky">Hormig˘n pintado</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow">0.01</td>
+            <td class="tg-c3ow">0.01</td>
+            <td class="tg-c3ow">0.01</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">14</td>
+            <td class="tg-0pky">Hormig˘n rŁstico</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.07</td>
+            <td class="tg-c3ow">0.03</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="5">LANA DE VIDRIO</td>
+            <td class="tg-0pky">15</td>
+            <td class="tg-0pky">Lana de vidrio 50mm con cubierta perforada 5%</td>
+            <td class="tg-c3ow">51</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.20</td>
+            <td class="tg-c3ow">0.40</td>
+            <td class="tg-c3ow">0.75</td>
+            <td class="tg-c3ow">0.60</td>
+            <td class="tg-c3ow">0.40</td>
+            <td class="tg-c3ow">0.30</td>
+            <td class="tg-c3ow">0.54</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">16</td>
+            <td class="tg-0pky">Lana de vidrio 50mm con cubierta perforada 10%</td>
+            <td class="tg-c3ow">51</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.20</td>
+            <td class="tg-c3ow">0.35</td>
+            <td class="tg-c3ow">0.65</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.75</td>
+            <td class="tg-c3ow">0.67</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">17</td>
+            <td class="tg-0pky">Manto 100mm con cubierta perf. 23%, film polietileno</td>
+            <td class="tg-c3ow">101</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.78</td>
+            <td class="tg-c3ow">1.01</td>
+            <td class="tg-c3ow">1.14</td>
+            <td class="tg-c3ow">1.03</td>
+            <td class="tg-c3ow">0.94</td>
+            <td class="tg-c3ow">0.78</td>
+            <td class="tg-c3ow">1.03</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">18</td>
+            <td class="tg-0pky">Manto 50mm con cubierta perf. 23%, + 50mm aire</td>
+            <td class="tg-c3ow">101</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.61</td>
+            <td class="tg-c3ow">0.91</td>
+            <td class="tg-c3ow">1.15</td>
+            <td class="tg-c3ow">1.09</td>
+            <td class="tg-c3ow">1.01</td>
+            <td class="tg-c3ow">1.01</td>
+            <td class="tg-c3ow">1.04</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">19</td>
+            <td class="tg-0pky">Manto 100mm con cubierta perf. 23%</td>
+            <td class="tg-c3ow">101</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.78</td>
+            <td class="tg-c3ow">1.01</td>
+            <td class="tg-c3ow">1.14</td>
+            <td class="tg-c3ow">1.07</td>
+            <td class="tg-c3ow">1.06</td>
+            <td class="tg-c3ow">0.98</td>
+            <td class="tg-c3ow">1.07</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="3">POLIUTERANO</td>
+            <td class="tg-0pky">20</td>
+            <td class="tg-0pky">Placa 15 de poliuretano, espuma flexible</td>
+            <td class="tg-c3ow">15</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.15</td>
+            <td class="tg-c3ow">0.21</td>
+            <td class="tg-c3ow">0.45</td>
+            <td class="tg-c3ow">0.95</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.44</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">21</td>
+            <td class="tg-0pky">Placa 30 de poliuretano, espuma flexible</td>
+            <td class="tg-c3ow">30</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.07</td>
+            <td class="tg-c3ow">0.30</td>
+            <td class="tg-c3ow">0.37</td>
+            <td class="tg-c3ow">0.70</td>
+            <td class="tg-c3ow">1.00</td>
+            <td class="tg-c3ow">0.97</td>
+            <td class="tg-c3ow">0.59</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">22</td>
+            <td class="tg-0pky">Placa 45 de poliuretano, espuma flexible</td>
+            <td class="tg-c3ow">45</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.15</td>
+            <td class="tg-c3ow">0.70</td>
+            <td class="tg-c3ow">1.00</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.91</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.87</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="3">REVOQUE</td>
+            <td class="tg-0pky">23</td>
+            <td class="tg-0pky">Revoque 30mm sobre metal desplegado</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.14</td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.06</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.06</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">24</td>
+            <td class="tg-0pky">Revoque sobre espacio estrecho</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.25</td>
+            <td class="tg-c3ow">0.15</td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.09</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">25</td>
+            <td class="tg-0pky">Revoque sobre gran c mara de aire</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.20</td>
+            <td class="tg-c3ow">0.15</td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.09</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="4">REVOQUE ACéSTICO</td>
+            <td class="tg-0pky">26</td>
+            <td class="tg-0pky">Revoque acŁstico proyectado 13</td>
+            <td class="tg-c3ow">13</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.15</td>
+            <td class="tg-c3ow">0.47</td>
+            <td class="tg-c3ow">0.75</td>
+            <td class="tg-c3ow">0.82</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.55</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">27</td>
+            <td class="tg-0pky">Revoque acŁstico proyectado 20</td>
+            <td class="tg-c3ow">20</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.30</td>
+            <td class="tg-c3ow">0.60</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.67</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">28</td>
+            <td class="tg-0pky">Revoque acŁstico proyectado 25</td>
+            <td class="tg-c3ow">25</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.16</td>
+            <td class="tg-c3ow">0.45</td>
+            <td class="tg-c3ow">0.70</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.74</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">29</td>
+            <td class="tg-0pky">Revoque acŁstico proyectado 13 c/c mara 25</td>
+            <td class="tg-c3ow">38</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.25</td>
+            <td class="tg-c3ow">0.50</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.90</td>
+            <td class="tg-c3ow">0.85</td>
+            <td class="tg-c3ow">0.77</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="2">SONEX BAFLE</td>
+            <td class="tg-0pky">30</td>
+            <td class="tg-0pky">Bafle suspendido de espuma de poliuretano</td>
+            <td class="tg-c3ow">40</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.12</td>
+            <td class="tg-c3ow">0.26</td>
+            <td class="tg-c3ow">0.48</td>
+            <td class="tg-c3ow">0.96</td>
+            <td class="tg-c3ow">1.26</td>
+            <td class="tg-c3ow">1.16</td>
+            <td class="tg-c3ow">0.74</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">31</td>
+            <td class="tg-0pky">Bafle suspendido de espuma de poliuretano</td>
+            <td class="tg-c3ow">70</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.28</td>
+            <td class="tg-c3ow">0.46</td>
+            <td class="tg-c3ow">0.74</td>
+            <td class="tg-c3ow">1.15</td>
+            <td class="tg-c3ow">1.26</td>
+            <td class="tg-c3ow">1.29</td>
+            <td class="tg-c3ow">0.90</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="3">SONEX ILLITECH</td>
+            <td class="tg-0pky">32</td>
+            <td class="tg-0pky">Placa de espuma blanca 25/35</td>
+            <td class="tg-c3ow">25</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.11</td>
+            <td class="tg-c3ow">0.17</td>
+            <td class="tg-c3ow">0.40</td>
+            <td class="tg-c3ow">0.72</td>
+            <td class="tg-c3ow">0.76</td>
+            <td class="tg-c3ow">0.91</td>
+            <td class="tg-c3ow">0.51</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">33</td>
+            <td class="tg-0pky">Placa de espuma blanca 35/125</td>
+            <td class="tg-c3ow">35</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.14</td>
+            <td class="tg-c3ow">0.21</td>
+            <td class="tg-c3ow">0.61</td>
+            <td class="tg-c3ow">0.80</td>
+            <td class="tg-c3ow">0.89</td>
+            <td class="tg-c3ow">0.92</td>
+            <td class="tg-c3ow">0.63</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">34</td>
+            <td class="tg-0pky">Placa de espuma blanca 50/125</td>
+            <td class="tg-c3ow">50</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.31</td>
+            <td class="tg-c3ow">0.81</td>
+            <td class="tg-c3ow">1.01</td>
+            <td class="tg-c3ow">0.99</td>
+            <td class="tg-c3ow">0.95</td>
+            <td class="tg-c3ow">0.81</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="2">SONEX SOFT</td>
+            <td class="tg-0pky" rowspan="2">35</td>
+            <td class="tg-0pky" rowspan="2">Placa de espuma de poliuretano 30/125</td>
+            <td class="tg-c3ow" rowspan="2">30</td>
+            <td class="tg-0pky" rowspan="2"></td>
+            <td class="tg-c3ow" rowspan="2">0.07</td>
+            <td class="tg-c3ow" rowspan="2">0.15</td>
+            <td class="tg-c3ow" rowspan="2">0.51</td>
+            <td class="tg-c3ow" rowspan="2">0.91</td>
+            <td class="tg-c3ow" rowspan="2">0.82</td>
+            <td class="tg-c3ow" rowspan="2">0.84</td>
+            <td class="tg-c3ow" rowspan="2">0.60</td>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="2">SONOVER</td>
+            <td class="tg-0pky">36</td>
+            <td class="tg-0pky">Absorsores suspendidos</td>
+            <td class="tg-c3ow">30</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.20</td>
+            <td class="tg-c3ow">0.55</td>
+            <td class="tg-c3ow">0.64</td>
+            <td class="tg-c3ow">0.84</td>
+            <td class="tg-c3ow">0.97</td>
+            <td class="tg-c3ow">0.97</td>
+            <td class="tg-c3ow">0.75</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">37</td>
+            <td class="tg-0pky">Absorsores suspendidos</td>
+            <td class="tg-c3ow">30</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.38</td>
+            <td class="tg-c3ow">0.76</td>
+            <td class="tg-c3ow">0.94</td>
+            <td class="tg-c3ow">1.18</td>
+            <td class="tg-c3ow">1.28</td>
+            <td class="tg-c3ow">1.28</td>
+            <td class="tg-c3ow">1.04</td>
+          </tr>
+          <tr>
+            <td class="tg-fgdu" rowspan="5">YESO</td>
+            <td class="tg-0pky">38</td>
+            <td class="tg-0pky">Placa de yeso 13 + 650 mm lana de vidrio</td>
+            <td class="tg-c3ow">663</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.04</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">39</td>
+            <td class="tg-0pky">Placa de yeso 25 mm con espacio de aire</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.08</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.04</td>
+            <td class="tg-c3ow">0.06</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">40</td>
+            <td class="tg-0pky">Placa de yeso 13 + 400 mm de aire</td>
+            <td class="tg-c3ow">413</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.14</td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.09</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.06</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">41</td>
+            <td class="tg-0pky">Cielorraso de placas de yeso 13 mm + espacio aire</td>
+            <td class="tg-c3ow"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.12</td>
+            <td class="tg-c3ow">0.10</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.05</td>
+            <td class="tg-c3ow">0.06</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">42</td>
+            <td class="tg-0pky">Placa de yeso 13 + 400 mm lana de vidrio</td>
+            <td class="tg-c3ow">413</td>
+            <td class="tg-0pky"></td>
+            <td class="tg-c3ow">0.20</td>
+            <td class="tg-c3ow">0.12</td>
+            <td class="tg-c3ow">0.09</td>
+            <td class="tg-c3ow">0.03</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.02</td>
+            <td class="tg-c3ow">0.07</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+            <td class="tg-0pky"></td>
+          </tr>
+        </table>
         </div>
       </div>
   <!--   </div> -->
