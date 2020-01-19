@@ -238,6 +238,30 @@ input {
   cursor: pointer;
 }
 
+.downloadButton {
+  background-color: DodgerBlue;
+  color: white;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  font-weight: 100;
+  padding: 20px;
+  margin: 0.5em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: all 0.3s ease 0s;
+}
+
+.downloadButton:hover {
+  color: RoyalBlue;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
 .options-menu {
   border: none;
   background: #404040;
@@ -271,14 +295,12 @@ input {
 
 /*  techos */
 
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-title{font-weight:bold;font-size:22px;background-color:#9aff99;border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-cabecera{font-weight:bold;background-color:#ffffc7;color:#000000;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-typeMaterial{font-weight:bold;background-color:#ecf4ff;border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
-.tg .tg-fgdu{font-weight:bold;background-color:#ecf4ff;border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg{border-collapse:collapse;border-spacing:0;}
+td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg-title{font-weight:bold;font-size:22px;background-color:#9aff99;border-color:#000000;text-align:center;vertical-align:top}
+.tg-cabecera{font-weight:bold;background-color:#ffffc7;color:#000000;border-color:#000000;text-align:center;vertical-align:top}
+.tg-typeMaterial{font-weight:bold;background-color:#ecf4ff;border-color:#000000;text-align:left;vertical-align:top}
+.tg-celda{border-color:inherit;vertical-align:top}
+.tx-center{text-align:center}
+.tx-left{text-align:left;}
