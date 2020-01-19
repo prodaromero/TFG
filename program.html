@@ -1,66 +1,2733 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-    <head>
-        <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="modules/style/program.css">
-        <script type="text/javascript" src="resources/program.js" ></script>
-        <script type="text/javascript" src="modules/services/acousticService.js"></script>
-        <script type="text/javascript" src="modules/services/canvasService.js"></script>
-        <script type="text/javascript" src="modules/values/valuesConst.js"></script>
+  <head>
+    <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="modules/style/program.css">
+    <script type="text/javascript" src="resources/program.js" ></script>
+    <script type="text/javascript" src="resources/optionGetReverberationTime.js" ></script>
+    <script type="text/javascript" src="modules/services/acousticService.js"></script>
+    <script type="text/javascript" src="modules/services/canvasService.js"></script>
+    <script type="text/javascript" src="modules/services/displayService.js"></script>
 
-    </head>
-    <body onload="myCanvas()">
-        <div id="front">
-          <div id="title">
-            <img src="modules/images/AcousticLabLogo.png">
+    <script type="text/javascript" src="modules/values/valuesConst.js"></script>
+    <script type="text/javascript" src="modules/objects/room.js"></script>
+  </head>
+
+  <body onload="myCanvas()">
+
+      <div id="title">
+        <img src="modules/images/AcousticLabLogo.png">
+      </div>
+
+      <div class="tab">
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'minDistance')">Calcular distancias mínimas</button>
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'reverTime')">Calcular tiempo de reverberación</button>
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'materials')">Consultar lista de materiales</button>
+      </div>
+
+      <div id="minDistance" class="tabcontent">
+        <div class="contenedorPrincipal">
+          <div class="canvasDisplay">
+            <div class="displayOne">
+              <h2><i>Vista Superior</i></h2>
+                <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
+                Please use a browser that supports "canvas"
+            </div>
+
+            <div class="displayTwo">
+              <h2><i>Vista Frontal</i></h2>
+                <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+                Please use a browser that supports "canvas"
+            </div>
           </div>
-            <div id="canvasDisplay">
 
-                <div id="dispOne">
-                    <h2>Vista Superior</h2>
-                    <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
-                    Please use a browser that supports "canvas"
-                </div>
-                <div id="dispTwo">
-                    <h2>Vista Frontal</h2>
-                    <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
-                    Please use a browser that supports "canvas"
+          <div id="msgSpace"></div>
 
-                </div>
+          <div class="formDisplay">
+            <div id="tiempoRever">
+              <h4>Tiempo de reverberación esperado</h4>
+              <div class="in-box">
+                <input  id="t" class="effect" placeholder="Tiempo reverberación [s]">
+                <span class="focus-border"></span>
+              </div>
             </div>
 
-            <div id="msgSpace"></div>
-
-            <div id="formDisplay">
-
-                <div id="tiempoRever">
-                    <p>Tiempo de reverberación esperado:
-                    <input required id="t" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <div id="dimRecinto">
-                    <p>Dimensiones del recinto</p>
-                    <p>- A. Largo [m] : <input id="xv" onfocus="this.value=''" type="number"></p>
-                    <p>- B. Ancho [m] : <input id="yv" onfocus="this.value=''" type="number"></p>
-                    <p>- C. Alto  [m] : <input id="zv" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <div id="dimFuente">
-                    <p>Posición de la fuente</p>
-                    <p>- Distancia con A [m] : <input id="xs" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con B [m] : <input id="ys" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con C [m] : <input id="zs" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <div id="dimMicro">
-                    <p>Posición del micro</p>
-                    <p>- Distancia con A [m] : <input id="xm" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con B [m] : <input id="ym" onfocus="this.value=''" type="number"></p>
-                    <p>- Distancia con C [m] : <input id="zm" onfocus="this.value=''" type="number"></p>
-                </div>
-
-                <button onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+            <div id="dimRecinto">
+              <h4>Dimensiones del recinto</h4>
+              <div class="in-box">
+                <input  id="xv" class="effect" placeholder="Laro del recinto [m]">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="yv" class="effect" placeholder="Ancho del recinto [m]">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="zv" class="effect" placeholder="Altura del recinto [m]">
+                <span class="focus-border"></span>
+              </div>
             </div>
+
+            <div id="dimFuente">
+              <h4>Posición de la fuente</h4>
+              <div class="in-box">
+                <input  id="xs" class="effect" placeholder="Distancia con pared izq. [m]">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="ys" class="effect" placeholder="Distancia con pared inferior [m]">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="zs" class="effect" placeholder="Distancia con techo [m]">
+                <span class="focus-border"></span>
+              </div>
+
+            </div>
+
+            <div id="dimMicro">
+              <h4>Posición del micrófono</h4>
+              <div class="in-box">
+                <input  id="xm" class="effect" placeholder="Distancia con pared izq. [m]">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="ym" class="effect" placeholder="Distancia con pared inferior [m]">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="zm" class="effect" placeholder="Distancia con techo [m]">
+                <span class="focus-border"></span>
+              </div>
+            </div>
+
+            <button class="calcButton" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">CALCULAR</button>
+
+          </div>
         </div>
-    </body>
+      </div>
+
+<!--
+-->
+
+      <div id="reverTime" class="tabcontent">
+        <div class="contenedorPrincipal">
+          <div align="center">
+            <button href="funciones.js" class="tablinks-2 options-menu s1" onclick="displayService2(event, 'sabine')">Tiempo de reverberación por Sabine</button>
+            <button href="funciones.js" class="tablinks-2 options-menu s1" onclick="displayService2(event, 'eyring')">Tiempo de reverberación por Eyring</button>
+          </div>
+
+
+          <div id="sabine" class="tabcontent-2">
+            <div class="reverDisplay">
+              <h3>Tiempo de reverberación por Sabine</h3>
+
+              <div id="supRecinto">
+                <h4>Dimensiones del recinto</h4>
+                <div class="in-box">
+                  <input  id="x-1" class="effect" placeholder="Laro del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="y-1" class="effect" placeholder="Ancho del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="z-1" class="effect" placeholder="Altura del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+
+              <div id="coefRecinto">
+                <h4>Coeficientes de absorción</h4>
+                <div class="in-box">
+                  <input id="coef_techo-1" class="effect" placeholder="Coef. abs. Techo" />
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_1-1" class="effect" placeholder="Coef. abs. Pared 1">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_2-1" class="effect" placeholder="Coef. abs. Pared 2">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_3-1" class="effect" placeholder="Coef. abs. Pared 3">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_4-1" class="effect" placeholder="Coef. abs. Pared 4">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_suelo-1" class="effect" placeholder="Coef. abs. Suelo">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+
+              <div id="putSabineTR"></div>
+
+              <button class="calcButton" onclick="optionGetReverberationTime('Sabine','x-1','y-1','z-1',
+                'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+                'coef_suelo-1')">CALCULAR SABINE
+              </button>
+            </div>
+          </div>
+
+          <div id="eyring" class="tabcontent-2">
+            <div class="reverDisplay">
+              <h3>Tiempo de reverberación por Eyring</h3>
+
+              <div id="supRecinto">
+                <h4>Dimensiones del recinto</h4>
+                <div class="in-box">
+                  <input  id="x-2" class="effect" placeholder="Laro del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="y-2" class="effect" placeholder="Ancho del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="z-2" class="effect" placeholder="Altura del recinto [m]">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+
+              <div id="coefRecinto">
+                <h4>Coeficientes de absorción</h4>
+                <div class="in-box">
+                  <input  id="coef_techo-2" class="effect" placeholder="Coef. abs. Techo">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_1-2" class="effect" placeholder="Coef. abs. Pared 1">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_2-2" class="effect" placeholder="Coef. abs. Pared 2">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_3-2" class="effect" placeholder="Coef. abs. Pared 3">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_4-2" class="effect" placeholder="Coef. abs. Pared 4">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_suelo-2" class="effect" placeholder="Coef. abs. Suelo">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+
+              <div id="putEyringTR"></div>
+
+              <button class="calcButton" onclick="optionGetReverberationTime('Eyring','x-2','y-2','z-2',
+                'coef_techo-2','coef_pared_1-2','coef_pared_2-2', 'coef_pared_3-2', 'coef_pared_4-2',
+                'coef_suelo-2')">CALCULAR EYRING
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+<!--
+
+-->
+
+      <div id="materials" class="tabcontent">
+        <div class="contenedorPrincipal">
+          <div align="center">
+            <button href="funciones.js" class="tablinks-3 options-menu" onclick="displayService3(event, 'tabPared')">Coeficientes de absoción Paredes</button>
+            <button href="funciones.js" class="tablinks-3 options-menu" onclick="displayService3(event, 'tabTecho')">Coeficientes de absoción Techo</button>
+            <button href="funciones.js" class="tablinks-3 options-menu" onclick="displayService3(event, 'tabSuelo')">Coeficientes de absoción Suelo</button>
+          </div>
+
+          <div align="center" id="tabPared" class="tabcontent-3">
+            <a href="modules/data/coef_abs_paredes.xlsx" download>
+              <button class="downloadButton">Download</button>
+            </a>
+            <table class="tg">
+              <tr>
+                <th class="tg-title" colspan="12">PAREDES</th>
+              </tr>
+              <tr>
+                <td class="tg-cabecera">MATERIAL</td>
+                <td class="tg-cabecera">NÚMERO</td>
+                <td class="tg-cabecera">DESCRIPCION</td>
+                <td class="tg-cabecera">mm</td>
+                <td class="tg-cabecera">dens</td>
+                <td class="tg-cabecera">125</td>
+                <td class="tg-cabecera">250</td>
+                <td class="tg-cabecera">500</td>
+                <td class="tg-cabecera">1000</td>
+                <td class="tg-cabecera">2000</td>
+                <td class="tg-cabecera">4000</td>
+                <td class="tg-cabecera">NRC</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial">ALFOMBRA</td>
+                <td class="tg-celda tx-center">1</td>
+                <td class="tg-celda tx-left">Alfombra sobre pared</td>
+                <td class="tg-celda tx-center">10</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.21</td>
+                <td class="tg-celda tx-center">0.27</td>
+                <td class="tg-celda tx-center">0.27</td>
+                <td class="tg-celda tx-center">0.37</td>
+                <td class="tg-celda tx-center">0.21</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="2">CORCHO</td>
+                <td class="tg-celda tx-center">2</td>
+                <td class="tg-celda tx-left">Corcho en baldosas contra respaldo solido</td>
+                <td class="tg-celda tx-center">22</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.55</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.55</td>
+                <td class="tg-celda tx-center">0.38</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">3</td>
+                <td class="tg-celda tx-left">Revestimiento de corcho</td>
+                <td class="tg-celda tx-center">20</td>
+                <td class="tg-celda tx-center">5.6</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.27</td>
+                <td class="tg-celda tx-center">0.72</td>
+                <td class="tg-celda tx-center">0.79</td>
+                <td class="tg-celda tx-center">0.76</td>
+                <td class="tg-celda tx-center">0.77</td>
+                <td class="tg-celda tx-center">0.64</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="15">CORTINA</td>
+                <td class="tg-celda tx-center">4</td>
+                <td class="tg-celda tx-left">Tejido de terciopelo 340, liso contra pared</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.3</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.17</td>
+                <td class="tg-celda tx-center">0.24</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.14</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">5</td>
+                <td class="tg-celda tx-left">Tejido de algodón 360, exento</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.4</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.17</td>
+                <td class="tg-celda tx-center">0.24</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.14</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">6</td>
+                <td class="tg-celda tx-left">Cortinas, tejido delgado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.18</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.16</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">7</td>
+                <td class="tg-celda tx-left">Terciopelo mediano, liso ante pared</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.17</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">8</td>
+                <td class="tg-celda tx-left">Tejido de algodón 500, exento</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.5</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.13</td>
+                <td class="tg-celda tx-center">0.22</td>
+                <td class="tg-celda tx-center">0.33</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.19</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">9</td>
+                <td class="tg-celda tx-left">Cortinas, tejido mediano</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.13</td>
+                <td class="tg-celda tx-center">0.22</td>
+                <td class="tg-celda tx-center">0.32</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.19</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">10</td>
+                <td class="tg-celda tx-left">Tejido de terciopelo 650, exento</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.6</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.45</td>
+                <td class="tg-celda tx-center">0.38</td>
+                <td class="tg-celda tx-center">0.36</td>
+                <td class="tg-celda tx-center">0.33</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">11</td>
+                <td class="tg-celda tx-left">Cortinas, tejido espeso</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.48</td>
+                <td class="tg-celda tx-center">0.38</td>
+                <td class="tg-celda tx-center">0.36</td>
+                <td class="tg-celda tx-center">0.33</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">12</td>
+                <td class="tg-celda tx-left">Tejido de terciopelo a 1.00m de la pared</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.29</td>
+                <td class="tg-celda tx-center">0.44</td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.41</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">13</td>
+                <td class="tg-celda tx-left">Tejido de algodón 500, plegado al 75%</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.5</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.23</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.54</td>
+                <td class="tg-celda tx-center">0.53</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.43</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">14</td>
+                <td class="tg-celda tx-left">Terciopelo mediano, al 50% ante pared</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.44</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">15</td>
+                <td class="tg-celda tx-left">Tejido de terciopelo 475, plegado 50%</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.5</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.31</td>
+                <td class="tg-celda tx-center">0.49</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.56</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">16</td>
+                <td class="tg-celda tx-left">Terciopelo fruncido</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">1.2</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.31</td>
+                <td class="tg-celda tx-center">0.49</td>
+                <td class="tg-celda tx-center">0.81</td>
+                <td class="tg-celda tx-center">0.66</td>
+                <td class="tg-celda tx-center">0.44</td>
+                <td class="tg-celda tx-center">0.57</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">17</td>
+                <td class="tg-celda tx-left">Tejido de algodón 500, plegado al 50%</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.5</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.37</td>
+                <td class="tg-celda tx-center">0.49</td>
+                <td class="tg-celda tx-center">0.81</td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.54</td>
+                <td class="tg-celda tx-center">0.58</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">18</td>
+                <td class="tg-celda tx-left">Tejido de terciopelo 600, plegado al 50%</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.6</td>
+                <td class="tg-celda tx-center">0.14</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.55</td>
+                <td class="tg-celda tx-center">0.72</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.58</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="2">FIBRA DE MADERA</td>
+                <td class="tg-celda tx-center">19</td>
+                <td class="tg-celda tx-left">Fibra de madera</td>
+                <td class="tg-celda tx-center">38</td>
+                <td class="tg-celda tx-center">19.0</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.19</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.79</td>
+                <td class="tg-celda tx-center">0.55</td>
+                <td class="tg-celda tx-center">0.77</td>
+                <td class="tg-celda tx-center">0.48</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">20</td>
+                <td class="tg-celda tx-left">Fibra de madera</td>
+                <td class="tg-celda tx-center">50</td>
+                <td class="tg-celda tx-center">25.0</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.24</td>
+                <td class="tg-celda tx-center">0.54</td>
+                <td class="tg-celda tx-center">0.88</td>
+                <td class="tg-celda tx-center">0.53</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">0.55</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="3">HORMIGÓN</td>
+                <td class="tg-celda tx-center">21</td>
+                <td class="tg-celda tx-left">Hormigón revocado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.00</td>
+                <td class="tg-celda tx-center">0.00</td>
+                <td class="tg-celda tx-center">0.00</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">22</td>
+                <td class="tg-celda tx-left">Hormigón bloques pintados</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">23</td>
+                <td class="tg-celda tx-left">Hormigón bloques pintados</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.07</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="5">LADRILLO</td>
+                <td class="tg-celda tx-center">24</td>
+                <td class="tg-celda tx-left">Ladrillo visto pintado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">25</td>
+                <td class="tg-celda tx-left">Ladrillo pintado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">26</td>
+                <td class="tg-celda tx-left">Ladrillo revocado y hendido</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">27</td>
+                <td class="tg-celda tx-left">Ladrillo visto</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.04</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">28</td>
+                <td class="tg-celda tx-left">Ladrillo visto o pintado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="21">LAMBRIZ</td>
+                <td class="tg-celda tx-center">29</td>
+                <td class="tg-celda tx-left">Placas de aglomerado (16+30 mm de aire)</td>
+                <td class="tg-celda tx-center">46</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">30</td>
+                <td class="tg-celda tx-left">Placas de aglomerado (25+30 mm de aire)</td>
+                <td class="tg-celda tx-center">55</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">31</td>
+                <td class="tg-celda tx-left">Placas de aglomerado (25+30 mm de lana vidrio)</td>
+                <td class="tg-celda tx-center">55</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">32</td>
+                <td class="tg-celda tx-left">Placas de aglomerado (16+30 mm de lana vidrio)</td>
+                <td class="tg-celda tx-center">46</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.04</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">33</td>
+                <td class="tg-celda tx-left">Placas de aglomerado (8+30 mm de aire)</td>
+                <td class="tg-celda tx-center">38</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.08</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">34</td>
+                <td class="tg-celda tx-left">Madera compensada sin cámara</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.08</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">35</td>
+                <td class="tg-celda tx-left">Revestimiento de madera</td>
+                <td class="tg-celda tx-center">65</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">36</td>
+                <td class="tg-celda tx-left">Paneles de madera (18+40 mm de aire)</td>
+                <td class="tg-celda tx-center">58</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">37</td>
+                <td class="tg-celda tx-left">Placas de aglomerado (8+30 mm de lana de vidrio)</td>
+                <td class="tg-celda tx-center">38</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">38</td>
+                <td class="tg-celda tx-left">Paneles 25 mm sobre espacio de aire</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.19</td>
+                <td class="tg-celda tx-center">0.14</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">39</td>
+                <td class="tg-celda tx-left">Paneles de madera (16+40 mm de aire)</td>
+                <td class="tg-celda tx-center">56</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.10</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">40</td>
+                <td class="tg-celda tx-left">Paneles de contrachapado (6+50 mm de aire)</td>
+                <td class="tg-celda tx-center">56</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.13</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">41</td>
+                <td class="tg-celda tx-left">Paneles sobre cámara de aire (3+25 mm)</td>
+                <td class="tg-celda tx-center">28</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.14</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">42</td>
+                <td class="tg-celda tx-left">Paneles sobre material poroso (3+25 mm)</td>
+                <td class="tg-celda tx-center">28</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.15</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">43</td>
+                <td class="tg-celda tx-left">Paneles de contrachapado (6+50 mm de lana de vidrio)</td>
+                <td class="tg-celda tx-center">56</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.13</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.16</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">44</td>
+                <td class="tg-celda tx-left">Revestimiento de madera</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.34</td>
+                <td class="tg-celda tx-center">0.18</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.18</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">45</td>
+                <td class="tg-celda tx-left">Paneles de contrachapado (5+50 mm de lana de vidrio)</td>
+                <td class="tg-celda tx-center">55</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.47</td>
+                <td class="tg-celda tx-center">0.34</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.21</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">46</td>
+                <td class="tg-celda tx-left">Paneles de contrachapado delgado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.42</td>
+                <td class="tg-celda tx-center">0.21</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.23</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">47</td>
+                <td class="tg-celda tx-left">Placas de fibromadera con fieltro bituminoso y cámara</td>
+                <td class="tg-celda tx-center">60</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.45</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.24</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">48</td>
+                <td class="tg-celda tx-left">Paneles de contrachapado (6+50 mm de lana de vidrio)</td>
+                <td class="tg-celda tx-center">56</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.42</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.24</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">49</td>
+                <td class="tg-celda tx-left">Revestimiento de madera</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.61</td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.24</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.28</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="6">PANEL PERFORADO</td>
+                <td class="tg-celda tx-center">50</td>
+                <td class="tg-celda tx-left">Panel perforado 5% sobre manto poroso 50mm</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.54</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">51</td>
+                <td class="tg-celda tx-left">Panel perforado 5% sobre planchas poroso 50mm</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.45</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.55</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">52</td>
+                <td class="tg-celda tx-left">Panel perforado +20% sobre manto poroso 50mm</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.67</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-left">Panel perforado 10% sobre manto poroso 50mm</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.67</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">54</td>
+                <td class="tg-celda tx-left">Panel perforado 10% sobre planchas poroso 50mm</td>
+                <td class="tg-celda tx-center">53</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.70</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">55</td>
+                <td class="tg-celda tx-left">Malla perforado +30% sobre manto poroso 50mm</td>
+                <td class="tg-celda tx-center">76</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.95</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.86</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial">MEMBRANA</td>
+                <td class="tg-celda tx-center">56</td>
+                <td class="tg-celda tx-left">Fieltro bituminoso doble Sobre cámara de aire</td>
+                <td class="tg-celda tx-center">260</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.18</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="2">LANAVID</td>
+                <td class="tg-celda tx-center">57</td>
+                <td class="tg-celda tx-left">Panel rígido RP25 Isover</td>
+                <td class="tg-celda tx-center">25</td>
+                <td class="tg-celda tx-center">35.0</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">0.78</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">58</td>
+                <td class="tg-celda tx-left">Panel rígido RP50 Isover</td>
+                <td class="tg-celda tx-center">50</td>
+                <td class="tg-celda tx-center">35.0</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">0.94</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial">MARMOL</td>
+                <td class="tg-celda tx-center">59</td>
+                <td class="tg-celda tx-left">Marmol</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial">PIEDRA</td>
+                <td class="tg-celda tx-center">60</td>
+                <td class="tg-celda tx-left">Muro de sillares de piedra</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="6">REVOQUE</td>
+                <td class="tg-celda tx-center">61</td>
+                <td class="tg-celda tx-left">Pared revocada</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">62</td>
+                <td class="tg-celda tx-left">Revoque de cal</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">63</td>
+                <td class="tg-celda tx-left">Revoque sobre respaldo sólido</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">64</td>
+                <td class="tg-celda tx-left">Revoque rugoso</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.05</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">65</td>
+                <td class="tg-celda tx-left">Revoque de cemento</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.05</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">66</td>
+                <td class="tg-celda tx-left">Revoque de cal y arena</td>
+                <td class="tg-celda tx-center">20</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="4">SONOBOR</td>
+                <td class="tg-celda tx-center">67</td>
+                <td class="tg-celda tx-left">Placas pintadas de fibra 12mm contra pared</td>
+                <td class="tg-celda tx-center">12</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">68</td>
+                <td class="tg-celda tx-left">Placas pintadas de fibra sobre cámara (12+25mm)</td>
+                <td class="tg-celda tx-center">37</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.14</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">69</td>
+                <td class="tg-celda tx-left">Placas de fibra 12mm contra pared</td>
+                <td class="tg-celda tx-center">12</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.20</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">70</td>
+                <td class="tg-celda tx-left">Placas de fibra sobre cámara (12+25mm)</td>
+                <td class="tg-celda tx-center">37</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.29</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial">VIDRIO</td>
+                <td class="tg-celda tx-center">71</td>
+                <td class="tg-celda tx-left">Vidrio de espejo</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="11">YESO</td>
+                <td class="tg-celda tx-center">72</td>
+                <td class="tg-celda tx-left">Placas de yeso (13+100 mm de aire)</td>
+                <td class="tg-celda tx-center">113</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.05</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">73</td>
+                <td class="tg-celda tx-left">Placas de yeso (10+50 mm de aire)</td>
+                <td class="tg-celda tx-center">60</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.32</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.05</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">74</td>
+                <td class="tg-celda tx-left">Pared de placas de yeso (13+65+13 mm)</td>
+                <td class="tg-celda tx-center">90</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">75</td>
+                <td class="tg-celda tx-left">Pared de placas de yeso (13+65+13 mm con relleno)</td>
+                <td class="tg-celda tx-center">90</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.31</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">76</td>
+                <td class="tg-celda tx-left">Placas de yeso (13+30 mm lana de vidrio)</td>
+                <td class="tg-celda tx-center">43</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.07</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">77</td>
+                <td class="tg-celda tx-left">Placas de yeso (13+30 mm de aire)</td>
+                <td class="tg-celda tx-center">43</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.07</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">78</td>
+                <td class="tg-celda tx-left">Placas de yeso 13 mm sobre parantes</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.29</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.07</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">79</td>
+                <td class="tg-celda tx-left">Placas de yeso (13+100 mm lana de vidrio)</td>
+                <td class="tg-celda tx-center">113</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.08</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">80</td>
+                <td class="tg-celda tx-left">Pared de placas de yeso (13+90+13 mm con relleno)</td>
+                <td class="tg-celda tx-center">115</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.17</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.08</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">81</td>
+                <td class="tg-celda tx-left">Placas de yeso (10+50 mm lana de vidrio)</td>
+                <td class="tg-celda tx-center">60</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.08</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">82</td>
+                <td class="tg-celda tx-left">Doble placa de yeso 2 x 16</td>
+                <td class="tg-celda tx-center">32</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.28</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.17</td>
+                <td class="tg-celda tx-center">0.13</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.13</td>
+              </tr>
+            </table>
+          </div>
+          <div align="center" id="tabTecho" class="tabcontent-3">
+            <a href="modules/data/coef_abs_techos.xlsx" download>
+              <button class="downloadButton">Download</button>
+            </a>
+            <table class="tg">
+              <tr>
+                <th class="tg-title" colspan="12">TECHOS</th>
+              </tr>
+              <tr>
+                <td class="tg-cabecera">MATERIAL</td>
+                <td class="tg-cabecera">NÚMERO</td>
+                <td class="tg-cabecera">DESCRIPCIÓN</td>
+                <td class="tg-cabecera">mm</td>
+                <td class="tg-cabecera">dens</td>
+                <td class="tg-cabecera">125</td>
+                <td class="tg-cabecera">250</td>
+                <td class="tg-cabecera">500</td>
+                <td class="tg-cabecera">1000</td>
+                <td class="tg-cabecera">2000</td>
+                <td class="tg-cabecera">4000</td>
+                <td class="tg-cabecera">NRC</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="7">CIELORRASO DE FIBRA</td>
+                <td class="tg-celda tx-center">1</td>
+                <td class="tg-celda tx-left">Placas de fibra 19 mm Armstrong Suprafine 2200</td>
+                <td class="tg-celda tx-center">19</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.38</td>
+                <td class="tg-celda tx-center">0.29</td>
+                <td class="tg-celda tx-center">0.39</td>
+                <td class="tg-celda tx-center">0.56</td>
+                <td class="tg-celda tx-center">0.71</td>
+                <td class="tg-celda tx-center">0.78</td>
+                <td class="tg-celda tx-center">0.49</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">2</td>
+                <td class="tg-celda tx-left">Placas de fibra 19 mm Armstrong Sec. Look</td>
+                <td class="tg-celda tx-center">19</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.34</td>
+                <td class="tg-celda tx-center">0.32</td>
+                <td class="tg-celda tx-center">0.48</td>
+                <td class="tg-celda tx-center">0.64</td>
+                <td class="tg-celda tx-center">0.71</td>
+                <td class="tg-celda tx-center">0.76</td>
+                <td class="tg-celda tx-center">0.54</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">3</td>
+                <td class="tg-celda tx-left">Placas de fibra 16 mm Armstrong Minaboard</td>
+                <td class="tg-celda tx-center">16</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.32</td>
+                <td class="tg-celda tx-center">0.54</td>
+                <td class="tg-celda tx-center">0.74</td>
+                <td class="tg-celda tx-center">0.67</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.57</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">4</td>
+                <td class="tg-celda tx-left">Placas de fibra 16 mm Armstrong Minatone</td>
+                <td class="tg-celda tx-center">16</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.54</td>
+                <td class="tg-celda tx-center">0.78</td>
+                <td class="tg-celda tx-center">0.67</td>
+                <td class="tg-celda tx-center">0.48</td>
+                <td class="tg-celda tx-center">0.57</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">5</td>
+                <td class="tg-celda tx-left">Placas lana de vidrio con lamina vinilo sin perforar</td>
+                <td class="tg-celda tx-center">16</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.57</td>
+                <td class="tg-celda tx-center">0.39</td>
+                <td class="tg-celda tx-center">0.41</td>
+                <td class="tg-celda tx-center">0.82</td>
+                <td class="tg-celda tx-center">0.89</td>
+                <td class="tg-celda tx-center">0.72</td>
+                <td class="tg-celda tx-center">0.63</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">6</td>
+                <td class="tg-celda tx-left">Placas de fibra 19 mm Celotex Ultra</td>
+                <td class="tg-celda tx-center">19</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.32</td>
+                <td class="tg-celda tx-center">0.34</td>
+                <td class="tg-celda tx-center">0.71</td>
+                <td class="tg-celda tx-center">0.87</td>
+                <td class="tg-celda tx-center">0.87</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.70</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">7</td>
+                <td class="tg-celda tx-left">Placas lana de vidrio con lamina vinilo perforada</td>
+                <td class="tg-celda tx-center">16</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.69</td>
+                <td class="tg-celda tx-center">0.61</td>
+                <td class="tg-celda tx-center">0.82</td>
+                <td class="tg-celda tx-center">0.87</td>
+                <td class="tg-celda tx-center">0.71</td>
+                <td class="tg-celda tx-center">0.75</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="3">CIELORRASO DE METAL</td>
+                <td class="tg-celda tx-center">8</td>
+                <td class="tg-celda tx-left">Cielorraso de perfiles met. ranurados 17% con lana vidrio</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.73</td>
+                <td class="tg-celda tx-center">0.55</td>
+                <td class="tg-celda tx-center">0.62</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.39</td>
+                <td class="tg-celda tx-center">0.55</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">9</td>
+                <td class="tg-celda tx-left">Cielorraso placas metáicas perforadas 7%</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.72</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">10</td>
+                <td class="tg-celda tx-left">Cielorraso placas metáicas perforadas 25%</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.77</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial">FASERIT</td>
+                <td class="tg-celda tx-center">11</td>
+                <td class="tg-celda tx-left">Revoque Faserit proyectado y fratasado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.18</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="3">HORMIGŕN</td>
+                <td class="tg-celda tx-center">12</td>
+                <td class="tg-celda tx-left">Hormigón normal</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">13</td>
+                <td class="tg-celda tx-left">Hormigón pintado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.01</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">14</td>
+                <td class="tg-celda tx-left">Hormigón rústico</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.03</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="5">LANA DE VIDRIO</td>
+                <td class="tg-celda tx-center">15</td>
+                <td class="tg-celda tx-left">Lana de vidrio 50mm con cubierta perforada 5%</td>
+                <td class="tg-celda tx-center">51</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.54</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">16</td>
+                <td class="tg-celda tx-left">Lana de vidrio 50mm con cubierta perforada 10%</td>
+                <td class="tg-celda tx-center">51</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.35</td>
+                <td class="tg-celda tx-center">0.65</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.67</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">17</td>
+                <td class="tg-celda tx-left">Manto 100mm con cubierta perf. 23%, film polietileno</td>
+                <td class="tg-celda tx-center">101</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.78</td>
+                <td class="tg-celda tx-center">1.01</td>
+                <td class="tg-celda tx-center">1.14</td>
+                <td class="tg-celda tx-center">1.03</td>
+                <td class="tg-celda tx-center">0.94</td>
+                <td class="tg-celda tx-center">0.78</td>
+                <td class="tg-celda tx-center">1.03</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">18</td>
+                <td class="tg-celda tx-left">Manto 50mm con cubierta perf. 23%, + 50mm aire</td>
+                <td class="tg-celda tx-center">101</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.61</td>
+                <td class="tg-celda tx-center">0.91</td>
+                <td class="tg-celda tx-center">1.15</td>
+                <td class="tg-celda tx-center">1.09</td>
+                <td class="tg-celda tx-center">1.01</td>
+                <td class="tg-celda tx-center">1.01</td>
+                <td class="tg-celda tx-center">1.04</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">19</td>
+                <td class="tg-celda tx-left">Manto 100mm con cubierta perf. 23%</td>
+                <td class="tg-celda tx-center">101</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.78</td>
+                <td class="tg-celda tx-center">1.01</td>
+                <td class="tg-celda tx-center">1.14</td>
+                <td class="tg-celda tx-center">1.07</td>
+                <td class="tg-celda tx-center">1.06</td>
+                <td class="tg-celda tx-center">0.98</td>
+                <td class="tg-celda tx-center">1.07</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="3">POLIUTERANO</td>
+                <td class="tg-celda tx-center">20</td>
+                <td class="tg-celda tx-left">Placa 15 de poliuretano, espuma flexible</td>
+                <td class="tg-celda tx-center">15</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.21</td>
+                <td class="tg-celda tx-center">0.45</td>
+                <td class="tg-celda tx-center">0.95</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.44</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">21</td>
+                <td class="tg-celda tx-left">Placa 30 de poliuretano, espuma flexible</td>
+                <td class="tg-celda tx-center">30</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.07</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.37</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">0.97</td>
+                <td class="tg-celda tx-center">0.59</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">22</td>
+                <td class="tg-celda tx-left">Placa 45 de poliuretano, espuma flexible</td>
+                <td class="tg-celda tx-center">45</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">1.00</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.91</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.87</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="3">REVOQUE</td>
+                <td class="tg-celda tx-center">23</td>
+                <td class="tg-celda tx-left">Revoque 30mm sobre metal desplegado</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.14</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.06</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">24</td>
+                <td class="tg-celda tx-left">Revoque sobre espacio estrecho</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">25</td>
+                <td class="tg-celda tx-left">Revoque sobre gran cámara de aire</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-left"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.09</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="4">REVOQUE ACÚSTICO</td>
+                <td class="tg-celda tx-center">26</td>
+                <td class="tg-celda tx-left">Revoque acústico proyectado 13</td>
+                <td class="tg-celda tx-center">13</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.15</td>
+                <td class="tg-celda tx-center">0.47</td>
+                <td class="tg-celda tx-center">0.75</td>
+                <td class="tg-celda tx-center">0.82</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.55</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">27</td>
+                <td class="tg-celda tx-left">Revoque acústico proyectado 20</td>
+                <td class="tg-celda tx-center">20</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.30</td>
+                <td class="tg-celda tx-center">0.60</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.67</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">28</td>
+                <td class="tg-celda tx-left">Revoque acústico proyectado 25</td>
+                <td class="tg-celda tx-center">25</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.16</td>
+                <td class="tg-celda tx-center">0.45</td>
+                <td class="tg-celda tx-center">0.70</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.74</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">29</td>
+                <td class="tg-celda tx-left">Revoque acústico proyectado 13 con cámara 25</td>
+                <td class="tg-celda tx-center">38</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.25</td>
+                <td class="tg-celda tx-center">0.50</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.90</td>
+                <td class="tg-celda tx-center">0.85</td>
+                <td class="tg-celda tx-center">0.77</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="2">SONEX BAFLE</td>
+                <td class="tg-celda tx-center">30</td>
+                <td class="tg-celda tx-left">Bafle suspendido de espuma de poliuretano</td>
+                <td class="tg-celda tx-center">40</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.26</td>
+                <td class="tg-celda tx-center">0.48</td>
+                <td class="tg-celda tx-center">0.96</td>
+                <td class="tg-celda tx-center">1.26</td>
+                <td class="tg-celda tx-center">1.16</td>
+                <td class="tg-celda tx-center">0.74</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">31</td>
+                <td class="tg-celda tx-left">Bafle suspendido de espuma de poliuretano</td>
+                <td class="tg-celda tx-center">70</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.28</td>
+                <td class="tg-celda tx-center">0.46</td>
+                <td class="tg-celda tx-center">0.74</td>
+                <td class="tg-celda tx-center">1.15</td>
+                <td class="tg-celda tx-center">1.26</td>
+                <td class="tg-celda tx-center">1.29</td>
+                <td class="tg-celda tx-center">0.90</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="3">SONEX ILLITECH</td>
+                <td class="tg-celda tx-center">32</td>
+                <td class="tg-celda tx-left">Placa de espuma blanca 25/35</td>
+                <td class="tg-celda tx-center">25</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.11</td>
+                <td class="tg-celda tx-center">0.17</td>
+                <td class="tg-celda tx-center">0.40</td>
+                <td class="tg-celda tx-center">0.72</td>
+                <td class="tg-celda tx-center">0.76</td>
+                <td class="tg-celda tx-center">0.91</td>
+                <td class="tg-celda tx-center">0.51</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">33</td>
+                <td class="tg-celda tx-left">Placa de espuma blanca 35/125</td>
+                <td class="tg-celda tx-center">35</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.14</td>
+                <td class="tg-celda tx-center">0.21</td>
+                <td class="tg-celda tx-center">0.61</td>
+                <td class="tg-celda tx-center">0.80</td>
+                <td class="tg-celda tx-center">0.89</td>
+                <td class="tg-celda tx-center">0.92</td>
+                <td class="tg-celda tx-center">0.63</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">34</td>
+                <td class="tg-celda tx-left">Placa de espuma blanca 50/125</td>
+                <td class="tg-celda tx-center">50</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.31</td>
+                <td class="tg-celda tx-center">0.81</td>
+                <td class="tg-celda tx-center">1.01</td>
+                <td class="tg-celda tx-center">0.99</td>
+                <td class="tg-celda tx-center">0.95</td>
+                <td class="tg-celda tx-center">0.81</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="2">SONEX SOFT</td>
+                <td class="tg-celda tx-center" rowspan="2">35</td>
+                <td class="tg-celda tx-left" rowspan="2">Placa de espuma de poliuretano 30/125</td>
+                <td class="tg-celda tx-center" rowspan="2">30</td>
+                <td class="tg-celda tx-center" rowspan="2"></td>
+                <td class="tg-celda tx-center" rowspan="2">0.07</td>
+                <td class="tg-celda tx-center" rowspan="2">0.15</td>
+                <td class="tg-celda tx-center" rowspan="2">0.51</td>
+                <td class="tg-celda tx-center" rowspan="2">0.91</td>
+                <td class="tg-celda tx-center" rowspan="2">0.82</td>
+                <td class="tg-celda tx-center" rowspan="2">0.84</td>
+                <td class="tg-celda tx-center" rowspan="2">0.60</td>
+              </tr>
+              <tr>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="2">SONOVER</td>
+                <td class="tg-celda tx-center">36</td>
+                <td class="tg-celda tx-left">Absorsores suspendidos</td>
+                <td class="tg-celda tx-center">30</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.55</td>
+                <td class="tg-celda tx-center">0.64</td>
+                <td class="tg-celda tx-center">0.84</td>
+                <td class="tg-celda tx-center">0.97</td>
+                <td class="tg-celda tx-center">0.97</td>
+                <td class="tg-celda tx-center">0.75</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">37</td>
+                <td class="tg-celda tx-left">Absorsores suspendidos</td>
+                <td class="tg-celda tx-center">30</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.38</td>
+                <td class="tg-celda tx-center">0.76</td>
+                <td class="tg-celda tx-center">0.94</td>
+                <td class="tg-celda tx-center">1.18</td>
+                <td class="tg-celda tx-center">1.28</td>
+                <td class="tg-celda tx-center">1.28</td>
+                <td class="tg-celda tx-center">1.04</td>
+              </tr>
+              <tr>
+                <td class="tg-typeMaterial" rowspan="5">YESO</td>
+                <td class="tg-celda tx-center">38</td>
+                <td class="tg-celda tx-left">Placa de yeso 13 + 650 mm lana de vidrio</td>
+                <td class="tg-celda tx-center">663</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.04</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">39</td>
+                <td class="tg-celda tx-left">Placa de yeso 25 mm con espacio de aire</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.08</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.04</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">40</td>
+                <td class="tg-celda tx-left">Placa de yeso 13 + 400 mm de aire</td>
+                <td class="tg-celda tx-center">413</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.14</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">41</td>
+                <td class="tg-celda tx-left">Cielorraso de placas de yeso 13 mm + espacio aire</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.10</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.05</td>
+                <td class="tg-celda tx-center">0.06</td>
+              </tr>
+              <tr>
+                <td class="tg-celda tx-center">42</td>
+                <td class="tg-celda tx-left">Placa de yeso 13 + 400 mm lana de vidrio</td>
+                <td class="tg-celda tx-center">413</td>
+                <td class="tg-celda tx-center"></td>
+                <td class="tg-celda tx-center">0.20</td>
+                <td class="tg-celda tx-center">0.12</td>
+                <td class="tg-celda tx-center">0.09</td>
+                <td class="tg-celda tx-center">0.03</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.02</td>
+                <td class="tg-celda tx-center">0.07</td>
+              </tr>
+            </table>
+            <button class="downloadButton">Download</button>
+          </div>
+          <div align="center" id="tabSuelo" class="tabcontent-3">
+            <a href="modules/data/coef_abs_suelos.xlsx" download>
+              <button class="downloadButton">Download</button>
+            </a>
+            <table class="tg">
+            <tr>
+              <th class="tg-title" colspan="12">SUELOS</th>
+            </tr>
+            <tr>
+              <td class="tg-cabecera">MATERIAL</td>
+              <td class="tg-cabecera">NÚMERO</td>
+              <td class="tg-cabecera">DESCRIPCION</td>
+              <td class="tg-cabecera">mm</td>
+              <td class="tg-cabecera">dens</td>
+              <td class="tg-cabecera">125</td>
+              <td class="tg-cabecera">250</td>
+              <td class="tg-cabecera">500</td>
+              <td class="tg-cabecera">1000</td>
+              <td class="tg-cabecera">2000</td>
+              <td class="tg-cabecera">4000</td>
+              <td class="tg-cabecera">NRC</td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial" rowspan="4">HORMIGÓN</td>
+              <td class="tg-celda tx-center">1</td>
+              <td class="tg-celda tx-left">Piso de hormigón</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">2</td>
+              <td class="tg-celda tx-left">Hormigón alisado</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.02</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">3</td>
+              <td class="tg-celda tx-left">Hormigón alisado o monilítico</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">4</td>
+              <td class="tg-celda tx-left">Hormigón rasado o monilítico</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.03</td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial" rowspan="4">PARQUET</td>
+              <td class="tg-celda tx-center">5</td>
+              <td class="tg-celda tx-left">Parquet de madera sobre contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.04</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">6</td>
+              <td class="tg-celda tx-left">Parquet sobre contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.06</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">7</td>
+              <td class="tg-celda tx-left">Parquet de madera sobre hormigón</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.06</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">8</td>
+              <td class="tg-celda tx-left">Parquet de madera sobre listones</td>
+              <td class="tg-celda tx-center">15</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.12</td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial" rowspan="9">PAVIMENTO</td>
+              <td class="tg-celda tx-center">9</td>
+              <td class="tg-celda tx-left">Linóleo</td>
+              <td class="tg-celda tx-center">5</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.03</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">10</td>
+              <td class="tg-celda tx-left">Contrapiso + linóleo bald asfalto, goma, corcho</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">11</td>
+              <td class="tg-celda tx-left">Linóleo sobre hormigón</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.03</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">12</td>
+              <td class="tg-celda tx-left">Alfombra de goma</td>
+              <td class="tg-celda tx-center">5</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.06</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">13</td>
+              <td class="tg-celda tx-left">Pavimento de corcho</td>
+              <td class="tg-celda tx-center">20</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.11</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.07</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">14</td>
+              <td class="tg-celda tx-left">Alfombra de goma</td>
+              <td class="tg-celda tx-center">5</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.07</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">15</td>
+              <td class="tg-celda tx-left">Pavimento de corcho 3mm Dekwall</td>
+              <td class="tg-celda tx-center">3</td>
+              <td class="tg-celda tx-center">200</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.11</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.07</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">16</td>
+              <td class="tg-celda tx-left">Pavimento de goma</td>
+              <td class="tg-celda tx-center">5</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.13</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.09</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">17</td>
+              <td class="tg-celda tx-left">Pavimento de corcho 3mm Dekwall, pegado</td>
+              <td class="tg-celda tx-center">3</td>
+              <td class="tg-celda tx-center">200</td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.24</td>
+              <td class="tg-celda tx-center">0.16</td>
+              <td class="tg-celda tx-center">0.11</td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial" rowspan="10">PISO DE TABLAS</td>
+              <td class="tg-celda tx-center">18</td>
+              <td class="tg-celda tx-left">Piso de tablillas sobre listones</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.25</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.13</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">19</td>
+              <td class="tg-celda tx-left">Tablas de madera sobre vigas cubierto con linóleo</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.08</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">20</td>
+              <td class="tg-celda tx-left">Tablas de madera sobre vigas cubierto con linóleo</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.08</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">21</td>
+              <td class="tg-celda tx-left">Tablas de madera sobre vigas, plastificadas</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.09</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">22</td>
+              <td class="tg-celda tx-left">Tablas de maderas sobre viguetas</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.11</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.09</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">23</td>
+              <td class="tg-celda tx-left">Tablas de maderas sobre vigas</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.10</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">24</td>
+              <td class="tg-celda tx-left">Tablas o aglomerado 19mm sobre viguetas</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.11</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">25</td>
+              <td class="tg-celda tx-left">Piso de tablas sobre viguetas</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.13</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">26</td>
+              <td class="tg-celda tx-left">Plataforma de madera sobre gran espacio de aire</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.40</td>
+              <td class="tg-celda tx-center">0.30</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.17</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.26</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">27</td>
+              <td class="tg-celda tx-left">Tablas de madera sobe vigas, con moqueta delgada</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.30</td>
+              <td class="tg-celda tx-center">0.50</td>
+              <td class="tg-celda tx-center">0.60</td>
+              <td class="tg-celda tx-center">0.28</td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial">TARMINA</td>
+              <td class="tg-celda tx-center">28</td>
+              <td class="tg-celda tx-left">Entarimado de madera</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.09</td>
+              <td class="tg-celda tx-center">0.09</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.09</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.08</td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial">TRIBUNA</td>
+              <td class="tg-celda tx-center">29</td>
+              <td class="tg-celda tx-left">Tribuna de madera portable</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.40</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+            </tr>
+            <tr>
+              <td class="tg-typeMaterial" rowspan="29">MOQUETA</td>
+              <td class="tg-celda tx-center">30</td>
+              <td class="tg-celda tx-left">Alfombra delgada</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.01</td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.04</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">31</td>
+              <td class="tg-celda tx-left">Alfombra needlepunch 5mm</td>
+              <td class="tg-celda tx-center">5</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.25</td>
+              <td class="tg-celda tx-center">0.35</td>
+              <td class="tg-celda tx-center">0.50</td>
+              <td class="tg-celda tx-center">0.17</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">32</td>
+              <td class="tg-celda tx-left">Alfombra delgada pegada al contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.35</td>
+              <td class="tg-celda tx-center">0.40</td>
+              <td class="tg-celda tx-center">0.17</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">33</td>
+              <td class="tg-celda tx-left">Alfombra comercial pegada al contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.09</td>
+              <td class="tg-celda tx-center">0.23</td>
+              <td class="tg-celda tx-center">0.38</td>
+              <td class="tg-celda tx-center">0.54</td>
+              <td class="tg-celda tx-center">0.19</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">34</td>
+              <td class="tg-celda tx-left">Alfombra</td>
+              <td class="tg-celda tx-center">8</td>
+              <td class="tg-celda tx-center">2.0</td>
+              <td class="tg-celda tx-center">0.13</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.13</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.46</td>
+              <td class="tg-celda tx-center">0.70</td>
+              <td class="tg-celda tx-center">0.21</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">35</td>
+              <td class="tg-celda tx-left">Alfombra pelo largo cepillado</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.05</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.35</td>
+              <td class="tg-celda tx-center">0.45</td>
+              <td class="tg-celda tx-center">0.55</td>
+              <td class="tg-celda tx-center">0.24</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">36</td>
+              <td class="tg-celda tx-left">Alfombra</td>
+              <td class="tg-celda tx-center">9</td>
+              <td class="tg-celda tx-center">1.9</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.18</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.46</td>
+              <td class="tg-celda tx-center">0.72</td>
+              <td class="tg-celda tx-center">0.24</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">37</td>
+              <td class="tg-celda tx-left">Alfombra media sobre base espumosa</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.09</td>
+              <td class="tg-celda tx-center">0.25</td>
+              <td class="tg-celda tx-center">0.31</td>
+              <td class="tg-celda tx-center">0.33</td>
+              <td class="tg-celda tx-center">0.44</td>
+              <td class="tg-celda tx-center">0.25</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">38</td>
+              <td class="tg-celda tx-left">Alfombra delgada pegada al contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.30</td>
+              <td class="tg-celda tx-center">0.50</td>
+              <td class="tg-celda tx-center">0.60</td>
+              <td class="tg-celda tx-center">0.25</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">39</td>
+              <td class="tg-celda tx-left">Alfombra tejida de lazos lana, pelo 2,4 mm</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.16</td>
+              <td class="tg-celda tx-center">0.11</td>
+              <td class="tg-celda tx-center">0.30</td>
+              <td class="tg-celda tx-center">0.50</td>
+              <td class="tg-celda tx-center">0.47</td>
+              <td class="tg-celda tx-center">0.27</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">40</td>
+              <td class="tg-celda tx-left">Alfombra tejida de lazos lana, pelo 6,4 mm</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.15</td>
+              <td class="tg-celda tx-center">0.17</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.32</td>
+              <td class="tg-celda tx-center">0.52</td>
+              <td class="tg-celda tx-center">0.57</td>
+              <td class="tg-celda tx-center">0.28</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">41</td>
+              <td class="tg-celda tx-left">Alfombra pesada pegada al contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.14</td>
+              <td class="tg-celda tx-center">0.37</td>
+              <td class="tg-celda tx-center">0.60</td>
+              <td class="tg-celda tx-center">0.65</td>
+              <td class="tg-celda tx-center">0.29</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">42</td>
+              <td class="tg-celda tx-left">Alfombra liviana de pelo enlazado</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.04</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.17</td>
+              <td class="tg-celda tx-center">0.33</td>
+              <td class="tg-celda tx-center">0.59</td>
+              <td class="tg-celda tx-center">0.75</td>
+              <td class="tg-celda tx-center">0.29</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">43</td>
+              <td class="tg-celda tx-left">Alfombra de fieltro</td>
+              <td class="tg-celda tx-center">12</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.11</td>
+              <td class="tg-celda tx-center">0.14</td>
+              <td class="tg-celda tx-center">0.37</td>
+              <td class="tg-celda tx-center">0.43</td>
+              <td class="tg-celda tx-center">0.27</td>
+              <td class="tg-celda tx-center">0.27</td>
+              <td class="tg-celda tx-center">0.30</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">44</td>
+              <td class="tg-celda tx-left">Alfombra sobre fieltro</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.11</td>
+              <td class="tg-celda tx-center">0.14</td>
+              <td class="tg-celda tx-center">0.37</td>
+              <td class="tg-celda tx-center">0.43</td>
+              <td class="tg-celda tx-center">0.27</td>
+              <td class="tg-celda tx-center">0.25</td>
+              <td class="tg-celda tx-center">0.30</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">45</td>
+              <td class="tg-celda tx-left">Alfombra</td>
+              <td class="tg-celda tx-center">13</td>
+              <td class="tg-celda tx-center">2.5</td>
+              <td class="tg-celda tx-center">0.12</td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.30</td>
+              <td class="tg-celda tx-center">0.64</td>
+              <td class="tg-celda tx-center">0.93</td>
+              <td class="tg-celda tx-center">0.31</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">46</td>
+              <td class="tg-celda tx-left">Alfombra pesada sobre contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.16</td>
+              <td class="tg-celda tx-center">0.14</td>
+              <td class="tg-celda tx-center">0.37</td>
+              <td class="tg-celda tx-center">0.60</td>
+              <td class="tg-celda tx-center">0.65</td>
+              <td class="tg-celda tx-center">0.32</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">47</td>
+              <td class="tg-celda tx-left">Alfombra pesada sobre contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.02</td>
+              <td class="tg-celda tx-center">0.06</td>
+              <td class="tg-celda tx-center">0.14</td>
+              <td class="tg-celda tx-center">0.37</td>
+              <td class="tg-celda tx-center">0.60</td>
+              <td class="tg-celda tx-center">0.65</td>
+              <td class="tg-celda tx-center">0.32</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">48</td>
+              <td class="tg-celda tx-left">Alfombra con base espuma pegada al contrapiso</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.59</td>
+              <td class="tg-celda tx-center">0.26</td>
+              <td class="tg-celda tx-center">0.37</td>
+              <td class="tg-celda tx-center">0.55</td>
+              <td class="tg-celda tx-center">0.33</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">49</td>
+              <td class="tg-celda tx-left">Alfombra base latex + bajoalfombra 1,4</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.27</td>
+              <td class="tg-celda tx-center">0.39</td>
+              <td class="tg-celda tx-center">0.34</td>
+              <td class="tg-celda tx-center">0.48</td>
+              <td class="tg-celda tx-center">0.63</td>
+              <td class="tg-celda tx-center">0.37</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">50</td>
+              <td class="tg-celda tx-left">Alfombra media sobre base esponjosa</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.09</td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.54</td>
+              <td class="tg-celda tx-center">0.70</td>
+              <td class="tg-celda tx-center">0.72</td>
+              <td class="tg-celda tx-center">0.38</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">51</td>
+              <td class="tg-celda tx-left">Alfombra sobre bajoalfombra 1,4</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.07</td>
+              <td class="tg-celda tx-center">0.16</td>
+              <td class="tg-celda tx-center">0.57</td>
+              <td class="tg-celda tx-center">0.40</td>
+              <td class="tg-celda tx-center">0.47</td>
+              <td class="tg-celda tx-center">0.57</td>
+              <td class="tg-celda tx-center">0.40</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">52</td>
+              <td class="tg-celda tx-left">Alfombra de pelo rizado</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.30</td>
+              <td class="tg-celda tx-center">0.60</td>
+              <td class="tg-celda tx-center">0.75</td>
+              <td class="tg-celda tx-center">0.80</td>
+              <td class="tg-celda tx-center">0.43</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">53</td>
+              <td class="tg-celda tx-left">Alfombra liviana de pelo enlazado con fieltro 1,4</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.19</td>
+              <td class="tg-celda tx-center">0.35</td>
+              <td class="tg-celda tx-center">0.79</td>
+              <td class="tg-celda tx-center">0.69</td>
+              <td class="tg-celda tx-center">0.79</td>
+              <td class="tg-celda tx-center">0.51</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">54</td>
+              <td class="tg-celda tx-left">Alfombra gruesa de pelo enlazado con almohadilla 1,4</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.03</td>
+              <td class="tg-celda tx-center">0.25</td>
+              <td class="tg-celda tx-center">0.55</td>
+              <td class="tg-celda tx-center">0.70</td>
+              <td class="tg-celda tx-center">0.62</td>
+              <td class="tg-celda tx-center">0.84</td>
+              <td class="tg-celda tx-center">0.53</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">55</td>
+              <td class="tg-celda tx-left">Alfombra pesada sobre bajoalfombra de espuma</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.24</td>
+              <td class="tg-celda tx-center">0.57</td>
+              <td class="tg-celda tx-center">0.69</td>
+              <td class="tg-celda tx-center">0.71</td>
+              <td class="tg-celda tx-center">0.73</td>
+              <td class="tg-celda tx-center">0.55</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">56</td>
+              <td class="tg-celda tx-left">Alfombra+bajoalfombra 1,4</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.08</td>
+              <td class="tg-celda tx-center">0.24</td>
+              <td class="tg-celda tx-center">0.57</td>
+              <td class="tg-celda tx-center">0.69</td>
+              <td class="tg-celda tx-center">0.71</td>
+              <td class="tg-celda tx-center">0.73</td>
+              <td class="tg-celda tx-center">0.55</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">57</td>
+              <td class="tg-celda tx-left">Alfombra gruesa de pelo enlazado con almohadilla 3</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.10</td>
+              <td class="tg-celda tx-center">0.40</td>
+              <td class="tg-celda tx-center">0.62</td>
+              <td class="tg-celda tx-center">0.70</td>
+              <td class="tg-celda tx-center">0.63</td>
+              <td class="tg-celda tx-center">0.88</td>
+              <td class="tg-celda tx-center">0.59</td>
+            </tr>
+            <tr>
+              <td class="tg-celda tx-center">58</td>
+              <td class="tg-celda tx-left">Alfombra gruesa de pelo enlazado con almohadilla 3</td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center"></td>
+              <td class="tg-celda tx-center">0.20</td>
+              <td class="tg-celda tx-center">0.50</td>
+              <td class="tg-celda tx-center">0.68</td>
+              <td class="tg-celda tx-center">0.72</td>
+              <td class="tg-celda tx-center">0.65</td>
+              <td class="tg-celda tx-center">0.90</td>
+              <td class="tg-celda tx-center">0.64</td>
+            </tr>
+          </table>
+            <button class="downloadButton">Download</button>
+          </div>
+        </div>
+      </div>
+  <!--   </div> -->
+  </body>
 </html>
