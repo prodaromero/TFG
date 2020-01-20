@@ -32,6 +32,41 @@ input {
   margin-top: 10px;
 }
 
+.bg-image {
+    height: 40%;
+    width: 90%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+.img3 { background-image: url("images/altavoz-completo.jpg"); }
+.img2 { background-image: url("images/micro-completo.jpg"); }
+.img1 { background-image: url("images/cables-completo.jpg"); }
+.img4 { background-image: url("images/guitarra-completo.jpg"); }
+.img5 { background-image: url("images/concierto-completo.jpg"); }
+
+.bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+
+    /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    border: 10px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+}
+
 .in-box {
   width: 75%;
   margin: auto;
