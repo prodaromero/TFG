@@ -33,38 +33,54 @@ input {
 }
 
 .bg-image {
-    height: 40%;
-    width: 90%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: auto;
+  height: 40%;
+  width: 90%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
 }
 
-.img3 { background-image: url("images/altavoz-completo.jpg"); }
-.img2 { background-image: url("images/micro-completo.jpg"); }
 .img1 { background-image: url("images/cables-completo.jpg"); }
+.img2 { background-image: url("images/micro-completo.jpg"); }
+.img3 { background-image: url("images/altavoz-completo.jpg"); }
 .img4 { background-image: url("images/guitarra-completo.jpg"); }
 .img5 { background-image: url("images/concierto-completo.jpg"); }
+.img6 { background-image: url("images/estudio-completo.jpg"); }
+.img7 { background-image: url("images/micro1-completo.jpg"); }
 
-.bg-text {
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+.bg-box {
+  background-color: rgb(0,0,0); /* Fallback color */
 
-    /* Black w/opacity/see-through */
-    color: white;
-    font-weight: bold;
-    font-size: 80px;
-    border: 10px solid #f1f1f1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: auto;
-    padding: 20px;
-    text-align: center;
+  /* Black w/opacity/see-through */
+  font-weight: bold;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.bg-title {
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  position: absolute;
+  color: white;
+  border: 10px solid #f1f1f1;
+  top: 50%;
+  font-size: 80px;
+}
+
+.bg-description {
+  background-color: rgba(0,0,0, 0.2); /* Black w/opacity/see-through */
+  margin-top: 10%;
+  margin-left: 50%;
+  color: #2F4F4F;
+  border: 10px solid #2F4F4F;
+  font-size:20px;
+  width: 60%;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .in-box {
