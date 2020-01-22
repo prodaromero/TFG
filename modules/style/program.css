@@ -34,7 +34,6 @@ input {
 
 .bg-image {
   height: 40%;
-  width: 90%;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -46,9 +45,7 @@ input {
 .img2 { background-image: url("images/micro-completo.jpg"); }
 .img3 { background-image: url("images/altavoz-completo.jpg"); }
 .img4 { background-image: url("images/guitarra-completo.jpg"); }
-.img5 { background-image: url("images/concierto-completo.jpg"); }
-.img6 { background-image: url("images/estudio-completo.jpg"); }
-.img7 { background-image: url("images/micro1-completo.jpg"); }
+.img5 { background-image: url("images/micro1-completo.jpg"); }
 
 .bg-box {
   background-color: rgb(0,0,0); /* Fallback color */
@@ -74,7 +71,7 @@ input {
 
 .bg-description {
   background-color: rgba(0,0,0, 0.2); /* Black w/opacity/see-through */
-  margin-top: 10%;
+  margin-top: 100px;
   margin-left: 50%;
   color: #2F4F4F;
   border: 10px solid #2F4F4F;
@@ -89,7 +86,7 @@ input {
   position: relative;
 }
 
-:focus {outline: none;}
+.focus {outline: none;}
 
 .effect {
   border: 0;
@@ -116,6 +113,7 @@ input {
 .tab {
   width: 100%;
   margin: auto;
+  margin-top: 10px;
   border: 2px solid #ccc;
   background-color: #f1f1f1;
   border-radius: 6px;
@@ -125,6 +123,7 @@ input {
 
 /* Style the buttons inside the tab */
 .tab button {
+
   width: 33%;
   background-color: inherit;
   border: none;
@@ -147,20 +146,12 @@ input {
 }
 
 /* Style the tab content */
-.tabcontent, .tabcontent-2, .tabcontent-3{
+.tabcontent, .tabcontent-2, .tabcontent-3 {
   display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
   margin: auto;
-}
-
-#title {
-    width: 50%;
-    margin: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    text-align: center;
 }
 
 .contenedorPrincipal {
@@ -235,6 +226,13 @@ input {
 #coefRecinto, #supRecinto {
   width: 60%;
   height: auto;
+}
+
+#grad1 {
+  margin-top:50px;
+  height: 250px;
+  width: 100%;
+  background-image: linear-gradient(to bottom right, Gray, DodgerBlue); /* Standard syntax (must be last) */
 }
 
 .distanceMsg {
@@ -355,3 +353,12 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 
 .tg-celda{border-color:inherit;vertical-align:top}
 .tx-center{text-align:center}
 .tx-left{text-align:left;}
+
+
+.bg-paragraph {
+  padding: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-style: italic;
+  color: black;
+  font-size: 20px;
+}
