@@ -2,17 +2,23 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8" name="program" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="modules/style/program.css">
-    <script type="text/javascript" src="resources/program.js" ></script>
-    <script type="text/javascript" src="resources/optionGetReverberationTime.js" ></script>
-    <script type="text/javascript" src="modules/services/acousticService.js"></script>
-    <script type="text/javascript" src="modules/services/canvasService.js"></script>
-    <script type="text/javascript" src="modules/services/displayService.js"></script>
-    <script type="text/javascript" src="modules/values/valuesConst.js"></script>
-    <script type="text/javascript" src="modules/objects/room.js"></script>
+    <link rel="stylesheet" href="resources/style/program.css">
+    <script type="text/javascript" src="modules/optionGetMinDistance.js" ></script>
+    <script type="text/javascript" src="modules/optionGetReverberationTime.js" ></script>
+    <script type="text/javascript" src="resources/services/acousticService.js"></script>
+    <script type="text/javascript" src="resources/services/canvasService.js"></script>
+    <script type="text/javascript" src="resources/services/displayService.js"></script>
+    <script type="text/javascript" src="resources/values/valuesConst.js"></script>
+    <script type="text/javascript" src="resources/objects/room.js"></script>
   </head>
 
   <body onload="myCanvas()">
+
+    <div class="tab">
+      <button href="funciones.js" class="tablinks" onclick="displayService(event, 'minDistance')">Calcular distancias mínimas</button>
+      <button href="funciones.js" class="tablinks" onclick="displayService(event, 'reverTime')">Calcular tiempo de reverberación</button>
+      <button href="funciones.js" class="tablinks" onclick="displayService(event, 'materials')">Consultar lista de materiales</button>
+    </div>
 
     <div class="bg-image img1"></div>
     <div class="bg-image img2"></div>
@@ -28,12 +34,6 @@
       <p>gracias a las diferentes herramientas que ofrecemos.</p>
       <p>¡Navega y haz ciencia ilimitadamente!</p>
     </div>
-
-      <div class="tab">
-        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'minDistance')">Calcular distancias mínimas</button>
-        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'reverTime')">Calcular tiempo de reverberación</button>
-        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'materials')">Consultar lista de materiales</button>
-      </div>
 
       <div id="minDistance" class="tabcontent">
         <div class="contenedorPrincipal">
