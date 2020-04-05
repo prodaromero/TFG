@@ -15,18 +15,28 @@
   <body onload="myCanvas()">
 
     <div class="tab">
-      <button href="funciones.js" class="tablinks" onclick="displayService(event, 'minDistance')">Calcular distancias mínimas</button>
-      <button href="funciones.js" class="tablinks" onclick="displayService(event, 'reverTime')">Calcular tiempo de reverberación</button>
-      <button href="funciones.js" class="tablinks" onclick="displayService(event, 'materials')">Consultar lista de materiales</button>
+      <div class="init-logo">
+        <a href="#init"><img src="resources/style/images/AcousticLab-logo2.png"></a>
+      </div>
+<!--      <div class="init-menu">
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'minDistance')">Calcular distancias mínimas</button>
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'reverTime')">Calcular tiempo de reverberación</button>
+        <button href="funciones.js" class="tablinks" onclick="displayService(event, 'materials')">Consultar lista de materiales</button>
+      </div> -->
+      <div class="init-menu">
+        <a href="#minDistance" class="tablinks">Calcular distancias mínimas</a>
+        <a href="#reverTime" class="tablinks">Calcular tiempo de reverberación</a>
+        <a href="#materials" class="tablinks">Consultar lista de materiales</a>
+      </div>
     </div>
 
-    <div class="bg-image img1"></div>
+    <div id="init" class="bg-image img1"></div>
     <div class="bg-image img2"></div>
     <div class="bg-image img3"></div>
     <div class="bg-image img4"></div>
-    <div class="bg-image img5"></div>
+<!--    <div class="bg-image img5"></div> -->
 
-    <div class="bg-box bg-title bg-image">ACOUSTIC LAB</div>
+    <div  class="bg-box bg-title bg-image">ACOUSTIC LAB</div>
 
     <div class="bg-box bg-description">
       <p>¡Bienvenido a Acoustic-Lab!</p>
@@ -1948,7 +1958,6 @@
                 <td class="tg-celda tx-center">0.07</td>
               </tr>
             </table>
-            <button class="downloadButton">Download</button>
           </div>
           <div align="center" id="tabSuelo" class="tabcontent-3">
             <a href="modules/data/coef_abs_suelos.xlsx" download>
@@ -2739,11 +2748,11 @@
       </div>
 
       <div id="grad1">
-        <p class="bg-paragraph"><img src="modules/style/images/twitter.png" style="float:left;width:64px;height:64px;"><strong>Twitter: </strong>@acousticLab</p>
+        <p class="bg-paragraph"><img src="resources/style/images/twitter.png" style="float:left;width:64px;height:64px;"><strong>Twitter: </strong>@acousticLab</p>
 
-        <p class="bg-paragraph"><img src="modules/style/images/instagram.png" style="float:left;width:64px;height:64px;"><strong>Instagram: </strong>@acousticLab</p>
+        <p class="bg-paragraph"><img src="resources/style/images/instagram.png" style="float:left;width:64px;height:64px;"><strong>Instagram: </strong>@acousticLab</p>
 
-        <p class="bg-paragraph"><img src="modules/style/images/github.png" style="float:left;width:64px;height:64px;">
+        <p class="bg-paragraph"><img src="resources/style/images/github.png" style="float:left;width:64px;height:64px;">
               <strong>Github: </strong><a style="color:black;" href="https://github.com/prodaromero/">@pablorodaromero</a></p>
       </div>
   <!--   </div> -->

@@ -112,45 +112,82 @@ input {
 /* Style the tab */
 .tab {
   position: fixed;
+  z-index: 1;
   width: 100%;
-  margin: auto;
-  margin-top: 10px;
+  height: 75px;
   border: 2px solid #ccc;
-  background-color: #f1f1f1;
-  border-radius: 6px;
+  background-color: white;
+/*  border-radius: 6px;*/
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 
-/* Style the buttons inside the tab */
-.tab button {
+.init-logo {
+  position: fixed;
+  z-index: 1;
+  width: 35%;
+  height: 70px;
+  text-align: left;
+  border-radius: 5px;
+}
 
-  width: 33%;
-  background-color: inherit;
-  border: none;
-  outline: none;
+.init-logo img {
+  height: 90%;
+  width: auto;
+  margin-top: 5px;
+  margin-left: 15px;
   cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+}
+
+.init-logo img:hover {
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.init-menu {
+  position: fixed;
+  z-index: 1;
+  width: 60%;
+  height: 70px;
+  margin-left: 39%;
+  margin-top: 2px;
+  background-color: inherit;
+  text-align: right;
+  display:inline-block;
 }
 
-/* Create an active/current tablink class */
-.tab button.active {
+.init-menu a{
+  width: 30%;
+  height: 85%;
+  background-color: inherit;
+  outline: 0;
+  font-family: "Lato", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  text-transform: uppercase;
+  display:inline-block;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.init-menu a:hover {
+  background-color: #ddd;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.init-menu a:active {
   background-color: #ccc;
 }
 
 /* Style the tab content */
 .tabcontent, .tabcontent-2, .tabcontent-3 {
-  display: none;
+/*  display: none;*/
   padding: 6px 12px;
-  border: 1px solid #ccc;
+/*  border: 1px solid #ccc;*/
   border-top: none;
   margin: auto;
 }
@@ -235,6 +272,12 @@ input {
   width: 100%;
   background-image: linear-gradient(to bottom right, Gray, DodgerBlue); /* Standard syntax (must be last) */
 }
+
+#eyring {display: none}
+
+#tabTecho {display: none}
+#tabSuelo {display: none}
+
 
 .distanceMsg {
   width: 60%;
