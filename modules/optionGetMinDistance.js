@@ -85,8 +85,6 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     drawDistance(canvasFrontal,ps[0],ps[2],t_scale, dmin);
 
   } else {
-
     alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
-
   }
 }

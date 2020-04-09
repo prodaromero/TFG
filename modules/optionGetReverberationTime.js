@@ -60,6 +60,21 @@ function getRoomAbsocionCoef(roomObject,coef_techo,coef_pared_1,coef_pared_2,
   roomObject.coef_abs_floor =  parseFloat(document.getElementById(coef_suelo).value);
 }
 
+function isCorrectCoef(coef){
+  return ((coef >= 0) && (coef <= 1))
+}
+
+function absortionCoefOk(roomObject) {
+  return (
+    isCorrectCoef(roomObject.coef_abs_roof) &&
+    isCorrectCoef(roomObject.coef_abs_wall_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d) &&
+    isCorrectCoef(roomObject.coef_abs_floor)
+  )
+}
+
 function optionGetReverberationTime(option,x,y,z,coef_techo,coef_pared_1,coef_pared_2,
                                     coef_pared_3,coef_pared_4,coef_suelo) {
 
@@ -70,22 +85,26 @@ function optionGetReverberationTime(option,x,y,z,coef_techo,coef_pared_1,coef_pa
 
   getRoomAbsocionCoef(room,coef_techo,coef_pared_1,coef_pared_2,coef_pared_3,coef_pared_4,coef_suelo);
 
-  volume = room.volume();
+  if (absortionCoefOk(room)) {
+    volume = room.volume();
 
-  absortion_area = getRoomAbsortionArea(room);
+    absortion_area = getRoomAbsortionArea(room);
 
 
-  if (option == "Sabine") {
-    reverTime = getReverTimeSabine(room,volume,absortion_area);
+    if (option == "Sabine") {
+      reverTime = getReverTimeSabine(room,volume,absortion_area);
+    }
+
+    if (option == "Eyring") {
+      console.log("hola");
+      console.log(room,volume,absortion_area);
+      reverTime = getReverTimeEyring(room,volume,absortion_area);
+    }
+
+    console.log(reverTime);
+
+    drawReverTimeMsg(option,reverTime);
+  } else {
+    alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro de los valores adecuados.")
   }
-
-  if (option == "Eyring") {
-    console.log("hola");
-    console.log(room,volume,absortion_area);
-    reverTime = getReverTimeEyring(room,volume,absortion_area);
-  }
-
-  console.log(reverTime);
-
-  drawReverTimeMsg(option,reverTime);
 }
