@@ -37,6 +37,49 @@ p {
   margin-top: 7px;
 }
 
+button {
+  border: none;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 20px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+button:hover {
+  color: #404040 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+.menu-button {
+  background: #404040;
+}
+
+.calculate-button {
+  background: #228B22;
+  margin-bottom: 50px;
+}
+
+.calculate-button a {
+  text-decoration: none;
+  outline: 0;
+  color: inherit;
+}
+
+.download-button {
+  background: DodgerBlue;
+  margin-bottom: 25px;
+}
+
 .bg-image {
   height: 40%;
   background-attachment: fixed;
@@ -53,9 +96,7 @@ p {
 .img5 { background-image: url("images/micro1-completo.jpg"); }
 
 .bg-box {
-  background-color: rgb(0,0,0); /* Fallback color */
-
-  /* Black w/opacity/see-through */
+  background-color: black;
   font-weight: bold;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -88,17 +129,16 @@ p {
 .in-box {
   width: 75%;
   margin: auto;
+  margin-bottom: 10px;
   position: relative;
 }
 
-.focus {outline: none;}
-
-.effect {
+.info-input {
   border: 0;
   padding: 7px 0;
 }
 
-.effect ~ .focus-border{
+.info-input ~ .focus-border{
   position: absolute;
   bottom: 0;
   left: 0;
@@ -110,7 +150,7 @@ p {
 }
 
 
-.effect:focus ~ .focus-border{
+.info-input:focus ~ .focus-border{
   width: 100%;
   transition: 0.4s;
 }
@@ -201,7 +241,7 @@ p {
 }
 
 /* Style the tab content */
-.tabcontent, .tabcontent-2, .tabcontent-3 {
+.reverberation-time, .materials-table {
   padding: 6px 12px;
   border-top: none;
   margin: auto;
@@ -302,6 +342,16 @@ p {
   border: 2px solid;
 }
 
+.good, .error {
+  width: 50%;
+  height: auto;
+  font-family: "Lato";
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
 .good {
   background-color: limegreen;
   border: darkgreen;
@@ -324,75 +374,6 @@ p {
   border: 2px solid;
   background-color: limegreen;
   border: darkgreen;
-}
-
-.calcButton {
-  position: relative;
-  width: 150px;
-  height: auto;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border-radius: 8px;
-  background-color: #3CB371;
-  border: 1px solid green;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.downloadButton {
-  background-color: DodgerBlue;
-  color: white;
-  border: none;
-  padding: 0.5em;
-  cursor: pointer;
-  font-weight: 100;
-  padding: 20px;
-  margin: 0.5em;
-  text-transform: uppercase;
-  border-radius: 6px;
-  transition: all 0.3s ease 0s;
-}
-
-.downloadButton:hover {
-  color: RoyalBlue;
-  font-weight: 700 !important;
-  letter-spacing: 3px;
-  background: none;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  transition: all 0.3s ease 0s;
-}
-
-.options-menu {
-  border: none;
-  background: #404040;
-  color: #ffffff !important;
-  font-weight: 100;
-  padding: 20px;
-  margin-top: 50px;
-  text-transform: uppercase;
-  border-radius: 6px;
-  display: inline-block;
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-}
-
-.options-menu:hover {
-  color: #404040 !important;
-  font-weight: 700 !important;
-  letter-spacing: 3px;
-  background: none;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  transition: all 0.3s ease 0s;
-}
-
-.s1 {
-  margin-left: 20px;
 }
 
 
