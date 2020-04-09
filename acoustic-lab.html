@@ -16,12 +16,12 @@
 
     <div class="tab">
       <div class="init-logo">
-        <a href="#init"><img src="resources/style/images/AcousticLab-logo2.png"></a>
+        <a href="#init">ACOUSTIC-LAB</a>
       </div>
       <div class="init-menu">
-        <a href="#minDistance" class="tablinks"><p>Calcular distancias mínimas</p></a>
-        <a href="#reverTime" class="tablinks"><p>Calcular tiempo de reverberación</p></a>
-        <a href="#materials" class="tablinks"><p>Consultar lista de materiales</p></a>
+        <a href="#mark-distance"><p>Calcular distancias mínimas</p></a>
+        <a href="#mark-reverberation"><p>Calcular tiempo de reverberación</p></a>
+        <a href="#mark-materials"><p>Consultar lista de materiales</p></a>
       </div>
     </div>
 
@@ -40,235 +40,230 @@
       <p>¡Navega y haz ciencia ilimitadamente!</p>
     </div>
 
+    <div id="mark-distance"></div>
 
-      <div id="minDistance">
-        <h3 class="content-title">Cálculo de la distancia mínima</h3>
-        <div class="contenedorPrincipal">
-          <div class="canvasDisplay">
-            <div class="displayOne">
-              <h2><i>Vista Superior</i></h2>
-                <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
-                Please use a browser that supports "canvas"
-            </div>
+    <div id="minDistance">
+      <h3 class="content-title">Cálculo de la distancia mínima</h3>
+      <div class="contenedorPrincipal">
+      <div class="canvasDisplay">
+        <div class="displayOne">
+          <h2><i>Vista Superior</i></h2>
+          <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
+          Please use a browser that supports "canvas"
+        </div>
 
-            <div class="displayTwo">
-              <h2><i>Vista Frontal</i></h2>
-                <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
-                Please use a browser that supports "canvas"
-            </div>
+        <div class="displayTwo">
+          <h2><i>Vista Frontal</i></h2>
+            <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+            Please use a browser that supports "canvas"
+        </div>
+      </div>
+
+      <div id="msgSpace"></div>
+
+      <div class="formDisplay">
+        <div id="tiempoRever">
+          <h4>Tiempo de reverberación esperado</h4>
+          <div class="in-box">
+            <input  id="t" class="info-input" placeholder="Tiempo reverberación [s]">
+            <span class="focus-border"></span>
           </div>
+        </div>
 
-          <div id="msgSpace"></div>
+        <div id="dimRecinto">
+          <h4>Dimensiones del recinto</h4>
+          <div class="in-box">
+            <input  id="xv" class="info-input" placeholder="Laro del recinto [m]">
+            <span class="focus-border"></span>
+          </div>
+          <div class="in-box">
+            <input  id="yv" class="info-input" placeholder="Ancho del recinto [m]">
+            <span class="focus-border"></span>
+          </div>
+          <div class="in-box">
+            <input  id="zv" class="info-input" placeholder="Altura del recinto [m]">
+            <span class="focus-border"></span>
+          </div>
+        </div>
 
-          <div class="formDisplay">
-            <div id="tiempoRever">
-              <h4>Tiempo de reverberación esperado</h4>
+        <div id="dimFuente">
+          <h4>Posición de la fuente</h4>
+          <div class="in-box">
+            <input  id="xs" class="info-input" placeholder="Distancia con pared izq. [m]">
+            <span class="focus-border"></span>
+          </div>
+          <div class="in-box">
+            <input  id="ys" class="info-input" placeholder="Distancia con pared inferior [m]">
+            <span class="focus-border"></span>
+          </div>
+          <div class="in-box">
+            <input  id="zs" class="info-input" placeholder="Distancia con techo [m]">
+            <span class="focus-border"></span>
+          </div>
+        </div>
+
+        <div id="dimMicro">
+          <h4>Posición del micrófono</h4>
+          <div class="in-box">
+            <input  id="xm" class="info-input" placeholder="Distancia con pared izq. [m]">
+            <span class="focus-border"></span>
+          </div>
+          <div class="in-box">
+            <input  id="ym" class="info-input" placeholder="Distancia con pared inferior [m]">
+            <span class="focus-border"></span>
+          </div>
+          <div class="in-box">
+            <input  id="zm" class="info-input" placeholder="Distancia con techo [m]">
+            <span class="focus-border"></span>
+          </div>
+        </div>
+
+        <button class="calculate-button" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="mark-reverberation"></div>
+
+  <div id="reverTime">
+    <h3 class="content-title">Cálculo del tiempo de reverberación</h3>
+    <div class="contenedorPrincipal">
+      <div align="center">
+        <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'sabine')">Tiempo de reverberación por Sabine</button>
+        <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'eyring')">Tiempo de reverberación por Eyring</button>
+      </div>
+
+
+      <div id="sabine" class="reverberation-time">
+        <div class="reverDisplay">
+          <h3>Tiempo de reverberación por Sabine</h3>
+
+          <div id="supRecinto">
+            <h4>Dimensiones del recinto</h4>
+            <div class="in-box">
+              <input  id="x-1" class="info-input" placeholder="Laro del recinto [m]">
+              <span class="focus-border"></span>
+            </div>
+            <div class="in-box">
+              <input  id="y-1" class="info-input" placeholder="Ancho del recinto [m]">
+                <span class="focus-border"></span>
+              </div>
               <div class="in-box">
-                <input  id="t" class="info-input" placeholder="Tiempo reverberación [s]">
+                <input  id="z-1" class="info-input" placeholder="Altura del recinto [m]">
                 <span class="focus-border"></span>
               </div>
             </div>
 
-            <div id="dimRecinto">
+            <div id="coefRecinto">
+              <h4>Coeficientes de absorción</h4>
+              <div class="in-box">
+                <input id="coef_techo-1" class="info-input" placeholder="Coef. abs. Techo" />
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="coef_pared_1-1" class="info-input" placeholder="Coef. abs. Pared 1">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="coef_pared_2-1" class="info-input" placeholder="Coef. abs. Pared 2">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="coef_pared_3-1" class="info-input" placeholder="Coef. abs. Pared 3">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="coef_pared_4-1" class="info-input" placeholder="Coef. abs. Pared 4">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="coef_suelo-1" class="info-input" placeholder="Coef. abs. Suelo">
+                <span class="focus-border"></span>
+              </div>
+            </div>
+
+            <div id="putSabineTR"></div>
+
+            <button class="calculate-button" onclick="optionGetReverberationTime('Sabine','x-1','y-1','z-1',
+              'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+              'coef_suelo-1')">CALCULAR SABINE
+            </button>
+          </div>
+        </div>
+
+        <div id="eyring" class="reverberation-time">
+          <div class="reverDisplay">
+            <h3>Tiempo de reverberación por Eyring</h3>
+
+            <div id="supRecinto">
               <h4>Dimensiones del recinto</h4>
               <div class="in-box">
-                <input  id="xv" class="info-input" placeholder="Laro del recinto [m]">
+                <input  id="x-2" class="info-input" placeholder="Laro del recinto [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input  id="yv" class="info-input" placeholder="Ancho del recinto [m]">
+                <input  id="y-2" class="info-input" placeholder="Ancho del recinto [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input  id="zv" class="info-input" placeholder="Altura del recinto [m]">
+                <input  id="z-2" class="info-input" placeholder="Altura del recinto [m]">
                 <span class="focus-border"></span>
               </div>
             </div>
 
-            <div id="dimFuente">
-              <h4>Posición de la fuente</h4>
+            <div id="coefRecinto">
+              <h4>Coeficientes de absorción</h4>
               <div class="in-box">
-                <input  id="xs" class="info-input" placeholder="Distancia con pared izq. [m]">
+                <input  id="coef_techo-2" class="info-input" placeholder="Coef. abs. Techo">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input  id="ys" class="info-input" placeholder="Distancia con pared inferior [m]">
+                <input  id="coef_pared_1-2" class="info-input" placeholder="Coef. abs. Pared 1">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input  id="zs" class="info-input" placeholder="Distancia con techo [m]">
-                <span class="focus-border"></span>
-              </div>
-
-            </div>
-
-            <div id="dimMicro">
-              <h4>Posición del micrófono</h4>
-              <div class="in-box">
-                <input  id="xm" class="info-input" placeholder="Distancia con pared izq. [m]">
+                <input  id="coef_pared_2-2" class="info-input" placeholder="Coef. abs. Pared 2">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input  id="ym" class="info-input" placeholder="Distancia con pared inferior [m]">
+                <input  id="coef_pared_3-2" class="info-input" placeholder="Coef. abs. Pared 3">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
-                <input  id="zm" class="info-input" placeholder="Distancia con techo [m]">
+                <input  id="coef_pared_4-2" class="info-input" placeholder="Coef. abs. Pared 4">
+                <span class="focus-border"></span>
+              </div>
+              <div class="in-box">
+                <input  id="coef_suelo-2" class="info-input" placeholder="Coef. abs. Suelo">
                 <span class="focus-border"></span>
               </div>
             </div>
 
-            <button class="calculate-button" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
+            <div id="putEyringTR"></div>
 
+            <button class="calculate-button" onclick="optionGetReverberationTime('Eyring','x-2','y-2','z-2',
+              'coef_techo-2','coef_pared_1-2','coef_pared_2-2', 'coef_pared_3-2', 'coef_pared_4-2',
+              'coef_suelo-2')">CALCULAR EYRING
+            </button>
           </div>
         </div>
       </div>
+    </div>
 
-<!--
--->
+    <div id="mark-materials"></div>
 
-      <div id="reverTime">
-        <h3 class="content-title">Cálculo del tiempo de reverberación</h3>
-        <div class="contenedorPrincipal">
-          <div align="center">
-            <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'sabine')">Tiempo de reverberación por Sabine</button>
-            <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'eyring')">Tiempo de reverberación por Eyring</button>
-          </div>
-
-
-          <div id="sabine" class="reverberation-time">
-            <div class="reverDisplay">
-              <h3>Tiempo de reverberación por Sabine</h3>
-
-              <div id="supRecinto">
-                <h4>Dimensiones del recinto</h4>
-                <div class="in-box">
-                  <input  id="x-1" class="info-input" placeholder="Laro del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="y-1" class="info-input" placeholder="Ancho del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="z-1" class="info-input" placeholder="Altura del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-              </div>
-
-              <div id="coefRecinto">
-                <h4>Coeficientes de absorción</h4>
-                <div class="in-box">
-                  <input id="coef_techo-1" class="info-input" placeholder="Coef. abs. Techo" />
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_1-1" class="info-input" placeholder="Coef. abs. Pared 1">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_2-1" class="info-input" placeholder="Coef. abs. Pared 2">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_3-1" class="info-input" placeholder="Coef. abs. Pared 3">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_4-1" class="info-input" placeholder="Coef. abs. Pared 4">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_suelo-1" class="info-input" placeholder="Coef. abs. Suelo">
-                  <span class="focus-border"></span>
-                </div>
-              </div>
-
-              <div id="putSabineTR"></div>
-
-              <button class="calculate-button" onclick="optionGetReverberationTime('Sabine','x-1','y-1','z-1',
-                'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
-                'coef_suelo-1')">CALCULAR SABINE
-              </button>
-            </div>
-          </div>
-
-          <div id="eyring" class="reverberation-time">
-            <div class="reverDisplay">
-              <h3>Tiempo de reverberación por Eyring</h3>
-
-              <div id="supRecinto">
-                <h4>Dimensiones del recinto</h4>
-                <div class="in-box">
-                  <input  id="x-2" class="info-input" placeholder="Laro del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="y-2" class="info-input" placeholder="Ancho del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="z-2" class="info-input" placeholder="Altura del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-              </div>
-
-              <div id="coefRecinto">
-                <h4>Coeficientes de absorción</h4>
-                <div class="in-box">
-                  <input  id="coef_techo-2" class="info-input" placeholder="Coef. abs. Techo">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_1-2" class="info-input" placeholder="Coef. abs. Pared 1">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_2-2" class="info-input" placeholder="Coef. abs. Pared 2">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_3-2" class="info-input" placeholder="Coef. abs. Pared 3">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_4-2" class="info-input" placeholder="Coef. abs. Pared 4">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_suelo-2" class="info-input" placeholder="Coef. abs. Suelo">
-                  <span class="focus-border"></span>
-                </div>
-              </div>
-
-              <div id="putEyringTR"></div>
-
-              <button class="calculate-button" onclick="optionGetReverberationTime('Eyring','x-2','y-2','z-2',
-                'coef_techo-2','coef_pared_1-2','coef_pared_2-2', 'coef_pared_3-2', 'coef_pared_4-2',
-                'coef_suelo-2')">CALCULAR EYRING
-              </button>
-            </div>
-          </div>
-
-
+    <div id="materials">
+      <h3 class="content-title">Tablas de materiales</h3>
+      <div class="contenedorPrincipal">
+        <div align="center">
+          <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabPared')">Coeficientes de absoción Paredes</button>
+          <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabTecho')">Coeficientes de absoción Techo</button>
+          <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabSuelo')">Coeficientes de absoción Suelo</button>
         </div>
-      </div>
 
-<!--
-
--->
-
-      <div id="materials">
-        <h3 class="content-title">Tablas de materiales</h3>
-        <div class="contenedorPrincipal">
-          <div align="center">
-            <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabPared')">Coeficientes de absoción Paredes</button>
-            <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabTecho')">Coeficientes de absoción Techo</button>
-            <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabSuelo')">Coeficientes de absoción Suelo</button>
-          </div>
-
-          <div align="center" id="tabPared" class="materials-table">
-            <a href="modules/data/coef_abs_paredes.xlsx" download>
+        <div align="center" id="tabPared" class="materials-table">
+            <a href="resources/data/coef_abs_paredes.xlsx" download>
               <button class="download-button">Download</button>
             </a>
             <table class="tg">
@@ -278,7 +273,7 @@
               <tr>
                 <td class="tg-cabecera">MATERIAL</td>
                 <td class="tg-cabecera">NÚMERO</td>
-                <td class="tg-cabecera">DESCRIPCION</td>
+                <td class="tg-cabecera">DESCRIPCIÓN</td>
                 <td class="tg-cabecera">mm</td>
                 <td class="tg-cabecera">dens</td>
                 <td class="tg-cabecera">125</td>
@@ -1373,8 +1368,8 @@
               </tr>
             </table>
           </div>
-          <div align="center" id="tabTecho" class="materials-table">
-            <a href="modules/data/coef_abs_techos.xlsx" download>
+        <div align="center" id="tabTecho" class="materials-table">
+            <a href="resources/data/coef_abs_techos.xlsx" download>
               <button class="download-button">Download</button>
             </a>
             <table class="tg">
@@ -1958,8 +1953,8 @@
               </tr>
             </table>
           </div>
-          <div align="center" id="tabSuelo" class="materials-table">
-            <a href="modules/data/coef_abs_suelos.xlsx" download>
+        <div align="center" id="tabSuelo" class="materials-table">
+            <a href="resources/data/coef_abs_suelos.xlsx" download>
               <button class="download-button">Download</button>
             </a>
             <table class="tg">
@@ -1969,7 +1964,7 @@
             <tr>
               <td class="tg-cabecera">MATERIAL</td>
               <td class="tg-cabecera">NÚMERO</td>
-              <td class="tg-cabecera">DESCRIPCION</td>
+              <td class="tg-cabecera">DESCRIPCIÓN</td>
               <td class="tg-cabecera">mm</td>
               <td class="tg-cabecera">dens</td>
               <td class="tg-cabecera">125</td>
@@ -2742,18 +2737,18 @@
               <td class="tg-celda tx-center">0.64</td>
             </tr>
           </table>
-          </div>
         </div>
       </div>
+    </div>
 
-      <div id="grad1">
-        <p class="bg-paragraph"><img src="resources/style/images/twitter.png" style="float:left;width:64px;height:64px;"><strong>Twitter: </strong>@acousticLab</p>
+    <div id="grad1">
+      <p class="bg-paragraph"><img src="resources/style/images/twitter.png" style="float:left;width:64px;height:64px;"><strong>Twitter: </strong>@acousticLab</p>
 
-        <p class="bg-paragraph"><img src="resources/style/images/instagram.png" style="float:left;width:64px;height:64px;"><strong>Instagram: </strong>@acousticLab</p>
+      <p class="bg-paragraph"><img src="resources/style/images/instagram.png" style="float:left;width:64px;height:64px;"><strong>Instagram: </strong>@acousticLab</p>
 
-        <p class="bg-paragraph"><img src="resources/style/images/github.png" style="float:left;width:64px;height:64px;">
-              <strong>Github: </strong><a style="color:black;" href="https://github.com/prodaromero/">@pablorodaromero</a></p>
-      </div>
+      <p class="bg-paragraph"><img src="resources/style/images/github.png" style="float:left;width:64px;height:64px;">
+          <strong>Github: </strong><a style="color:black;" href="https://github.com/prodaromero/">@pablorodaromero</a></p>
+    </div>
   <!--   </div> -->
   </body>
 </html>
