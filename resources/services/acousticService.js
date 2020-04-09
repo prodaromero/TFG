@@ -21,8 +21,8 @@ function minDistance(v) { return v*2;}
 /* Function to verify if points are in correct position */
 function isCorrect(dis, dmin) { return dis > dmin;}
 
-function isInside(microPos,maxLong) {
-  return ((microPos >= 0) && (microPos <= maxLong))
+function isInside(pos,maxLong) {
+  return ((pos >= 0) && (pos <= maxLong))
 }
 
 function isSameType(x,y,z) {return ((typeof(x) && typeof(y) && typeof(z)) === "number");}

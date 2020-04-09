@@ -27,8 +27,6 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
 
   var trever = parseFloat(document.getElementById(t).value);
 
-//  document.getElementById("demo").innerHTML = x
-
   /* Get room varianles */
   volume = getPosition(xv,yv,zv);
 
@@ -38,7 +36,9 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
   /* Get position of micro */
   pm = getPosition(xm,ym,zm);
 
-  if (isInside(pm[0],volume[0]) && isInside(pm[1],volume[1]) && isInside(pm[2],volume[2])) {
+  if (isInside(pm[0],volume[0]) && isInside(pm[1],volume[1]) && isInside(pm[2],volume[2]) &&
+      isInside(ps[0],volume[0]) && isInside(ps[1],volume[1]) && isInside(ps[2],volume[2])) {
+
     var dmin = getMinDistance(volume, trever)
 
     var dis = distance(ps, pm)
