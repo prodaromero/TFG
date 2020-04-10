@@ -178,20 +178,20 @@ button:hover {
 
 
 .init-logo {
-  position: fixed;
   z-index: 1;
-  width: 35%;
+  width: 500px;
   height: 70px;
-  text-align: left;
+  float: left;
   border-radius: 5px;
+  background-color: inherit;
 }
 
 .init-logo a {
-  margin-left: 30px;
+  margin-left: 5%;
   background-color: inherit;
   color: white;
   font-family: "Lato";
-  font-size: 50px;
+  font-size: 45px;
   font-weight: 700;
   letter-spacing: 3px;
   text-decoration: none;
@@ -200,7 +200,7 @@ button:hover {
   transition: 0.3s;
   border-radius: 5px;
   display:inline-block;
-  margin-top: 1px;
+  margin-top: 1%;
   padding: 6px 12px;
   text-align: center;
   vertical-align:middle;
@@ -214,19 +214,17 @@ button:hover {
 }
 
 .init-menu {
-  position: fixed;
+  float: right;
   z-index: 1;
   width: 60%;
   height: 70px;
-  margin-left: 39%;
   margin-top: 2px;
   background-color: inherit;
-  text-align: right;
   display:inline-block;
 }
 
 .init-menu a{
-  width: 250px;
+  width: 30%;
   height: 85%;
   background-color: inherit;
   outline: 0;
@@ -239,7 +237,7 @@ button:hover {
   transition: 0.3s;
   border-radius: 5px;
   display:inline-block;
-  padding: 6px 12px;
+  padding: 3px 6px;
   text-align: center;
   vertical-align:middle
 }
@@ -280,7 +278,7 @@ button:hover {
 }
 
 .canvasDisplay {
-  width: 60%;
+  width: 80%;
   height: 45%;
   display:inline-block;
   background-color: white;
