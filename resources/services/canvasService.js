@@ -8,11 +8,11 @@ function getScale(n, scale) {
   this.scale = scale;
   var long = n*pxScale*this.scale;
   if (!in_area) {
-    if (long > max_long) {
+    if (long > maxLong) {
       this.scale = this.scale*0.90;
       this.scale = getScale(n,this.scale);
 
-    }else if (long < min_long) {
+    }else if (long < minLong) {
       this.scale = this.scale*1.10;
       this.scale = getScale(n,this.scale);
     } else {
