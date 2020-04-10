@@ -45,6 +45,5 @@ function getPosition(object,x,y,z) {
 function getMinDistance(roomObject,reverTime) {
   var volume = roomObject.volume();
   var dmin = 2*Math.sqrt(volume/(speedSound*reverTime));
-  console.log(volume, speedSound, reverTime, dmin);
   return dmin;
 }
