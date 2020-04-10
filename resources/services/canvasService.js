@@ -82,26 +82,26 @@ function drawRectangle(canvas,widthScaled,heightScaled,widthReal,heightReal) {
   drawText(ctx,heightReal,[5,yMid]);
 }
 
-function drawRoom(canvas,a,b,scale) {
+function drawRoom(canvas,distanceA,distanceB,scale) {
 
-  var s = Math.min(scale[0],scale[1],scale[2]);
-  var lengthScaled = a*s*pxScale;
-  var widthScaled  = b*s*pxScale;
+  var minScale = Math.min(scale.xScale,scale.yScale,scale.zScale);
+  var lengthScaled = distanceA*minScale*pxScale;
+  var widthScaled  = distanceB*minScale*pxScale;
 
-  drawRectangle(canvas,lengthScaled,widthScaled,a,b);
+  drawRectangle(canvas,lengthScaled,widthScaled,distanceA,distanceB);
 }
 
-function drawObjet(canvas,x,y,scale, color) {
+function drawObjet(canvas,distanceA,distanceB,scale,color) {
   var ctx = canvas.getContext("2d");
 
-  var s = Math.min(scale[0],scale[1],scale[2]);
+  var minScale = Math.min(scale.xScale,scale.yScale,scale.zScale);
 
-  var w = x*s*pxScale;
-  var h = y*s*pxScale;
+  var width = distanceA*minScale*pxScale;
+  var height = distanceB*minScale*pxScale;
 
 
-  var scaleWidth  = start+w;
-  var scaleHeight = canvas.height-(start+h);
+  var scaleWidth  = start+width;
+  var scaleHeight = canvas.height-(start+height);
 
   ctx.save();
 
@@ -122,7 +122,7 @@ function drawDistance(canvas,x,y,scale,dis) {
 
     var ctx = canvas.getContext("2d");
 
-    var s = Math.min(scale[0],scale[1],scale[2]);
+    var s = Math.min(scale.xScale,scale.yScale,scale.zScale);
 
     var w = x*s*pxScale;
     var h = y*s*pxScale;

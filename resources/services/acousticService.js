@@ -4,16 +4,16 @@
 
 function difference(nf, np) {return Math.pow(nf - np, 2);}
 
-function distance(s, m) {
+function distance(surceObject, microphoneObject) {
 
   // X axis difference
-  var xd = difference(s[0], m[0]);
+  var xDifference = difference(surceObject.long, microphoneObject.long);
   // Y axis difference
-  var yd = difference(s[1], m[1]);
+  var yDifference = difference(surceObject.wide, microphoneObject.wide);
   // Z axis difference
-  var zd = difference(s[2], m[2]);
+  var zDifference = difference(surceObject.high, microphoneObject.high);
 
-  return Math.sqrt(xd + yd + zd);
+  return Math.sqrt(xDifference + yDifference + zDifference);
 }
 
 function minDistance(v) { return v*2;}
@@ -28,30 +28,23 @@ function isInside(pos,maxLong) {
 function isSameType(x,y,z) {return ((typeof(x) && typeof(y) && typeof(z)) === "number");}
 
 /* Function to get the position */
-function getPosition(a,b,c) {
-  //var ps = new Array(3);
-  var x = parseFloat(document.getElementById(a).value);
-  var y = parseFloat(document.getElementById(b).value);
-  var z = parseFloat(document.getElementById(c).value);
+function getPosition(object,x,y,z) {
+    object.long = parseFloat(document.getElementById(x).value);
+    object.wide = parseFloat(document.getElementById(y).value);
+    object.high = parseFloat(document.getElementById(z).value);
 
-  if (!isSameType(x,y,z)) {
-    x = 0;
-    y = 0;
-    x = 0;
+    if (!isSameType(object.long,object.wide,object.high)) {
+    object.long = 0;
+    object.wide = 0;
+    object.high = 0;
+    alert("Please, introduce valid values.")
   }
-
-  return Array(x,y,z);
+  return object;
 }
 
-function getVolume(v) {
-  return v[0]*v[1]*v[2];
-}
-
-function getMinDistance(v,t) {
-  var c = 341;
-  console.log(v, t);
-  var vol = getVolume(v)
-  var dmin = 2*Math.sqrt(vol/(c*t));
-  console.log("d MINIMA " + dmin);
+function getMinDistance(roomObject,reverTime) {
+  var volume = roomObject.volume();
+  var dmin = 2*Math.sqrt(volume/(speedSound*reverTime));
+  console.log(volume, speedSound, reverTime, dmin);
   return dmin;
 }

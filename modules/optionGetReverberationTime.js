@@ -96,7 +96,6 @@ function optionGetReverberationTime(option,x,y,z,coef_techo,coef_pared_1,coef_pa
     }
 
     if (option == "Eyring") {
-      console.log("hola");
       console.log(room,volume,absortion_area);
       reverTime = getReverTimeEyring(room,volume,absortion_area);
     }
