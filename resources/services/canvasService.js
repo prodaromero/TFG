@@ -177,3 +177,11 @@ function drawReverTimeMsg(op,tr) {
   document.getElementById(put).innerHTML = '<div class="divReverTime">Your reverberation time is: '+tr+' [s].</div>'
 
 }
+
+function render(canvasOne,canvasTwo) {
+  var ctxOne = canvasOne.getContext("2d");
+  var ctxTwo = canvasTwo.getContext("2d");
+
+  ctxOne.clearRect(0,0,canvasOne.width, canvasOne.height);
+  ctxTwo.clearRect(0,0,canvasTwo.width, canvasTwo.height);
+}

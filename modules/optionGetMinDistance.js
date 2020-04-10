@@ -62,6 +62,8 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     globalScale.yScale = getScale(room.wide,normalScale);
     globalScale.zScale = getScale(room.high,normalScale);
 
+    render(canvasSuperior, canvasFrontal);
+
     drawAxes(ctxSuperior);
     drawText(ctxSuperior,"x [m]",[250,290]);
     drawText(ctxSuperior,"y [m]",[10,20]);
