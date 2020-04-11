@@ -46,23 +46,43 @@
     <div id="minDistance">
       <h3 class="content-title">Cálculo de la distancia mínima</h3>
       <div class="contenedorPrincipal">
-      <div class="canvasDisplay">
-        <div class="displayOne">
-          <h2><i>Vista Superior</i></h2>
-          <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
-          Please use a browser that supports "canvas"
-        </div>
-
-        <div class="displayTwo">
-          <h2><i>Vista Frontal</i></h2>
-            <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+        <div class="canvasDisplay">
+          <div class="displayOne">
+            <h2><i>Vista Superior</i></h2>
+            <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
             Please use a browser that supports "canvas"
+          </div>
+
+          <div class="displayTwo">
+            <h2><i>Vista Frontal</i></h2>
+              <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+              Please use a browser that supports "canvas"
+          </div>
         </div>
-      </div>
 
       <div id="msgSpace"></div>
 
-      <div class="formDisplay">
+      <div class="distanceDisplay">
+        <details class="info-area">
+          <summary>i</summary>
+          <div>
+            <h2>Cálculo de la distancia mínima</h2>
+            <p>
+              Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
+            </p>
+            <br>
+            <p>
+              Se pretende proveer de una herramienta para advertir si la distancia
+              a la que se ha sutuado el micrófono de la fuente sonora es correcta o no.
+            </p>
+            <br>
+            <p>
+              Siguiendo la normativa dispuesta, la distancia mínima fuente-micrófono
+              es la descrita por la siguiente fórmula:
+            </p>
+            <img src="resources/style/images/min-distance.PNG" class="distance-image"></img>
+          </div>
+        </details>
         <div id="tiempoRever">
           <h4>Tiempo de reverberación esperado</h4>
           <div class="in-box">
@@ -118,9 +138,7 @@
             <span class="focus-border"></span>
           </div>
         </div>
-
         <button class="calculate-button" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
-
       </div>
     </div>
   </div>
@@ -135,11 +153,29 @@
         <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'eyring')">Tiempo de reverberación por Eyring</button>
       </div>
 
-
       <div id="sabine" class="reverberation-time">
+        <details class="info-area">
+          <summary>i</summary>
+          <div>
+            <h2>del tiempo de reverberación por Sabine</h2>
+            <p>
+              Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
+            </p>
+            <br>
+            <p>
+              Se pretende proveer de una herramienta para simular el tiempo de
+              reverberación según la Teoría de Sabine.
+            </p>
+            <br>
+            <p>
+              Según esta Teoría, el tiempo de reverberación se calcula de la
+              siguiente manera:
+            </p>
+            <img src="resources/style/images/sabine-formula.PNG" class="reverberation-image"></img>
+          </div>
+        </details>
         <div class="reverDisplay">
-          <h3>Tiempo de reverberación por Sabine</h3>
-
+          <div class="reverberation-title">SABINE</div>
           <div id="supRecinto">
             <h4>Dimensiones del recinto</h4>
             <div class="in-box">
@@ -194,9 +230,28 @@
         </div>
 
         <div id="eyring" class="reverberation-time">
+          <details class="info-area">
+            <summary>i</summary>
+            <div>
+              <h2>del tiempo de reverberación por Eyring</h2>
+              <p>
+                Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
+              </p>
+              <br>
+              <p>
+                Se pretende proveer de una herramienta para simular el tiempo de
+                reverberación según la Teoría de Eyring.
+              </p>
+              <br>
+              <p>
+                Según esta Teoría, el tiempo de reverberación se calcula de la
+                siguiente manera:
+              </p>
+              <img src="resources/style/images/eyring-formula.PNG" class="reverberation-image"></img>
+            </div>
+          </details>
           <div class="reverDisplay">
-            <h3>Tiempo de reverberación por Eyring</h3>
-
+            <div class="reverberation-title">EYRING</div>
             <div id="supRecinto">
               <h4>Dimensiones del recinto</h4>
               <div class="in-box">
