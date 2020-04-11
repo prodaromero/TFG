@@ -45,7 +45,7 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
 
     var ok = isCorrect(dis, dmin)
 
-    drawDistanceMsg(ok);
+    drawDistanceMsg(ok,dmin);
 
     canvasSuperior = document.getElementById("canvasSuperior");
     canvasFrontal = document.getElementById("canvasFrontal");
