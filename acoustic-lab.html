@@ -15,45 +15,100 @@
 
   <body onload="myCanvas()">
 
-    <div class="tab">
+    <header class="tab">
       <div class="init-logo">
         <a href="#init">ACOUSTIC-LAB</a>
       </div>
       <div class="init-menu">
-        <a href="#mark-distance"><p>Calcular distancias<br>mínimas</p></a>
-        <a href="#mark-reverberation"><p>Calcular tiempo de<br>reverberación</p></a>
-        <a href="#mark-materials"><p>Consultar lista<br>de materiales</p></a>
+        <a href="#about"><p class="letter-menu">contato</p></a>
+        <a href="#mark-materials"><p class="letter-menu">materiales</p></a>
+        <a href="#mark-reverberation"><p class="letter-menu">reverberación</p></a>
+        <a href="#mark-distance"><p class="letter-menu">distancias</p></a>
+        <a href="#mark-menu"><p class="letter-menu">menú</p></a>
       </div>
-    </div>
+    </header>
 
     <div id="init" class="bg-image img1"></div>
     <div class="bg-image img2"></div>
     <div class="bg-image img3"></div>
     <div class="bg-image img4"></div>
-<!--    <div class="bg-image img5"></div> -->
 
     <div  class="bg-box bg-title bg-image">ACOUSTIC LAB</div>
 
-    <div class="bg-box bg-description">
-      <p>¡Bienvenido a Acoustic-Lab!</p>
-      <p>Un espacio donde podrás realizar diferentes comprobaciones</p>
-      <p>gracias a las diferentes herramientas que ofrecemos.</p>
-      <p>¡Navega y haz ciencia ilimitadamente!</p>
+    <div id="mark-menu"></div>
+
+    <h3 class="content-title">MENÚ</h3>
+    <div class="contenedor-principal">
+      <div class="description">
+        <p>
+          Bienvenid@ a <b>Acustic-Lab</b>, una herramienta online con la que podrás realizar
+          tus comprobaciones en tiempo real.
+        </p>
+        <br>
+        <p>
+          Cuenta con dos herramientas principales:
+        </p>
+        <br>
+        <ul>
+          <li>Cálculo de la distancia mínima:</li>
+          <p class="description-text">
+            Con ella, podemos ver si se estan realizando las mediciones del tiempo
+            de reverberación desde una posición correcta, según la normativa
+            UNE-ISO 3382. Debemos introducir datos tales como:
+          </p>
+          <br>
+          <ol class="description-numeration">
+            <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
+            <li>Dimensiones de la sala, en metros.</li>
+            <li>Posición de la fuente, en metro.</li>
+            <li>Posición del micrófono, en metro.</li>
+          </ol>
+          <br>
+          <li>Cálculo de tiempo de reverberación:</li>
+          <p class="description-text">
+            Con ella, podemos calcular de una manera estimada del tiempo
+            de reverberación de la sala, según la Teoría de Sabine y la Teoría de Eyring.
+            Debemos introducir datos tales como:
+          </p>
+          <br>
+          <ol class="description-numeration">
+            <li>Dimensiones de la sala, en metros.</li>
+            <li>Coeficientes de abasorción de las superficies de la sala: techo, suelo y paredes.</li>
+          </ol>
+        </ul>
+        <br>
+        <p>
+          Además, se cuenta con una herramienta adicional a modo de información,
+          la cual proporciona una tabla de coeficientes de absorción de diferentes
+          materiales. Se han clasificado en función de donde suelen estar colocados
+          los materiales, vease:
+        </p>
+        <br>
+        <ul>
+          <li>Paredes</li>
+          <li>Techo</li>
+          <li>Suelo</li>
+        </ul>
+      </div>
+      <div class="image-container-desc">
+        <h2>SISTEMA DE COORDENADAS</h2>
+        <img class="image-description" src="resources/style/images/coordenadas.PNG"></img>
+      </div>
     </div>
 
     <div id="mark-distance"></div>
 
     <div id="minDistance">
       <h3 class="content-title">Cálculo de la distancia mínima</h3>
-      <div class="contenedorPrincipal">
-        <div class="canvasDisplay">
-          <div class="displayOne">
+      <div class="contenedor-principal">
+        <div class="canvas-display">
+          <div class="display-one">
             <h2><i>Vista Superior</i></h2>
             <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
             Please use a browser that supports "canvas"
           </div>
 
-          <div class="displayTwo">
+          <div class="display-two">
             <h2><i>Vista Frontal</i></h2>
               <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
               Please use a browser that supports "canvas"
@@ -62,7 +117,7 @@
 
       <div id="msgSpace"></div>
 
-      <div class="distanceDisplay">
+      <div class="distance-display">
         <details class="info-area">
           <summary>i</summary>
           <div>
@@ -147,7 +202,7 @@
 
   <div id="reverTime">
     <h3 class="content-title">Cálculo del tiempo de reverberación</h3>
-    <div class="contenedorPrincipal">
+    <div class="contenedor-principal">
       <div align="center">
         <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'sabine')">Tiempo de reverberación por Sabine</button>
         <button href="funciones.js" class="menu-button" onclick="displayService(event, 'reverberation-time', 'eyring')">Tiempo de reverberación por Eyring</button>
@@ -157,7 +212,7 @@
         <details class="info-area">
           <summary>i</summary>
           <div>
-            <h2>del tiempo de reverberación por Sabine</h2>
+            <h2>Cálculo del tiempo de reverberación por Sabine</h2>
             <p>
               Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
             </p>
@@ -174,7 +229,7 @@
             <img src="resources/style/images/sabine-formula.PNG" class="reverberation-image"></img>
           </div>
         </details>
-        <div class="reverDisplay">
+        <div class="rever-display">
           <div class="reverberation-title">SABINE</div>
           <div id="supRecinto">
             <h4>Dimensiones del recinto</h4>
@@ -233,7 +288,7 @@
           <details class="info-area">
             <summary>i</summary>
             <div>
-              <h2>del tiempo de reverberación por Eyring</h2>
+              <h2>Cálculo del tiempo de reverberación por Eyring</h2>
               <p>
                 Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
               </p>
@@ -250,7 +305,7 @@
               <img src="resources/style/images/eyring-formula.PNG" class="reverberation-image"></img>
             </div>
           </details>
-          <div class="reverDisplay">
+          <div class="rever-display">
             <div class="reverberation-title">EYRING</div>
             <div id="supRecinto">
               <h4>Dimensiones del recinto</h4>
@@ -311,7 +366,7 @@
 
     <div id="materials">
       <h3 class="content-title">Tablas de materiales</h3>
-      <div class="contenedorPrincipal">
+      <div class="contenedor-principal">
         <div align="center">
           <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabPared')">Coeficientes de absoción Paredes</button>
           <button href="funciones.js" class="menu-button" onclick="displayService(event, 'materials-table', 'tabTecho')">Coeficientes de absoción Techo</button>
@@ -2797,14 +2852,24 @@
       </div>
     </div>
 
-    <div id="grad1">
-      <p class="bg-paragraph"><img src="resources/style/images/twitter.png" style="float:left;width:64px;height:64px;"><strong>Twitter: </strong>@acousticLab</p>
-
-      <p class="bg-paragraph"><img src="resources/style/images/instagram.png" style="float:left;width:64px;height:64px;"><strong>Instagram: </strong>@acousticLab</p>
-
-      <p class="bg-paragraph"><img src="resources/style/images/github.png" style="float:left;width:64px;height:64px;">
-          <strong>Github: </strong><a style="color:black;" href="https://github.com/prodaromero/">@pablorodaromero</a></p>
-    </div>
-  <!--   </div> -->
+    <footer id="about">
+      <div class="contact-area">
+        <div class="contact-github">
+          <img src="resources/style/images/github.png"></img>
+          <a href="https://github.com/prodaromero/">@pablorodaromero</a>
+        </div>
+        <div class="contact-gmail">
+          <img src="resources/style/images/Logo-Gmail.png"></img>
+          <a>pablo.roda.romero@gmail.com</a>
+        </div>
+      </div>
+      <div class="about-area">
+        <h2>conócenos</h2>
+        <p> Esto es un Proyecto de Fin Carrera realizado por Pablo Roda, estudiante
+          de Ingeniería de Sistemas Audiovisuales y Multimedia en la Universidad
+          Rey Juan Calos.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
