@@ -4,7 +4,7 @@ function Room() {
   this.wide = 0;
   this.high = 0;
 
-  this.volume = function(){ return this.long*this.wide*this.high; }
+  this.volume = function(){return this.long*this.wide*this.high;}
 
   this.surface_wall_a = 0;
   this.surface_wall_b = 0;

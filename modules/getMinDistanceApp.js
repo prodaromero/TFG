@@ -21,31 +21,31 @@ function myCanvas(a,b) {
 
 function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
 
-  var volume = new Array(3);
-  var ps = new Array(3);
-  var pm = new Array(3);
+  var room = new Room();
+  var source = new Object();
+  var microphone = new Object();
 
-  var trever = parseFloat(document.getElementById(t).value);
-
-//  document.getElementById("demo").innerHTML = x
+  var reverTime = parseFloat(document.getElementById(t).value);
 
   /* Get room varianles */
-  volume = getPosition(xv,yv,zv);
+  getPosition(room,xv,yv,zv);
 
   /* Get position of source */
-  ps = getPosition(xs,ys,zs);
+  getPosition(source,xs,ys,zs);
 
   /* Get position of micro */
-  pm = getPosition(xm,ym,zm);
+  getPosition(microphone,xm,ym,zm);
 
-  if (isInside(pm[0],volume[0]) && isInside(pm[1],volume[1]) && isInside(pm[2],volume[2])) {
-    var dmin = getMinDistance(volume, trever)
+  if (isInside(microphone.long,room.long) && isInside(microphone.wide,room.wide) && isInside(microphone.high,room.high) &&
+      isInside(source.long,room.long) && isInside(source.wide,room.wide) && isInside(source.high,room.high)) {
 
-    var dis = distance(ps, pm)
+    var dmin = getMinDistance(room, reverTime)
+
+    var dis = distance(source, microphone)
 
     var ok = isCorrect(dis, dmin)
 
-    drawDistanceMsg(ok);
+    drawDistanceMsg(ok,dmin);
 
     canvasSuperior = document.getElementById("canvasSuperior");
     canvasFrontal = document.getElementById("canvasFrontal");
@@ -58,9 +58,11 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     ctxSuperior = canvasSuperior.getContext("2d");
     ctxFrontal = canvasFrontal.getContext("2d");
 
-    t_scale[0] = getScale(volume[0],m_scale);
-    t_scale[1] = getScale(volume[1],m_scale);
-    t_scale[2] = getScale(volume[2],m_scale);
+    globalScale.xScale = getScale(room.long,normalScale);
+    globalScale.yScale = getScale(room.wide,normalScale);
+    globalScale.zScale = getScale(room.high,normalScale);
+
+    render(canvasSuperior, canvasFrontal);
 
     drawAxes(ctxSuperior);
     drawText(ctxSuperior,"x [m]",[250,290]);
@@ -69,24 +71,22 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     drawText(ctxFrontal,"x [m]",[250,290]);
     drawText(ctxFrontal,"z [m]",[10,20]);
 
-    drawRoom(canvasSuperior,volume[0],volume[1], t_scale);
-    drawRoom(canvasFrontal,volume[0],volume[2], t_scale);
+    drawRoom(canvasSuperior,room.long,room.wide, globalScale);
+    drawRoom(canvasFrontal,room.long,room.high, globalScale);
 
     // draw the source
-    drawObjet(canvasSuperior,ps[0],ps[1],t_scale, red);
-    drawObjet(canvasFrontal,ps[0],ps[2],t_scale,red);
+    drawObjet(canvasSuperior,source.long,source.wide,globalScale,red);
+    drawObjet(canvasFrontal,source.long,source.high,globalScale,red);
 
     // draw the source
-    drawObjet(canvasSuperior,pm[0],pm[1],t_scale,blue);
-    drawObjet(canvasFrontal,pm[0],pm[2],t_scale,blue);
+    drawObjet(canvasSuperior,microphone.long,microphone.wide,globalScale,blue);
+    drawObjet(canvasFrontal,microphone.long,microphone.high,globalScale,blue);
 
     // draw the min distance
-    drawDistance(canvasSuperior,ps[0],ps[1],t_scale, dmin);
-    drawDistance(canvasFrontal,ps[0],ps[2],t_scale, dmin);
+    drawDistance(canvasSuperior,source.long,source.wide,globalScale,dmin);
+    drawDistance(canvasFrontal,source.long,source.high,globalScale,dmin);
 
   } else {
-
     alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
-
   }
 }

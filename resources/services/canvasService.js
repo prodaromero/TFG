@@ -8,11 +8,11 @@ function getScale(n, scale) {
   this.scale = scale;
   var long = n*pxScale*this.scale;
   if (!in_area) {
-    if (long > max_long) {
+    if (long > maxLong) {
       this.scale = this.scale*0.90;
       this.scale = getScale(n,this.scale);
 
-    }else if (long < min_long) {
+    }else if (long < minLong) {
       this.scale = this.scale*1.10;
       this.scale = getScale(n,this.scale);
     } else {
@@ -82,26 +82,26 @@ function drawRectangle(canvas,widthScaled,heightScaled,widthReal,heightReal) {
   drawText(ctx,heightReal,[5,yMid]);
 }
 
-function drawRoom(canvas,a,b,scale) {
+function drawRoom(canvas,distanceA,distanceB,scale) {
 
-  var s = Math.min(scale[0],scale[1],scale[2]);
-  var lengthScaled = a*s*pxScale;
-  var widthScaled  = b*s*pxScale;
+  var minScale = Math.min(scale.xScale,scale.yScale,scale.zScale);
+  var lengthScaled = distanceA*minScale*pxScale;
+  var widthScaled  = distanceB*minScale*pxScale;
 
-  drawRectangle(canvas,lengthScaled,widthScaled,a,b);
+  drawRectangle(canvas,lengthScaled,widthScaled,distanceA,distanceB);
 }
 
-function drawObjet(canvas,x,y,scale, color) {
+function drawObjet(canvas,distanceA,distanceB,scale,color) {
   var ctx = canvas.getContext("2d");
 
-  var s = Math.min(scale[0],scale[1],scale[2]);
+  var minScale = Math.min(scale.xScale,scale.yScale,scale.zScale);
 
-  var w = x*s*pxScale;
-  var h = y*s*pxScale;
+  var width = distanceA*minScale*pxScale;
+  var height = distanceB*minScale*pxScale;
 
 
-  var scaleWidth  = start+w;
-  var scaleHeight = canvas.height-(start+h);
+  var scaleWidth  = start+width;
+  var scaleHeight = canvas.height-(start+height);
 
   ctx.save();
 
@@ -122,7 +122,7 @@ function drawDistance(canvas,x,y,scale,dis) {
 
     var ctx = canvas.getContext("2d");
 
-    var s = Math.min(scale[0],scale[1],scale[2]);
+    var s = Math.min(scale.xScale,scale.yScale,scale.zScale);
 
     var w = x*s*pxScale;
     var h = y*s*pxScale;
@@ -154,11 +154,13 @@ function drawDistance(canvas,x,y,scale,dis) {
     ctx.restore();
 }
 
-function drawDistanceMsg(isok) {
+function drawDistanceMsg(isok,dmin) {
+  var disRound = parseFloat(dmin).toFixed(2);
   if (isok) {
-    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg good">The micriophone is in correct position</div>'
+    document.getElementById("msgSpace").innerHTML =
+      '<div class="distanceMsg good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
   } else {
-    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">The micriophone isn\'t in correct position</div>'
+    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">El micrófono ne se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
   }
 }
 
@@ -174,6 +176,14 @@ function drawReverTimeMsg(op,tr) {
 
   }
 
-  document.getElementById(put).innerHTML = '<div class="divReverTime">Your reverberation time is: '+tr+' [s].</div>'
+  document.getElementById(put).innerHTML = '<div class="divReverTime">El tiempo de reverberación es de '+tr+' [s].</div>'
 
+}
+
+function render(canvasOne,canvasTwo) {
+  var ctxOne = canvasOne.getContext("2d");
+  var ctxTwo = canvasTwo.getContext("2d");
+
+  ctxOne.clearRect(0,0,canvasOne.width, canvasOne.height);
+  ctxTwo.clearRect(0,0,canvasTwo.width, canvasTwo.height);
 }

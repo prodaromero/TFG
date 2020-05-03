@@ -1,0 +1,583 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body, html {
+  height: 80%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  background-color:white;
+}
+
+h4 {
+  padding: 6px;
+  margin: auto;
+  text-align: center;
+}
+
+h4, h3, input {
+  text-align: center;
+}
+
+input {
+  font-family: "Lato"
+  color: inherit;
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+  border-color: inherit;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 7px;
+}
+
+details {
+  float: right;
+  width: 20%;
+  height: auto;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+summary {
+  height: 20px;
+  width: 20px;
+  background-color: inherit;
+  color: #404040;
+  border-radius: 50%;
+  border: 3px solid #404040;
+  font-size: 17px;
+  font-weight: 700;
+  font-style: italic;
+  text-align: center;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+button {
+  border: none;
+  color: #ffffff;
+  font-weight: 100;
+  padding: 20px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+button:hover {
+  color: #404040;
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: none;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+.menu-button {
+  background: #404040;
+}
+
+.calculate-button {
+  background: #228B22;
+  margin-bottom: 50px;
+}
+
+.calculate-button a {
+  text-decoration: none;
+  outline: 0;
+  color: inherit;
+}
+
+.download-button {
+  background: DodgerBlue;
+  margin-bottom: 25px;
+}
+
+.bg-image {
+  height: 40%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  margin: auto;
+}
+
+.img1 { background-image: url("images/cables-completo.jpg"); }
+.img2 { background-image: url("images/micro-completo.jpg"); }
+.img3 { background-image: url("images/altavoz-completo.jpg"); }
+.img4 { background-image: url("images/guitarra-completo.jpg"); }
+
+.bg-box {
+  background-color: black;
+  font-weight: bold;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.bg-title {
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  position: absolute;
+  color: white;
+  border: 10px solid #f1f1f1;
+  top: 50%;
+  font-size: 80px;
+}
+
+.bg-description {
+  background-color: rgba(0,0,0, 0.2); /* Black w/opacity/see-through */
+  margin-top: 100px;
+  margin-left: 50%;
+  color: #2F4F4F;
+  border: 10px solid #2F4F4F;
+  font-size:20px;
+  width: 60%;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.in-box {
+  width: 75%;
+  margin: auto;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.info-input {
+  border: 0;
+  padding: 7px 0;
+}
+
+.info-input ~ .focus-border{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  border:none;
+  background-color: #2196F3;
+  transition: 0.4s;
+}
+
+.info-input:focus ~ .focus-border{
+  width: 100%;
+  transition: 0.4s;
+}
+
+.content-title {
+  font-family: "Lato";
+  font-size: 50px;
+  font-weight: 10;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+  border-bottom:1px solid #ccc;
+  margin-top: 200px;
+}
+
+/* Style the tab */
+.tab {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 75px;
+  background-color: #404040;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.init-logo {
+  z-index: 1;
+  width: 500px;
+  height: 70px;
+  float: left;
+  border-radius: 5px;
+  background-color: inherit;
+}
+
+.init-logo a {
+  margin-left: 5%;
+  background-color: inherit;
+  color: white;
+  font-family: "Lato";
+  font-size: 45px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  display:inline-block;
+  margin-top: 1%;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align:middle;
+}
+
+.init-logo a:hover {
+  font-weight: 900;
+  background-color: white;
+  color: black;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.init-menu {
+  float: right;
+  z-index: 1;
+  width: 60%;
+  height: 70px;
+  margin-top: 5px;
+  background-color: inherit;
+  display:inline-block;
+}
+
+.init-menu a{
+  width: auto;
+  height: 60px;
+  background-color: inherit;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  outline: 0;
+  transition: 0.3s;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 3px 6px;
+  text-align: center;
+  vertical-align:middle;
+  float: right;
+  margin-right: 5px;
+}
+
+.init-menu a:hover {
+  background-color: white;
+  color: black;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.init-menu a:active {
+  background-color: Black;
+}
+
+.letter-menu {
+  font-family: "Lato";
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  padding: 3px 6px;
+}
+
+.info-area div{
+  font-family: "Lato";
+  border-radius:5px;
+  border: 2px solid #404040;
+}
+
+.info-area h2 {
+  color: white;
+  background-color:#404040;
+}
+
+.info-area p {
+  text-align: left;
+  margin: 5px;
+}
+
+.distance-image {
+  width: 50%;
+}
+
+.reverberation-image {
+  width: 90%;
+}
+
+/* Style the tab content */
+.reverberation-time, .materials-table {
+  padding: 6px 12px;
+  border-top: none;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.contenedor-principal {
+  width:80%;
+  position: relative;
+  margin:auto;
+  text-align: center;
+  margin-top: 20px;
+  background: white;
+  box-shadow:0 4px 10px 0 rgba(0,0,0,0.6),0 4px 20px 0 rgba(0,0,0,0.6)
+}
+
+.description {
+  font-family: "Lato";
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 30px;
+  text-align: left;
+}
+
+.description ul,li{margin-left: 30px;}
+.description li {color:#404040;font-weight: 800;}
+.description-text {margin-left:90px;}
+.description-numeration {margin-left: 120px;}
+
+.image-container-desc {
+  width: 70%;
+  padding: 15px;
+  margin: auto;
+}
+
+.image-container-desc h2{
+  color: #404040;
+  font-family: "Lato";
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.image-description {
+  margin-top: 20px;
+  width: 40%;
+}
+
+.canvas-display, .distance-display, .rever-display {
+  letter-spacing: 2px;
+  margin: auto;
+  margin-top: 25px;
+  border-radius: 1em;
+}
+
+.canvas-display {
+  width: 80%;
+  height: 45%;
+  display:inline-block;
+  background-color: white;
+}
+
+.display-one {
+  position: relative;
+  float: left;
+  margin: 50px;
+}
+
+.display-two {
+  position: relative;
+  float: right;
+  margin: 50px;
+}
+
+.distance-display {
+  height: 50%;
+  width: 90%;
+}
+
+.rever-display {
+  height: 90%;
+  width: 90%;
+}
+
+.reverberation-title {
+  width: 250px;
+  height: auto;
+  margin: auto;
+  color: #404040;
+  font-family: "Lato";
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+#tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #dimRecinto, #supRecinto {
+  color: white;
+  letter-spacing: 2px;
+  background-color: #404040;
+  margin: auto;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)
+}
+
+#tiempoRever, #dimFuente, #dimMicro, #dimRecinto {
+  width: 50%;
+}
+
+#tiempoRever {
+  height: 5%;
+}
+
+#dimFuente, #dimMicro, #dimRecinto {
+  height: 20%;
+}
+
+#coefRecinto, #supRecinto {
+  width: 50%;
+  height: auto;
+}
+
+#eyring {display: none}
+#tabTecho {display: none}
+#tabSuelo {display: none}
+
+
+.distanceMsg {
+  width: 60%;
+  height: 7%;
+  border-radius: 0.5em;
+  margin: auto;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid;
+}
+
+.good, .error {
+  width: 50%;
+  height: auto;
+  font-family: "Lato";
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.good {
+  background-color: MediumSpringGreen;
+  border: darkgreen;
+}
+
+.error {
+  background-color: Crimson;
+  border: darkred;
+}
+
+.divReverTime {
+  width: 60%;
+  height: 7%;
+  border-radius: 0.5em;
+  margin: auto;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid;
+  background-color: limegreen;
+  border: darkgreen;
+}
+
+
+/* TABLES STYLE */
+
+/*  techos */
+
+.tg{border-collapse:collapse;border-spacing:0;}
+td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg-title{font-weight:bold;font-size:22px;color:white;background-color:SlateGray;border-color:#000000;text-align:center;vertical-align:top}
+.tg-cabecera{font-weight:bold;background-color:Silver;color:#000000;border-color:#000000;text-align:center;vertical-align:top}
+.tg-typeMaterial{font-weight:bold;background-color:MintCream;border-color:#000000;text-align:left;vertical-align:top}
+.tg-celda{border-color:inherit;vertical-align:top}
+.tx-center{text-align:center}
+.tx-left{text-align:left;}
+
+
+.bg-paragraph {
+  padding: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-style: italic;
+  color: black;
+  font-size: 20px;
+}
+
+#about {
+  width: 100%;
+  height: 200px;
+  margin-top:50px;
+  box-shadow:0 4px 10px 0 rgba(0,0,0,0.6),0 4px 20px 0 rgba(0,0,0,0.6);
+  background-image: linear-gradient(to bottom right, Gray, DodgerBlue);
+}
+
+.contact-area {
+  width: 49%;
+  height: 100%;
+  border-right: 1px solid #ccc;
+  display: inline-block;
+}
+
+.contact-github, .contact-gmail {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+  float: left;
+}
+
+.contact-github img{
+  width: 30px;
+  height: 30px;
+  margin-left:70px;
+  text-align: center;
+}
+
+.contact-gmail img{
+  height: 30px;
+  margin-left:50px;
+  text-align: center;
+}
+
+.contact-github a, .contact-gmail a{
+  width: 250px;
+  font-family: "Lato";
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-decoration: none;
+  outline:0;
+  color:black;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.about-area{
+  width: 50%;
+  float: right;
+}
+
+.about-area {
+  font-family: "Lato";
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.about-area h2 {
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.about-area p{
+  font-size: 17px;
+  margin: 15px;
+  margin-top: 20px;
+}
