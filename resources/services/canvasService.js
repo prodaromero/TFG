@@ -160,7 +160,7 @@ function drawDistanceMsg(isok,dmin) {
     document.getElementById("msgSpace").innerHTML =
       '<div class="distanceMsg good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
   } else {
-    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">El micrófono ne se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
+    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">El micrófono ne se encuentra en posición incorrecta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
   }
 }
 
