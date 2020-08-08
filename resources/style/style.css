@@ -308,7 +308,8 @@ button:hover {
 }
 
 /* Style the tab content */
-.reverberation-time, .materials-table {
+.reverberation-time, #materialsTable {
+  width: 100%;
   padding: 6px 12px;
   border-top: none;
   margin: auto;
