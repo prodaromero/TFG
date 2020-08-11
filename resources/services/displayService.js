@@ -10,8 +10,8 @@ function displayService(evt, app, mode) {
     evt.currentTarget.className += " active";
 }
 
-function myFunction() {
-  var input, filter, table, tr, td, i;
+function searchInSelectionTable() {
+  var input, filter, table, tr, name, i, nameValue, nrcValue, find;
   input = document.getElementById("inputValue");
   filter = input.value.toUpperCase();
   table = document.getElementById("materialsTable");
@@ -19,19 +19,23 @@ function myFunction() {
   for (i = 0; i < tr.length; i++) {
     name = tr[i].getElementsByTagName("td")[0];
     nrc = tr[i].getElementsByTagName("td")[9];
-    find = false;
-      if (name.innerHTML.toUpperCase().indexOf(filter) > -1 || nrc.innerHTML.indexOf(filter) > -1) {
+    if (name && nrc) {
+      nameValue = name.textContent || name.innerText;
+      nrcValue = nrc.textContent || nrc.innerText;
+      find = false;
+      if (nameValue.toUpperCase().indexOf(filter) > -1 || nrcValue.toUpperCase().indexOf(filter) > -1) {
         find = true;
       }
-    if (find) {
-      tr[i].style.display = "";
-    } else {
-      tr[i].style.display = "none";
+      if (find) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
     }
   }
 }
 
-function getMaterial() {
+function searchInAllTable() {
   var input, filter, table, tr, i, j, columns, value, find;
   input = document.getElementById("inputValue");
   filter = input.value.toUpperCase();
