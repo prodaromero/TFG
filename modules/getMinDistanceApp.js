@@ -89,4 +89,9 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
   } else {
     alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
   }
+
+  var a = new SuggestedPoints();
+  getSourceMultiplePoints(room, a);
+
+  console.log(a);
 }

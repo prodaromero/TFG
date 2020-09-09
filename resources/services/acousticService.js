@@ -56,3 +56,28 @@ function getMinDistance(roomObject,reverTime) {
   var dmin = 2*Math.sqrt(volume/(speedSound*reverTime));
   return dmin;
 }
+
+function getSourceMultiplePoints(roomObject, suggestedObject) {
+  suggestedObject.firstSuggestedPoint.source.x = DisMinimaSurface;
+  suggestedObject.firstSuggestedPoint.source.y = DisMinimaSurface;
+  suggestedObject.firstSuggestedPoint.source.z = DisMinimaSurface;
+
+  suggestedObject.secondSuggestedPoint.source.x = DisMinimaSurface;
+  suggestedObject.secondSuggestedPoint.source.y = roomObject.wide - DisMinimaSurface;
+  suggestedObject.secondSuggestedPoint.source.z = DisMinimaSurface;
+
+  suggestedObject.thirdSuggestedPoint.source.x = roomObject.long - DisMinimaSurface;
+  suggestedObject.thirdSuggestedPoint.source.y = roomObject.wide - DisMinimaSurface;
+  suggestedObject.thirdSuggestedPoint.source.z = DisMinimaSurface;
+
+  suggestedObject.fourthSuggestedPoint.source.x = roomObject.long - DisMinimaSurface;
+  suggestedObject.fourthSuggestedPoint.source.y = DisMinimaSurface;
+  suggestedObject.fourthSuggestedPoint.source.z = DisMinimaSurface;
+}
+
+function getSuggestedMultiplePoints(roomObject, suggestedObject) {
+  suggestedObject.firstSuggestedPoint.source.x = 1.5;
+  suggestedObject.firstSuggestedPoint.source.y = 1.5;
+  suggestedObject.firstSuggestedPoint.source.z = 1.5;
+
+}

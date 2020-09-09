@@ -21,3 +21,7 @@ var sabine_conts = 0.16;
 var eyring_conts = 0.162;
 
 var speedSound = 341;
+
+/* ACOUSTIC VALUES */
+var DisMinimaSurface = 1;
+var DisMinimaMicro = 2;
