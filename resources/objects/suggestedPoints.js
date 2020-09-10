@@ -4,7 +4,6 @@ function PointShortlist() {
   this.firtsMicro = new Object();
   this.secondMicro = new Object();
   this.thirdMicro = new Object();
-  this.fourthMicro = new Object();
 }
 
 function SuggestedPoints() {

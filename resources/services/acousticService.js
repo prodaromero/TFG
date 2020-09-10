@@ -57,6 +57,22 @@ function getMinDistance(roomObject,reverTime) {
   return dmin;
 }
 
+function getRandomPoint(max) {
+  var rand = getRound2Decimals(Math.random() * max)
+  if (rand > max - DisMinimaSurface || rand < DisMinimaSurface) {
+    rand = getRandomPoint(max);
+  }
+  return rand;
+}
+
+function getRandomPosition(roomObject) {
+  var list = [0.0,0.0,0.0];
+  list[0] = getRandomPoint(roomObject.long);
+  list[1] = getRandomPoint(roomObject.wide);
+  list[2] = getRandomPoint(roomObject.high);
+  return list;
+}
+
 function getSourceMultiplePoints(roomObject, suggestedObject) {
   suggestedObject.firstSuggestedPoint.source.x = DisMinimaSurface;
   suggestedObject.firstSuggestedPoint.source.y = DisMinimaSurface;
@@ -73,11 +89,31 @@ function getSourceMultiplePoints(roomObject, suggestedObject) {
   suggestedObject.fourthSuggestedPoint.source.x = roomObject.long - DisMinimaSurface;
   suggestedObject.fourthSuggestedPoint.source.y = DisMinimaSurface;
   suggestedObject.fourthSuggestedPoint.source.z = DisMinimaSurface;
+
+  getSuggestedMultiplePoints(roomObject, suggestedObject);
+
+}
+
+function getMicroMultiplePoints(roomObject, suggestedObject) {
+  var list;
+  list = getRandomPosition(roomObject);
+  suggestedObject.x = list[0];
+  suggestedObject.y = list[1];
+  suggestedObject.z = list[2];
 }
 
 function getSuggestedMultiplePoints(roomObject, suggestedObject) {
-  suggestedObject.firstSuggestedPoint.source.x = 1.5;
-  suggestedObject.firstSuggestedPoint.source.y = 1.5;
-  suggestedObject.firstSuggestedPoint.source.z = 1.5;
+  getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.firtsMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.secondMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.thirdMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.firtsMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.secondMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.thirdMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.firtsMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.secondMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.thirdMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.firtsMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.secondMicro)
+  getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.thirdMicro)
 
 }
