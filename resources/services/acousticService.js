@@ -73,47 +73,71 @@ function getRandomPosition(roomObject) {
   return list;
 }
 
-function getSourceMultiplePoints(roomObject, suggestedObject) {
-  suggestedObject.firstSuggestedPoint.source.x = DisMinimaSurface;
-  suggestedObject.firstSuggestedPoint.source.y = DisMinimaSurface;
-  suggestedObject.firstSuggestedPoint.source.z = DisMinimaSurface;
-
-  suggestedObject.secondSuggestedPoint.source.x = DisMinimaSurface;
-  suggestedObject.secondSuggestedPoint.source.y = roomObject.wide - DisMinimaSurface;
-  suggestedObject.secondSuggestedPoint.source.z = DisMinimaSurface;
-
-  suggestedObject.thirdSuggestedPoint.source.x = roomObject.long - DisMinimaSurface;
-  suggestedObject.thirdSuggestedPoint.source.y = roomObject.wide - DisMinimaSurface;
-  suggestedObject.thirdSuggestedPoint.source.z = DisMinimaSurface;
-
-  suggestedObject.fourthSuggestedPoint.source.x = roomObject.long - DisMinimaSurface;
-  suggestedObject.fourthSuggestedPoint.source.y = DisMinimaSurface;
-  suggestedObject.fourthSuggestedPoint.source.z = DisMinimaSurface;
-
-  getSuggestedMultiplePoints(roomObject, suggestedObject);
-
-}
-
 function getMicroMultiplePoints(roomObject, suggestedObject) {
   var list;
   list = getRandomPosition(roomObject);
-  suggestedObject.x = list[0];
-  suggestedObject.y = list[1];
-  suggestedObject.z = list[2];
+  suggestedObject.long = list[0];
+  suggestedObject.wide = list[1];
+  suggestedObject.high = list[2];
 }
 
-function getSuggestedMultiplePoints(roomObject, suggestedObject) {
-  getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.firtsMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.secondMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.thirdMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.firtsMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.secondMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.thirdMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.firtsMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.secondMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.thirdMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.firtsMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.secondMicro)
-  getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.thirdMicro)
+function getSourceMultiplePoints(roomObject) {
+  ListOfSuggestedPoints[0][0].long = DisMinimaSurface;
+  ListOfSuggestedPoints[0][0].wide = DisMinimaSurface;
+  ListOfSuggestedPoints[0][0].high = DisMinimaSurface;
 
+  ListOfSuggestedPoints[1][0].long = DisMinimaSurface;
+  ListOfSuggestedPoints[1][0].wide = roomObject.wide - DisMinimaSurface;
+  ListOfSuggestedPoints[1][0].high = DisMinimaSurface;
+
+  ListOfSuggestedPoints[2][0].long = roomObject.long - DisMinimaSurface;
+  ListOfSuggestedPoints[2][0].wide = roomObject.wide - DisMinimaSurface;
+  ListOfSuggestedPoints[2][0].high = DisMinimaSurface;
+
+  ListOfSuggestedPoints[3][0].long = roomObject.long - DisMinimaSurface;
+  ListOfSuggestedPoints[3][0].wide = DisMinimaSurface;
+  ListOfSuggestedPoints[3][0].high = DisMinimaSurface;
+
+  initSuggestedMultiplePoints(roomObject)
 }
+
+function initSuggestedMultiplePoints(roomObject) {
+  for (var i = 0; i < ListOfSuggestedPoints.length; i++) {
+    for (var j = 1; j < ListOfSuggestedPoints[i].length; j++) {
+      getMicroMultiplePoints(roomObject, ListOfSuggestedPoints[i][j])
+    }
+  }
+}
+
+
+// function correctDistance(objectA, objectB, dis, roomObject) {
+//
+//   if (distance(objectA, objectB) < dis) {
+//     getMicroMultiplePoints(objectB,roomObject);
+//   }
+//
+// }
+
+// function getMicroMultiplePoints(roomObject, suggestedObject) {
+//   var list;
+//   list = getRandomPosition(roomObject);
+//   suggestedObject.long = list[0];
+//   suggestedObject.wide = list[1];
+//   suggestedObject.high = list[2];
+// }
+//
+// function getSuggestedMultiplePoints(roomObject, suggestedObject) {
+//   getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.firtsMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.secondMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.firstSuggestedPoint.thirdMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.firtsMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.secondMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.secondSuggestedPoint.thirdMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.firtsMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.secondMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.thirdSuggestedPoint.thirdMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.firtsMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.secondMicro)
+//   getMicroMultiplePoints(roomObject, suggestedObject.fourthSuggestedPoint.thirdMicro)
+//
+// }

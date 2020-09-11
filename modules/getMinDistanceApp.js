@@ -90,8 +90,8 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
   }
 
-  var a = new SuggestedPoints();
-  getSourceMultiplePoints(room, a);
+  //var a = new SuggestedPoints();
+  getSourceMultiplePoints(room);
 
-  console.log(a);
+  console.log(ListOfSuggestedPoints);
 }

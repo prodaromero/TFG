@@ -25,3 +25,10 @@ var speedSound = 341;
 /* ACOUSTIC VALUES */
 var DisMinimaSurface = 1;
 var DisMinimaMicro = 2;
+
+var ListOfSuggestedPoints = [
+  [new Object(), new Object(), new Object(), new Object()],
+  [new Object(), new Object(), new Object(), new Object()],
+  [new Object(), new Object(), new Object(), new Object()],
+  [new Object(), new Object(), new Object(), new Object()],
+]
