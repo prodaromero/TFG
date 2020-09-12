@@ -23,6 +23,9 @@ var eyring_conts = 0.162;
 var speedSound = 341;
 
 /* ACOUSTIC VALUES */
+
+var MinDistance;
+
 var DisMinimaSurface = 1;
 var DisMinimaMicro = 2;
 

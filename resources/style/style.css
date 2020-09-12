@@ -359,7 +359,7 @@ button:hover {
   width: 40%;
 }
 
-.canvas-display, .distance-display, .rever-display {
+.canvas-display, .distance-display, .rever-display, .suggested-display {
   letter-spacing: 2px;
   margin: auto;
   margin-top: 25px;
@@ -385,7 +385,7 @@ button:hover {
   margin: 50px;
 }
 
-.distance-display {
+.distance-display, .suggested-display {
   height: 50%;
   width: 90%;
 }
