@@ -1,25 +1,4 @@
-function myCanvas(a,b) {
-  canvasSuperior = document.getElementById("canvasSuperior");
-  canvasFrontal = document.getElementById("canvasFrontal");
-
-  if (!canvasSuperior && !canvasFrontal) {
-    console.log('Failed to retrieve the <canvas> element');
-    return false;
-  }
-
-  ctxSuperior = canvasSuperior.getContext("2d");
-  ctxFrontal = canvasFrontal.getContext("2d");
-
-  drawAxes(ctxSuperior);
-  drawText(ctxSuperior,"x [m]",[250,290]);
-  drawText(ctxSuperior,"y [m]",[10,20]);
-  drawAxes(ctxFrontal);
-  drawText(ctxFrontal,"x [m]",[250,290]);
-  drawText(ctxFrontal,"z [m]",[10,20]);
-
-}
-
-function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
+function optionGetMinDistance(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
 
   var room = new Room();
   var source = new Object();
@@ -39,13 +18,13 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
   if (isInside(microphone.long,room.long) && isInside(microphone.wide,room.wide) && isInside(microphone.high,room.high) &&
       isInside(source.long,room.long) && isInside(source.wide,room.wide) && isInside(source.high,room.high)) {
 
-    var dmin = getMinDistance(room, reverTime)
+    MinDistance = getMinDistance(room, reverTime)
 
     var dis = distance(source, microphone)
 
-    var ok = isCorrect(dis, dmin)
+    var ok = isCorrect(dis, MinDistance)
 
-    drawDistanceMsg(ok,dmin);
+    drawDistanceMsg(ok,MinDistance);
 
     canvasSuperior = document.getElementById("canvasSuperior");
     canvasFrontal = document.getElementById("canvasFrontal");
@@ -83,10 +62,14 @@ function main(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     drawObjet(canvasFrontal,microphone.long,microphone.high,globalScale,blue);
 
     // draw the min distance
-    drawDistance(canvasSuperior,source.long,source.wide,globalScale,dmin);
-    drawDistance(canvasFrontal,source.long,source.high,globalScale,dmin);
+    drawDistance(canvasSuperior,source.long,source.wide,globalScale,MinDistance);
+    drawDistance(canvasFrontal,source.long,source.high,globalScale,MinDistance);
+
+    getSourceMultiplePoints(room);
+    initSuggestedMultiplePoints(room)
 
   } else {
     alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
   }
+
 }

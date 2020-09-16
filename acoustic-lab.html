@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="resources/style/style.css">
     <script type="text/javascript" src="modules/getMinDistanceApp.js" ></script>
     <script type="text/javascript" src="modules/getReverberationTimeApp.js" ></script>
+    <script type="text/javascript" src="modules/getShortListOfPointsApp.js"></script>
     <script type="text/javascript" src="resources/services/acousticService.js"></script>
     <script type="text/javascript" src="resources/services/canvasService.js"></script>
     <script type="text/javascript" src="resources/services/displayService.js"></script>
@@ -33,7 +34,7 @@
     <div class="bg-image img3"></div>
     <div class="bg-image img4"></div>
 
-    <div  class="bg-box bg-title bg-image">ACOUSTIC LAB</div>
+    <div class="bg-box bg-title bg-image">ACOUSTIC LAB</div>
 
     <div id="mark-menu"></div>
 
@@ -149,7 +150,7 @@
           <div id="dimRecinto">
             <h4>Dimensiones del recinto</h4>
             <div class="in-box">
-              <input  id="xv" class="info-input" placeholder="Laro del recinto [m]">
+              <input  id="xv" class="info-input" placeholder="Lado del recinto [m]">
               <span class="focus-border"></span>
             </div>
             <div class="in-box">
@@ -193,10 +194,23 @@
               <span class="focus-border"></span>
             </div>
           </div>
-          <button class="calculate-button" onclick="main('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
+          <button class="calculate-button" onclick="optionGetMinDistance('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
         </div>
       </div>
     </div>
+
+    <div id="mark-suggested"></div>
+
+    <div id="suggestedPoints">
+      <h3 class="content-title">Propuesta de puntos de medición</h3>
+      <div class="contenedor-principal">
+        <div class="suggested-display">
+          <button class="calculate-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+          <div id="suggested-list"></div>
+        </div>
+      </div>
+    </div>
+
 
     <div id="mark-reverberation"></div>
 
@@ -234,7 +248,7 @@
             <div id="supRecinto">
               <h4>Dimensiones del recinto</h4>
               <div class="in-box">
-                <input  id="x-1" class="info-input" placeholder="Laro del recinto [m]">
+                <input  id="x-1" class="info-input" placeholder="Lado del recinto [m]">
                 <span class="focus-border"></span>
               </div>
               <div class="in-box">
@@ -285,7 +299,7 @@
         </div>
 
         <div id="eyring" class="reverberation-time">
-            <details class="info-area">
+          <details class="info-area">
               <summary>i</summary>
               <div>
                 <h2>Cálculo del tiempo de reverberación por Eyring</h2>
@@ -304,13 +318,13 @@
                 </p>
                 <img src="resources/style/images/eyring-formula.PNG" class="reverberation-image"></img>
               </div>
-            </details>
-            <div class="rever-display">
-              <div class="reverberation-title">EYRING</div>
-              <div id="supRecinto">
-                <h4>Dimensiones del recinto</h4>
+          </details>
+          <div class="rever-display">
+            <div class="reverberation-title">EYRING</div>
+            <div id="supRecinto">
+              <h4>Dimensiones del recinto</h4>
                 <div class="in-box">
-                  <input  id="x-2" class="info-input" placeholder="Laro del recinto [m]">
+                  <input  id="x-2" class="info-input" placeholder="Lado del recinto [m]">
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">

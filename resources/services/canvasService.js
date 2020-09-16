@@ -187,3 +187,24 @@ function render(canvasOne,canvasTwo) {
   ctxOne.clearRect(0,0,canvasOne.width, canvasOne.height);
   ctxTwo.clearRect(0,0,canvasTwo.width, canvasTwo.height);
 }
+
+function myCanvas(a,b) {
+  canvasSuperior = document.getElementById("canvasSuperior");
+  canvasFrontal = document.getElementById("canvasFrontal");
+
+  if (!canvasSuperior && !canvasFrontal) {
+    console.log('Failed to retrieve the <canvas> element');
+    return false;
+  }
+
+  ctxSuperior = canvasSuperior.getContext("2d");
+  ctxFrontal = canvasFrontal.getContext("2d");
+
+  drawAxes(ctxSuperior);
+  drawText(ctxSuperior,"x [m]",[250,290]);
+  drawText(ctxSuperior,"y [m]",[10,20]);
+  drawAxes(ctxFrontal);
+  drawText(ctxFrontal,"x [m]",[250,290]);
+  drawText(ctxFrontal,"z [m]",[10,20]);
+
+}
