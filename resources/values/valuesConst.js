@@ -1,4 +1,3 @@
-
 /* CANVAS VALUES */
 
 var canvas;
@@ -35,3 +34,7 @@ var ListOfSuggestedPoints = [
   [new Object(), new Object(), new Object(), new Object()],
   [new Object(), new Object(), new Object(), new Object()],
 ]
+
+/* GENERAL VALUES */
+
+var RoomObject = new Room();

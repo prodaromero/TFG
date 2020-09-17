@@ -165,18 +165,8 @@ function drawDistanceMsg(isok,dmin) {
 }
 
 function drawReverTimeMsg(op,tr) {
-  var put;
 
-  switch (op) {
-    case "Sabine": put = "putSabineTR"; break;
-
-    case "Eyring": put = "putEyringTR"; break;
-
-    default: "Sabine"
-
-  }
-
-  document.getElementById(put).innerHTML = '<div class="divReverTime">El tiempo de reverberación es de '+tr+' [s].</div>'
+  document.getElementById('putTR').innerHTML = '<div class="divReverTime">El tiempo de reverberación de '+op+' es de '+tr+' [s].</div>'
 
 }
 

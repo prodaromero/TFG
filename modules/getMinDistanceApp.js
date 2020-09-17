@@ -1,13 +1,10 @@
-function optionGetMinDistance(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
+function optionGetMinDistance(t,xs,ys,zs,xm,ym,zm) {
 
-  var room = new Room();
+  var room = RoomObject;
   var source = new Object();
   var microphone = new Object();
 
   var reverTime = parseFloat(document.getElementById(t).value);
-
-  /* Get room varianles */
-  getPosition(room,xv,yv,zv);
 
   /* Get position of source */
   getPosition(source,xs,ys,zs);
@@ -64,9 +61,6 @@ function optionGetMinDistance(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     // draw the min distance
     drawDistance(canvasSuperior,source.long,source.wide,globalScale,MinDistance);
     drawDistance(canvasFrontal,source.long,source.high,globalScale,MinDistance);
-
-    getSourceMultiplePoints(room);
-    initSuggestedMultiplePoints(room)
 
   } else {
     alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")

@@ -407,7 +407,7 @@ button:hover {
   text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
 }
 
-#tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #dimRecinto, #supRecinto {
+#tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #dimRecinto {
   color: white;
   letter-spacing: 2px;
   background-color: #404040;
@@ -430,7 +430,7 @@ button:hover {
   height: 20%;
 }
 
-#coefRecinto, #supRecinto {
+#coefRecinto {
   width: 50%;
   height: auto;
 }

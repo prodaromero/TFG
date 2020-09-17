@@ -6,12 +6,13 @@
     <script type="text/javascript" src="modules/getMinDistanceApp.js" ></script>
     <script type="text/javascript" src="modules/getReverberationTimeApp.js" ></script>
     <script type="text/javascript" src="modules/getShortListOfPointsApp.js"></script>
+    <script type="text/javascript" src="modules/initRoomApp.js"></script>
     <script type="text/javascript" src="resources/services/acousticService.js"></script>
     <script type="text/javascript" src="resources/services/canvasService.js"></script>
     <script type="text/javascript" src="resources/services/displayService.js"></script>
-    <script type="text/javascript" src="resources/values/valuesConst.js"></script>
     <script type="text/javascript" src="resources/objects/room.js"></script>
     <script type="text/javascript" src="resources/objects/object.js"></script>
+    <script type="text/javascript" src="resources/values/valuesConst.js"></script>
   </head>
 
   <body onload="myCanvas()">
@@ -97,6 +98,32 @@
       </div>
     </div>
 
+    <div id="mark-room"></div>
+
+    <div id="minDistance">
+      <h3 class="content-title">Cálculo de la distancia mínima</h3>
+      <div class="contenedor-principal">
+        <div class="distance-display">
+          <div id="dimRecinto">
+            <h4>Dimensiones del recinto</h4>
+            <div class="in-box">
+              <input  id="long" class="info-input" placeholder="Lado del recinto [m]">
+              <span class="focus-border"></span>
+            </div>
+            <div class="in-box">
+              <input  id="wide" class="info-input" placeholder="Ancho del recinto [m]">
+              <span class="focus-border"></span>
+            </div>
+            <div class="in-box">
+              <input  id="high" class="info-input" placeholder="Altura del recinto [m]">
+              <span class="focus-border"></span>
+            </div>
+          </div>
+          <button class="calculate-button" onclick="initRoom('long', 'wide', 'high')"><a>CALCULAR</a></button>
+        </div>
+      </div>
+    </div>
+
     <div id="mark-distance"></div>
 
     <div id="minDistance">
@@ -147,22 +174,6 @@
             </div>
           </div>
 
-          <div id="dimRecinto">
-            <h4>Dimensiones del recinto</h4>
-            <div class="in-box">
-              <input  id="xv" class="info-input" placeholder="Lado del recinto [m]">
-              <span class="focus-border"></span>
-            </div>
-            <div class="in-box">
-              <input  id="yv" class="info-input" placeholder="Ancho del recinto [m]">
-              <span class="focus-border"></span>
-            </div>
-            <div class="in-box">
-              <input  id="zv" class="info-input" placeholder="Altura del recinto [m]">
-              <span class="focus-border"></span>
-            </div>
-          </div>
-
           <div id="dimFuente">
             <h4>Posición de la fuente</h4>
             <div class="in-box">
@@ -194,7 +205,7 @@
               <span class="focus-border"></span>
             </div>
           </div>
-          <button class="calculate-button" onclick="optionGetMinDistance('t', 'xv', 'yv', 'zv', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
+          <button class="calculate-button" onclick="optionGetMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
         </div>
       </div>
     </div>
@@ -211,15 +222,18 @@
       </div>
     </div>
 
-
     <div id="mark-reverberation"></div>
 
     <div id="reverTime">
       <h3 class="content-title">Cálculo del tiempo de reverberación</h3>
       <div class="contenedor-principal">
         <div align="center">
-          <button class="menu-button" onclick="displayService(event, 'reverberation-time', 'sabine')">Tiempo de reverberación por Sabine</button>
-          <button class="menu-button" onclick="displayService(event, 'reverberation-time', 'eyring')">Tiempo de reverberación por Eyring</button>
+          <button class="menu-button" onclick="optionGetReverberationTime('Sabine',
+            'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+            'coef_suelo-1')">Calcular tiempo de reverberación por Sabine</button>
+          <button class="menu-button" onclick="optionGetReverberationTime('Eyring',
+            'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+            'coef_suelo-1')">Tiempo de reverberación por Eyring</button>
         </div>
 
         <div id="sabine" class="reverberation-time">
@@ -244,23 +258,6 @@
             </div>
           </details>
           <div class="rever-display">
-            <div class="reverberation-title">SABINE</div>
-            <div id="supRecinto">
-              <h4>Dimensiones del recinto</h4>
-              <div class="in-box">
-                <input  id="x-1" class="info-input" placeholder="Lado del recinto [m]">
-                <span class="focus-border"></span>
-              </div>
-              <div class="in-box">
-                <input  id="y-1" class="info-input" placeholder="Ancho del recinto [m]">
-                  <span class="focus-border"></span>
-              </div>
-              <div class="in-box">
-                <input  id="z-1" class="info-input" placeholder="Altura del recinto [m]">
-                <span class="focus-border"></span>
-              </div>
-            </div>
-
             <div id="coefRecinto">
               <h4>Coeficientes de absorción</h4>
               <div class="in-box">
@@ -288,91 +285,9 @@
                 <span class="focus-border"></span>
               </div>
             </div>
-
-            <div id="putSabineTR"></div>
-
-            <button class="calculate-button" onclick="optionGetReverberationTime('Sabine','x-1','y-1','z-1',
-              'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
-              'coef_suelo-1')">CALCULAR SABINE
-            </button>
+            <div id="putTR"></div>
           </div>
         </div>
-
-        <div id="eyring" class="reverberation-time">
-          <details class="info-area">
-              <summary>i</summary>
-              <div>
-                <h2>Cálculo del tiempo de reverberación por Eyring</h2>
-                <p>
-                  Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
-                </p>
-                <br>
-                <p>
-                  Se pretende proveer de una herramienta para simular el tiempo de
-                  reverberación según la Teoría de Eyring.
-                </p>
-                <br>
-                <p>
-                  Según esta Teoría, el tiempo de reverberación se calcula de la
-                  siguiente manera:
-                </p>
-                <img src="resources/style/images/eyring-formula.PNG" class="reverberation-image"></img>
-              </div>
-          </details>
-          <div class="rever-display">
-            <div class="reverberation-title">EYRING</div>
-            <div id="supRecinto">
-              <h4>Dimensiones del recinto</h4>
-                <div class="in-box">
-                  <input  id="x-2" class="info-input" placeholder="Lado del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="y-2" class="info-input" placeholder="Ancho del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="z-2" class="info-input" placeholder="Altura del recinto [m]">
-                  <span class="focus-border"></span>
-                </div>
-              </div>
-
-              <div id="coefRecinto">
-                <h4>Coeficientes de absorción</h4>
-                <div class="in-box">
-                  <input  id="coef_techo-2" class="info-input" placeholder="Coef. abs. Techo">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_1-2" class="info-input" placeholder="Coef. abs. Pared 1">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_2-2" class="info-input" placeholder="Coef. abs. Pared 2">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_3-2" class="info-input" placeholder="Coef. abs. Pared 3">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_4-2" class="info-input" placeholder="Coef. abs. Pared 4">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_suelo-2" class="info-input" placeholder="Coef. abs. Suelo">
-                  <span class="focus-border"></span>
-                </div>
-              </div>
-
-              <div id="putEyringTR"></div>
-
-              <button class="calculate-button" onclick="optionGetReverberationTime('Eyring','x-2','y-2','z-2',
-                'coef_techo-2','coef_pared_1-2','coef_pared_2-2', 'coef_pared_3-2', 'coef_pared_4-2',
-                'coef_suelo-2')">CALCULAR EYRING
-              </button>
-            </div>
-          </div>
       </div>
     </div>
 
