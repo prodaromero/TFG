@@ -68,6 +68,7 @@ button {
   font-weight: 100;
   padding: 20px;
   margin-top: 50px;
+  margin-bottom: 25px;
   text-transform: uppercase;
   border-radius: 6px;
   display: inline-block;
@@ -86,13 +87,42 @@ button:hover {
   transition: all 0.3s ease 0s;
 }
 
+#body-content.active {
+  filter: blur(20px);
+  pointer-events: none;
+  user-select: none;
+}
+
+#popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: auto;
+  padding: 50px;
+  margin: auto;
+  box-shadow: 0 5px 30px rgba(0,0,0,.30);
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+#popup.active {
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+
 .menu-button {
   background: #404040;
 }
 
 .calculate-button {
-  background: #228B22;
-  margin-bottom: 50px;
+  background: DodgerBlue;
+  margin-bottom: 20px;
 }
 
 .calculate-button a {
@@ -164,7 +194,7 @@ button:hover {
 }
 
 .info-input ~ .focus-border{
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 0;
@@ -359,10 +389,9 @@ button:hover {
   width: 40%;
 }
 
-.canvas-display, .distance-display, .rever-display, .suggested-display {
+.canvas-display, .distance-display, .rever-display, .suggested-display, .room-display {
   letter-spacing: 2px;
   margin: auto;
-  margin-top: 25px;
   border-radius: 1em;
 }
 
@@ -385,13 +414,8 @@ button:hover {
   margin: 50px;
 }
 
-.distance-display, .suggested-display {
+.distance-display, .suggested-display, .room-display, .rever-display {
   height: 50%;
-  width: 90%;
-}
-
-.rever-display {
-  height: 90%;
   width: 90%;
 }
 
@@ -408,10 +432,12 @@ button:hover {
 }
 
 #tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #dimRecinto {
+  position: relative;
   color: white;
   letter-spacing: 2px;
   background-color: #404040;
   margin: auto;
+  margin-top: 100px;
   margin-top: 0.5em;
   padding: 0.5em;
   border-radius: 0.5em;
@@ -459,6 +485,8 @@ button:hover {
   position: relative;
   border-collapse: collapse;
   margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 #suggested-list th, td {
@@ -525,6 +553,19 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 
 .tx-center{text-align:center}
 .tx-left{text-align:left;}
 
+.modal-background {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
 
 .bg-paragraph {
   padding: 20px;
@@ -605,4 +646,9 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 
   font-size: 17px;
   margin: 15px;
   margin-top: 20px;
+}
+
+.empty {
+  height: 25px;
+  background-color: inherit;
 }

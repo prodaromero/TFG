@@ -2,7 +2,7 @@ function optionGetShortList() {
   var room = RoomObject;
   var list = ListOfSuggestedPoints;
 
-  if (room.long === 0 || room.wide === 0 || room.high === 0) {
+  if (room.long == 0 || room.wide == 0 || room.high == 0) {
     alert("Por favor, asegurese que ha introducido los parámetros del recinto.")
   }else{
 
@@ -35,7 +35,7 @@ function optionGetShortList() {
     for (i = 0; i < list.length; i++) {
       var tbodyTr = document.createElement('tr');
       var tbodyTdNumber = document.createElement('td');
-      tbodyTdNumber.innerHTML = i;
+      tbodyTdNumber.innerHTML = i+1;
       tbodyTr.appendChild(tbodyTdNumber);
       for (j = 0; j < list[i].length; j++) {
         var tbodyTd = document.createElement('td');
