@@ -25,6 +25,6 @@ function optionGetReverberationTime(option,coef_techo,coef_pared_1,coef_pared_2,
       default:
         break;
     }
-    drawReverTimeMsg(option,reverTime);
+    putReverTimeMsg(option,reverTime);
   }
 }

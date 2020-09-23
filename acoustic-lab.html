@@ -148,7 +148,7 @@
       <div id="mark-distance"></div>
 
       <div id="minDistance">
-        <h3 class="content-title">Cálculo de la distancia mínima</h3>
+        <h3 class="content-title">Distancia mínima</h3>
         <div class="contenedor-principal">
           <div class="canvas-display">
             <div class="display-one">
@@ -164,7 +164,7 @@
             </div>
           </div>
 
-          <div id="msgSpace"></div>
+          <div id="checkDisMsg"></div>
 
           <div class="distance-display">
             <details class="info-area">
@@ -194,6 +194,10 @@
                 <span class="focus-border"></span>
               </div>
             </div>
+
+            <div id="minDistanceMsg"></div>
+
+            <button class="calculate-button" onclick="getGetMinDistance('t')"><a href="#minDistance">calcular distancia mínima</a></button>
 
             <div id="dimFuente">
               <h4>Posición de la fuente</h4>
@@ -227,7 +231,7 @@
               </div>
             </div>
 
-            <button class="calculate-button" onclick="optionGetMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
+            <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">comprobar punto de medición</a></button>
           </div>
         </div>
       </div>
@@ -248,7 +252,7 @@
       <div id="mark-reverberation"></div>
 
       <div id="reverTime">
-        <h3 class="content-title">Cálculo del tiempo de reverberación</h3>
+        <h3 class="content-title">Tiempo de reverberación</h3>
         <div class="contenedor-principal">
           <div align="center">
               <button class="menu-button" onclick="optionGetReverberationTime('Sabine',

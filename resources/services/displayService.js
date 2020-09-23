@@ -77,3 +77,19 @@ function closePopup() {
   cont.classList.toggle('active');
   popup.classList.toggle('active');
 }
+
+
+function putOkDistanceMsg(isok,dmin) {
+  var disRound = getRound2Decimals(dmin);
+  var msgOK = '<div class="good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>';
+  var msgKO = '<div class="error">El micrófono ne se encuentra en posición incorrecta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
+
+  if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
+}
+
+function putReverTimeMsg(op,tr) {
+  var msg = '<div class="divReverTime">El tiempo de reverberación de '+op+' es de '+tr+' [s].</div>'
+  putMessage('putTR',msg)
+}
+
+function putMessage(id, msg) {document.getElementById(id).innerHTML = msg;}

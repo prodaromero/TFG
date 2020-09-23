@@ -1,4 +1,25 @@
-function optionGetMinDistance(t,xs,ys,zs,xm,ym,zm) {
+function getGetMinDistance(t) {
+  var dmin, msg, id;
+  var room = RoomObject;
+  var reverTime = parseFloat(document.getElementById(t).value);
+  var volume = room.volume();
+
+  if (!volume) {
+    openPopup(CommentRoomKO);
+  } else if (!reverTime) {
+    openPopup(CommentReverTimeKO);
+  } else {
+    MinDistance = getMinDistance(room, reverTime);
+
+    dmin = getRound2Decimals(MinDistance);
+    id = "minDistanceMsg";
+    msg = '<div class="good">La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+dmin+' [m]</div>';
+
+    putMessage(id, msg);
+  }
+}
+
+function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
 
   var room = RoomObject;
   var source = Source;
@@ -27,12 +48,12 @@ function optionGetMinDistance(t,xs,ys,zs,xm,ym,zm) {
     openPopup(CommentRegulationKO);
   } else {
     MinDistance = getMinDistance(room, reverTime)
-
+    console.log(MinDistance);
     var dis = distance(source, microphone)
 
     var ok = isCorrect(dis, MinDistance)
 
-    drawDistanceMsg(ok,MinDistance);
+    putOkDistanceMsg(ok,MinDistance);
 
     canvasSuperior = document.getElementById("canvasSuperior");
     canvasFrontal = document.getElementById("canvasFrontal");

@@ -134,7 +134,7 @@ function drawDistance(canvas,x,y,scale,dis) {
 
     drawLine(ctx,scaleWidth,scaleHeight,scaleWidth+disScaled,scaleHeight);
 
-    var disRound = parseFloat(dis).toFixed(2);
+    var disRound = getRound2Decimals(dis);
 
     ctx.font = "10px Arial";
     ctx.fillText("dmin= "+disRound+"m",scaleWidth+5,scaleHeight-3);
@@ -152,22 +152,6 @@ function drawDistance(canvas,x,y,scale,dis) {
     ctx.fill();
 
     ctx.restore();
-}
-
-function drawDistanceMsg(isok,dmin) {
-  var disRound = parseFloat(dmin).toFixed(2);
-  if (isok) {
-    document.getElementById("msgSpace").innerHTML =
-      '<div class="distanceMsg good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
-  } else {
-    document.getElementById("msgSpace").innerHTML = '<div class="distanceMsg error">El micrófono ne se encuentra en posición incorrecta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
-  }
-}
-
-function drawReverTimeMsg(op,tr) {
-
-  document.getElementById('putTR').innerHTML = '<div class="divReverTime">El tiempo de reverberación de '+op+' es de '+tr+' [s].</div>'
-
 }
 
 function render(canvasOne,canvasTwo) {
