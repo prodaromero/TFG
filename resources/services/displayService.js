@@ -57,3 +57,23 @@ function searchInAllTable() {
     }
   }
 }
+
+function openPopup(comment) {
+
+  var cont = document.getElementById('body-content');
+  var popup = document.getElementById('popup');
+
+  document.getElementById("popup-comment").innerHTML = comment;
+
+  cont.classList.toggle('active');
+  popup.classList.toggle('active');
+}
+
+function closePopup() {
+
+  var cont = document.getElementById('body-content');
+  var popup = document.getElementById('popup');
+
+  cont.classList.toggle('active');
+  popup.classList.toggle('active');
+}

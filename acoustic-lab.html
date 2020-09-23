@@ -140,9 +140,7 @@
                 <span class="focus-border"></span>
               </div>
             </div>
-            <div onclick="toggle()">
-              <button class="calculate-button" onclick="initRoom('long', 'wide', 'high')"><a>obtener dimensiones</a></button>
-            </div>
+            <button class="calculate-button" onclick="initRoom('long', 'wide', 'high')"><a>guardar dimensiones</a></button>
           </div>
         </div>
       </div>
@@ -228,6 +226,7 @@
                 <span class="focus-border"></span>
               </div>
             </div>
+
             <button class="calculate-button" onclick="optionGetMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">CALCULAR</a></button>
           </div>
         </div>
@@ -239,7 +238,7 @@
         <h3 class="content-title">Propuesta de puntos de medición</h3>
         <div class="contenedor-principal">
           <div class="suggested-display">
-            <button class="menu-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+              <button class="menu-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
             <div id="suggested-list"></div>
             <div class="empty"></div>
           </div>
@@ -252,10 +251,10 @@
         <h3 class="content-title">Cálculo del tiempo de reverberación</h3>
         <div class="contenedor-principal">
           <div align="center">
-            <button class="menu-button" onclick="optionGetReverberationTime('Sabine',
+              <button class="menu-button" onclick="optionGetReverberationTime('Sabine',
               'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
               'coef_suelo-1')">Calcular tiempo de reverberación por Sabine</button>
-            <button class="menu-button" onclick="optionGetReverberationTime('Eyring',
+              <button class="menu-button" onclick="optionGetReverberationTime('Eyring',
               'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
               'coef_suelo-1')">Tiempo de reverberación por Eyring</button>
           </div>
@@ -1352,14 +1351,15 @@
                 </tr>
               </tbody>
             </table>
+            <div class="empty"></div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div id="popup">
       <p id="popup-comment"><p>
-      <button class="menu-button" onclick="toggle()">Cerrar</button>
+      <button class="menu-button" onclick="closePopup()">Cerrar</button>
     </div>
     <footer id="about">
       <div class="contact-area">

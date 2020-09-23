@@ -1,11 +1,14 @@
 function optionGetShortList() {
   var room = RoomObject;
   var list = ListOfSuggestedPoints;
+  var volume = room.volume();
+  console.log(volume);
 
-  if (room.long == 0 || room.wide == 0 || room.high == 0) {
-    alert("Por favor, asegurese que ha introducido los parámetros del recinto.")
+  if (!volume) {
+    openPopup(CommentRoomKO);
+  } else if (volume < MinimalVolume || room.long < MinimalDimension || room.wide < MinimalDimension || room.high < MinimalDimension) {
+    openPopup(CommentRoomSmall);
   }else{
-
     initMultiplePoints(room, list);
 
     var table = document.createElement('table');

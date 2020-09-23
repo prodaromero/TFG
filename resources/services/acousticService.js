@@ -21,6 +21,10 @@ function isInside(pos,stop) {return ((pos >= 0) && (pos <= stop));}
 
 function isSameType(x,y,z) {return ((typeof(x) && typeof(y) && typeof(z)) === "number");}
 
+function isObjectInsideRoom(object, room) {
+  return isInside(object.long,room.long) && isInside(object.wide,room.wide) && isInside(object.high,room.high);
+}
+
 // ** Funciones getMinDistanceApp ** \\
 function distance(surceObject, microphoneObject) {
 
@@ -43,13 +47,7 @@ function getPosition(object,x,y,z) {
     object.long = 0;
     object.wide = 0;
     object.high = 0;
-    alert("Por favor, intruduzca valores validos")
   }
-
-  if (!compliesRegulation(object)) {
-    alert("Recuerda que según la normativa UNE-ISO 3382, la distancia mínima entre micro/fuente y cualquier superficie, debe ser de al menos 1 m.\n Revise los datos por favor.")
-  }
-
   return object;
 }
 

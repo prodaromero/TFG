@@ -106,6 +106,7 @@ button:hover {
   visibility: hidden;
   opacity: 0;
   transition: 0.5s;
+  font-size: 20px;
 }
 
 #popup.active {
@@ -114,7 +115,6 @@ button:hover {
   opacity: 1;
   transition: 0.5s;
 }
-
 
 .menu-button {
   background: #404040;
