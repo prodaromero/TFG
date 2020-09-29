@@ -17,17 +17,26 @@
 
   <body onload="myCanvas()">
     <header class="tab">
+      <a href="javascript:void(0)" class="init-menu" onclick="openSidebar()">☰</a>
       <div class="init-logo">
         <a href="#init">ACOUSTIC-LAB</a>
       </div>
-      <div class="init-menu">
-        <a href="#about"><p class="letter-menu">contato</p></a>
-        <a href="#mark-materials"><p class="letter-menu">materiales</p></a>
-        <a href="#mark-reverberation"><p class="letter-menu">reverberación</p></a>
-        <a href="#mark-distance"><p class="letter-menu">distancias</p></a>
-        <a href="#mark-menu"><p class="letter-menu">menú</p></a>
-      </div>
     </header>
+
+    <div id="sidebar-menu">
+      <div class="close-div">
+        <a onclick="closeSidebar()"></a>
+      </div>
+      <div>
+        <a class="sidebar-button" href="#mark-menu">menú</a>
+        <a class="sidebar-button" href="#mark-room">dimensiones del recinto</a>
+        <a class="sidebar-button" href="#mark-distance">distancia mínima</a>
+        <a class="sidebar-button" href="#mark-suggested">propuesta puntos de medición</a>
+        <a class="sidebar-button" href="#mark-reverberation">tiempo de reverberación</a>
+        <a class="sidebar-button" href="#mark-materials">búsqueda de materiales</a>
+        <a class="sidebar-button" href="#about">contato</a>
+      </div>
+    </div>
 
     <div id="init" class="bg-image img1"></div>
     <div class="bg-image img2"></div>
@@ -152,13 +161,13 @@
         <div class="contenedor-principal">
           <div class="canvas-display">
             <div class="display-one">
-              <h2><i>Vista Superior</i></h2>
+              <h2><i>Planta</i></h2>
               <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
               Please use a browser that supports "canvas"
             </div>
 
             <div class="display-two">
-              <h2><i>Vista Frontal</i></h2>
+              <h2><i>Alzado</i></h2>
               <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
               Please use a browser that supports "canvas"
             </div>
@@ -328,8 +337,8 @@
           <div class="in-box">
             <input id="inputValue" class="info-input" onkeyup="searchInSelectionTable()" placeholder="Búsqueda por nombre del material o por NRC..."></input>
           </div>
-          <div align="center" id="materialsTable">
-            <table class="tg">
+          <div align="center">
+            <table id="materialsTable" class="tg">
               <thead>
                 <tr>
                   <th class="tg-cabecera" style="width:40%;">MATERIAL</th>
@@ -345,7 +354,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Alfombra sobre pared</td>
                   <td class="tg-0pky">10</td>
                   <td class="tg-0pky"></td>
@@ -357,7 +366,7 @@
                   <td class="tg-0pky">0.37</td>
                   <td class="tg-0pky">0.21</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Corcho en baldosas contra respaldo solido</td>
                   <td class="tg-0pky">22</td>
                   <td class="tg-0pky"></td>
@@ -369,7 +378,7 @@
                   <td class="tg-0pky">0.55</td>
                   <td class="tg-0pky">0.38</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Revestimiento de corcho</td>
                   <td class="tg-0pky">20</td>
                   <td class="tg-0pky">5.6</td>
@@ -381,7 +390,7 @@
                   <td class="tg-0pky">0.77</td>
                   <td class="tg-0pky">0.64</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de terciopelo 340, liso contra pared</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.3</td>
@@ -393,7 +402,7 @@
                   <td class="tg-0pky">0.35</td>
                   <td class="tg-0pky">0.14</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de algodón 360, exento</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.4</td>
@@ -405,7 +414,7 @@
                   <td class="tg-0pky">0.35</td>
                   <td class="tg-0pky">0.14</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Cortinas, tejido delgado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -417,7 +426,7 @@
                   <td class="tg-0pky">0.35</td>
                   <td class="tg-0pky">0.16</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Terciopelo mediano, liso ante pared</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -429,7 +438,7 @@
                   <td class="tg-0pky">0.30</td>
                   <td class="tg-0pky">0.17</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de algodón 500, exento</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.5</td>
@@ -441,7 +450,7 @@
                   <td class="tg-0pky">0.35</td>
                   <td class="tg-0pky">0.19</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Cortinas, tejido mediano</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -453,7 +462,7 @@
                   <td class="tg-0pky">0.35</td>
                   <td class="tg-0pky">0.19</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de terciopelo 650, exento</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.6</td>
@@ -465,7 +474,7 @@
                   <td class="tg-0pky">0.36</td>
                   <td class="tg-0pky">0.33</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Cortinas, tejido espeso</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -477,7 +486,7 @@
                   <td class="tg-0pky">0.36</td>
                   <td class="tg-0pky">0.33</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de terciopelo a 1.00m de la pared</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -489,7 +498,7 @@
                   <td class="tg-0pky">0.35</td>
                   <td class="tg-0pky">0.41</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de algodón 500, plegado al 75%</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.5</td>
@@ -501,7 +510,7 @@
                   <td class="tg-0pky">0.40</td>
                   <td class="tg-0pky">0.43</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Terciopelo mediano, al 50% ante pared</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -513,7 +522,7 @@
                   <td class="tg-0pky">0.50</td>
                   <td class="tg-0pky">0.44</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de terciopelo 475, plegado 50%</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.5</td>
@@ -525,7 +534,7 @@
                   <td class="tg-0pky">0.60</td>
                   <td class="tg-0pky">0.56</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Terciopelo fruncido</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">1.2</td>
@@ -537,7 +546,7 @@
                   <td class="tg-0pky">0.44</td>
                   <td class="tg-0pky">0.57</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de algodón 500, plegado al 50%</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.5</td>
@@ -549,7 +558,7 @@
                   <td class="tg-0pky">0.54</td>
                   <td class="tg-0pky">0.58</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Tejido de terciopelo 600, plegado al 50%</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.6</td>
@@ -561,7 +570,7 @@
                   <td class="tg-0pky">0.65</td>
                   <td class="tg-0pky">0.58</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Fibra de madera</td>
                   <td class="tg-0pky">38</td>
                   <td class="tg-0pky">19.0</td>
@@ -573,7 +582,7 @@
                   <td class="tg-0pky">0.77</td>
                   <td class="tg-0pky">0.48</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Fibra de madera</td>
                   <td class="tg-0pky">50</td>
                   <td class="tg-0pky">25.0</td>
@@ -585,7 +594,7 @@
                   <td class="tg-0pky">0.70</td>
                   <td class="tg-0pky">0.55</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Hormigón revocado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -597,7 +606,7 @@
                   <td class="tg-0pky">0.01</td>
                   <td class="tg-0pky">0.01</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Hormigón bloques pintados</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -609,7 +618,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.09</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Hormigón bloques pintados</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -621,7 +630,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.07</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Ladrillo visto pintado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -633,7 +642,7 @@
                   <td class="tg-0pky">0.03</td>
                   <td class="tg-0pky">0.02</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-typeMaterial">Ladrillo pintado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -645,7 +654,7 @@
                   <td class="tg-0pky">0.03</td>
                   <td class="tg-0pky">0.02</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Ladrillo pintado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -657,7 +666,7 @@
                   <td class="tg-0pky">0.03</td>
                   <td class="tg-0pky">0.02</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Ladrillo revocado y hendido</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -669,7 +678,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.03</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Ladrillo visto</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -681,7 +690,7 @@
                   <td class="tg-0pky">0.07</td>
                   <td class="tg-0pky">0.04</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Ladrillo visto o pintado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -693,7 +702,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.04</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de aglomerado (16+30 mm de aire)</td>
                   <td class="tg-0pky">46</td>
                   <td class="tg-0pky"></td>
@@ -705,7 +714,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.03</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de aglomerado (25+30 mm de aire)</td>
                   <td class="tg-0pky">55</td>
                   <td class="tg-0pky"></td>
@@ -717,7 +726,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.03</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de aglomerado (25+30 mm de lana vidrio)</td>
                   <td class="tg-0pky">55</td>
                   <td class="tg-0pky"></td>
@@ -729,7 +738,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.03</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de aglomerado (16+30 mm de lana vidrio)</td>
                   <td class="tg-0pky">46</td>
                   <td class="tg-0pky"></td>
@@ -741,7 +750,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.04</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de aglomerado (8+30 mm de aire)</td>
                   <td class="tg-0pky">38</td>
                   <td class="tg-0pky"></td>
@@ -753,7 +762,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.08</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Madera compensada sin c˙mara</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -765,7 +774,7 @@
                   <td class="tg-0pky">0.10</td>
                   <td class="tg-0pky">0.08</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revestimiento de madera</td>
                   <td class="tg-0pky">65</td>
                   <td class="tg-0pky"></td>
@@ -777,7 +786,7 @@
                   <td class="tg-0pky">0.11</td>
                   <td class="tg-0pky">0.09</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de madera (18+40 mm de aire)</td>
                   <td class="tg-0pky">58</td>
                   <td class="tg-0pky"></td>
@@ -789,7 +798,7 @@
                   <td class="tg-0pky">0.07</td>
                   <td class="tg-0pky">0.09</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de aglomerado (8+30 mm de lana de vidrio)</td>
                   <td class="tg-0pky">38</td>
                   <td class="tg-0pky"></td>
@@ -801,7 +810,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.09</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles 25 mm sobre espacio de aire</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -813,7 +822,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.09</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de madera (16+40 mm de aire)</td>
                   <td class="tg-0pky">56</td>
                   <td class="tg-0pky"></td>
@@ -825,7 +834,7 @@
                   <td class="tg-0pky">0.07</td>
                   <td class="tg-0pky">0.10</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de contrachapado (6+50 mm de aire)</td>
                   <td class="tg-0pky">56</td>
                   <td class="tg-0pky"></td>
@@ -837,7 +846,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.13</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles sobre c˙mara aire (3+25 mm)</td>
                   <td class="tg-0pky">28</td>
                   <td class="tg-0pky"></td>
@@ -849,7 +858,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.14</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles sobre material poroso (3+25 mm)</td>
                   <td class="tg-0pky">28</td>
                   <td class="tg-0pky"></td>
@@ -861,7 +870,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.15</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de contrachapado (6+50 mm de lana de vidrio)</td>
                   <td class="tg-0pky">56</td>
                   <td class="tg-0pky"></td>
@@ -873,7 +882,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.16</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revestimiento de madera</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -885,7 +894,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.18</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revestimiento de madera</td>
                   <td class="tg-0pky">56</td>
                   <td class="tg-0pky"></td>
@@ -897,7 +906,7 @@
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky">0.18</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de contrachapado (5+50 mm de lana de vidrio)</td>
                   <td class="tg-0pky">55</td>
                   <td class="tg-0pky"></td>
@@ -909,7 +918,7 @@
                   <td class="tg-0pky">0.08</td>
                   <td class="tg-0pky">0.21</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de contrachapado delgado</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -921,7 +930,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.23</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de fibromadera con fieltro bituminoso y c˙mara</td>
                   <td class="tg-0pky">60</td>
                   <td class="tg-0pky"></td>
@@ -933,7 +942,7 @@
                   <td class="tg-0pky">0.10</td>
                   <td class="tg-0pky">0.24</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Paneles de contrachapado (6+50 mm de lana de vidrio)</td>
                   <td class="tg-0pky">56</td>
                   <td class="tg-0pky"></td>
@@ -945,7 +954,7 @@
                   <td class="tg-0pky">0.08</td>
                   <td class="tg-0pky">0.24</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revestimiento de madera</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -957,7 +966,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.28</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel perforado 5% sobre manto poroso 50mm</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -969,7 +978,7 @@
                   <td class="tg-0pky">0.30</td>
                   <td class="tg-0pky">0.54</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel perforado 5% sobre planchas poroso 50mm</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -981,7 +990,7 @@
                   <td class="tg-0pky">0.30</td>
                   <td class="tg-0pky">0.55</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel perforado +20% sobre manto poroso 50mm</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -993,7 +1002,7 @@
                   <td class="tg-0pky">0.90</td>
                   <td class="tg-0pky">0.67</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel perforado 10% sobre manto poroso 50mm</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -1005,7 +1014,7 @@
                   <td class="tg-0pky">0.75</td>
                   <td class="tg-0pky">0.67</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel perforado 10% sobre planchas poroso 50mm</td>
                   <td class="tg-0pky">53</td>
                   <td class="tg-0pky"></td>
@@ -1017,7 +1026,7 @@
                   <td class="tg-0pky">0.75</td>
                   <td class="tg-0pky">0.70</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Malla perforado +30% sobre manto poroso 50mm</td>
                   <td class="tg-0pky">76</td>
                   <td class="tg-0pky"></td>
@@ -1029,7 +1038,7 @@
                   <td class="tg-0pky">0.90</td>
                   <td class="tg-0pky">0.86</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Fieltro bituminoso doble Sobre c˙mara de aire</td>
                   <td class="tg-0pky">260</td>
                   <td class="tg-0pky"></td>
@@ -1041,7 +1050,7 @@
                   <td class="tg-0pky">0.10</td>
                   <td class="tg-0pky">0.18</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel r­gido RP25 Isover</td>
                   <td class="tg-0pky">25</td>
                   <td class="tg-0pky">35.0</td>
@@ -1053,7 +1062,7 @@
                   <td class="tg-0pky">1.00</td>
                   <td class="tg-0pky">0.78</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Panel r­gido RP50 Isover</td>
                   <td class="tg-0pky">50</td>
                   <td class="tg-0pky">35.0</td>
@@ -1065,7 +1074,7 @@
                   <td class="tg-0pky">1.00</td>
                   <td class="tg-0pky">0.94</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">M˙rmol</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1077,7 +1086,7 @@
                   <td class="tg-0pky">0.01</td>
                   <td class="tg-0pky">0.02</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Muro de sillares de piedra</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1089,7 +1098,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.02</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Pared revocada</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1101,7 +1110,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.02</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revoque de cal</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1113,7 +1122,7 @@
                   <td class="tg-0pky">0.07</td>
                   <td class="tg-0pky">0.03</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revoque sobre respaldo s˝lido</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1125,7 +1134,7 @@
                   <td class="tg-0pky">0.05</td>
                   <td class="tg-0pky">0.04</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revoque rugoso</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1137,7 +1146,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.05</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revoque de cemento</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1149,7 +1158,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.05</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Revoque de cal y arena</td>
                   <td class="tg-0pky">20</td>
                   <td class="tg-0pky"></td>
@@ -1161,7 +1170,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.06</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas pintadas de fibra 12mm contra pared</td>
                   <td class="tg-0pky">12</td>
                   <td class="tg-0pky"></td>
@@ -1173,7 +1182,7 @@
                   <td class="tg-0pky">0.15</td>
                   <td class="tg-0pky">0.10</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas pintadas de fibra sobre c˙mara (12+25mm)</td>
                   <td class="tg-0pky">37</td>
                   <td class="tg-0pky"></td>
@@ -1185,7 +1194,7 @@
                   <td class="tg-0pky">0.15</td>
                   <td class="tg-0pky">0.14</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de fibra 12mm contra pared</td>
                   <td class="tg-0pky">12</td>
                   <td class="tg-0pky"></td>
@@ -1197,7 +1206,7 @@
                   <td class="tg-0pky">0.30</td>
                   <td class="tg-0pky">0.20</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de fibra sobre c˙mara (12+25mm)</td>
                   <td class="tg-0pky">37</td>
                   <td class="tg-0pky"></td>
@@ -1209,7 +1218,7 @@
                   <td class="tg-0pky">0.30</td>
                   <td class="tg-0pky">0.29</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Vidrio de espejo</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1221,7 +1230,7 @@
                   <td class="tg-0pky">0.04</td>
                   <td class="tg-0pky">0.03</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso (13+100 mm de aire)</td>
                   <td class="tg-0pky">113</td>
                   <td class="tg-0pky"></td>
@@ -1233,7 +1242,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.05</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso (10+50 mm de aire)</td>
                   <td class="tg-0pky">60</td>
                   <td class="tg-0pky"></td>
@@ -1245,7 +1254,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.05</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Pared de placas de yeso (13+65+13 mm)</td>
                   <td class="tg-0pky">90</td>
                   <td class="tg-0pky"></td>
@@ -1257,7 +1266,7 @@
                   <td class="tg-0pky">0.03</td>
                   <td class="tg-0pky">0.06</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Pared de placas de yeso (13+65+13 mm con relleno)</td>
                   <td class="tg-0pky">90</td>
                   <td class="tg-0pky"></td>
@@ -1269,7 +1278,7 @@
                   <td class="tg-0pky">0.03</td>
                   <td class="tg-0pky">0.06</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso (13+30 mm lana de vidrio)</td>
                   <td class="tg-0pky">43</td>
                   <td class="tg-0pky"></td>
@@ -1281,7 +1290,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.07</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso (13+30 mm de aire)</td>
                   <td class="tg-0pky">43</td>
                   <td class="tg-0pky"></td>
@@ -1293,7 +1302,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.07</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso 13 mm sobre parantes</td>
                   <td class="tg-0pky"></td>
                   <td class="tg-0pky"></td>
@@ -1305,7 +1314,7 @@
                   <td class="tg-0pky">0.09</td>
                   <td class="tg-0pky">0.07</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso (13+100 mm lana de vidrio)</td>
                   <td class="tg-0pky">113</td>
                   <td class="tg-0pky"></td>
@@ -1317,7 +1326,7 @@
                   <td class="tg-0pky">0.03</td>
                   <td class="tg-0pky">0.08</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Pared de placas de yeso (13+90+13 mm con relleno)</td>
                   <td class="tg-0pky">115</td>
                   <td class="tg-0pky"></td>
@@ -1329,7 +1338,7 @@
                   <td class="tg-0pky">0.06</td>
                   <td class="tg-0pky">0.08</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Placas de yeso (10+50 mm lana de vidrio)</td>
                   <td class="tg-0pky">60</td>
                   <td class="tg-0pky"></td>
@@ -1341,7 +1350,7 @@
                   <td class="tg-0pky">0.02</td>
                   <td class="tg-0pky">0.08</td>
                 </tr>
-                <tr>
+                <tr class="table-body">
                   <td class="tg-0pky">Doble placa de yeso 2 x 16</td>
                   <td class="tg-0pky">32</td>
                   <td class="tg-0pky"></td>

@@ -2,7 +2,6 @@ function optionGetShortList() {
   var room = RoomObject;
   var list = ListOfSuggestedPoints;
   var volume = room.volume();
-  console.log(volume);
 
   if (!volume) {
     openPopup(CommentRoomKO);

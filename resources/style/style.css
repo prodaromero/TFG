@@ -46,7 +46,7 @@ details {
 
 summary {
   height: 20px;
-  width: 20px;
+  width: 20px;text-decoration: none;
   background-color: inherit;
   color: #404040;
   border-radius: 50%;
@@ -59,7 +59,7 @@ summary {
 }
 
 summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 button {
@@ -114,6 +114,93 @@ button:hover {
   visibility: visible;
   opacity: 1;
   transition: 0.5s;
+}
+
+#sidebar-menu {
+  position: fixed;
+  z-index: 1;
+  width: 300px;
+  height: 100%;
+  display: none;
+  margin-top: 75px;
+  background-color:#404040;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.sidebar-button {
+  display: block;
+  padding: 20px;
+  margin: auto;
+  text-align: left;
+  color: white;
+  text-decoration: none;
+  font-size:25px;
+  font-weight:700;
+  text-transform: uppercase;
+}
+
+.sidebar-button:hover {
+  font-weight: 900;
+  background-color: white;
+  color: black;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+.close-div {
+  width: 100%;
+  height: 70px;
+}
+
+.close-div a {
+  width:30px;
+  height:30px;
+  padding:10px;
+  margin:auto;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  float:right;
+  text-decoration:none;
+  font-size:30px;
+  font-weight:700;
+  color:white;
+  cursor: pointer;
+}
+
+.close-div a:before {
+  content:'x';
+}
+
+.close-div a:hover {
+  font-weight: 900;
+  background-color: white;
+  color: black;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+
+.init-menu {
+  width: auto;
+  height: 75px;
+  z-index: 1;
+  margin-left:15px;
+  margin-top: 5px;
+  float: left;
+  text-align:center;
+  font-size:70px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.init-menu:hover {
+  color: black;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
 }
 
 .menu-button {
@@ -223,16 +310,16 @@ button:hover {
   position: fixed;
   z-index: 1;
   width: 100%;
-  height: 75px;
+  height: 85px;
   background-color: #404040;
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .init-logo {
   z-index: 1;
-  width: 500px;
+  width: 600px;
   height: 70px;
-  float: left;
+  margin: auto;
   border-radius: 5px;
   background-color: inherit;
 }
@@ -242,7 +329,7 @@ button:hover {
   background-color: inherit;
   color: white;
   font-family: "Lato";
-  font-size: 45px;
+  font-size: 55px;
   font-weight: 700;
   letter-spacing: 3px;
   text-decoration: none;
@@ -262,54 +349,6 @@ button:hover {
   background-color: white;
   color: black;
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-}
-
-.init-menu {
-  float: right;
-  z-index: 1;
-  width: 60%;
-  height: 70px;
-  margin-top: 5px;
-  background-color: inherit;
-  display:inline-block;
-}
-
-.init-menu a{
-  width: auto;
-  height: 60px;
-  background-color: inherit;
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  outline: 0;
-  transition: 0.3s;
-  border-radius: 5px;
-  display:inline-block;
-  padding: 3px 6px;
-  text-align: center;
-  vertical-align:middle;
-  float: right;
-  margin-right: 5px;
-}
-
-.init-menu a:hover {
-  background-color: white;
-  color: black;
-  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-}
-
-.init-menu a:active {
-  background-color: Black;
-}
-
-.letter-menu {
-  font-family: "Lato";
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  margin-top: 20px;
-  text-transform: uppercase;
-  padding: 3px 6px;
 }
 
 .info-area div{
@@ -533,8 +572,6 @@ button:hover {
 
 /* TABLES STYLE */
 
-/*  techos */
-
 .tg{width:90%;margin:auto;margin-top:50px;margin-bottom:50px;border-collapse:collapse;border-spacing:0;}
 td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
@@ -544,6 +581,11 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 
 .tg-celda{border-color:inherit;vertical-align:top}
 .tx-center{text-align:center}
 .tx-left{text-align:left;}
+
+.table-body {
+  display: none;
+/*  display: inline;*/
+}
 
 .modal-background {
   display: none;
