@@ -1,7 +1,15 @@
 function optionGetShortList() {
-  if (ListOfSuggestedPoints[0][0].long ===  undefined) {
-    alert("Por favor, asegurese que ha introducido los parámetros del recinto.")
+  var room = RoomObject;
+  var list = ListOfSuggestedPoints;
+  var volume = room.volume();
+
+  if (!volume) {
+    openPopup(CommentRoomKO);
+  } else if (volume < MinimalVolume || room.long < MinimalDimension || room.wide < MinimalDimension || room.high < MinimalDimension) {
+    openPopup(CommentRoomSmall);
   }else{
+    initMultiplePoints(room, list);
+
     var table = document.createElement('table');
     var thead = document.createElement('thead');
     var tbody = document.createElement('tbody');
@@ -26,14 +34,14 @@ function optionGetShortList() {
     thead.appendChild(tr);
     table.appendChild(thead);
 
-    for (i = 0; i < ListOfSuggestedPoints.length; i++) {
+    for (i = 0; i < list.length; i++) {
       var tbodyTr = document.createElement('tr');
       var tbodyTdNumber = document.createElement('td');
-      tbodyTdNumber.innerHTML = i;
+      tbodyTdNumber.innerHTML = i+1;
       tbodyTr.appendChild(tbodyTdNumber);
-      for (j = 0; j < ListOfSuggestedPoints[i].length; j++) {
+      for (j = 0; j < list[i].length; j++) {
         var tbodyTd = document.createElement('td');
-        tbodyTd.innerHTML = ListOfSuggestedPoints[i][j].long+'[m],'+ListOfSuggestedPoints[i][j].wide+'[m],'+ListOfSuggestedPoints[i][j].high+'[m]';
+        tbodyTd.innerHTML = list[i][j].long+'[m],'+list[i][j].wide+'[m],'+list[i][j].high+'[m]';
         tbodyTr.appendChild(tbodyTd);
       }
       tbody.appendChild(tbodyTr);

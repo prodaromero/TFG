@@ -1,30 +1,59 @@
-function optionGetMinDistance(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
-
-  var room = new Room();
-  var source = new Object();
-  var microphone = new Object();
-
+function getGetMinDistance(t) {
+  var dmin, msg, id;
+  var room = RoomObject;
   var reverTime = parseFloat(document.getElementById(t).value);
+  var volume = room.volume();
 
-  /* Get room varianles */
-  getPosition(room,xv,yv,zv);
+  if (!volume) {
+    openPopup(CommentRoomKO);
+  } else if (!reverTime) {
+    openPopup(CommentReverTimeKO);
+  } else {
+    MinDistance = getMinDistance(room, reverTime);
+
+    dmin = getRound2Decimals(MinDistance);
+    id = "minDistanceMsg";
+    msg = '<div class="good">La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+dmin+' [m]</div>';
+
+    putMessage(id, msg);
+  }
+}
+
+function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
+
+  var room = RoomObject;
+  var source = Source;
+  var microphone = Microphone;
+  var volume = room.volume();
+  var reverTime = parseFloat(document.getElementById(t).value);
+  var controlMicro, controlSource;
 
   /* Get position of source */
   getPosition(source,xs,ys,zs);
-
   /* Get position of micro */
   getPosition(microphone,xm,ym,zm);
 
-  if (isInside(microphone.long,room.long) && isInside(microphone.wide,room.wide) && isInside(microphone.high,room.high) &&
-      isInside(source.long,room.long) && isInside(source.wide,room.wide) && isInside(source.high,room.high)) {
+  controlSource = source.long*source.wide*source.high;
+  controlMicro = microphone.long*microphone.wide*microphone.high;
 
+  if (!volume) {
+    openPopup(CommentRoomKO);
+  } else if (!reverTime) {
+    openPopup(CommentReverTimeKO);
+  } else if (!(controlSource) || !(controlMicro)) {
+    openPopup(CommentObjectKO);
+  } else if (!isObjectInsideRoom(source,room) || !isObjectInsideRoom(microphone,room)) {
+    openPopup(CommentObjectOutside);
+  } else if (!compliesRegulation(source) || !compliesRegulation(microphone)) {
+    openPopup(CommentRegulationKO);
+  } else {
     MinDistance = getMinDistance(room, reverTime)
-
+    console.log(MinDistance);
     var dis = distance(source, microphone)
 
     var ok = isCorrect(dis, MinDistance)
 
-    drawDistanceMsg(ok,MinDistance);
+    putOkDistanceMsg(ok,MinDistance);
 
     canvasSuperior = document.getElementById("canvasSuperior");
     canvasFrontal = document.getElementById("canvasFrontal");
@@ -64,12 +93,5 @@ function optionGetMinDistance(t,xv,yv,zv,xs,ys,zs,xm,ym,zm) {
     // draw the min distance
     drawDistance(canvasSuperior,source.long,source.wide,globalScale,MinDistance);
     drawDistance(canvasFrontal,source.long,source.high,globalScale,MinDistance);
-
-    getSourceMultiplePoints(room);
-    initSuggestedMultiplePoints(room)
-
-  } else {
-    alert("Parámetros fuera del rango.\nPor favor, asegurese de que los parámetros introducidos se encuentren dentro del recinto.")
   }
-
 }

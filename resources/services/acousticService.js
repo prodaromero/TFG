@@ -21,6 +21,10 @@ function isInside(pos,stop) {return ((pos >= 0) && (pos <= stop));}
 
 function isSameType(x,y,z) {return ((typeof(x) && typeof(y) && typeof(z)) === "number");}
 
+function isObjectInsideRoom(object, room) {
+  return isInside(object.long,room.long) && isInside(object.wide,room.wide) && isInside(object.high,room.high);
+}
+
 // ** Funciones getMinDistanceApp ** \\
 function distance(surceObject, microphoneObject) {
 
@@ -43,13 +47,7 @@ function getPosition(object,x,y,z) {
     object.long = 0;
     object.wide = 0;
     object.high = 0;
-    alert("Por favor, intruduzca valores validos")
   }
-
-  if (!compliesRegulation(object)) {
-    alert("Recuerda que según la normativa UNE-ISO 3382, la distancia mínima entre micro/fuente y cualquier superficie, debe ser de al menos 1 m.\n Revise los datos por favor.")
-  }
-
   return object;
 }
 
@@ -75,7 +73,7 @@ function getRoomAbsortionArea(roomObject) {
                 roomObject.surface_floor*roomObject.coef_abs_floor;
 }
 
-function getReverTimeSabine(roomObject,vol,area_absorcion) {
+function getReverTimeSabine(vol,area_absorcion) {
   var tr_sabine = (sabine_conts*vol)/area_absorcion;
   return getRound2Decimals(tr_sabine);
 }
@@ -87,14 +85,10 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
 
   ln = -Math.log(1-(area_absorcion)/surface);
 
-
   return getRound2Decimals((eyring_conts*vol)/(surface*ln));
 }
 
 function getRoomDimensions(roomObject, x,y,z) {
-  roomObject.long = parseFloat(document.getElementById(x).value);
-  roomObject.wide = parseFloat(document.getElementById(y).value);
-  roomObject.high = parseFloat(document.getElementById(z).value);
 
   roomObject.surface_wall_a = getSurface(roomObject.long,roomObject.high);
   roomObject.surface_wall_b = getSurface(roomObject.long,roomObject.high);
@@ -150,56 +144,56 @@ function getMicroMultiplePoints(roomObject, suggestedObject) {
   suggestedObject.high = list[2];
 }
 
-function getSourceMultiplePoints(roomObject) {
-  ListOfSuggestedPoints[0][0].long = DisMinimaSurface;
-  ListOfSuggestedPoints[0][0].wide = DisMinimaSurface;
-  ListOfSuggestedPoints[0][0].high = DisMinimaSurface;
+function initMultiplePoints(roomObject, listObject) {
+  listObject[0][0].long = DisMinimaSurface;
+  listObject[0][0].wide = DisMinimaSurface;
+  listObject[0][0].high = DisMinimaSurface;
 
-  ListOfSuggestedPoints[1][0].long = DisMinimaSurface;
-  ListOfSuggestedPoints[1][0].wide = roomObject.wide - DisMinimaSurface;
-  ListOfSuggestedPoints[1][0].high = DisMinimaSurface;
+  listObject[1][0].long = DisMinimaSurface;
+  listObject[1][0].wide = roomObject.wide - DisMinimaSurface;
+  listObject[1][0].high = DisMinimaSurface;
 
-  ListOfSuggestedPoints[2][0].long = roomObject.long - DisMinimaSurface;
-  ListOfSuggestedPoints[2][0].wide = roomObject.wide - DisMinimaSurface;
-  ListOfSuggestedPoints[2][0].high = DisMinimaSurface;
+  listObject[2][0].long = roomObject.long - DisMinimaSurface;
+  listObject[2][0].wide = roomObject.wide - DisMinimaSurface;
+  listObject[2][0].high = DisMinimaSurface;
 
-  ListOfSuggestedPoints[3][0].long = roomObject.long - DisMinimaSurface;
-  ListOfSuggestedPoints[3][0].wide = DisMinimaSurface;
-  ListOfSuggestedPoints[3][0].high = DisMinimaSurface;
+  listObject[3][0].long = roomObject.long - DisMinimaSurface;
+  listObject[3][0].wide = DisMinimaSurface;
+  listObject[3][0].high = DisMinimaSurface;
 
-  initSuggestedMultiplePoints(roomObject)
+  getSuggestedMultiplePoints(roomObject, listObject)
 }
 
 
-function initSuggestedMultiplePoints(roomObject) {
+function getSuggestedMultiplePoints(roomObject, listObject) {
   var dis, dis1, dis2;
-  for (var i = 0; i < ListOfSuggestedPoints.length; i++) {
-    for (var j = 1; j < ListOfSuggestedPoints[i].length; j++) {
-      getMicroMultiplePoints(roomObject, ListOfSuggestedPoints[i][j])
-      dis = distance(ListOfSuggestedPoints[i][0], ListOfSuggestedPoints[i][j]);
+  for (var i = 0; i < listObject.length; i++) {
+    for (var j = 1; j < listObject[i].length; j++) {
+      getMicroMultiplePoints(roomObject, listObject[i][j])
+      dis = distance(listObject[i][0], listObject[i][j]);
       switch (j) {
         case 1:
           while (dis < MinDistance) {
-            getMicroMultiplePoints(roomObject, ListOfSuggestedPoints[i][j]);
-            dis = distance(ListOfSuggestedPoints[i][0], ListOfSuggestedPoints[i][j]);
+            getMicroMultiplePoints(roomObject, listObject[i][j]);
+            dis = distance(listObject[i][0], listObject[i][j]);
           }
           break;
         case 2:
-          dis1 = distance(ListOfSuggestedPoints[i][j-1], ListOfSuggestedPoints[i][j]);
+          dis1 = distance(listObject[i][j-1], listObject[i][j]);
           while (dis < MinDistance || dis1 < DisMinimaMicro) {
-            getMicroMultiplePoints(roomObject, ListOfSuggestedPoints[i][j]);
-            dis = distance(ListOfSuggestedPoints[i][0], ListOfSuggestedPoints[i][j]);
-            dis1 = distance(ListOfSuggestedPoints[i][j-1], ListOfSuggestedPoints[i][j]);
+            getMicroMultiplePoints(roomObject, listObject[i][j]);
+            dis = distance(listObject[i][0], listObject[i][j]);
+            dis1 = distance(listObject[i][j-1], listObject[i][j]);
           }
           break;
         case 3:
-          dis1 = distance(ListOfSuggestedPoints[i][j-1], ListOfSuggestedPoints[i][j]);
-          dis2 = distance(ListOfSuggestedPoints[i][j-2], ListOfSuggestedPoints[i][j]);
+          dis1 = distance(listObject[i][j-1], listObject[i][j]);
+          dis2 = distance(listObject[i][j-2], listObject[i][j]);
           while (dis < DisMinimaMicro || dis1 < DisMinimaMicro || dis2 < DisMinimaMicro) {
-            getMicroMultiplePoints(roomObject, ListOfSuggestedPoints[i][j])
-            dis = distance(ListOfSuggestedPoints[i][0], ListOfSuggestedPoints[i][j]);
-            dis1 = distance(ListOfSuggestedPoints[i][j-1], ListOfSuggestedPoints[i][j]);
-            dis2 = distance(ListOfSuggestedPoints[i][j-2], ListOfSuggestedPoints[i][j]);
+            getMicroMultiplePoints(roomObject, listObject[i][j])
+            dis = distance(listObject[i][0], listObject[i][j]);
+            dis1 = distance(listObject[i][j-1], listObject[i][j]);
+            dis2 = distance(listObject[i][j-2], listObject[i][j]);
           }
           break;
         default:
