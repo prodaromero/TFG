@@ -162,13 +162,13 @@
           <div class="canvas-display">
             <div class="display-one">
               <h2><i>Planta</i></h2>
-              <canvas id="canvasSuperior" width="300" height="300" style="border:1px solid #000000;">
+              <canvas id="canvasPlanta" width="300" height="300" style="border:1px solid #000000;">
               Please use a browser that supports "canvas"
             </div>
 
             <div class="display-two">
               <h2><i>Alzado</i></h2>
-              <canvas id="canvasFrontal"  width="300" height="300" style="border:1px solid #000000;">
+              <canvas id="canvasAlzado"  width="300" height="300" style="border:1px solid #000000;">
               Please use a browser that supports "canvas"
             </div>
           </div>
@@ -251,7 +251,7 @@
         <h3 class="content-title">Propuesta de puntos de medición</h3>
         <div class="contenedor-principal">
           <div class="suggested-display">
-              <button class="menu-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+              <button class="calculate-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
             <div id="suggested-list"></div>
             <div class="empty"></div>
           </div>
@@ -264,35 +264,10 @@
         <h3 class="content-title">Tiempo de reverberación</h3>
         <div class="contenedor-principal">
           <div align="center">
-              <button class="menu-button" onclick="optionGetReverberationTime('Sabine',
-              'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
-              'coef_suelo-1')">Calcular tiempo de reverberación por Sabine</button>
-              <button class="menu-button" onclick="optionGetReverberationTime('Eyring',
-              'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
-              'coef_suelo-1')">Tiempo de reverberación por Eyring</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'normal')">Tiempo de reverberación</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Tiempo de reverberación por octavas</button>
           </div>
-
-          <div class="reverberation-time">
-            <details class="info-area">
-              <summary>i</summary>
-              <div>
-                <h2>Cálculo del tiempo de reverberación por Sabine</h2>
-                <p>
-                  Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
-                </p>
-                <br>
-                <p>
-                  Se pretende proveer de una herramienta para simular el tiempo de
-                  reverberación según la Teoría de Sabine.
-                </p>
-                <br>
-                <p>
-                  Según esta Teoría, el tiempo de reverberación se calcula de la
-                  siguiente manera:
-                </p>
-                <img src="resources/style/images/sabine-formula.PNG" class="reverberation-image"></img>
-              </div>
-            </details>
+          <div id="normal" class="reverberation-time">
             <div class="rever-display">
               <div id="coefRecinto">
                 <h4>Coeficientes de absorción</h4>
@@ -323,9 +298,58 @@
               </div>
               <div class="empty"></div>
               <div id="putTR"></div>
-              <div class="empty"></div>
+              <div align="center">
+                <button class="calculate-button" onclick="optionGetReverberationTime('Sabine',
+                  'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+                  'coef_suelo-1')">Tiempo de reverberación por Sabine</button>
+                <button class="calculate-button" onclick="optionGetReverberationTime('Eyring',
+                  'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+                  'coef_suelo-1')">Tiempo de reverberación por Eyring</button>
+              </div>
             </div>
           </div>
+          <div id="octaves" class="reverberation-time">
+            <div class="rever-display">
+              <div id="coefRecintoOctaves">
+                <h4>Coeficientes de absorción por bandas de octava</h4>
+                <div class="in-box">
+                  <input id="coef_techo-1" class="info-input" placeholder="Coef. abs. Techo" />
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_1-1" class="info-input" placeholder="Coef. abs. Pared 1">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_2-1" class="info-input" placeholder="Coef. abs. Pared 2">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_3-1" class="info-input" placeholder="Coef. abs. Pared 3">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_4-1" class="info-input" placeholder="Coef. abs. Pared 4">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_suelo-1" class="info-input" placeholder="Coef. abs. Suelo">
+                  <span class="focus-border"></span>
+                </div>
+              </div>
+              <div class="empty"></div>
+              <div id="putTR"></div>
+              <div align="center">
+                <button class="calculate-button" onclick="optionGetReverberationTime('Sabine',
+                  'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+                  'coef_suelo-1')">Tiempo de reverberación por Sabine</button>
+                <button class="calculate-button" onclick="optionGetReverberationTime('Eyring',
+                  'coef_techo-1','coef_pared_1-1','coef_pared_2-1', 'coef_pared_3-1', 'coef_pared_4-1',
+                  'coef_suelo-1')">Tiempo de reverberación por Eyring</button>
+              </div>
+            </div>
+          </div>
+          <div class="empty"></div>
         </div>
       </div>
 

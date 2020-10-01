@@ -469,7 +469,11 @@ button:hover {
   text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
 }
 
-#tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #dimRecinto {
+.rever {
+  width: 35%;
+}
+
+#tiempoRever, #dimFuente, #dimMicro, #coefRecinto, #coefRecintoOctaves, #dimRecinto {
   position: relative;
   color: white;
   letter-spacing: 2px;
@@ -499,9 +503,13 @@ button:hover {
   height: auto;
 }
 
-#eyring {display: none}
-#tabTecho {display: none}
-#tabSuelo {display: none}
+#coefRecintoOctaves {
+  width: 60%;
+}
+
+#octaves {
+  display: none;
+}
 
 #inputValue {
   height: 40px;

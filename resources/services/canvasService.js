@@ -163,16 +163,16 @@ function render(canvasOne,canvasTwo) {
 }
 
 function myCanvas(a,b) {
-  canvasSuperior = document.getElementById("canvasSuperior");
-  canvasFrontal = document.getElementById("canvasFrontal");
+  canvasPlanta = document.getElementById("canvasPlanta");
+  canvasAlzado = document.getElementById("canvasAlzado");
 
-  if (!canvasSuperior && !canvasFrontal) {
+  if (!canvasPlanta && !canvasAlzado) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
   }
 
-  ctxSuperior = canvasSuperior.getContext("2d");
-  ctxFrontal = canvasFrontal.getContext("2d");
+  ctxSuperior = canvasPlanta.getContext("2d");
+  ctxFrontal = canvasAlzado.getContext("2d");
 
   drawAxes(ctxSuperior);
   drawText(ctxSuperior,"x [m]",[250,290]);

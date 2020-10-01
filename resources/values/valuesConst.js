@@ -24,6 +24,7 @@ var speedSound = 341;
 /* ACOUSTIC VALUES */
 
 var ReverberationTime;
+var ReverberationTimeOctaves = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 var MinDistance;
 
 var DisMinimaSurface = 1;
