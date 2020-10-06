@@ -12,6 +12,7 @@ var globalScale = {
 var maxLong = 230;
 var minLong = 200;
 var start = 40;
+var ObjectRadius = 5;
 var Red = "red";
 var Blue = "blue";
 var Black = "black";
