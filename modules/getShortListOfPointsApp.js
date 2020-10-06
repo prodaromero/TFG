@@ -10,7 +10,11 @@ function optionGetShortList() {
   }else{
     initMultiplePoints(room, list);
 
+    var tbl = document.getElementById('suggested-table');
+    if (tbl) {tbl.parentNode.removeChild(tbl);}
+
     var table = document.createElement('table');
+    table.setAttribute("id", "suggested-table");
     var thead = document.createElement('thead');
     var tbody = document.createElement('tbody');
     var tr = document.createElement('tr');

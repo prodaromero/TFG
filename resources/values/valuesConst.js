@@ -12,18 +12,29 @@ var globalScale = {
 var maxLong = 230;
 var minLong = 200;
 var start = 40;
-var red = "red";
-var blue = "blue";
+var Red = "red";
+var Blue = "blue";
+var Black = "black";
+var OpacityMax = 1;
+var OpacityMin = 0.3;
 var inside = false;
 
-var sabine_conts = 0.16;
-var eyring_conts = 0.162;
+var sabine_conts = 0.161;
+var eyring_conts = 0.16;
 
 var speedSound = 341;
 
+var Arial20 = "20px Arial";
+var Arial10 = "10px Arial";
+
+var FactorConversionTR = 60;
+
 /* ACOUSTIC VALUES */
 
-var ReverberationTime;
+var ReverberationTimeSabine;
+var ReverberationTimeEyring;
+var ReverberationTimeOctavesSabine = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+var ReverberationTimeOctavesEyring = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 var MinDistance;
 
 var DisMinimaSurface = 1;

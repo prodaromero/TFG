@@ -48,50 +48,50 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
     openPopup(CommentRegulationKO);
   } else {
     MinDistance = getMinDistance(room, reverTime)
-    console.log(MinDistance);
     var dis = distance(source, microphone)
 
     var ok = isCorrect(dis, MinDistance)
 
     putOkDistanceMsg(ok,MinDistance);
 
-    canvasSuperior = document.getElementById("canvasSuperior");
-    canvasFrontal = document.getElementById("canvasFrontal");
+    canvasPlanta = document.getElementById("canvasPlanta");
+    canvasAlzado = document.getElementById("canvasAlzado");
 
-    if (!canvasSuperior && !canvasFrontal) {
+    if (!canvasPlanta && !canvasAlzado) {
       console.log('Failed to retrieve the <canvas> element');
       return false;
     }
 
-    ctxSuperior = canvasSuperior.getContext("2d");
-    ctxFrontal = canvasFrontal.getContext("2d");
+    ctxSuperior = canvasPlanta.getContext("2d");
+    ctxFrontal = canvasAlzado.getContext("2d");
 
     globalScale.xScale = getScale(room.long,normalScale);
     globalScale.yScale = getScale(room.wide,normalScale);
     globalScale.zScale = getScale(room.high,normalScale);
 
-    render(canvasSuperior, canvasFrontal);
+    renderDistances(canvasPlanta);
+    renderDistances(canvasAlzado);
 
     drawAxes(ctxSuperior);
-    drawText(ctxSuperior,"x [m]",[250,290]);
-    drawText(ctxSuperior,"y [m]",[10,20]);
+    drawText(ctxSuperior,Arial20,"x [m]",[250,290]);
+    drawText(ctxSuperior,Arial20,"y [m]",[10,20]);
     drawAxes(ctxFrontal);
-    drawText(ctxFrontal,"x [m]",[250,290]);
-    drawText(ctxFrontal,"z [m]",[10,20]);
+    drawText(ctxFrontal,Arial20,"x [m]",[250,290]);
+    drawText(ctxFrontal,Arial20,"z [m]",[10,20]);
 
-    drawRoom(canvasSuperior,room.long,room.wide, globalScale);
-    drawRoom(canvasFrontal,room.long,room.high, globalScale);
-
-    // draw the source
-    drawObjet(canvasSuperior,source.long,source.wide,globalScale,red);
-    drawObjet(canvasFrontal,source.long,source.high,globalScale,red);
+    drawRoom(canvasPlanta,room.long,room.wide, globalScale);
+    drawRoom(canvasAlzado,room.long,room.high, globalScale);
 
     // draw the source
-    drawObjet(canvasSuperior,microphone.long,microphone.wide,globalScale,blue);
-    drawObjet(canvasFrontal,microphone.long,microphone.high,globalScale,blue);
+    drawObjet(canvasPlanta,source.long,source.wide,globalScale,Red);
+    drawObjet(canvasAlzado,source.long,source.high,globalScale,Red);
+
+    // draw the source
+    drawObjet(canvasPlanta,microphone.long,microphone.wide,globalScale,Blue);
+    drawObjet(canvasAlzado,microphone.long,microphone.high,globalScale,Blue);
 
     // draw the min distance
-    drawDistance(canvasSuperior,source.long,source.wide,globalScale,MinDistance);
-    drawDistance(canvasFrontal,source.long,source.high,globalScale,MinDistance);
+    drawDistance(canvasPlanta,source.long,source.wide,globalScale,MinDistance);
+    drawDistance(canvasAlzado,source.long,source.high,globalScale,MinDistance);
   }
 }
