@@ -58,24 +58,40 @@ function getMinDistance(roomObject,reverTime) {
 }
 
 // ** Funciones getReverberationTimeApp ** \\
-function getRoomSurface(roomObject) {
-  return roomObject.surface_wall_a + roomObject.surface_wall_b +
-          roomObject.surface_wall_c + roomObject.surface_wall_d +
-          roomObject.surface_floor + roomObject.surface_roof;
+
+function getRoomDimensions(roomObject) {
+
+  // roomObject.surface_wall_a = getSurface(roomObject.long,roomObject.high);
+  // roomObject.surface_wall_b = getSurface(roomObject.long,roomObject.high);
+  // roomObject.surface_wall_c = getSurface(roomObject.wide,roomObject.high);
+  // roomObject.surface_wall_d = getSurface(roomObject.wide,roomObject.high);
+  var walls = 2*getSurface(roomObject.wide,roomObject.long) + 2*getSurface(roomObject.wide,roomObject.high);
+  roomObject.surface_floor = getSurface(roomObject.wide,roomObject.long);
+  roomObject.surface_roof  = getSurface(roomObject.wide,roomObject.long);
+  roomObject.surface_wall  = walls;
 }
 
-function getRoomAbsortionArea(roomObject,roof,a,b,c,d,floor) {
-  return roomObject.surface_roof*roomObject.roof +
-                roomObject.surface_wall_a*roomObject.a +
-                roomObject.surface_wall_b*roomObject.b +
-                roomObject.surface_wall_c*roomObject.c +
-                roomObject.surface_wall_d*roomObject.d +
-                roomObject.surface_floor*roomObject.floor;
+function getRoomAbsortionArea(roomObject,coef_pared,coef_techo,coef_suelo) {
+  // return roomObject.surface_roof*roomObject.roof +
+  //               roomObject.surface_wall_a*roomObject.a +
+  //               roomObject.surface_wall_b*roomObject.b +
+  //               roomObject.surface_wall_c*roomObject.c +
+  //               roomObject.surface_wall_d*roomObject.d +
+  //               roomObject.surface_floor*roomObject.floor;
+  return roomObject.surface_wall*coef_pared +
+          roomObject.surface_roof*coef_techo +
+          roomObject.surface_floor*coef_suelo;
 }
 
 function getReverTimeSabine(vol,area_absorcion) {
   var tr_sabine = (sabine_conts*vol)/area_absorcion;
   return getRound2Decimals(tr_sabine);
+}
+
+function getRoomSurface(roomObject) {
+  return roomObject.surface_wall +
+          roomObject.surface_floor +
+          roomObject.surface_roof;
 }
 
 function getReverTimeEyring(roomObject,vol,area_absorcion) {
@@ -88,130 +104,82 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
   return getRound2Decimals((eyring_conts*vol)/(surface*ln));
 }
 
-function getRoomDimensions(roomObject, x,y,z) {
-
-  roomObject.surface_wall_a = getSurface(roomObject.long,roomObject.high);
-  roomObject.surface_wall_b = getSurface(roomObject.long,roomObject.high);
-  roomObject.surface_wall_c = getSurface(roomObject.wide,roomObject.high);
-  roomObject.surface_wall_d = getSurface(roomObject.wide,roomObject.high);
-  roomObject.surface_floor  = getSurface(roomObject.wide,roomObject.long);
-  roomObject.surface_roof   = getSurface(roomObject.wide,roomObject.long);
+function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared) {
+  // roomObject.coef_abs_wall_a =  parseFloat(document.getElementById(coef_pared_1).value);
+  // roomObject.coef_abs_wall_b =  parseFloat(document.getElementById(coef_pared_2).value);
+  // roomObject.coef_abs_wall_c =  parseFloat(document.getElementById(coef_pared_3).value);
+  // roomObject.coef_abs_wall_d =  parseFloat(document.getElementById(coef_pared_4).value);
+  roomObject.coef_abs_roof  = coef_techo;
+  roomObject.coef_abs_floor = coef_suelo;
+  roomObject.coef_abs_wall  = coef_pared;
 }
 
-function getRoomAbsocionCoef(roomObject,coef_techo,coef_pared_1,coef_pared_2,
-                            coef_pared_3,coef_pared_4,coef_suelo) {
-  roomObject.coef_abs_roof =  parseFloat(document.getElementById(coef_techo).value);
-  roomObject.coef_abs_wall_a =  parseFloat(document.getElementById(coef_pared_1).value);
-  roomObject.coef_abs_wall_b =  parseFloat(document.getElementById(coef_pared_2).value);
-  roomObject.coef_abs_wall_c =  parseFloat(document.getElementById(coef_pared_3).value);
-  roomObject.coef_abs_wall_d =  parseFloat(document.getElementById(coef_pared_4).value);
-  roomObject.coef_abs_floor =  parseFloat(document.getElementById(coef_suelo).value);
-}
-
-function getRoomAbsocionCoefOctaves(roomObject,coef_techo,coef_pared_1,coef_pared_2,
-                            coef_pared_3,coef_pared_4,coef_suelo) {
-  roomObject.coef_abs_roof =  parseFloat(document.getElementById(coef_techo).value);
-  roomObject.coef_abs_wall_a =  parseFloat(document.getElementById(coef_pared_1).value);
-  roomObject.coef_abs_wall_b =  parseFloat(document.getElementById(coef_pared_2).value);
-  roomObject.coef_abs_wall_c =  parseFloat(document.getElementById(coef_pared_3).value);
-  roomObject.coef_abs_wall_d =  parseFloat(document.getElementById(coef_pared_4).value);
-  roomObject.coef_abs_floor =  parseFloat(document.getElementById(coef_suelo).value);
-}
+// function getRoomAbsocionCoefOctaves(roomObject,coef_techo,coef_pared_1,coef_pared_2,
+//                             coef_pared_3,coef_pared_4,coef_suelo) {
+//   roomObject.coef_abs_roof =  parseFloat(document.getElementById(coef_techo).value);
+//   roomObject.coef_abs_wall_a =  parseFloat(document.getElementById(coef_pared_1).value);
+//   roomObject.coef_abs_wall_b =  parseFloat(document.getElementById(coef_pared_2).value);
+//   roomObject.coef_abs_wall_c =  parseFloat(document.getElementById(coef_pared_3).value);
+//   roomObject.coef_abs_wall_d =  parseFloat(document.getElementById(coef_pared_4).value);
+//   roomObject.coef_abs_floor =  parseFloat(document.getElementById(coef_suelo).value);
+// }
 
 function getRoomAbsocionCoefOctaves(roomObject,
-                            a_125,a_250,a_2000,a_4000,
-                            b_125,b_250,b_500,b_1000,b_2000,b_4000,
-                            c_125,c_250,c_500,c_1000,c_2000,c_4000,
-                            d_125,d_250,d_500,d_1000,d_2000,d_4000,
-                            suelo_125,suelo_250,suelo_500,suelo_1000,suelo_200,suelo_4000,
-                            techo_125,techo_250,techo_500,techo_1000,techo_200,techo_4000) {
-  roomObject.coef_abs_wall_a_125 = parseFloat(document.getElementById(a_125).value);
-  roomObject.coef_abs_wall_a_250 = parseFloat(document.getElementById(a_250).value);
-  roomObject.coef_abs_wall_a_500 = parseFloat(document.getElementById(a_500).value);
-  roomObject.coef_abs_wall_a_1000 = parseFloat(document.getElementById(a_1000).value);
-  roomObject.coef_abs_wall_a_2000 = parseFloat(document.getElementById(a_2000,).value);
-  roomObject.coef_abs_wall_a_4000 = parseFloat(document.getElementById(a_4000).value);
-  roomObject.coef_abs_wall_b_125 = parseFloat(document.getElementById(b_125).value);
-  roomObject.coef_abs_wall_b_250 = parseFloat(document.getElementById(b_250).value);
-  roomObject.coef_abs_wall_b_500 = parseFloat(document.getElementById(b_500).value);
-  roomObject.coef_abs_wall_b_1000 = parseFloat(document.getElementById(b_1000).value);
-  roomObject.coef_abs_wall_b_2000 = parseFloat(document.getElementById(b_2000).value);
-  roomObject.coef_abs_wall_b_4000 = parseFloat(document.getElementById(b_4000).value);
-  roomObject.coef_abs_wall_c_125 = parseFloat(document.getElementById(c_125).value);
-  roomObject.coef_abs_wall_c_250 = parseFloat(document.getElementById(c_250).value);
-  roomObject.coef_abs_wall_c_500 = parseFloat(document.getElementById(c_500).value);
-  roomObject.coef_abs_wall_c_1000 = parseFloat(document.getElementById(c_1000).value);
-  roomObject.coef_abs_wall_c_2000 = parseFloat(document.getElementById(c_2000).value);
-  roomObject.coef_abs_wall_c_4000 = parseFloat(document.getElementById(c_4000).value);
-  roomObject.coef_abs_wall_d_125 = parseFloat(document.getElementById(d_125).value);
-  roomObject.coef_abs_wall_d_250 = parseFloat(document.getElementById(d_250).value);
-  roomObject.coef_abs_wall_d_500 = parseFloat(document.getElementById(d_500).value);
-  roomObject.coef_abs_wall_d_1000 = parseFloat(document.getElementById(d_1000).value);
-  roomObject.coef_abs_wall_d_2000 = parseFloat(document.getElementById(d_2000).value);
-  roomObject.coef_abs_wall_d_4000 = parseFloat(document.getElementById(d_4000).value);
-  roomObject.coef_abs_wall_floor_125 = parseFloat(document.getElementById(suelo_125).value);
-  roomObject.coef_abs_wall_floor_250 = parseFloat(document.getElementById(suelo_250).value);
-  roomObject.coef_abs_wall_floor_500 = parseFloat(document.getElementById(suelo_500).value);
-  roomObject.coef_abs_wall_floor_1000 = parseFloat(document.getElementById(suelo_1000).value);
-  roomObject.coef_abs_wall_floor_2000 = parseFloat(document.getElementById(suelo_200).value);
-  roomObject.coef_abs_wall_floor_4000 = parseFloat(document.getElementById(suelo_4000).value);
-  roomObject.coef_abs_wall_roof_125 = parseFloat(document.getElementById(techo_125).value);
-  roomObject.coef_abs_wall_roof_250 = parseFloat(document.getElementById(techo_250).value);
-  roomObject.coef_abs_wall_roof_500 = parseFloat(document.getElementById(techo_500).value);
-  roomObject.coef_abs_wall_roof_1000 = parseFloat(document.getElementById(techo_1000).value);
-  roomObject.coef_abs_wall_roof_2000 = parseFloat(document.getElementById(techo_200).value);
-  roomObject.coef_abs_wall_roof_4000 = parseFloat(document.getElementById(techo_4000).value);
+                            pared_125,pared_250,pared_500,pared_1000,pared_2000,pared_4000,
+                            suelo_125,suelo_250,suelo_500,suelo_1000,suelo_2000,suelo_4000,
+                            techo_125,techo_250,techo_500,techo_1000,techo_2000,techo_4000) {
+  roomObject.coef_abs_wall_125   = pared_125
+  roomObject.coef_abs_wall_250   = pared_250
+  roomObject.coef_abs_wall_500   = pared_500
+  roomObject.coef_abs_wall_1000  = pared_1000
+  roomObject.coef_abs_wall_2000  = pared_2000
+  roomObject.coef_abs_wall_4000  = pared_4000;
+  roomObject.coef_abs_floor_125  = suelo_125;
+  roomObject.coef_abs_floor_250  = suelo_250;
+  roomObject.coef_abs_floor_500  = suelo_500;
+  roomObject.coef_abs_floor_1000 = suelo_1000;
+  roomObject.coef_abs_floor_2000 = suelo_2000;
+  roomObject.coef_abs_floor_4000 = suelo_4000;
+  roomObject.coef_abs_roof_125   = techo_125;
+  roomObject.coef_abs_roof_250   = techo_250;
+  roomObject.coef_abs_roof_500   = techo_500;
+  roomObject.coef_abs_roof_1000  = techo_1000;
+  roomObject.coef_abs_roof_2000  = techo_2000;
+  roomObject.coef_abs_roof_4000  = techo_4000;
 }
 
 function absortionCoefOk(roomObject) {
   return (
+    // isCorrectCoef(roomObject.coef_abs_wall_a) &&
+    // isCorrectCoef(roomObject.coef_abs_wall_b) &&
+    // isCorrectCoef(roomObject.coef_abs_wall_c) &&
+    // isCorrectCoef(roomObject.coef_abs_wall_d) &&
     isCorrectCoef(roomObject.coef_abs_roof) &&
-    isCorrectCoef(roomObject.coef_abs_wall_a) &&
-    isCorrectCoef(roomObject.coef_abs_wall_b) &&
-    isCorrectCoef(roomObject.coef_abs_wall_c) &&
-    isCorrectCoef(roomObject.coef_abs_wall_d) &&
-    isCorrectCoef(roomObject.coef_abs_floor)
+    isCorrectCoef(roomObject.coef_abs_floor) &&
+    isCorrectCoef(roomObject.coef_abs_wall)
   )
 }
 
 function absortionCoefOkOctaves(roomObject) {
   return (
-    isCorrectCoef(this.coef_abs_wall_a_125) &&
-    isCorrectCoef(this.coef_abs_wall_a_250) &&
-    isCorrectCoef(this.coef_abs_wall_a_500) &&
-    isCorrectCoef(this.coef_abs_wall_a_1000) &&
-    isCorrectCoef(this.coef_abs_wall_a_2000) &&
-    isCorrectCoef(this.coef_abs_wall_a_4000) &&
-    isCorrectCoef(this.coef_abs_wall_b_125) &&
-    isCorrectCoef(this.coef_abs_wall_b_250) &&
-    isCorrectCoef(this.coef_abs_wall_b_500) &&
-    isCorrectCoef(this.coef_abs_wall_b_1000) &&
-    isCorrectCoef(this.coef_abs_wall_b_2000) &&
-    isCorrectCoef(this.coef_abs_wall_b_4000) &&
-    isCorrectCoef(this.coef_abs_wall_c_125) &&
-    isCorrectCoef(this.coef_abs_wall_c_250) &&
-    isCorrectCoef(this.coef_abs_wall_c_500) &&
-    isCorrectCoef(this.coef_abs_wall_c_1000) &&
-    isCorrectCoef(this.coef_abs_wall_c_2000) &&
-    isCorrectCoef(this.coef_abs_wall_c_4000) &&
-    isCorrectCoef(this.coef_abs_wall_d_125) &&
-    isCorrectCoef(this.coef_abs_wall_d_250) &&
-    isCorrectCoef(this.coef_abs_wall_d_500) &&
-    isCorrectCoef(this.coef_abs_wall_d_1000) &&
-    isCorrectCoef(this.coef_abs_wall_d_2000) &&
-    isCorrectCoef(this.coef_abs_wall_d_4000) &&
-    isCorrectCoef(this.coef_abs_wall_floor_125) &&
-    isCorrectCoef(this.coef_abs_wall_floor_250) &&
-    isCorrectCoef(this.coef_abs_wall_floor_500) &&
-    isCorrectCoef(this.coef_abs_wall_floor_1000) &&
-    isCorrectCoef(this.coef_abs_wall_floor_2000) &&
-    isCorrectCoef(this.coef_abs_wall_floor_4000) &&
-    isCorrectCoef(this.coef_abs_wall_roof_125) &&
-    isCorrectCoef(this.coef_abs_wall_roof_250) &&
-  	isCorrectCoef(this.coef_abs_wall_roof_500) &&
-  	isCorrectCoef(this.coef_abs_wall_roof_1000) &&
-  	isCorrectCoef(this.coef_abs_wall_roof_2000) &&
-  	isCorrectCoef(this.coef_abs_wall_roof_4000)
+    isCorrectCoef(roomObject.coef_abs_wall_125) &&
+    isCorrectCoef(roomObject.coef_abs_wall_250) &&
+    isCorrectCoef(roomObject.coef_abs_wall_500) &&
+    isCorrectCoef(roomObject.coef_abs_wall_1000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_2000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_4000) &&
+    isCorrectCoef(roomObject.coef_abs_floor_125) &&
+    isCorrectCoef(roomObject.coef_abs_floor_250) &&
+    isCorrectCoef(roomObject.coef_abs_floor_500) &&
+    isCorrectCoef(roomObject.coef_abs_floor_1000) &&
+    isCorrectCoef(roomObject.coef_abs_floor_2000) &&
+    isCorrectCoef(roomObject.coef_abs_floor_4000) &&
+    isCorrectCoef(roomObject.coef_abs_roof_125) &&
+    isCorrectCoef(roomObject.coef_abs_roof_250) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_500) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_1000) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_2000) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_4000)
   )
 }
 

@@ -34,11 +34,10 @@ function searchInSelectionTable() {
       nrcValue = nrc.textContent || nrc.innerText;
       if (nameValue.toUpperCase().indexOf(filter) > -1 || nrcValue.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "table-row";
-        break;
       }
     }
-    if (!filter) {
-      tr[i].style.display = "none";
+    if (filter == "") {
+     tr[i].style.display = "none";
     }
   }
 }
@@ -58,7 +57,6 @@ function searchInAllTable() {
       if (cell) {
         if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "table-row";
-          break;
         }
       }
     }
@@ -97,13 +95,18 @@ function putOkDistanceMsg(isok,dmin) {
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
 
-function putReverTimeMsg(op,tr) {
-  var msg = '<div class="divReverTime">El tiempo de reverberación de '+op+' es de '+tr+' [s].</div>'
+function putReverTimeMsg(op,trS,trE) {
+  var msg = '<div class="good">El tiempo de reverberación por Sabine es de '+trS+'[s].<br/>El tiempo de reverberación por Eyring es de '+trE+'[s].</div>'
   putMessage('putTR',msg)
 }
 
-function createReverberationTable() {
+function createReverberationTable(listSabine, listEyring) {
+
+  var tbl = document.getElementById('rever-table');
+  if (tbl) {tbl.parentNode.removeChild(tbl);}
+
   var table = document.createElement('table');
+  table.setAttribute("id", "rever-table");
   var thead = document.createElement('thead');
   var tbody = document.createElement('tbody');
   var tr = document.createElement('tr');
@@ -132,29 +135,33 @@ function createReverberationTable() {
 
   thead.appendChild(tr);
   table.appendChild(thead);
-
-  for (i = 0; i < list.length; i++) {
-    var tbodyTr = document.createElement('tr');
-    var tbodyTdNumber = document.createElement('td');
-    switch (i) {
-      case 0:tbodyTdNumber.innerHTML = "Techo";break;
-      case 1:tbodyTdNumber.innerHTML = "Pared 1";break;
-      case 2:tbodyTdNumber.innerHTML = "Pared 2";break;
-      case 3:tbodyTdNumber.innerHTML = "Pared 3";break;
-      case 4:tbodyTdNumber.innerHTML = "Pared 4";break;
-      case 5:tbodyTdNumber.innerHTML = "Suelo";break;
-      default:break;
-    }
-    tbodyTr.appendChild(tbodyTdNumber);
-
+  // Sabine
+  var tbodyTrS = document.createElement('tr');
+  var tbodyTdOptionS = document.createElement('td');
+  tbodyTdOptionS.innerHTML="Tr. Sabine";
+  tbodyTrS.appendChild(tbodyTdOptionS);
+  for (i = 0; i < listSabine.length; i++) {
     var tbodyTd = document.createElement('td');
-    tbodyTd.innerHTML = list[i]+'s';
-    tbodyTr.appendChild(tbodyTd);
-    tbody.appendChild(tbodyTr);
+    tbodyTd.innerHTML = listSabine[i]+'s';
+    tbodyTrS.appendChild(tbodyTd);
   }
+  tbody.appendChild(tbodyTrS);
   table.appendChild(tbody);
 
-  document.getElementById('suggested-list').appendChild(table);
+  // Eyring
+  var tbodyTrE = document.createElement('tr');
+  var tbodyTdOptionE = document.createElement('td');
+  tbodyTdOptionE.innerHTML="Tr. Eyring";
+  tbodyTrE.appendChild(tbodyTdOptionE);
+  for (i = 0; i < listEyring.length; i++) {
+    var tbodyTd = document.createElement('td');
+    tbodyTd.innerHTML = listEyring[i]+'s';
+    tbodyTrE.appendChild(tbodyTd);
+  }
+  tbody.appendChild(tbodyTrE);
+  table.appendChild(tbody);
+
+  document.getElementById('rever-octaves-table').appendChild(table);
 }
 
 function putMessage(id, msg) {document.getElementById(id).innerHTML = msg;}

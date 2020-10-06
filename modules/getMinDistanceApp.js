@@ -69,25 +69,26 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
     globalScale.yScale = getScale(room.wide,normalScale);
     globalScale.zScale = getScale(room.high,normalScale);
 
-    render(canvasPlanta, canvasAlzado);
+    renderDistances(canvasPlanta);
+    renderDistances(canvasAlzado);
 
     drawAxes(ctxSuperior);
-    drawText(ctxSuperior,"x [m]",[250,290]);
-    drawText(ctxSuperior,"y [m]",[10,20]);
+    drawText(ctxSuperior,Arial20,"x [m]",[250,290]);
+    drawText(ctxSuperior,Arial20,"y [m]",[10,20]);
     drawAxes(ctxFrontal);
-    drawText(ctxFrontal,"x [m]",[250,290]);
-    drawText(ctxFrontal,"z [m]",[10,20]);
+    drawText(ctxFrontal,Arial20,"x [m]",[250,290]);
+    drawText(ctxFrontal,Arial20,"z [m]",[10,20]);
 
     drawRoom(canvasPlanta,room.long,room.wide, globalScale);
     drawRoom(canvasAlzado,room.long,room.high, globalScale);
 
     // draw the source
-    drawObjet(canvasPlanta,source.long,source.wide,globalScale,red);
-    drawObjet(canvasAlzado,source.long,source.high,globalScale,red);
+    drawObjet(canvasPlanta,source.long,source.wide,globalScale,Red);
+    drawObjet(canvasAlzado,source.long,source.high,globalScale,Red);
 
     // draw the source
-    drawObjet(canvasPlanta,microphone.long,microphone.wide,globalScale,blue);
-    drawObjet(canvasAlzado,microphone.long,microphone.high,globalScale,blue);
+    drawObjet(canvasPlanta,microphone.long,microphone.wide,globalScale,Blue);
+    drawObjet(canvasAlzado,microphone.long,microphone.high,globalScale,Blue);
 
     // draw the min distance
     drawDistance(canvasPlanta,source.long,source.wide,globalScale,MinDistance);

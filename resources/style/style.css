@@ -11,19 +11,30 @@ body, html {
 }
 
 h4 {
+  font-size:20px;
+  font-weight:700;
   padding: 6px;
   margin: auto;
+  margin-bottom: 20px;
   text-align: center;
+  border-bottom:2px solid white;
 }
 
-h4, h3, input {
+h5 {
+  margin: auto;
+  width: 700px;
+  font-size:15px;
+  font-weight:700;
+  border-bottom:1px solid white;
+}
+
+h3, h4, h5, input {
   text-align: center;
 }
 
 input {
   font-family: "Lato"
   color: inherit;
-  width: 100%;
   height: 30px;
   box-sizing: border-box;
   border-color: inherit;
@@ -267,19 +278,35 @@ button:hover {
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.in-box {
-  width: 75%;
+.in-box, .in-box-octaves {
   margin: auto;
-  margin-bottom: 10px;
   position: relative;
 }
 
+.in-box {
+  width: 75%;
+  margin-bottom: 10px;
+}
+.in-box-octaves {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .info-input {
+  width: 100%;
+}
+
+.coef-input {
+  width: 120px;
+  margin-right: 15px;
+}
+
+.info-input, .coef-input {
   border: 0;
   padding: 7px 0;
 }
 
-.info-input ~ .focus-border{
+.info-input.coef-input ~ .focus-border{
   position: relative;
   bottom: 0;
   left: 0;
@@ -291,6 +318,11 @@ button:hover {
 }
 
 .info-input:focus ~ .focus-border{
+  width: 100%;
+  transition: 0.4s;
+}
+
+.coef-input:focus ~ .focus-border{
   width: 100%;
   transition: 0.4s;
 }
@@ -427,17 +459,23 @@ button:hover {
   width: 40%;
 }
 
-.canvas-display, .distance-display, .rever-display, .suggested-display, .room-display {
+.canvas-display, .distance-display, .rever-display, .suggested-display, .room-display, .canvas-rever-display {
   letter-spacing: 2px;
   margin: auto;
   border-radius: 1em;
 }
-
-.canvas-display {
+.canvas-display, .canvas-rever-display {
   width: 80%;
   height: 45%;
-  display:inline-block;
   background-color: white;
+}
+
+.canvas-display {
+  display:inline-block;
+}
+
+.display-octaves{
+  margin: auto;
 }
 
 .display-one {
@@ -504,7 +542,7 @@ button:hover {
 }
 
 #coefRecintoOctaves {
-  width: 60%;
+  width:90%;
 }
 
 #octaves {
@@ -537,6 +575,26 @@ button:hover {
 
 #suggested-list th, td {
   border: 1px solid black;
+}
+
+.octaves-table {
+  margin: auto;
+  vertical-align: middle;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+.octaves-table input {
+  margin: auto;
+}
+
+.octaves-table td {
+  border: 0px;
+  border-bottom: 1px solid white;
+}
+
+.octaves-table th {
+  border: 0px;
 }
 
 .good, .error {
@@ -592,7 +650,18 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 
 
 .table-body {
   display: none;
-/*  display: inline;*/
+}
+
+#rever-octaves-table, #rever-table, #suggested-table {
+  margin: auto;
+}
+
+#rever-octaves-table {
+  margin-top: 50px;
+}
+
+#rever-table, #suggested-table {
+  border-collapse:collapse;
 }
 
 .modal-background {
