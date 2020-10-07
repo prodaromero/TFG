@@ -57,29 +57,43 @@
           </p>
           <br>
           <p>
-            Cuenta con dos herramientas principales:
+            Cuenta con tres herramientas principales:
           </p>
           <br>
           <ul>
-            <li>Cálculo de la distancia mínima:</li>
+            <li>Cálculo de la distancia mínima.</li>
             <p class="description-text">
-              Con ella, podemos ver si se estan realizando las mediciones del tiempo
-              de reverberación desde una posición correcta, según la normativa
-              UNE-ISO 3382. Debemos introducir datos tales como:
+              Con ella, podrás calcular de la distancia mínima a la que deben
+              situarse la fuente y el micrófono para realizar una medición. Adicionalmente
+              podrás comprobar si la posición desde la que vas a realizar la medición
+              es correcta o no. Esta herramienta ha sido diseñada cumpliendo la normativa
+              UNE-ISO 3382. Los datos necesarios para estos cálculos serán los siguientes:
             </p>
             <br>
             <ol class="description-numeration">
-              <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
               <li>Dimensiones de la sala, en metros.</li>
-              <li>Posición de la fuente, en metro.</li>
-              <li>Posición del micrófono, en metro.</li>
+              <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
+              <li>Posición de la fuente, en metros.</li>
+              <li>Posición del micrófono, en metros.</li>
             </ol>
             <br>
-            <li>Cálculo de tiempo de reverberación:</li>
+            <li>Propuesta de puntos de medición.</li>
+            <p class="description-text">
+              Dadas las dimensiones de la sala, en este apartado se sugerirá,
+              de forma aleatoria, una terna de puntos para realizar las mediciones
+              del tiempo de reverberación cumpliendo con la distancia mínima.
+              Se obtendrán 4 posiciones diferentes de la fuente con 3 posiciones
+              posibles en las que colocar los micrófonos.
+              Esta herramienta ha sido diseñada cumpliendo la normativa UNE-ISO 3382.
+            </p>
+            <br>
+            <li>Cálculo de tiempo de reverberación.</li>
             <p class="description-text">
               Con ella, podemos calcular de una manera estimada del tiempo
               de reverberación de la sala, según la Teoría de Sabine y la Teoría de Eyring.
-              Debemos introducir datos tales como:
+              Este cálculo se podrá realizar para una frecuencia determinada o para
+              el conjunto de bandas de octava comprendido entre los 125Hz hasta los 4000Hz.
+              Se necesitarán datos tales como:
             </p>
             <br>
             <ol class="description-numeration">
@@ -89,17 +103,9 @@
           </ul>
           <br>
           <p>
-            Además, se cuenta con una herramienta adicional a modo de información,
-            la cual proporciona una tabla de coeficientes de absorción de diferentes
-            materiales. Se han clasificado en función de donde suelen estar colocados
-            los materiales, vease:
+            Además, se cuenta con una herramienta adicional a modo de base de datos,
+            en la que se podrán obtener materiales en funición del coeficiente medio de absorción:
           </p>
-          <br>
-          <ul>
-            <li>Paredes</li>
-            <li>Techo</li>
-            <li>Suelo</li>
-          </ul>
         </div>
         <div class="image-container-desc">
           <h2>SISTEMA DE COORDENADAS</h2>
@@ -117,22 +123,12 @@
             <details class="info-area">
               <summary>i</summary>
               <div>
-                <h2>Cálculo del tiempo de reverberación por Sabine</h2>
-                <p>
-                  Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
-                </p>
+                <h2>Dimesiones del recinto</h2>
                 <br>
                 <p>
-                  Se pretende proveer de una herramienta para simular el tiempo de
-                  reverberación según la Teoría de Sabine.
+                  Por favor, introduzca las dimensiones del recinto en metros. Una vez realizado,
+                  presione el botón "Guardar dimensiones" para establecerlas.
                 </p>
-                <br>
-                <p>
-                  Según esta Teoría, el tiempo de reverberación se calcula de la
-                  siguiente manera:
-                </p>
-                <img src="resources/style/images/sabine-formula.PNG" class="reverberation-image"></img>
-              </div>
             </details>
             <div id="dimRecinto">
               <h4>Dimensiones del recinto</h4>
@@ -178,23 +174,23 @@
           <div class="distance-display">
             <details class="info-area">
               <summary>i</summary>
-              <div>
-                <h2>Cálculo de la distancia mínima</h2>
-                <p>
-                  Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
-                </p>
-                <br>
-                <p>
-                  Se pretende proveer de una herramienta para advertir si la distancia
-                  a la que se ha sutuado el micrófono de la fuente sonora es correcta o no.
-                </p>
-                <br>
-                <p>
-                  Siguiendo la normativa dispuesta, la distancia mínima fuente-micrófono
-                  es la descrita por la siguiente fórmula:
-                </p>
-                <img src="resources/style/images/min-distance.PNG" class="distance-image"></img>
-              </div>
+                <div>
+                  <h2>Cálculo de la distancia mínima</h2>
+                  <p>
+                    Esta sección aplica la Normativa <b>UNE-ISO 3382.</b>
+                  </p>
+                  <p>
+                    Se pretende proveer de una herramienta para calcular la distancia
+                    mínima a la que deben situarse el micrófono de la fuente sonora. Además
+                    advierte de si la distancia a la que se ha sutuado el micrófono
+                    cumple o no esta distancia.
+                  </p>
+                  <p>
+                    Siguiendo la normativa dispuesta, la distancia mínima fuente-micrófono
+                    es la descrita por la siguiente fórmula:
+                  </p>
+                  <img src="resources/style/images/min-distance.PNG" class="distance-image"></img>
+                </div>
             </details>
             <div id="tiempoRever">
               <h4>Tiempo de reverberación esperado</h4>
@@ -251,7 +247,18 @@
         <h3 class="content-title">Propuesta de puntos de medición</h3>
         <div class="contenedor-principal">
           <div class="suggested-display">
-              <button class="calculate-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+            <details class="info-area">
+              <summary>i</summary>
+              <div>
+                <h2>Propuesta de puntos de medición</h2>
+                <p>
+                  Sugiere una serie de puntos de medición en la cuales colocar la fuente sonora
+                  y el micrófono cumpliendo con los criterios de distancia mínima.
+                  El usuario podrá escoger entre la terna dada según la precisión que desee.
+                </p>
+              </div>
+            </details>
+            <button class="calculate-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
             <div id="suggested-list"></div>
             <div class="empty"></div>
           </div>
@@ -268,6 +275,17 @@
             <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Tiempo de reverberación por octavas</button>
           </div>
           <div id="normal" class="reverberation-time">
+            <details class="info-area">
+              <summary>i</summary>
+              <div>
+                <h2>Tiempo de Reverberación</h2>
+                <p>
+                  Sugiere una serie de puntos de medición en la cuales colocar la fuente sonora
+                  y el micrófono cumpliendo con los criterios de distancia mínima.
+                  El usuario podrá escoger entre la terna dada según la precisión que desee.
+                </p>
+              </div>
+            </details>
             <div class="rever-display">
               <div id="coefRecinto">
                 <h4>Coeficientes de absorción</h4>
