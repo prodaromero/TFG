@@ -60,11 +60,6 @@ function getMinDistance(roomObject,reverTime) {
 // ** Funciones getReverberationTimeApp ** \\
 
 function getRoomDimensions(roomObject) {
-
-  // roomObject.surface_wall_a = getSurface(roomObject.long,roomObject.high);
-  // roomObject.surface_wall_b = getSurface(roomObject.long,roomObject.high);
-  // roomObject.surface_wall_c = getSurface(roomObject.wide,roomObject.high);
-  // roomObject.surface_wall_d = getSurface(roomObject.wide,roomObject.high);
   var walls = 2*getSurface(roomObject.wide,roomObject.long) + 2*getSurface(roomObject.wide,roomObject.high);
   roomObject.surface_floor = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_roof  = getSurface(roomObject.wide,roomObject.long);
@@ -72,12 +67,6 @@ function getRoomDimensions(roomObject) {
 }
 
 function getRoomAbsortionArea(roomObject,coef_pared,coef_techo,coef_suelo) {
-  // return roomObject.surface_roof*roomObject.roof +
-  //               roomObject.surface_wall_a*roomObject.a +
-  //               roomObject.surface_wall_b*roomObject.b +
-  //               roomObject.surface_wall_c*roomObject.c +
-  //               roomObject.surface_wall_d*roomObject.d +
-  //               roomObject.surface_floor*roomObject.floor;
   return roomObject.surface_wall*coef_pared +
           roomObject.surface_roof*coef_techo +
           roomObject.surface_floor*coef_suelo;
@@ -105,24 +94,10 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
 }
 
 function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared) {
-  // roomObject.coef_abs_wall_a =  parseFloat(document.getElementById(coef_pared_1).value);
-  // roomObject.coef_abs_wall_b =  parseFloat(document.getElementById(coef_pared_2).value);
-  // roomObject.coef_abs_wall_c =  parseFloat(document.getElementById(coef_pared_3).value);
-  // roomObject.coef_abs_wall_d =  parseFloat(document.getElementById(coef_pared_4).value);
   roomObject.coef_abs_roof  = coef_techo;
   roomObject.coef_abs_floor = coef_suelo;
   roomObject.coef_abs_wall  = coef_pared;
 }
-
-// function getRoomAbsocionCoefOctaves(roomObject,coef_techo,coef_pared_1,coef_pared_2,
-//                             coef_pared_3,coef_pared_4,coef_suelo) {
-//   roomObject.coef_abs_roof =  parseFloat(document.getElementById(coef_techo).value);
-//   roomObject.coef_abs_wall_a =  parseFloat(document.getElementById(coef_pared_1).value);
-//   roomObject.coef_abs_wall_b =  parseFloat(document.getElementById(coef_pared_2).value);
-//   roomObject.coef_abs_wall_c =  parseFloat(document.getElementById(coef_pared_3).value);
-//   roomObject.coef_abs_wall_d =  parseFloat(document.getElementById(coef_pared_4).value);
-//   roomObject.coef_abs_floor =  parseFloat(document.getElementById(coef_suelo).value);
-// }
 
 function getRoomAbsocionCoefOctaves(roomObject,
                             pared_125,pared_250,pared_500,pared_1000,pared_2000,pared_4000,
@@ -150,10 +125,6 @@ function getRoomAbsocionCoefOctaves(roomObject,
 
 function absortionCoefOk(roomObject) {
   return (
-    // isCorrectCoef(roomObject.coef_abs_wall_a) &&
-    // isCorrectCoef(roomObject.coef_abs_wall_b) &&
-    // isCorrectCoef(roomObject.coef_abs_wall_c) &&
-    // isCorrectCoef(roomObject.coef_abs_wall_d) &&
     isCorrectCoef(roomObject.coef_abs_roof) &&
     isCorrectCoef(roomObject.coef_abs_floor) &&
     isCorrectCoef(roomObject.coef_abs_wall)

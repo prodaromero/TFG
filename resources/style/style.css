@@ -409,6 +409,11 @@ button:hover {
   padding-top: 10px;
 }
 
+#materials details {
+  margin-top: 15px;
+  margin-left: 100%;
+}
+
 .distance-image {
   width: 50%;
 }
@@ -648,22 +653,23 @@ button:hover {
 }
 
 /* TABLES STYLE */
-
-.tg{width:90%;margin:auto;margin-top:50px;margin-bottom:50px;border-collapse:collapse;border-spacing:0;}
 td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+
+th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+
+.table-style{width:90%;margin:auto;margin-top:50px;margin-bottom:50px;border-collapse:collapse;border-spacing:0;}
 .tg-title{font-weight:bold;font-size:22px;color:white;background-color:SlateGray;border-color:#000000;text-align:center;vertical-align:top}
-.tg-cabecera{font-weight:bold;background-color:Silver;color:#000000;border-color:#000000;text-align:center;vertical-align:top}
-.tg-typeMaterial{font-weight:bold;background-color:MintCream;border-color:#000000;text-align:left;vertical-align:top}
-.tg-celda{border-color:inherit;vertical-align:top}
-.tx-center{text-align:center}
-.tx-left{text-align:left;}
+
+.table-header{font-weight:bold;background-color:Silver;color:black;border-color:black;text-align:center;vertical-align:top}
+
+.table-typeMaterial{font-weight:bold;background-color:MintCream;border-color:#000000;text-align:left;vertical-align:top}
 
 .table-body {
   display: none;
+  text-align: center;
 }
 
-#rever-octaves-table, #rever-table, #suggested-table {
+#rever-octaves-table, #rever-table {
   margin: auto;
 }
 
@@ -671,7 +677,7 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 
   margin-top: 50px;
 }
 
-#rever-table, #suggested-table {
+#rever-table {
   border-collapse:collapse;
 }
 

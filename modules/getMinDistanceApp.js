@@ -13,7 +13,7 @@ function getGetMinDistance(t) {
 
     dmin = getRound2Decimals(MinDistance);
     id = "minDistanceMsg";
-    msg = '<div class="good">La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+dmin+' [m]</div>';
+    msg = '<div class="good">La distancia mínima a la que debe situarse el micrófono de la fuente es de '+dmin+' [m]</div>';
 
     putMessage(id, msg);
   }

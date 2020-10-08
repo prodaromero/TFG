@@ -89,8 +89,8 @@ function closePopup() {
 
 function putOkDistanceMsg(isok,dmin) {
   var disRound = getRound2Decimals(dmin);
-  var msgOK = '<div class="good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>';
-  var msgKO = '<div class="error">El micrófono ne se encuentra en posición incorrecta.<br>La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+disRound+' [m]</div>'
+  var msgOK = '<div class="good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micrófono de la fuente sonora es de '+disRound+' [m]</div>';
+  var msgKO = '<div class="error">El micrófono ne se encuentra en posición incorrecta.<br>La distancia mínima a la que debe situarse el micrófono de la fuente sonora es de '+disRound+' [m]</div>'
 
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
@@ -107,7 +107,9 @@ function createReverberationTable(listSabine, listEyring) {
 
   var table = document.createElement('table');
   table.setAttribute("id", "rever-table");
+  table.classList.add('table-style');
   var thead = document.createElement('thead');
+  thead.classList.add('table-header');
   var tbody = document.createElement('tbody');
   var tr = document.createElement('tr');
 
