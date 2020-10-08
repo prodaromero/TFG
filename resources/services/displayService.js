@@ -89,8 +89,8 @@ function closePopup() {
 
 function putOkDistanceMsg(isok,dmin) {
   var disRound = getRound2Decimals(dmin);
-  var msgOK = '<div class="good">El micrófono se encuentra en posición correcta.<br>La distancia mínima a la que debe situarse el micrófono de la fuente sonora es de '+disRound+' [m]</div>';
-  var msgKO = '<div class="error">El micrófono ne se encuentra en posición incorrecta.<br>La distancia mínima a la que debe situarse el micrófono de la fuente sonora es de '+disRound+' [m]</div>'
+  var msgOK = '<div class="good">El micrófono se encuentra en posición correcta.<br>El micrófono esta situado a '+disRound+'[m] de la fuente sonora</div>';
+  var msgKO = '<div class="error">El micrófono ne se encuentra en posición incorrecta.<br>El micrófono esta situado a '+disRound+'[m] de la fuente sonora</div>';
 
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }

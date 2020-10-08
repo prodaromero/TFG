@@ -52,7 +52,7 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
 
     var ok = isCorrect(dis, MinDistance)
 
-    putOkDistanceMsg(ok,MinDistance);
+    putOkDistanceMsg(ok,dis);
 
     canvasPlanta = document.getElementById("canvasPlanta");
     canvasAlzado = document.getElementById("canvasAlzado");

@@ -138,7 +138,7 @@ button:hover {
   width: 300px;
   height: 100%;
   display: none;
-  margin-top: 75px;
+  margin-top: 85px;
   background-color:#404040;
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
@@ -200,13 +200,14 @@ button:hover {
 
 .init-menu {
   width: auto;
-  height: 75px;
+  height: auto;
   z-index: 1;
+  margin:auto;
+  padding: 5px;
   margin-left:15px;
-  margin-top: 5px;
   float: left;
   text-align:center;
-  font-size:70px;
+  font-size:65px;
   font-weight: 700;
   color: white;
   text-decoration: none;

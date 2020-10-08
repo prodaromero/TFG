@@ -9,11 +9,11 @@ function getScale(n, scale) {
   var long = n*pxScale*this.scale;
   if (!in_area) {
     if (long > maxLong) {
-      this.scale = this.scale*0.90;
+      this.scale = this.scale*0.95;
       this.scale = getScale(n,this.scale);
 
     }else if (long < minLong) {
-      this.scale = this.scale*1.10;
+      this.scale = this.scale*1.15;
       this.scale = getScale(n,this.scale);
     } else {
       in_area = true;
