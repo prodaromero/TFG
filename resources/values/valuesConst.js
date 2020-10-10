@@ -12,6 +12,7 @@ var globalScale = {
 var maxLong = 230;
 var minLong = 200;
 var start = 40;
+var ObjectRadius = 5;
 var Red = "red";
 var Blue = "blue";
 var Black = "black";
@@ -53,15 +54,15 @@ var RoomObject = new Room();
 var Source = new Object();
 var Microphone = new Object();
 
-var MinimalDimension = 2;
-var MinimalVolume = 35;
+var MinimalDimension = 5;
+var MinimalVolume = 125;
 // Success messages
 var CommentRoomOK = '<p>¡Dimensiones recogidas correctamente!</p>'
 
 // Error messages
 var CommentRoomKO = '<p>Por favor, asegurese de haber introducido los datos del recinto correctamente. ¡Gracias!</p>'
 var CommentObjectKO = '<p>Por favor, asegurese de haber introducido las posociones de los objetos correctamente. ¡Gracias!</p>'
-var CommentRoomSmall = '<p>El recinto tiene unas dimensiones demasiado pequeñas como para poder obtener una terna de puntos. Discupe las molestias.</p>'
+var CommentRoomSmall = '<p>El recinto tiene unas dimensiones demasiado pequeñas como para poder obtener una terna de puntos. Recuerde que las dimensiones mínimas para obtenerla son de 5x5x5m.<br>Discupe las molestias.</p>'
 var CommentCoefKO = '<p>Por favor, asegurese de haber introducido los datos de los coeficientes de absorción correctamente. Recuerde que deben estar comprendidos entre 0 y 1. ¡Gracias!</p>'
 var CommentObjectOutside = '<p>Por favor, asegurese de que la posición de los objetos se encuentra dentro del recinto. ¡Gracias!</p>'
 var CommentReverTimeKO = '<p>Por favor, asegurese de que el tiempo de reverberación es correcto. ¡Gracias!</p>'

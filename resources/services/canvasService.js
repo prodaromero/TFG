@@ -9,11 +9,11 @@ function getScale(n, scale) {
   var long = n*pxScale*this.scale;
   if (!in_area) {
     if (long > maxLong) {
-      this.scale = this.scale*0.90;
+      this.scale = this.scale*0.95;
       this.scale = getScale(n,this.scale);
 
     }else if (long < minLong) {
-      this.scale = this.scale*1.10;
+      this.scale = this.scale*1.15;
       this.scale = getScale(n,this.scale);
     } else {
       in_area = true;
@@ -35,7 +35,7 @@ function drawLine(ctx,a,b,c,d,width,color) {
   ctx.restore();
 }
 
-function drawCircle(ctx,sWidth,sHeight,color,alpha) {
+function drawCircle(ctx,sWidth,sHeight,radio,color,alpha) {
   ctx.save();
   ctx.globalAlpha = alpha;
   ctx.beginPath();
@@ -43,7 +43,7 @@ function drawCircle(ctx,sWidth,sHeight,color,alpha) {
   // ***** counterclockwise: Specifies whether the drawing hould be counterclockwise
   // ***** or clockwise. False is default, and indicates clockwise, while true indicates
   // ***** counter-clockwise
-  ctx.arc(sWidth,sHeight,5, 0, 2*Math.PI, true);
+  ctx.arc(sWidth,sHeight,radio, 0, 2*Math.PI, true);
 
   ctx.fillStyle = color;
   ctx.fill();
@@ -120,7 +120,7 @@ function drawObjet(canvas,distanceA,distanceB,scale,color) {
   var scaleWidth  = start+width;
   var scaleHeight = canvas.height-(start+height);
 
-  drawCircle(ctx,scaleWidth,scaleHeight,color,OpacityMax);
+  drawCircle(ctx,scaleWidth,scaleHeight,ObjectRadius,color,OpacityMax);
 }
 
 function drawDistance(canvas,x,y,scale,dis) {
@@ -140,10 +140,10 @@ function drawDistance(canvas,x,y,scale,dis) {
 
   var disRound = getRound2Decimals(dis);
 
-  ctx.font = "10px Arial";
+  ctx.font = Arial10;
   ctx.fillText("dmin= "+disRound+"m",scaleWidth+5,scaleHeight-3);
 
-  drawCircle(ctx,scaleWidth,scaleHeight,Red,OpacityMin);
+  drawCircle(ctx,scaleWidth,scaleHeight,disScaled,Red,OpacityMin);
 }
 
 function renderDistances(canvasOne) {
@@ -195,7 +195,7 @@ function plotOctavesGraphEmpty(canvas) {
 }
 
 function plotMeasureInGraph(ctx,xPre,yPre,xPost,yPost,color) {
-  drawCircle(ctxOct,xPre,yPre,color,OpacityMax);
+  drawCircle(ctxOct,xPre,yPre,ObjectRadius,color,OpacityMax);
   drawLine(ctxOct,xPre,yPre,xPost,yPost,4,color);
 }
 
@@ -218,7 +218,7 @@ function plotOctavesGraph(canvas) {
   plotMeasureInGraph(ctxOct,130,c500S,175,c1000S,Blue);
   plotMeasureInGraph(ctxOct,175,c1000S,220,c2000S,Blue);
   plotMeasureInGraph(ctxOct,220,c2000S,265,c4000S,Blue);
-  drawCircle(ctxOct,265,c4000S,Blue,OpacityMax);
+  drawCircle(ctxOct,265,c4000S,ObjectRadius,Blue,OpacityMax);
 
   // Plot Eyring
   c125E  = 270-trEyring[0]*FactorConversionTR;
@@ -233,7 +233,7 @@ function plotOctavesGraph(canvas) {
   plotMeasureInGraph(ctxOct,130,c500E,175,c1000E,Red);
   plotMeasureInGraph(ctxOct,175,c1000E,220,c2000E,Red);
   plotMeasureInGraph(ctxOct,220,c2000E,265,c4000E,Red);
-  drawCircle(ctxOct,265,c4000E,Red,OpacityMax);
+  drawCircle(ctxOct,265,c4000E,ObjectRadius,Red,OpacityMax);
 
   plotMeasureInGraph(ctxOct,240,20,260,20,Blue);
   drawText(ctxOct,Arial10,"Sabine",[265,23]);

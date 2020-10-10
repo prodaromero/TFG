@@ -13,7 +13,7 @@ function getGetMinDistance(t) {
 
     dmin = getRound2Decimals(MinDistance);
     id = "minDistanceMsg";
-    msg = '<div class="good">La distancia mínima a la que debe situarse el micro de la fuente es de<br>'+dmin+' [m]</div>';
+    msg = '<div class="good">La distancia mínima a la que debe situarse el micrófono de la fuente es de '+dmin+' [m]</div>';
 
     putMessage(id, msg);
   }
@@ -52,7 +52,7 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
 
     var ok = isCorrect(dis, MinDistance)
 
-    putOkDistanceMsg(ok,MinDistance);
+    putOkDistanceMsg(ok,dis);
 
     canvasPlanta = document.getElementById("canvasPlanta");
     canvasAlzado = document.getElementById("canvasAlzado");

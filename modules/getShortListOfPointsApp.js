@@ -15,7 +15,9 @@ function optionGetShortList() {
 
     var table = document.createElement('table');
     table.setAttribute("id", "suggested-table");
+    table.classList.add('table-style');
     var thead = document.createElement('thead');
+    thead.classList.add('table-header');
     var tbody = document.createElement('tbody');
     var tr = document.createElement('tr');
 
@@ -23,16 +25,16 @@ function optionGetShortList() {
     th_1.innerHTML = 'Medida';
     tr.appendChild(th_1);
     var th_2 = document.createElement('th');
-    th_2.innerHTML = 'Fuente [m]';
+    th_2.innerHTML = 'Fuente (x,y,z) [m]';
     tr.appendChild(th_2);
     var th_3 = document.createElement('th');
-    th_3.innerHTML = 'Micrófono 1 [m]';
+    th_3.innerHTML = 'Micrófono 1 (x,y,z) [m]';
     tr.appendChild(th_3);
     var th_4 = document.createElement('th');
-    th_4.innerHTML = 'Micrófono 2 [m]';
+    th_4.innerHTML = 'Micrófono 2 (x,y,z) [m]';
     tr.appendChild(th_4);
     var th_5 = document.createElement('th');
-    th_5.innerHTML = 'Micrófono 3 [m]';
+    th_5.innerHTML = 'Micrófono 3 (x,y,z) [m]';
     tr.appendChild(th_5);
 
     thead.appendChild(tr);
