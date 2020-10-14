@@ -506,9 +506,14 @@ button:hover {
   margin: 50px;
 }
 
-.distance-display, .suggested-display, .room-display, .rever-display {
+.distance-display, .suggested-display, .room-display {
   height: 50%;
   width: 80%;
+}
+
+.rever-display {
+  height: 50%;
+  width: 85%;
 }
 
 .reverberation-title {
