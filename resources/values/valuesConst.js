@@ -32,11 +32,12 @@ var FactorConversionTR = 60;
 
 /* ACOUSTIC VALUES */
 
+var ReverberationTime;
 var ReverberationTimeSabine;
 var ReverberationTimeEyring;
 var ReverberationTimeOctavesSabine = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 var ReverberationTimeOctavesEyring = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-var MinDistance;
+var MinDistance = 0;
 
 var DisMinimaSurface = 1;
 var DisMinimaMicro = 2;
@@ -53,17 +54,23 @@ var ListOfSuggestedPoints = [
 var RoomObject = new Room();
 var Source = new Object();
 var Microphone = new Object();
+var RoomOperative = new Object();
 
-var MinimalDimension = 5;
-var MinimalVolume = 125;
+var MinimalDimension = 3;
+var MinimalVolume = 9;
 // Success messages
 var CommentRoomOK = '<p>¡Dimensiones recogidas correctamente!</p>'
+var CommentReverTimeOK = '<p>¡Tiempo de reverberación recogido correctamente!</p>'
 
 // Error messages
 var CommentRoomKO = '<p>Por favor, asegurese de haber introducido los datos del recinto correctamente. ¡Gracias!</p>'
 var CommentObjectKO = '<p>Por favor, asegurese de haber introducido las posociones de los objetos correctamente. ¡Gracias!</p>'
-var CommentRoomSmall = '<p>El recinto tiene unas dimensiones demasiado pequeñas como para poder obtener una terna de puntos. Recuerde que las dimensiones mínimas para obtenerla son de 5x5x5m.<br>Discupe las molestias.</p>'
+var CommentRoomSmall = `<p>El recinto tiene unas dimensiones demasiado pequeñas como para poder obtener una terna de puntos.<br><br>
+  Para cumplir la normativa UNE-EN ISO 3382, la fuente sonora y los micrófonos deben de estar separados al menos <b>1m de las superficies</b>.
+  Además, los micrófonos deben tener una separación entre sí de <b>2m</b>. Recuerde que los micrófonos y la fuente deben de estar separados
+  una distancia mínima que depende de las dimensiones del recinto y el tiempo de reverberación esperado.<br><br>Discupe las molestias.</p>`
 var CommentCoefKO = '<p>Por favor, asegurese de haber introducido los datos de los coeficientes de absorción correctamente. Recuerde que deben estar comprendidos entre 0 y 1. ¡Gracias!</p>'
 var CommentObjectOutside = '<p>Por favor, asegurese de que la posición de los objetos se encuentra dentro del recinto. ¡Gracias!</p>'
-var CommentReverTimeKO = '<p>Por favor, asegurese de que el tiempo de reverberación es correcto. ¡Gracias!</p>'
+var CommentReverTimeKO = '<p>Por favor, asegurese de haber introducido un tiempo de reverberación es correcto. ¡Gracias!</p>'
 var CommentRegulationKO = '<p>Recuerda que según la normativa UNE-ISO 3382, la distancia mínima entre micro/fuente y cualquier superficie, debe ser de al menos 1 m. Revise los datos por favor. ¡Gracias!</p>'
+var CommentDistanceKO = '<p>No se ha establecido una distancia mínima. Para ello, debe introducir el tiempo de reverberación esperado en la herramineta anterior. ¡Gracias!</p>'

@@ -1,7 +1,7 @@
 function getGetMinDistance(t) {
   var dmin, msg, id;
   var room = RoomObject;
-  var reverTime = parseFloat(document.getElementById(t).value);
+  var reverTime = ReverberationTime;
   var volume = room.volume();
 
   if (!volume) {

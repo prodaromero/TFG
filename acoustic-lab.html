@@ -200,6 +200,7 @@
               <div class="in-box">
                 <input  id="t" class="info-input" placeholder="Tiempo reverberación [s]">
                 <span class="focus-border"></span>
+                <button class="obatain-button" onclick="obtainValueRT('t')"><a>guardar valor</a></button>
               </div>
             </div>
 
@@ -240,13 +241,34 @@
             </div>
 
             <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">comprobar punto de medición</a></button>
+
+            <div class="suggested-display">
+              <details class="info-area">
+                <summary>i</summary>
+                <div>
+                  <h2>Propuesta de puntos de medición</h2>
+                  <p>
+                    Sugiere una serie de puntos de medición en la cuales colocar la fuente sonora
+                    y el micrófono cumpliendo con los criterios de distancia mínima.
+                    El usuario podrá escoger entre la terna dada según la precisión que desee.
+                  </p>
+                  <p>
+                    Recuerde que las dimensiones mínimas del recinto deben ser de 5x5x5 m
+                    para realizar el cálculo.
+                  <p>
+                </div>
+              </details>
+              <button class="calculate-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+              <div id="suggested-list"></div>
+            </div>
+            <div class="empty"></div>
           </div>
         </div>
       </div>
 
       <div id="mark-suggested"></div>
 
-      <div id="suggestedPoints">
+      <!-- <div id="suggestedPoints">
         <h3 class="content-title">Propuesta de puntos de medición</h3>
         <div class="contenedor-principal">
           <div class="suggested-display">
@@ -270,7 +292,7 @@
             <div class="empty"></div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div id="mark-reverberation"></div>
 

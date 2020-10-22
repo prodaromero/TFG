@@ -11,5 +11,5 @@ function initRoom(longRoom,wideRoom,highRoom) {
   } else {
     comment = CommentRoomKO;
   }
-  openPopup(comment)
+  openPopup(comment);
 }

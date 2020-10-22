@@ -1,13 +1,16 @@
 function optionGetShortList() {
   var room = RoomObject;
   var list = ListOfSuggestedPoints;
+  var opertiveRoomZone = RoomOperative;
   var volume = room.volume();
 
   if (!volume) {
     openPopup(CommentRoomKO);
+  } else if (!MinDistance) {
+    openPopup(CommentDistanceKO);
   } else if (volume < MinimalVolume || room.long < MinimalDimension || room.wide < MinimalDimension || room.high < MinimalDimension) {
     openPopup(CommentRoomSmall);
-  }else{
+  } else {
     initMultiplePoints(room, list);
 
     var tbl = document.getElementById('suggested-table');

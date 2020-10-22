@@ -25,6 +25,16 @@ function isObjectInsideRoom(object, room) {
   return isInside(object.long,room.long) && isInside(object.wide,room.wide) && isInside(object.high,room.high);
 }
 
+function obtainValueRT(tr) {
+  var t = parseFloat(document.getElementById(tr).value);
+  if (!t) {
+    openPopup(CommentReverTimeKO);
+  } else {
+    openPopup(CommentReverTimeOK);
+    ReverberationTime = t;
+  }
+}
+
 // ** Funciones getMinDistanceApp ** \\
 function distance(surceObject, microphoneObject) {
 
@@ -155,12 +165,12 @@ function absortionCoefOkOctaves(roomObject) {
 }
 
 // ** Funciones getShortListOfPointsApp ** \\
-function getRandomPoint(max) {
-  var rand = getRound2Decimals(Math.random() * max)
-  if (rand > max - DisMinimaSurface || rand < DisMinimaSurface) {
-    rand = getRandomPoint(max);
-  }
-  return rand;
+
+
+function getRandomPoint(maxL) {
+  min = DisMinimaSurface;
+  max = maxL - DisMinimaSurface;
+  return getRound2Decimals(Math.random() * (max - min) + min);
 }
 
 function getRandomPosition(roomObject) {
@@ -179,29 +189,10 @@ function getMicroMultiplePoints(roomObject, suggestedObject) {
   suggestedObject.high = list[2];
 }
 
-function initMultiplePoints(roomObject, listObject) {
-  listObject[0][0].long = DisMinimaSurface;
-  listObject[0][0].wide = DisMinimaSurface;
-  listObject[0][0].high = DisMinimaSurface;
-
-  listObject[1][0].long = DisMinimaSurface;
-  listObject[1][0].wide = roomObject.wide - DisMinimaSurface;
-  listObject[1][0].high = DisMinimaSurface;
-
-  listObject[2][0].long = roomObject.long - DisMinimaSurface;
-  listObject[2][0].wide = roomObject.wide - DisMinimaSurface;
-  listObject[2][0].high = DisMinimaSurface;
-
-  listObject[3][0].long = roomObject.long - DisMinimaSurface;
-  listObject[3][0].wide = DisMinimaSurface;
-  listObject[3][0].high = DisMinimaSurface;
-
-  getSuggestedMultiplePoints(roomObject, listObject)
-}
-
 
 function getSuggestedMultiplePoints(roomObject, listObject) {
   var dis, dis1, dis2;
+  console.log(MinDistance);
   for (var i = 0; i < listObject.length; i++) {
     for (var j = 1; j < listObject[i].length; j++) {
       getMicroMultiplePoints(roomObject, listObject[i][j])
@@ -236,4 +227,25 @@ function getSuggestedMultiplePoints(roomObject, listObject) {
       }
     }
   }
+}
+
+function initMultiplePoints(roomObject, listObject) {
+  listObject[0][0].long = DisMinimaSurface;
+  listObject[0][0].wide = DisMinimaSurface;
+  listObject[0][0].high = DisMinimaSurface;
+
+  listObject[1][0].long = DisMinimaSurface;
+  listObject[1][0].wide = roomObject.wide - DisMinimaSurface;
+  listObject[1][0].high = DisMinimaSurface;
+
+  listObject[2][0].long = roomObject.long - DisMinimaSurface;
+  listObject[2][0].wide = roomObject.wide - DisMinimaSurface;
+  listObject[2][0].high = DisMinimaSurface;
+
+  listObject[3][0].long = roomObject.long - DisMinimaSurface;
+  listObject[3][0].wide = DisMinimaSurface;
+  listObject[3][0].high = DisMinimaSurface;
+
+  getSuggestedMultiplePoints(roomObject, listObject);
+
 }
