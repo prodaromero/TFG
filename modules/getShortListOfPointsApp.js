@@ -11,7 +11,7 @@ function optionGetShortList() {
   } else if (volume < MinimalVolume || room.long < MinimalDimension || room.wide < MinimalDimension || room.high < MinimalDimension) {
     openPopup(CommentRoomSmall);
   } else {
-    initMultiplePoints(room, list);
+    initMultiplePoints(room, list, volume);
 
     var tbl = document.getElementById('suggested-table');
     if (tbl) {tbl.parentNode.removeChild(tbl);}
