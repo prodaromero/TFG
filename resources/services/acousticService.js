@@ -93,6 +93,8 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
   return getRound2Decimals((eyring_conts*vol)/(surface*ln));
 }
 
+function getSchroederFrecuency(tr, volumeObject) {return getRound2Decimals(2000*Math.sqrt(tr/volumeObject));}
+
 function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared) {
   roomObject.coef_abs_roof  = coef_techo;
   roomObject.coef_abs_floor = coef_suelo;
@@ -160,19 +162,19 @@ function getSuggestedMultiplePointsDetermined(roomObject, listObject) {
   var minDis = getRound2Decimals(MinDistance);
 
   listObject[0][1].long = DisMinimaSurface;
-  listObject[0][1].wide = minDis;
+  listObject[0][1].wide = roomObject.wide - DisMinimaSurface;
   listObject[0][1].high = DisMinimaSurface;
   listObject[0][2].long = roomObject.long - DisMinimaSurface;
   listObject[0][2].wide = roomObject.wide - DisMinimaSurface;
   listObject[0][2].high = DisMinimaSurface;
-  listObject[0][3].long = 2*minDis;
+  listObject[0][3].long = roomObject.long - DisMinimaSurface;
   listObject[0][3].wide = DisMinimaSurface;
   listObject[0][3].high = DisMinimaSurface;
 
   listObject[1][1].long = DisMinimaSurface;
-  listObject[1][1].wide = getRound2Decimals(roomObject.wide - minDis);
+  listObject[1][1].wide = DisMinimaSurface;
   listObject[1][1].high = DisMinimaSurface;
-  listObject[1][2].long = 2*minDis;
+  listObject[1][2].long = roomObject.long - DisMinimaSurface;
   listObject[1][2].wide = roomObject.wide - DisMinimaSurface;
   listObject[1][2].high = DisMinimaSurface;
   listObject[1][3].long = roomObject.long - DisMinimaSurface;
@@ -180,20 +182,20 @@ function getSuggestedMultiplePointsDetermined(roomObject, listObject) {
   listObject[1][3].high = DisMinimaSurface;
 
   listObject[2][1].long = DisMinimaSurface;
-  listObject[2][1].wide = roomObject.wide - DisMinimaSurface;
+  listObject[2][1].wide = DisMinimaSurface;
   listObject[2][1].high = DisMinimaSurface;
-  listObject[2][2].long = roomObject.long - DisMinimaSurface;
-  listObject[2][2].wide = DisMinimaSurface;
+  listObject[2][2].long = DisMinimaSurface;
+  listObject[2][2].wide = roomObject.wide - DisMinimaSurface;
   listObject[2][2].high = DisMinimaSurface;
-  listObject[2][3].long = getRound2Decimals(roomObject.long - minDis);
-  listObject[2][3].wide = getRound2Decimals(roomObject.wide - minDis);
+  listObject[2][3].long = roomObject.long - DisMinimaSurface;
+  listObject[2][3].wide = DisMinimaSurface;
   listObject[2][3].high = DisMinimaSurface;
 
   listObject[3][1].long = DisMinimaSurface;
   listObject[3][1].wide = DisMinimaSurface;
   listObject[3][1].high = DisMinimaSurface;
-  listObject[3][2].long = getRound2Decimals(roomObject.long - minDis)
-  listObject[3][2].wide = minDis;
+  listObject[3][2].long = DisMinimaSurface;
+  listObject[3][2].wide = roomObject.wide - DisMinimaSurface;
   listObject[3][2].high = DisMinimaSurface;
   listObject[3][3].long = roomObject.long - DisMinimaSurface;
   listObject[3][3].wide = roomObject.wide - DisMinimaSurface;;

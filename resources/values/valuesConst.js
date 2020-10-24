@@ -56,8 +56,8 @@ var Source = new Object();
 var Microphone = new Object();
 var RoomOperative = new Object();
 
-var MinimalDimension = 3;
-var MinimalVolume = 9;
+var MinimalDimension = 2.5;
+var MinimalVolume = 7.5;
 var RoomVolumeThreshold = 110;
 
 // Success messages
@@ -68,7 +68,7 @@ var CommentRoomOK = '<p>¡Dimensiones recogidas correctamente!</p>'
 var CommentRoomKO = '<p>Por favor, asegurese de haber introducido los datos del recinto correctamente. ¡Gracias!</p>'
 var CommentObjectKO = '<p>Por favor, asegurese de haber introducido las posociones de los objetos correctamente. ¡Gracias!</p>'
 var CommentRoomSmall = `<p>El recinto tiene unas dimensiones demasiado pequeñas como para poder obtener una terna de puntos y cumplir con la normativa
-  UNE-EN ISO 3382<br><br>. Según este estándar, la fuente sonora y los micrófonos deben de estar separados al menos <b>1m de las superficies</b>.
+  UNE-EN ISO 3382.<br><br>Según este estándar, la fuente sonora y los micrófonos deben de estar separados al menos <b>1m de las superficies</b>.
   Además, los micrófonos deben tener una separación entre sí de <b>2m</b>. Recuerde que el micrófono y la fuente deben de estar separados entre sí
   una distancia mínima que depende de las dimensiones del recinto y del tiempo de reverberación esperado.<br><br>Discupe las molestias.</p>`
 var CommentCoefKO = '<p>Por favor, asegurese de haber introducido los datos de los coeficientes de absorción correctamente. Recuerde que deben estar comprendidos entre 0 y 1. ¡Gracias!</p>'
