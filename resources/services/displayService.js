@@ -95,9 +95,65 @@ function putOkDistanceMsg(isok,dmin) {
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
 
-function putReverTimeMsg(op,trS,trE) {
-  var msg = '<div class="good">El tiempo de reverberación por Sabine es de '+trS+'[s].<br/>El tiempo de reverberación por Eyring es de '+trE+'[s].</div>'
+function putReverTimeMsg(op,trS,trE,fcS,fcE) {
+  var msg = `
+  <div>
+    <div class="tr-info-area">
+      <details class="info-area">
+        <summary>i</summary>
+        <div>
+          <h2>Frecuencia de Schroeder</h2>
+          <p>
+            La frecuencia de Schroeder limita inferiormente el rango de frecuencia
+            a partir del cual se puede empezar a considerar campo acústico difuso.
+            Se calcula como:<br>
+            <img src="resources/style/images/schroeder-formula.PNG" class="schroeder-image"></img>
+            <br>
+            Por lo tanto, a partir de esta frecuecia límite se pueden tomar los
+            cálculos de tiempo de reverberación como datos precisos.
+          </p>
+        </div>
+      </details>
+    </div>
+    <div class="good good-tr">
+      El tiempo de reverberación por Sabine es de `+trS+`[s].<br>El tiempo de
+      reverberación por Eyring es de `+trE+`[s].<br><br>
+      Recuerde que la frecuencia de Schroeder es:<br>
+        Fc de Sabine = `+fcS+`[Hz]<br>Fc de Eyring = `+fcE+`[Hz]
+    </div>
+  </div>
+  `
   putMessage('putTR',msg)
+}
+
+function putReverTimeOctavesMsg(op,fcS,fcE) {
+  var msg = `
+  <div>
+    <div class="tr-info-area">
+      <details class="info-area">
+        <summary>i</summary>
+        <div>
+          <h2>Frecuencia de Schroeder</h2>
+          <p>
+            La frecuencia de Schroeder limita inferiormente el rango de frecuencia
+            a partir del cual se puede empezar a considerar campo acústico difuso.<br>
+            En octavas, se calcula mediante la siguiente fórmula, donde TR60 es
+            el tiempo de reverberación medio entre 500 Hz y 1 KHz.<br>
+            <img src="resources/style/images/schroeder-formula.PNG" class="schroeder-image"></img>
+            <br>
+            Por lo tanto, a partir de esta frecuecia límite se pueden tomar los
+            cálculos de tiempo de reverberación como datos precisos.
+          </p>
+        </div>
+      </details>
+    </div>
+    <div class="good good-tr-octaves">
+      Recuerde que la frecuencia de Schroeder es:<br>
+        Fc de Sabine = `+fcS+`[Hz]<br>Fc de Eyring = `+fcE+`[Hz]
+    </div>
+  </div>
+  `
+  putMessage('put-octaves-schroeder',msg)
 }
 
 function createReverberationTable(listSabine, listEyring) {

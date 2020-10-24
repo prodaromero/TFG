@@ -206,7 +206,7 @@
 
             <div id="minDistanceMsg"></div>
 
-            <button class="calculate-button" onclick="getGetMinDistance('t')"><a href="#minDistance">calcular distancia mínima</a></button>
+            <button class="calculate-button" onclick="getGetMinDistance('t')">calcular distancia mínima</button>
 
             <div id="dimFuente">
               <h4>Posición de la fuente</h4>
@@ -239,8 +239,9 @@
                 <span class="focus-border"></span>
               </div>
             </div>
-
-            <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')"><a href="#minDistance">comprobar punto de medición</a></button>
+            <a href="#minDistance">
+              <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">comprobar punto de medición</button>
+            </a>
 
             <div class="suggested-display">
               <details class="info-area">
@@ -260,6 +261,7 @@
               </details>
               <button class="menu-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
               <div id="suggested-list"></div>
+              <div id="shroeder-list"></div>
             </div>
             <div class="empty"></div>
           </div>
@@ -424,13 +426,17 @@
                 <div class="empty"></div>
               </div>
               <div align="center">
-                <button class="calculate-button" onclick="optionGetReverberationTimeOctaves('Sabine',
+                <a href="#mark-list-octaves">
+                  <button class="calculate-button" onclick="optionGetReverberationTimeOctaves('Sabine',
                   'pared_125','pared_250','pared_500','pared_1000','pared_2000','pared_4000',
                   'suelo_125','suelo_250','suelo_500','suelo_1000','suelo_2000','suelo_4000',
                   'techo_125','techo_250','techo_500','techo_1000','techo_2000','techo_4000')"
                   >calcular tiempo de reverberación</button>
+                </a>
               </div>
+              <div id="mark-list-octaves"></div>
               <div id="rever-octaves-table"></div>
+              <div id="put-octaves-schroeder"></div>
               <div class="empty"></div>
               <div class="canvas-rever-display">
                 <div class="display-octaves">

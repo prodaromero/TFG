@@ -25,6 +25,8 @@ function isObjectInsideRoom(object, room) {
   return isInside(object.long,room.long) && isInside(object.wide,room.wide) && isInside(object.high,room.high);
 }
 
+function getMean(min,max) {return getRound2Decimals((min+max)/2);}
+
 // ** Funciones getMinDistanceApp ** \\
 function distance(surceObject, microphoneObject) {
 
@@ -85,11 +87,8 @@ function getRoomSurface(roomObject) {
 
 function getReverTimeEyring(roomObject,vol,area_absorcion) {
   var tr_eyring, surface, ln;
-
   surface = getRoomSurface(roomObject);
-
   ln = -Math.log(1-(area_absorcion)/surface);
-
   return getRound2Decimals((eyring_conts*vol)/(surface*ln));
 }
 

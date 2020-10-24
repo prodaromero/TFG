@@ -427,6 +427,11 @@ button:hover {
   padding-top: 10px;
 }
 
+.tr-info-area details{
+  margin-top:85px;
+}
+
+
 #materials details {
   margin-top: 15px;
   margin-left: 100%;
@@ -435,6 +440,13 @@ button:hover {
 .distance-image {
   width: 50%;
 }
+
+.schroeder-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
 
 .reverberation-image {
   width: 90%;
@@ -625,6 +637,7 @@ button:hover {
 
 .octaves-table input {
   margin: auto;
+  width: 90px;
 }
 
 .octaves-table td {
@@ -637,7 +650,7 @@ button:hover {
 }
 
 .good, .error {
-  width: 50%;
+  width: 550px;
   height: auto;
   margin: auto;
   margin-top: 25px;
@@ -657,6 +670,14 @@ button:hover {
   border-color: MediumSpringGreen;
 }
 
+.good-tr{
+  height: 110px;
+}
+
+.good-tr-octaves {
+  width: 450px;
+  height: 50px;
+}
 .error {
   border-color: Crimson;
 }
