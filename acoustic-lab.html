@@ -31,7 +31,6 @@
         <a class="sidebar-button" href="#mark-menu">menú</a>
         <a class="sidebar-button" href="#mark-room">dimensiones del recinto</a>
         <a class="sidebar-button" href="#mark-distance">distancia mínima</a>
-        <a class="sidebar-button" href="#mark-suggested">propuesta puntos de medición</a>
         <a class="sidebar-button" href="#mark-reverberation">tiempo de reverberación</a>
         <a class="sidebar-button" href="#mark-materials">búsqueda de materiales</a>
         <a class="sidebar-button" href="#about">contato</a>
@@ -64,7 +63,7 @@
             <li>Cálculo de la distancia mínima.</li>
             <p class="description-text">
               Con ella, podrás calcular de la distancia mínima a la que deben
-              situarse la fuente y el micrófono para realizar una medición. Adicionalmente
+              situarse la fuente y el micrófono para realizar una medición. Además
               podrás comprobar si la posición desde la que vas a realizar la medición
               es correcta o no. Esta herramienta ha sido diseñada cumpliendo la normativa
               UNE-ISO 3382. Los datos necesarios para estos cálculos serán los siguientes:
@@ -77,17 +76,13 @@
               <li>Posición del micrófono, en metros.</li>
             </ol>
             <br>
-            <li>Propuesta de puntos de medición.</li>
             <p class="description-text">
-              Dadas las dimensiones de la sala, en este apartado se sugerirá,
-              de forma aleatoria, una terna de puntos para realizar las mediciones
-              del tiempo de reverberación cumpliendo con la distancia mínima.
-            </p>
-            <p class="description-text">
-              Se obtendrán 4 posiciones diferentes de la fuente con 3 posiciones
-              posibles en las que colocar los micrófonos. Las dimensiones mínimas
-              que acepta el recinto son de 5x5x5 m.
-              Esta herramienta ha sido diseñada cumpliendo la normativa UNE-ISO 3382.
+              Adicionalmente se ha incluido un apartado que sugiere una terna de
+              puntos para realizar las mediciones del tiempo de reverberación
+              cumpliendo con la distancia mínima.
+              <br>
+              Se dará como resultado una terna de 4 posiciones diferentes de la
+              fuente sonora con 3 posiciones posibles en las que colocar los micrófonos.
             </p>
             <br>
             <li>Cálculo de tiempo de reverberación.</li>
@@ -101,14 +96,20 @@
             <br>
             <ol class="description-numeration">
               <li>Dimensiones de la sala, en metros.</li>
-              <li>Coeficientes de absorción de las superficies de la sala: techo, suelo y paredes.</li>
+              <li>Coeficientes de absorción de las superficies de la sala: techo,
+                suelo y paredes.</li>
             </ol>
+            <br>
+            <li>Base de datos de materiales</li>
+            <p class="description-text">
+              Se proporciona una herramienta de búsqueda de materiales a modo de
+              base de datos, en la que se podrán obtener un listado de elementos
+              en función del coeficiente de absorción o del tipo de material.
+              El resultado mostrará un listado con el nombre del material, mm de
+              grosor, densidad del material, coeficientes de absorción en bandas
+              de octava y coeficiente de abroción medio.
+            </p>
           </ul>
-          <br>
-          <p>
-            Además, se cuenta con una herramienta adicional a modo de base de datos,
-            en la que se podrán obtener materiales en funición del coeficiente medio de absorción:
-          </p>
         </div>
         <div class="image-container-desc">
           <h2>SISTEMA DE COORDENADAS</h2>
@@ -200,7 +201,6 @@
               <div class="in-box">
                 <input  id="t" class="info-input" placeholder="Tiempo reverberación [s]">
                 <span class="focus-border"></span>
-                <!-- <button class="obatain-button" onclick="obtainValueRT('t')"><a>guardar valor</a></button> -->
               </div>
             </div>
 

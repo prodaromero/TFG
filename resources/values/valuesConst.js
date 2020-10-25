@@ -75,4 +75,4 @@ var CommentCoefKO = '<p>Por favor, asegurese de haber introducido los datos de l
 var CommentObjectOutside = '<p>Por favor, asegurese de que la posición de los objetos se encuentra dentro del recinto. ¡Gracias!</p>'
 var CommentReverTimeKO = '<p>Por favor, asegurese de haber introducido un tiempo de reverberación es correcto. ¡Gracias!</p>'
 var CommentRegulationKO = '<p>Recuerda que según la normativa UNE-ISO 3382, la distancia mínima entre micro/fuente y cualquier superficie, debe ser de al menos 1 m. Revise los datos por favor. ¡Gracias!</p>'
-var CommentDistanceKO = '<p>No se ha establecido una distancia mínima. Para ello, debe calcule la ditancia mínima en este mismo apartado. ¡Gracias!</p>'
+var CommentDistanceKO = '<p>No se ha establecido una distancia mínima. Para ello, introduzca el tiempo de reverberación y calcule la distancia mínima en este mismo apartado. ¡Gracias!</p>'
