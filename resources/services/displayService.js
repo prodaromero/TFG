@@ -19,7 +19,7 @@ function closeSidebar() {
 }
 
 function searchInSelectionTable() {
-  var input, filter, table, tr, name, i, nameValue, nrcValue;
+  var input, filter, table, tr, name, nrc, alfa, i, nameValue, nrcValue, alfaValue;
   input = document.getElementById("inputValue");
   filter = input.value.toUpperCase();
   table = document.getElementById("materialsTable");
@@ -28,11 +28,14 @@ function searchInSelectionTable() {
   for (i = 1; i < tr.length; i++) {
     tr[i].style.display = "none";
     name = tr[i].getElementsByTagName("td")[0];
-    nrc = tr[i].getElementsByTagName("td")[9];
-    if (name && nrc) {
+    nrc = tr[i].getElementsByTagName("td")[11];
+    alfa = tr[i].getElementsByTagName("td")[12];
+    if (name && nrc && alfa) {
       nameValue = name.textContent || name.innerText;
       nrcValue = nrc.textContent || nrc.innerText;
-      if (nameValue.toUpperCase().indexOf(filter) > -1 || nrcValue.toUpperCase().indexOf(filter) > -1) {
+      alfaValue = alfa.textContent || alfa.innerText;
+      if (nameValue.toUpperCase().indexOf(filter) > -1 || nrcValue.toUpperCase().indexOf(filter) > -1 ||
+            alfaValue.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "table-row";
       }
     }
