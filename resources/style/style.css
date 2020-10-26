@@ -408,12 +408,16 @@ button:hover {
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.info-area div{
+.info-area div {
   background-color: white;
   width: 300px;
   font-family: "Lato";
   border-radius:5px;
   border: 2px solid #404040;
+}
+
+.info-material div {
+  width: 200px;
 }
 
 .info-area h2 {
@@ -430,7 +434,6 @@ button:hover {
 .tr-info-area details{
   margin-top:85px;
 }
-
 
 #materials details {
   margin-top: 15px;
