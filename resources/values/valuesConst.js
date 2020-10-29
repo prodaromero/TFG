@@ -20,10 +20,10 @@ var OpacityMax = 1;
 var OpacityMin = 0.3;
 var inside = false;
 
-var sabine_conts = 0.161;
-var eyring_conts = 0.16;
+var SabineConts = 0.161;
+var EyringConts = 0.16;
 
-var speedSound = 341;
+var SpeedSound = 341;
 
 var Arial20 = "20px Arial";
 var Arial10 = "10px Arial";

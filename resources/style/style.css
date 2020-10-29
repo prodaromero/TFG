@@ -676,12 +676,12 @@ button:hover {
 }
 
 .good-tr{
-  height: 110px;
+  height: auto;
 }
 
 .good-tr-octaves {
   width: 450px;
-  height: 50px;
+  height: auto;
 }
 .error {
   border-color: Crimson;

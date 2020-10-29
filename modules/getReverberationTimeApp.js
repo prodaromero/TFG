@@ -69,12 +69,12 @@ function optionGetReverberationTimeOctaves(option,
   } else if (!absortionCoefOkOctaves(room)) {
     openPopup(CommentCoefKO);
   } else {
-    absortion_area_125 = getRoomAbsortionArea(room,cPared_125,cTecho_125,cSuelo_125);
-    absortion_area_250 = getRoomAbsortionArea(room,cPared_250,cTecho_250,cSuelo_250);
-    absortion_area_500 = getRoomAbsortionArea(room,cPared_500,cTecho_500,cSuelo_500);
-    absortion_area_1000 = getRoomAbsortionArea(room,cPared_1000,cTecho_1000,cSuelo_1000);
-    absortion_area_2000 = getRoomAbsortionArea(room,cPared_2000,cTecho_2000,cSuelo_2000);
-    absortion_area_4000 = getRoomAbsortionArea(room,cPared_4000,cTecho_4000,cSuelo_4000);
+    absortion_area_125 = getRoomAbsortionArea(room,cTecho_125,cSuelo_125,cPared_125);
+    absortion_area_250 = getRoomAbsortionArea(room,cTecho_250,cSuelo_250,cPared_250);
+    absortion_area_500 = getRoomAbsortionArea(room,cTecho_500,cSuelo_500,cPared_500);
+    absortion_area_1000 = getRoomAbsortionArea(room,cTecho_1000,cSuelo_1000,cPared_1000);
+    absortion_area_2000 = getRoomAbsortionArea(room,cTecho_2000,cSuelo_2000,cPared_2000);
+    absortion_area_4000 = getRoomAbsortionArea(room,cTecho_4000,cSuelo_4000,cPared_4000);
 
     // Sabine
     trSabine[0] = getReverTimeSabine(volume,absortion_area_125);

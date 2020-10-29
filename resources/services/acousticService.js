@@ -55,27 +55,27 @@ function getPosition(object,x,y,z) {
 
 function getMinDistance(roomObject,reverTime) {
   var volume = roomObject.volume();
-  var dmin = 2*Math.sqrt(volume/(speedSound*reverTime));
+  var dmin = 2*Math.sqrt(volume/(SpeedSound*reverTime));
   return dmin;
 }
 
 // ** Funciones getReverberationTimeApp ** \\
 
 function getRoomDimensions(roomObject) {
-  var walls = 2*getSurface(roomObject.wide,roomObject.long) + 2*getSurface(roomObject.wide,roomObject.high);
+  var walls = 2*getSurface(roomObject.long,roomObject.high) + 2*getSurface(roomObject.wide,roomObject.high);
   roomObject.surface_floor = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_roof  = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_wall  = walls;
 }
 
-function getRoomAbsortionArea(roomObject,coef_pared,coef_techo,coef_suelo) {
+function getRoomAbsortionArea(roomObject,coef_techo,coef_suelo,coef_pared) {
   return roomObject.surface_wall*coef_pared +
           roomObject.surface_roof*coef_techo +
           roomObject.surface_floor*coef_suelo;
 }
 
 function getReverTimeSabine(vol,area_absorcion) {
-  var tr_sabine = (sabine_conts*vol)/area_absorcion;
+  var tr_sabine = (SabineConts*vol)/area_absorcion;
   return getRound2Decimals(tr_sabine);
 }
 
@@ -89,7 +89,7 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
   var tr_eyring, surface, ln;
   surface = getRoomSurface(roomObject);
   ln = -Math.log(1-(area_absorcion)/surface);
-  return getRound2Decimals((eyring_conts*vol)/(surface*ln));
+  return getRound2Decimals((EyringConts*vol)/(surface*ln));
 }
 
 function getSchroederFrecuency(tr, volumeObject) {return getRound2Decimals(2000*Math.sqrt(tr/volumeObject));}
