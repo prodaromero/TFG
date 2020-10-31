@@ -6,6 +6,8 @@ function Room() {
 
   this.volume = function(){return this.long*this.wide*this.high;}
 
+  // Room surfaces
+  this.surface_roof  = 0;
   this.surface_floor = 0;
   this.surface_wall  = 0;
 

@@ -1,9 +1,8 @@
 function optionGetReverberationTime(option,coef_techo,coef_suelo,coef_pared) {
-
+  var absortion_aream, fcSabine, fcEyring;
   var room = RoomObject;
   var trSabine = ReverberationTimeSabine;
   var trEyring = ReverberationTimeEyring;
-  var absortion_area;
   var volume = room.volume();
 
   var cTecho = parseFloat(document.getElementById(coef_techo).value);
@@ -23,7 +22,9 @@ function optionGetReverberationTime(option,coef_techo,coef_suelo,coef_pared) {
     trSabine = getReverTimeSabine(volume,absortion_area);
     trEyring = getReverTimeEyring(room,volume,absortion_area);
 
-    putReverTimeMsg(option,trSabine,trEyring);
+    fcSabine = getSchroederFrecuency(trSabine, volume);
+    fcEyring = getSchroederFrecuency(trEyring, volume);
+    putReverTimeMsg(option,trSabine,trEyring,fcSabine,fcEyring);
   }
 }
 
@@ -32,11 +33,11 @@ function optionGetReverberationTimeOctaves(option,
                                     suelo_125,suelo_250,suelo_500,suelo_1000,suelo_2000,suelo_4000,
                                     techo_125,techo_250,techo_500,techo_1000,techo_2000,techo_4000) {
 
+  var absortion_area,fcSabine,fcEyring,trMeanSabine,trMeanEyring;
+  var canvasOct = document.getElementById("canvasOctaves");
   var room = RoomObject;
   var trSabine = ReverberationTimeOctavesSabine;
   var trEyring = ReverberationTimeOctavesEyring;
-  var canvasOct = document.getElementById("canvasOctaves");
-  var absortion_area;
   var volume = room.volume();
 
   var cPared_125  = parseFloat(document.getElementById(pared_125).value);
@@ -68,12 +69,12 @@ function optionGetReverberationTimeOctaves(option,
   } else if (!absortionCoefOkOctaves(room)) {
     openPopup(CommentCoefKO);
   } else {
-    absortion_area_125 = getRoomAbsortionArea(room,cPared_125,cTecho_125,cSuelo_125);
-    absortion_area_250 = getRoomAbsortionArea(room,cPared_250,cTecho_250,cSuelo_250);
-    absortion_area_500 = getRoomAbsortionArea(room,cPared_500,cTecho_500,cSuelo_500);
-    absortion_area_1000 = getRoomAbsortionArea(room,cPared_1000,cTecho_1000,cSuelo_1000);
-    absortion_area_2000 = getRoomAbsortionArea(room,cPared_2000,cTecho_2000,cSuelo_2000);
-    absortion_area_4000 = getRoomAbsortionArea(room,cPared_4000,cTecho_4000,cSuelo_4000);
+    absortion_area_125 = getRoomAbsortionArea(room,cTecho_125,cSuelo_125,cPared_125);
+    absortion_area_250 = getRoomAbsortionArea(room,cTecho_250,cSuelo_250,cPared_250);
+    absortion_area_500 = getRoomAbsortionArea(room,cTecho_500,cSuelo_500,cPared_500);
+    absortion_area_1000 = getRoomAbsortionArea(room,cTecho_1000,cSuelo_1000,cPared_1000);
+    absortion_area_2000 = getRoomAbsortionArea(room,cTecho_2000,cSuelo_2000,cPared_2000);
+    absortion_area_4000 = getRoomAbsortionArea(room,cTecho_4000,cSuelo_4000,cPared_4000);
 
     // Sabine
     trSabine[0] = getReverTimeSabine(volume,absortion_area_125);
@@ -92,6 +93,11 @@ function optionGetReverberationTimeOctaves(option,
     trEyring[5] = getReverTimeEyring(room,volume,absortion_area_4000);
 
     createReverberationTable(trSabine,trEyring);
+    trMeanSabine = getMean(trSabine[2],trSabine[3]);
+    trMeanEyring = getMean(trEyring[2],trEyring[3]);
+    fcSabine = getSchroederFrecuency(trMeanSabine, volume);
+    fcEyring = getSchroederFrecuency(trMeanEyring, volume);
+    putReverTimeOctavesMsg(option,fcSabine,fcEyring);
     renderDistances(canvasOct);
     plotOctavesGraphEmpty(canvasOct);
     plotOctavesGraph(canvasOct);

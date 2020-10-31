@@ -25,6 +25,8 @@ function isObjectInsideRoom(object, room) {
   return isInside(object.long,room.long) && isInside(object.wide,room.wide) && isInside(object.high,room.high);
 }
 
+function getMean(min,max) {return getRound2Decimals((min+max)/2);}
+
 // ** Funciones getMinDistanceApp ** \\
 function distance(surceObject, microphoneObject) {
 
@@ -53,27 +55,27 @@ function getPosition(object,x,y,z) {
 
 function getMinDistance(roomObject,reverTime) {
   var volume = roomObject.volume();
-  var dmin = 2*Math.sqrt(volume/(speedSound*reverTime));
+  var dmin = 2*Math.sqrt(volume/(SpeedSound*reverTime));
   return dmin;
 }
 
 // ** Funciones getReverberationTimeApp ** \\
 
 function getRoomDimensions(roomObject) {
-  var walls = 2*getSurface(roomObject.wide,roomObject.long) + 2*getSurface(roomObject.wide,roomObject.high);
+  var walls = 2*getSurface(roomObject.long,roomObject.high) + 2*getSurface(roomObject.wide,roomObject.high);
   roomObject.surface_floor = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_roof  = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_wall  = walls;
 }
 
-function getRoomAbsortionArea(roomObject,coef_pared,coef_techo,coef_suelo) {
+function getRoomAbsortionArea(roomObject,coef_techo,coef_suelo,coef_pared) {
   return roomObject.surface_wall*coef_pared +
           roomObject.surface_roof*coef_techo +
           roomObject.surface_floor*coef_suelo;
 }
 
 function getReverTimeSabine(vol,area_absorcion) {
-  var tr_sabine = (sabine_conts*vol)/area_absorcion;
+  var tr_sabine = (SabineConts*vol)/area_absorcion;
   return getRound2Decimals(tr_sabine);
 }
 
@@ -85,13 +87,12 @@ function getRoomSurface(roomObject) {
 
 function getReverTimeEyring(roomObject,vol,area_absorcion) {
   var tr_eyring, surface, ln;
-
   surface = getRoomSurface(roomObject);
-
   ln = -Math.log(1-(area_absorcion)/surface);
-
-  return getRound2Decimals((eyring_conts*vol)/(surface*ln));
+  return getRound2Decimals((EyringConts*vol)/(surface*ln));
 }
+
+function getSchroederFrecuency(tr, volumeObject) {return getRound2Decimals(2000*Math.sqrt(tr/volumeObject));}
 
 function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared) {
   roomObject.coef_abs_roof  = coef_techo;
@@ -155,12 +156,55 @@ function absortionCoefOkOctaves(roomObject) {
 }
 
 // ** Funciones getShortListOfPointsApp ** \\
-function getRandomPoint(max) {
-  var rand = getRound2Decimals(Math.random() * max)
-  if (rand > max - DisMinimaSurface || rand < DisMinimaSurface) {
-    rand = getRandomPoint(max);
-  }
-  return rand;
+
+function getSuggestedMultiplePointsDetermined(roomObject, listObject) {
+  var minDis = getRound2Decimals(MinDistance);
+
+  listObject[0][1].long = DisMinimaSurface;
+  listObject[0][1].wide = roomObject.wide - DisMinimaSurface;
+  listObject[0][1].high = DisMinimaSurface;
+  listObject[0][2].long = roomObject.long - DisMinimaSurface;
+  listObject[0][2].wide = roomObject.wide - DisMinimaSurface;
+  listObject[0][2].high = DisMinimaSurface;
+  listObject[0][3].long = roomObject.long - DisMinimaSurface;
+  listObject[0][3].wide = DisMinimaSurface;
+  listObject[0][3].high = DisMinimaSurface;
+
+  listObject[1][1].long = DisMinimaSurface;
+  listObject[1][1].wide = DisMinimaSurface;
+  listObject[1][1].high = DisMinimaSurface;
+  listObject[1][2].long = roomObject.long - DisMinimaSurface;
+  listObject[1][2].wide = roomObject.wide - DisMinimaSurface;
+  listObject[1][2].high = DisMinimaSurface;
+  listObject[1][3].long = roomObject.long - DisMinimaSurface;
+  listObject[1][3].wide = DisMinimaSurface;
+  listObject[1][3].high = DisMinimaSurface;
+
+  listObject[2][1].long = DisMinimaSurface;
+  listObject[2][1].wide = DisMinimaSurface;
+  listObject[2][1].high = DisMinimaSurface;
+  listObject[2][2].long = DisMinimaSurface;
+  listObject[2][2].wide = roomObject.wide - DisMinimaSurface;
+  listObject[2][2].high = DisMinimaSurface;
+  listObject[2][3].long = roomObject.long - DisMinimaSurface;
+  listObject[2][3].wide = DisMinimaSurface;
+  listObject[2][3].high = DisMinimaSurface;
+
+  listObject[3][1].long = DisMinimaSurface;
+  listObject[3][1].wide = DisMinimaSurface;
+  listObject[3][1].high = DisMinimaSurface;
+  listObject[3][2].long = DisMinimaSurface;
+  listObject[3][2].wide = roomObject.wide - DisMinimaSurface;
+  listObject[3][2].high = DisMinimaSurface;
+  listObject[3][3].long = roomObject.long - DisMinimaSurface;
+  listObject[3][3].wide = roomObject.wide - DisMinimaSurface;;
+  listObject[3][3].high = DisMinimaSurface;
+}
+
+function getRandomPoint(maxL) {
+  min = DisMinimaSurface;
+  max = maxL - DisMinimaSurface;
+  return getRound2Decimals(Math.random() * (max - min) + min);
 }
 
 function getRandomPosition(roomObject) {
@@ -179,28 +223,7 @@ function getMicroMultiplePoints(roomObject, suggestedObject) {
   suggestedObject.high = list[2];
 }
 
-function initMultiplePoints(roomObject, listObject) {
-  listObject[0][0].long = DisMinimaSurface;
-  listObject[0][0].wide = DisMinimaSurface;
-  listObject[0][0].high = DisMinimaSurface;
-
-  listObject[1][0].long = DisMinimaSurface;
-  listObject[1][0].wide = roomObject.wide - DisMinimaSurface;
-  listObject[1][0].high = DisMinimaSurface;
-
-  listObject[2][0].long = roomObject.long - DisMinimaSurface;
-  listObject[2][0].wide = roomObject.wide - DisMinimaSurface;
-  listObject[2][0].high = DisMinimaSurface;
-
-  listObject[3][0].long = roomObject.long - DisMinimaSurface;
-  listObject[3][0].wide = DisMinimaSurface;
-  listObject[3][0].high = DisMinimaSurface;
-
-  getSuggestedMultiplePoints(roomObject, listObject)
-}
-
-
-function getSuggestedMultiplePoints(roomObject, listObject) {
+function getSuggestedMultiplePointsRandom(roomObject, listObject) {
   var dis, dis1, dis2;
   for (var i = 0; i < listObject.length; i++) {
     for (var j = 1; j < listObject[i].length; j++) {
@@ -235,5 +258,29 @@ function getSuggestedMultiplePoints(roomObject, listObject) {
           break;
       }
     }
+  }
+}
+
+function initMultiplePoints(roomObject, listObject, volumeObject) {
+  listObject[0][0].long = DisMinimaSurface;
+  listObject[0][0].wide = DisMinimaSurface;
+  listObject[0][0].high = DisMinimaSurface;
+
+  listObject[1][0].long = DisMinimaSurface;
+  listObject[1][0].wide = roomObject.wide - DisMinimaSurface;
+  listObject[1][0].high = DisMinimaSurface;
+
+  listObject[2][0].long = roomObject.long - DisMinimaSurface;
+  listObject[2][0].wide = roomObject.wide - DisMinimaSurface;
+  listObject[2][0].high = DisMinimaSurface;
+
+  listObject[3][0].long = roomObject.long - DisMinimaSurface;
+  listObject[3][0].wide = DisMinimaSurface;
+  listObject[3][0].high = DisMinimaSurface;
+
+  if (volumeObject < RoomVolumeThreshold) {
+    getSuggestedMultiplePointsDetermined(roomObject, listObject)
+  } else {
+    getSuggestedMultiplePointsRandom(roomObject, listObject);
   }
 }

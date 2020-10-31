@@ -33,7 +33,7 @@ h3, h4, h5, input {
 }
 
 input {
-  font-family: "Lato"
+  font-family: "Cambay"
   color: inherit;
   height: 30px;
   box-sizing: border-box;
@@ -51,7 +51,7 @@ details {
   position: absolute;
   float: right;
   width: 50px;
-  z-index: 1;
+  z-index: 2;
   height: auto;
   margin-top: 25px;
   margin-left:70%;
@@ -60,7 +60,7 @@ details {
 }
 
 summary {
-  z-index: 1;
+  z-index: 2;
   height: 20px;
   width: 20px;text-decoration: none;
   background-color: inherit;
@@ -150,8 +150,10 @@ button:hover {
   text-align: left;
   color: white;
   text-decoration: none;
+  font-family: "Cabin";
   font-size:20px;
   font-weight:700;
+  letter-spacing: 2;
   text-transform: uppercase;
 }
 
@@ -229,16 +231,33 @@ button:hover {
   background: DodgerBlue;
 }
 
-.calculate-button a {
+.calculate-button a, .obatain-button a {
   position: relative;
   text-decoration: none;
   outline: 0;
   color: inherit;
 }
 
-.download-button {
-  background: DodgerBlue;
-  margin-bottom: 25px;
+.obatain-button {
+  width:150px;
+  height:30px;
+  padding: 0;
+  margin-top:20px;
+  margin-bottom:0px;
+  position:relative;
+  color:white;
+  background:SteelBlue;
+}
+
+.obatain-button:hover{
+  width: 200px;
+  color: #404040;
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: white;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
 }
 
 .bg-image {
@@ -272,7 +291,7 @@ button:hover {
   color: white;
   border: 10px solid #f1f1f1;
   top: 50%;
-  font-size: 80px;
+  font-size: 70px;
 }
 
 .bg-description {
@@ -357,7 +376,7 @@ button:hover {
 
 .init-logo {
   z-index: 1;
-  width: 600px;
+  width:800px;
   height: 70px;
   margin: auto;
   border-radius: 5px;
@@ -368,8 +387,8 @@ button:hover {
   margin-left: 5%;
   background-color: inherit;
   color: white;
-  font-family: "Lato";
-  font-size: 55px;
+  font-family: "Aldrich";
+  font-size: 50px;
   font-weight: 700;
   letter-spacing: 3px;
   text-decoration: none;
@@ -378,8 +397,8 @@ button:hover {
   transition: 0.3s;
   border-radius: 5px;
   display:inline-block;
-  margin-top: 1%;
-  padding: 6px 12px;
+  margin-top:15px;
+  padding: 10px 10px 0 10px;
   text-align: center;
   vertical-align:middle;
 }
@@ -391,12 +410,16 @@ button:hover {
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.info-area div{
+.info-area div {
   background-color: white;
   width: 300px;
-  font-family: "Lato";
+  font-family: "Cambay";
   border-radius:5px;
   border: 2px solid #404040;
+}
+
+.info-material div {
+  width: 230px;
 }
 
 .info-area h2 {
@@ -406,8 +429,13 @@ button:hover {
 
 .info-area p {
   text-align: left;
+  font-size: 15px;
   padding: 20px;
   padding-top: 10px;
+}
+
+.tr-info-area details{
+  margin-top:85px;
 }
 
 #materials details {
@@ -418,6 +446,13 @@ button:hover {
 .distance-image {
   width: 50%;
 }
+
+.schroeder-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
 
 .reverberation-image {
   width: 90%;
@@ -443,9 +478,9 @@ button:hover {
 }
 
 .description {
-  font-family: "Lato";
+  font-family: "Cambay";
   font-size: 15px;
-  letter-spacing: 2px;
+  letter-spacing: auto;
   padding: 100px;
   padding-top: 75px;
   padding-bottom: 50px;
@@ -511,6 +546,11 @@ button:hover {
 .distance-display, .suggested-display, .room-display, .rever-display {
   height: 50%;
   width: 90%;
+}
+
+.suggested-display {
+  border-radius: 0;
+  border-top: 3px solid #404040;
 }
 
 .reverberation-title {
@@ -603,6 +643,7 @@ button:hover {
 
 .octaves-table input {
   margin: auto;
+  width: 90px;
 }
 
 .octaves-table td {
@@ -615,16 +656,15 @@ button:hover {
 }
 
 .good, .error {
-  width: 50%;
+  width: 550px;
   height: auto;
   margin: auto;
   margin-top: 25px;
   margin-bottom: 20px;
   padding: 0.5em;
-  font-family: "Lato";
+  font-family: "Cambay";
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 2px;
   text-align: center;
   border-radius:  0.5em;
   border-style: solid;
@@ -635,6 +675,14 @@ button:hover {
   border-color: MediumSpringGreen;
 }
 
+.good-tr{
+  height: auto;
+}
+
+.good-tr-octaves {
+  width: 450px;
+  height: auto;
+}
 .error {
   border-color: Crimson;
 }
@@ -682,20 +730,6 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5p
   border-collapse:collapse;
 }
 
-.modal-background {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-}
-
 .bg-paragraph {
   padding: 20px;
   font-family: Helvetica, Arial, sans-serif;
@@ -741,7 +775,7 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5p
 
 .contact-github a, .contact-gmail a{
   width: 250px;
-  font-family: "Lato";
+  font-family: "Aldrich";
   font-size: 20px;
   font-weight: 900;
   letter-spacing: 3px;
@@ -758,13 +792,13 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5p
 }
 
 .about-area {
-  font-family: "Lato";
+  font-family: "Big Shoulders Display";
   letter-spacing: 2px;
   text-align: center;
 }
 
 .about-area h2 {
-  font-size: 25px;
+  font-size: 35px;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
@@ -772,7 +806,8 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5p
 }
 
 .about-area p{
-  font-size: 17px;
+  font-size: 20px;
+  letter-spacing: 2px;
   margin: 15px;
   margin-top: 20px;
 }
