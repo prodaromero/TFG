@@ -358,23 +358,17 @@ function initMultiplePoints(roomObject, listObject, volumeObject) {
   listObject[3][0].wide = DisMinimaSurface;
   listObject[3][0].high = DisMinimaSurface;
 
-if (volumeObject>MinimalVolume && volumeObject<=42.9) {
-  // One Suggested Point
-  getSuggestedOnePoint(roomObject,listObject);
-} else if (volumeObject>42.9 && volumeObject<64) {
-  // Two Suggested Points
-  getSuggestedTwoPoints(roomObject,listObject);
-} else if (volumeObject>=64 && volumeObject<110) {
-  // Three Suggested Points Determined
-  getSuggestedThreePoints(roomObject,listObject);
-} else {
-  // Three Suggested Points Random
-  getSuggestedMultiplePointsRandom(roomObject, listObject);
-}
-
-  // if (volumeObject < RoomVolumeThreshold) {
-  //   getSuggestedMultiplePointsDetermined(roomObject, listObject)
-  // } else {
-  //   getSuggestedMultiplePointsRandom(roomObject, listObject);
-  // }
+  if (volumeObject>MinimalVolume && volumeObject<=42.9) {
+    // One Suggested Point
+    getSuggestedOnePoint(roomObject,listObject);
+  } else if (volumeObject>42.9 && volumeObject<64) {
+    // Two Suggested Points
+    getSuggestedTwoPoints(roomObject,listObject);
+  } else if (volumeObject>=64 && volumeObject<110) {
+    // Three Suggested Points Determined
+    getSuggestedThreePoints(roomObject,listObject);
+  } else {
+    // Three Suggested Points Random
+    getSuggestedMultiplePointsRandom(roomObject, listObject);
+  }
 }
