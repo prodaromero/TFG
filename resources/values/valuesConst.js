@@ -37,7 +37,7 @@ var ReverberationTimeSabine;
 var ReverberationTimeEyring;
 var ReverberationTimeOctavesSabine = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 var ReverberationTimeOctavesEyring = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-var MinDistance;;
+var MinDistance;
 
 var DisMinimaSurface = 1;
 var DisMinimaMicro = 2;
@@ -57,12 +57,11 @@ var Microphone = new Object();
 var RoomOperative = new Object();
 
 var MinimalDimension = 2.5;
-var MinimalVolume = 7.5;
+var MinimalVolume = 15.5;
 var RoomVolumeThreshold = 110;
 
 // Success messages
 var CommentRoomOK = '<p>¡Dimensiones recogidas correctamente!</p>'
-// var CommentReverTimeOK = '<p>¡Tiempo de reverberación recogido correctamente!</p>'
 
 // Error messages
 var CommentRoomKO = '<p>Por favor, asegurese de haber introducido los datos del recinto correctamente. ¡Gracias!</p>'

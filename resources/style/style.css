@@ -655,7 +655,7 @@ button:hover {
   border: 0px;
 }
 
-.good, .error {
+.good, .error, .warning {
   width: 550px;
   height: auto;
   margin: auto;
@@ -675,6 +675,16 @@ button:hover {
   border-color: MediumSpringGreen;
 }
 
+.error {
+  border-color: Crimson;
+}
+
+.warning {
+  width: 600px;
+  text-align: justify;
+  border-color: Gold;
+}
+
 .good-tr{
   height: auto;
 }
@@ -682,9 +692,6 @@ button:hover {
 .good-tr-octaves {
   width: 450px;
   height: auto;
-}
-.error {
-  border-color: Crimson;
 }
 
 .divReverTime {
