@@ -22,10 +22,9 @@ h4 {
 
 h5 {
   margin: auto;
-  width: 700px;
   font-size:15px;
   font-weight:700;
-  border-bottom:1px solid white;
+  text-decoration: underline;
 }
 
 h3, h4, h5, input {
@@ -680,7 +679,7 @@ button:hover {
 }
 
 .warning {
-  width: 600px;
+  width: 700px;
   text-align: justify;
   border-color: Gold;
 }
@@ -691,6 +690,11 @@ button:hover {
 
 .good-tr-octaves {
   width: 450px;
+  height: auto;
+}
+
+.points-image {
+  width: 695px;
   height: auto;
 }
 

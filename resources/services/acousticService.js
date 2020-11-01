@@ -186,7 +186,10 @@ function getSuggestedOnePoint(roomObject, listObject) {
               Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
               puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
               no cumpliendo así con la normativa.<br><br>
-              Disculpe las molestias.</div>`
+              Disculpe las molestias.<br><br>
+              <h5>Números mínimos de posiciones y mediciones</h5>
+              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
+              </div>`
 
   putMessage("info-suggested-list", msg);
 }
@@ -197,28 +200,28 @@ function getSuggestedTwoPoints(roomObject, listObject) {
   listObject[0][1].high = DisMinimaSurface;
   listObject[0][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[0][2].wide = DisMinimaSurface;
-  listObject[0][2].high = DisMinimaSurface;
+  listObject[0][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
   // Micro positions for second source
   listObject[1][1].long = DisMinimaSurface;
   listObject[1][1].wide = DisMinimaSurface;
   listObject[1][1].high = DisMinimaSurface;
   listObject[1][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[1][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[1][2].high = DisMinimaSurface;
+  listObject[1][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
   // Micro positions for third source
   listObject[2][1].long = DisMinimaSurface;
   listObject[2][1].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[2][1].high = DisMinimaSurface;
   listObject[2][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[2][2].wide = DisMinimaSurface;
-  listObject[2][2].high = DisMinimaSurface;
+  listObject[2][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
   // Micro positions for fourth source
   listObject[3][1].long = DisMinimaSurface;
   listObject[3][1].wide = DisMinimaSurface;
   listObject[3][1].high = DisMinimaSurface;
   listObject[3][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[3][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[3][2].high = DisMinimaSurface;
+  listObject[3][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
 
   for (var i = 0; i < listObject.length; i++) {
     listObject[i][3].long = "-";
@@ -232,7 +235,10 @@ function getSuggestedTwoPoints(roomObject, listObject) {
               Debido a las dimensiones del recinto, solo se pueden obtener dos posiciones válidas,
               puesto que, si se obtuviese una tercera posición de medición, los micrófonos estarían
               situados a menos de 2 m, no cumpliendo así con la normativa.<br><br>
-              Disculpe las molestias.</div>`
+              Disculpe las molestias.<br><br>
+              <h5>Números mínimos de posiciones y mediciones</h5>
+              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
+              </div>`
 
   putMessage("info-suggested-list", msg);
 }
@@ -245,7 +251,7 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[0][1].high = DisMinimaSurface;
   listObject[0][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[0][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[0][2].high = DisMinimaSurface;
+  listObject[0][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
   listObject[0][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[0][3].wide = DisMinimaSurface;
   listObject[0][3].high = DisMinimaSurface;
@@ -258,11 +264,11 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[1][2].high = DisMinimaSurface;
   listObject[1][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[1][3].wide = DisMinimaSurface;
-  listObject[1][3].high = DisMinimaSurface;
+  listObject[1][3].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
 
   listObject[2][1].long = DisMinimaSurface;
   listObject[2][1].wide = DisMinimaSurface;
-  listObject[2][1].high = DisMinimaSurface;
+  listObject[2][1].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
   listObject[2][2].long = DisMinimaSurface;
   listObject[2][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[2][2].high = DisMinimaSurface;
@@ -275,10 +281,17 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[3][1].high = DisMinimaSurface;
   listObject[3][2].long = DisMinimaSurface;
   listObject[3][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[3][2].high = DisMinimaSurface;
+  listObject[3][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
   listObject[3][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[3][3].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[3][3].high = DisMinimaSurface;
+
+  var msg = `<div class="warning">
+              <h5>Números mínimos de posiciones y mediciones</h5>
+              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
+            </div>`
+
+  putMessage("info-suggested-list", msg);
 }
 
 function getRandomPoint(maxL) {
@@ -339,6 +352,13 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
       }
     }
   }
+
+  var msg = `<div class="warning">
+              <h5>Números mínimos de posiciones y mediciones</h5>
+              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
+            </div>`
+
+  putMessage("info-suggested-list", msg);
 }
 
 function initMultiplePoints(roomObject, listObject, volumeObject) {
@@ -358,13 +378,13 @@ function initMultiplePoints(roomObject, listObject, volumeObject) {
   listObject[3][0].wide = DisMinimaSurface;
   listObject[3][0].high = DisMinimaSurface;
 
-  if (volumeObject>MinimalVolume && volumeObject<=42.9) {
+  if (volumeObject>MinimalVolume && volumeObject<=31.4) {
     // One Suggested Point
     getSuggestedOnePoint(roomObject,listObject);
-  } else if (volumeObject>42.9 && volumeObject<64) {
+  } else if (volumeObject>31.4 && volumeObject<42.8) {
     // Two Suggested Points
     getSuggestedTwoPoints(roomObject,listObject);
-  } else if (volumeObject>=64 && volumeObject<110) {
+  } else if (volumeObject>=42.8 && volumeObject<110) {
     // Three Suggested Points Determined
     getSuggestedThreePoints(roomObject,listObject);
   } else {
