@@ -1,6 +1,7 @@
 function initRoom(longRoom,wideRoom,highRoom) {
   var comment;
   var room = RoomObject;
+  MinDistance = 0;
   room.long = parseFloat(document.getElementById(longRoom).value);
   room.wide = parseFloat(document.getElementById(wideRoom).value);
   room.high = parseFloat(document.getElementById(highRoom).value);

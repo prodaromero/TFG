@@ -8,7 +8,7 @@ function optionGetShortList() {
     openPopup(CommentRoomKO);
   } else if (!MinDistance) {
     openPopup(CommentDistanceKO);
-  } else if (volume < MinimalVolume || room.long < MinimalDimension || room.wide < MinimalDimension || room.high < MinimalDimension) {
+  } else if (volume < MinimalVolume || room.long < MinimalDimensionLong || room.wide < MinimalDimensionWide || room.high < MinimalDimensionHigh) {
     openPopup(CommentRoomSmall);
   } else {
     initMultiplePoints(room, list, volume);

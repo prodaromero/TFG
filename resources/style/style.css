@@ -22,10 +22,9 @@ h4 {
 
 h5 {
   margin: auto;
-  width: 700px;
   font-size:15px;
   font-weight:700;
-  border-bottom:1px solid white;
+  text-decoration: underline;
 }
 
 h3, h4, h5, input {
@@ -655,7 +654,7 @@ button:hover {
   border: 0px;
 }
 
-.good, .error {
+.good, .error, .warning {
   width: 550px;
   height: auto;
   margin: auto;
@@ -675,6 +674,16 @@ button:hover {
   border-color: MediumSpringGreen;
 }
 
+.error {
+  border-color: Crimson;
+}
+
+.warning {
+  width: 700px;
+  text-align: justify;
+  border-color: Gold;
+}
+
 .good-tr{
   height: auto;
 }
@@ -683,8 +692,10 @@ button:hover {
   width: 450px;
   height: auto;
 }
-.error {
-  border-color: Crimson;
+
+.points-image {
+  width: 695px;
+  height: auto;
 }
 
 .divReverTime {
