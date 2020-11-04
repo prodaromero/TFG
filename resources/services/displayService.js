@@ -98,7 +98,7 @@ function putOkDistanceMsg(isok,dmin) {
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
 
-function putReverTimeMsg(op,trS,trE,fcS,fcE) {
+function putReverTimeMsg(trS,trE,fcS,fcE) {
   var msg = `
   <div>
     <div class="tr-info-area">
@@ -129,7 +129,7 @@ function putReverTimeMsg(op,trS,trE,fcS,fcE) {
   putMessage('putTR',msg)
 }
 
-function putReverTimeOctavesMsg(op,fcS,fcE) {
+function putReverTimeOctavesMsg(fcS,fcE) {
   var msg = `
   <div>
     <div class="tr-info-area">

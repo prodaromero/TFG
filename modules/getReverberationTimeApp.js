@@ -1,4 +1,4 @@
-function optionGetReverberationTime(option,coef_techo,coef_suelo,coef_pared) {
+function optionGetReverberationTime(coef_techo,coef_suelo,coef_pared) {
   var absortion_aream, fcSabine, fcEyring;
   var room = RoomObject;
   var trSabine = ReverberationTimeSabine;
@@ -24,11 +24,11 @@ function optionGetReverberationTime(option,coef_techo,coef_suelo,coef_pared) {
 
     fcSabine = getSchroederFrecuency(trSabine, volume);
     fcEyring = getSchroederFrecuency(trEyring, volume);
-    putReverTimeMsg(option,trSabine,trEyring,fcSabine,fcEyring);
+    putReverTimeMsg(trSabine,trEyring,fcSabine,fcEyring);
   }
 }
 
-function optionGetReverberationTimeOctaves(option,
+function optionGetReverberationTimeOctaves(
                                     pared_125,pared_250,pared_500,pared_1000,pared_2000,pared_4000,
                                     suelo_125,suelo_250,suelo_500,suelo_1000,suelo_2000,suelo_4000,
                                     techo_125,techo_250,techo_500,techo_1000,techo_2000,techo_4000) {
@@ -97,7 +97,7 @@ function optionGetReverberationTimeOctaves(option,
     trMeanEyring = getMean(trEyring[2],trEyring[3]);
     fcSabine = getSchroederFrecuency(trMeanSabine, volume);
     fcEyring = getSchroederFrecuency(trMeanEyring, volume);
-    putReverTimeOctavesMsg(option,fcSabine,fcEyring);
+    putReverTimeOctavesMsg(fcSabine,fcEyring);
     renderDistances(canvasOct);
     plotOctavesGraphEmpty(canvasOct);
     plotOctavesGraph(canvasOct);
