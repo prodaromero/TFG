@@ -62,16 +62,22 @@ function getMinDistance(roomObject,reverTime) {
 // ** Funciones getReverberationTimeApp ** \\
 
 function getRoomDimensions(roomObject) {
-  var walls = 2*getSurface(roomObject.long,roomObject.high) + 2*getSurface(roomObject.wide,roomObject.high);
   roomObject.surface_floor = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_roof  = getSurface(roomObject.wide,roomObject.long);
-  roomObject.surface_wall  = walls;
+  roomObject.surface_wall_a = getSurface(roomObject.long,roomObject.high);
+  roomObject.surface_wall_b = getSurface(roomObject.wide,roomObject.high);
+  roomObject.surface_wall_c = getSurface(roomObject.long,roomObject.high);
+  roomObject.surface_wall_d = getSurface(roomObject.wide,roomObject.high);
 }
 
-function getRoomAbsortionArea(roomObject,coef_techo,coef_suelo,coef_pared) {
-  return roomObject.surface_wall*coef_pared +
-          roomObject.surface_roof*coef_techo +
-          roomObject.surface_floor*coef_suelo;
+function getRoomAbsortionArea(roomObject,coef_techo,coef_suelo,coef_pared_a,
+                            coef_pared_b,coef_pared_c,coef_pared_d){
+  return roomObject.surface_roof*coef_techo +
+          roomObject.surface_floor*coef_suelo +
+          roomObject.surface_wall_a*coef_pared_a +
+          roomObject.surface_wall_b*coef_pared_b +
+          roomObject.surface_wall_c*coef_pared_c +
+          roomObject.surface_wall_d*coef_pared_d;
 }
 
 function getReverTimeSabine(vol,area_absorcion) {
@@ -80,9 +86,12 @@ function getReverTimeSabine(vol,area_absorcion) {
 }
 
 function getRoomSurface(roomObject) {
-  return roomObject.surface_wall +
+  return roomObject.surface_roof +
           roomObject.surface_floor +
-          roomObject.surface_roof;
+          roomObject.surface_wall_a +
+          roomObject.surface_wall_b +
+          roomObject.surface_wall_c +
+          roomObject.surface_wall_d;          
 }
 
 function getReverTimeEyring(roomObject,vol,area_absorcion) {
@@ -94,10 +103,14 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
 
 function getSchroederFrecuency(tr, volumeObject) {return getRound2Decimals(2000*Math.sqrt(tr/volumeObject));}
 
-function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared) {
+function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared_a,
+                            coef_pared_b,coef_pared_c,coef_pared_d) {
   roomObject.coef_abs_roof  = coef_techo;
   roomObject.coef_abs_floor = coef_suelo;
-  roomObject.coef_abs_wall  = coef_pared;
+  roomObject.coef_abs_wall_a = coef_pared_a;
+  roomObject.coef_abs_wall_b = coef_pared_b;
+  roomObject.coef_abs_wall_c = coef_pared_c;
+  roomObject.coef_abs_wall_d = coef_pared_d;
 }
 
 function getRoomAbsocionCoefOctaves(roomObject,
@@ -128,30 +141,51 @@ function absortionCoefOk(roomObject) {
   return (
     isCorrectCoef(roomObject.coef_abs_roof) &&
     isCorrectCoef(roomObject.coef_abs_floor) &&
-    isCorrectCoef(roomObject.coef_abs_wall)
+    isCorrectCoef(roomObject.coef_abs_wall_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d)
   )
 }
 
 function absortionCoefOkOctaves(roomObject) {
   return (
-    isCorrectCoef(roomObject.coef_abs_wall_125) &&
-    isCorrectCoef(roomObject.coef_abs_wall_250) &&
-    isCorrectCoef(roomObject.coef_abs_wall_500) &&
-    isCorrectCoef(roomObject.coef_abs_wall_1000) &&
-    isCorrectCoef(roomObject.coef_abs_wall_2000) &&
-    isCorrectCoef(roomObject.coef_abs_wall_4000) &&
+    isCorrectCoef(roomObject.coef_abs_roof_125) &&
+    isCorrectCoef(roomObject.coef_abs_roof_250) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_500) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_1000) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_2000) &&
+  	isCorrectCoef(roomObject.coef_abs_roof_4000) &&
     isCorrectCoef(roomObject.coef_abs_floor_125) &&
     isCorrectCoef(roomObject.coef_abs_floor_250) &&
     isCorrectCoef(roomObject.coef_abs_floor_500) &&
     isCorrectCoef(roomObject.coef_abs_floor_1000) &&
     isCorrectCoef(roomObject.coef_abs_floor_2000) &&
     isCorrectCoef(roomObject.coef_abs_floor_4000) &&
-    isCorrectCoef(roomObject.coef_abs_roof_125) &&
-    isCorrectCoef(roomObject.coef_abs_roof_250) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_500) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_1000) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_2000) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_4000)
+    isCorrectCoef(roomObject.coef_abs_wall_125_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_250_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_500_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_1000_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_2000_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_4000_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_125_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_250_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_500_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_1000_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_2000_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_4000_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_125_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_250_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_500_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_1000_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_2000_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_4000_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_125_d) &&
+    isCorrectCoef(roomObject.coef_abs_wall_250_d) &&
+    isCorrectCoef(roomObject.coef_abs_wall_500_d) &&
+    isCorrectCoef(roomObject.coef_abs_wall_1000_d) &&
+    isCorrectCoef(roomObject.coef_abs_wall_2000_d) &&
+    isCorrectCoef(roomObject.coef_abs_wall_4000_d)
   )
 }
 

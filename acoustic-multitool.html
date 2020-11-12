@@ -314,7 +314,19 @@
                   <span class="focus-border"></span>
                 </div>
                 <div class="in-box">
-                  <input  id="coef_pared" class="info-input" placeholder="Coeficiente absorción Pared">
+                  <input  id="coef_pared_a" class="info-input" placeholder="Coeficiente absorción Pared A">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_b" class="info-input" placeholder="Coeficiente absorción Pared B">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_c" class="info-input" placeholder="Coeficiente absorción Pared C">
+                  <span class="focus-border"></span>
+                </div>
+                <div class="in-box">
+                  <input  id="coef_pared_d" class="info-input" placeholder="Coeficiente absorción Pared D">
                   <span class="focus-border"></span>
                 </div>
               </div>
@@ -323,7 +335,7 @@
             <div id="putTR"></div>
             <div align="center">
               <button class="calculate-button" onclick="optionGetReverberationTime('coef_techo',
-              'coef_suelo','coef_pared')">calcular tiempo de reverberación</button>
+              'coef_suelo','coef_pared_a','coef_pared_b','coef_pared_c','coef_pared_d')">calcular tiempo de reverberación</button>
             </div>
           </div>
           <div id="octaves" class="reverberation-time">
@@ -343,33 +355,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Paredes</td>
-                        <td>
-                          <input id="pared_125" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_250" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_500" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_1000" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_2000" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_4000" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                      </tr>
                       <tr>
                         <td>Techo</td>
                         <td>
@@ -424,6 +409,114 @@
                           <span class="focus-border"></span>
                         </td>
                       </tr>
+                      <tr>
+                        <td>Paredes</td>
+                        <td>
+                          <input id="pared_125_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Paredes</td>
+                        <td>
+                          <input id="pared_125_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Paredes</td>
+                        <td>
+                          <input id="pared_125_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Paredes</td>
+                        <td>
+                          <input id="pared_125_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 <div class="empty"></div>
@@ -431,9 +524,12 @@
               <div align="center">
                 <a href="#mark-list-octaves">
                   <button class="calculate-button" onclick="optionGetReverberationTimeOctaves(
-                  'pared_125','pared_250','pared_500','pared_1000','pared_2000','pared_4000',
+                  'techo_125','techo_250','techo_500','techo_1000','techo_2000','techo_4000'
                   'suelo_125','suelo_250','suelo_500','suelo_1000','suelo_2000','suelo_4000',
-                  'techo_125','techo_250','techo_500','techo_1000','techo_2000','techo_4000')"
+                  'pared_125_a','pared_250_a','pared_500_a','pared_1000_a','pared_2000_a','pared_4000_a',
+                  'pared_125_b','pared_250_b','pared_500_b','pared_1000_b','pared_2000_b','pared_4000_b',
+                  'pared_125_c','pared_250_c','pared_500_c','pared_1000_c','pared_2000_c','pared_4000_c',
+                  'pared_125_d','pared_250_d','pared_500_d','pared_1000_d','pared_2000_d','pared_4000_d')"
                   >calcular tiempo de reverberación</button>
                 </a>
               </div>
