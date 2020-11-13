@@ -91,7 +91,7 @@ function getRoomSurface(roomObject) {
           roomObject.surface_wall_a +
           roomObject.surface_wall_b +
           roomObject.surface_wall_c +
-          roomObject.surface_wall_d;          
+          roomObject.surface_wall_d;
 }
 
 function getReverTimeEyring(roomObject,vol,area_absorcion) {
@@ -187,6 +187,11 @@ function absortionCoefOkOctaves(roomObject) {
     isCorrectCoef(roomObject.coef_abs_wall_2000_d) &&
     isCorrectCoef(roomObject.coef_abs_wall_4000_d)
   )
+}
+
+function getMeanAbsCoef(roomObject,coefTecho,coefSuelo,coefParedA,coefParedB,coefParedC,coefParedD) {
+  var coef = coefTecho+coefSuelo+coefParedA+coefParedB+coefParedC+coefParedD;
+  return (getRound2Decimals(coef/6));
 }
 
 // ** Funciones getShortListOfPointsApp ** \\

@@ -98,7 +98,7 @@ function putOkDistanceMsg(isok,dmin) {
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
 
-function putReverTimeMsg(trS,trE,fcS,fcE) {
+function putReverTimeMsg(trS,trE,fcS) {
   var msg = `
   <div>
     <div class="tr-info-area">
@@ -122,14 +122,14 @@ function putReverTimeMsg(trS,trE,fcS,fcE) {
       El tiempo de reverberación por Sabine es de `+trS+`[s].<br>El tiempo de
       reverberación por Eyring es de `+trE+`[s].<br><br>
       Recuerde que la frecuencia de Schroeder es:<br>
-        Fc de Sabine = `+fcS+`[Hz]<br>Fc de Eyring = `+fcE+`[Hz]
+        Fc = `+fcS+`[Hz]
     </div>
   </div>
   `
   putMessage('putTR',msg)
 }
 
-function putReverTimeOctavesMsg(fcS,fcE) {
+function putReverTimeOctavesMsg(fcS) {
   var msg = `
   <div>
     <div class="tr-info-area">
@@ -152,7 +152,7 @@ function putReverTimeOctavesMsg(fcS,fcE) {
     </div>
     <div class="good good-tr-octaves">
       Recuerde que la frecuencia de Schroeder es:<br>
-        Fc de Sabine = `+fcS+`[Hz]<br>Fc de Eyring = `+fcE+`[Hz]
+        Fc de Sabine = `+fcS+`[Hz]
     </div>
   </div>
   `
