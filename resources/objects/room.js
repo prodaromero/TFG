@@ -25,6 +25,18 @@ function Room() {
 
 
   // Room walls coefficients in octaves
+  this.coef_abs_roof_125   = 0;
+  this.coef_abs_roof_250   = 0;
+  this.coef_abs_roof_500   = 0;
+  this.coef_abs_roof_1000  = 0;
+  this.coef_abs_roof_2000  = 0;
+  this.coef_abs_roof_4000  = 0;
+  this.coef_abs_floor_125  = 0;
+  this.coef_abs_floor_250  = 0;
+  this.coef_abs_floor_500  = 0;
+  this.coef_abs_floor_1000 = 0;
+  this.coef_abs_floor_2000 = 0;
+  this.coef_abs_floor_4000 = 0;
   this.coef_abs_wall_a_125   = 0;
   this.coef_abs_wall_a_250   = 0;
   this.coef_abs_wall_a_500   = 0;
@@ -49,16 +61,4 @@ function Room() {
   this.coef_abs_wall_d_1000  = 0;
   this.coef_abs_wall_d_2000  = 0;
   this.coef_abs_wall_d_4000  = 0;
-  this.coef_abs_roof_125   = 0;
-  this.coef_abs_roof_250   = 0;
-  this.coef_abs_roof_500   = 0;
-  this.coef_abs_roof_1000  = 0;
-  this.coef_abs_roof_2000  = 0;
-  this.coef_abs_roof_4000  = 0;
-  this.coef_abs_floor_125  = 0;
-  this.coef_abs_floor_250  = 0;
-  this.coef_abs_floor_500  = 0;
-  this.coef_abs_floor_1000 = 0;
-  this.coef_abs_floor_2000 = 0;
-  this.coef_abs_floor_4000 = 0;
 }

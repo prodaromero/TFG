@@ -23,7 +23,6 @@ function optionGetReverberationTime(coef_techo,coef_suelo,coef_pared_a,
   } else {
     absortionArea = getRoomAbsortionArea(room,cTecho,cSuelo,cParedA,cParedB,cParedC,cParedD);
     roomMeanAbsCoef = getMeanAbsCoef(room,cTecho,cSuelo,cParedA,cParedB,cParedC,cParedD);
-    console.log(roomMeanAbsCoef);
 
     trSabine = getReverTimeSabine(volume,absortionArea);
     trEyring = getReverTimeEyring(room,volume,absortionArea);
@@ -36,12 +35,12 @@ function optionGetReverberationTime(coef_techo,coef_suelo,coef_pared_a,
 }
 
 function optionGetReverberationTimeOctaves(
-                                    techo_125,techo_250,techo_500,techo_1000,techo_2000,techo_4000,
-                                    suelo_125,suelo_250,suelo_500,suelo_1000,suelo_2000,suelo_4000,
-                                    pared_125_a,pared_250_a,pared_500_a,pared_1000_a,pared_2000_a,pared_4000_a,
-                                    pared_125_b,pared_250_b,pared_500_b,pared_1000_b,pared_2000_b,pared_4000_b,
-                                    pared_125_c,pared_250_c,pared_500_c,pared_1000_c,pared_2000_c,pared_4000_c,
-                                    pared_125_d,pared_250_d,pared_500_d,pared_1000_d,pared_2000_d,pared_4000_d) {
+          techo_125,techo_250,techo_500,techo_1000,techo_2000,techo_4000,
+          suelo_125,suelo_250,suelo_500,suelo_1000,suelo_2000,suelo_4000,
+          pared_125_a,pared_250_a,pared_500_a,pared_1000_a,pared_2000_a,pared_4000_a,
+          pared_125_b,pared_250_b,pared_500_b,pared_1000_b,pared_2000_b,pared_4000_b,
+          pared_125_c,pared_250_c,pared_500_c,pared_1000_c,pared_2000_c,pared_4000_c,
+          pared_125_d,pared_250_d,pared_500_d,pared_1000_d,pared_2000_d,pared_4000_d) {
 
   var absortionArea,roomMeanAbsCoef_500,roomMeanAbsCoef_1000,roomMeanAbsCoef_2000,
     roomMeanAbsCoef,fcSchroeder,trMeanSabine,trMeanEyring;
@@ -88,7 +87,6 @@ function optionGetReverberationTimeOctaves(
   var cParedD_1000 = parseFloat(document.getElementById(pared_1000_d).value);
   var cParedD_2000 = parseFloat(document.getElementById(pared_2000_d).value);
   var cParedD_4000 = parseFloat(document.getElementById(pared_4000_d).value);
-
 
   getRoomDimensions(room);
   getRoomAbsocionCoefOctaves(room,cTecho_125,cTecho_250,cTecho_500,cTecho_1000,cTecho_2000,cTecho_4000,

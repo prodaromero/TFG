@@ -21,15 +21,15 @@
 
   <body onload="myCanvas()">
     <header class="tab">
-      <a href="javascript:void(0)" class="init-menu" onclick="openSidebar()">☰</a>
+      <a href="javascript:void(0)" class="init-menu" onclick="openSidebar('sidebar-menu')">☰</a>
       <div class="init-logo">
         <a href="#init">ACOUSTIC MULTI-TOOL</a>
       </div>
     </header>
 
-    <div id="sidebar-menu">
+    <div id="sidebar-menu" class="menu-animation">
       <div class="close-div">
-        <a onclick="closeSidebar()"></a>
+        <a onclick="closeSidebar('sidebar-menu')"></a>
       </div>
       <div>
         <a class="sidebar-button" href="#mark-menu">menú</a>
@@ -50,7 +50,6 @@
 
     <div class="body-content" id="body-content">
       <div id="mark-menu"></div>
-
       <h3 class="content-title">MENÚ</h3>
       <div class="contenedor-principal">
         <div class="description">
@@ -125,6 +124,22 @@
 
       <div id="roomDimensions">
         <h3 class="content-title">Dimensiones del recinto</h3>
+
+        <div class="how-to-info">
+          <a href="javascript:void(0)" onclick="openSidebar('how-to-distance')">instrucciones</a>
+        </div>
+
+        <div id="how-to-distance" class="how-to-animation">
+          <div class="close-div">
+            <a onclick="closeSidebar('how-to-distance')"></a>
+          </div>
+          <div>
+            <p>
+              Para utilizar esta herramienta,
+            </p>
+          </div>
+        </div>
+
         <div class="contenedor-principal">
           <div class="empty"></div>
           <div class="distance-display">
@@ -152,6 +167,8 @@
                 <input  id="high" class="info-input" placeholder="(z) Altura del recinto [m]">
                 <span class="focus-border"></span>
               </div>
+              <button class="reset-button" onclick="clearDimensions()">limpiar valores</button>
+              <div class="empty"></div>
             </div>
             <button class="calculate-button" onclick="initRoom('long', 'wide', 'high')"><a>guardar dimensiones</a></button>
           </div>
@@ -243,6 +260,9 @@
                 <span class="focus-border"></span>
               </div>
             </div>
+            <div class="reset-distance">
+              <button class="reset-button" onclick="clearDistance()">limpiar todos los valores</button>
+            </div>
             <a href="#minDistance">
               <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">comprobar punto de medición</button>
             </a>
@@ -279,12 +299,12 @@
         <h3 class="content-title">Tiempo de reverberación</h3>
         <div class="contenedor-principal">
           <div align="center">
-            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'normal')">Tiempo de reverberación</button>
-            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Tiempo de reverberación en octavas</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'normal')">Coeficiente medio</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Coeficientes por octavas</button>
           </div>
           <div id="normal" class="reverberation-time">
             <div class="rever-display">
-              <details class="info-area">
+              <details class="info-area info-rever">
                 <summary>i</summary>
                 <div>
                   <h2>Tiempo de Reverberación</h2>
@@ -305,30 +325,57 @@
               </details>
               <div id="coefRecinto">
                 <h4>Coeficientes de absorción</h4>
-                <div class="in-box">
-                  <input id="coef_techo" class="info-input" placeholder="Coeficiente absorción Techo">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_suelo" class="info-input" placeholder="Coeficiente absorción Suelo">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_a" class="info-input" placeholder="Coeficiente absorción Pared A">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_b" class="info-input" placeholder="Coeficiente absorción Pared B">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_c" class="info-input" placeholder="Coeficiente absorción Pared C">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared_d" class="info-input" placeholder="Coeficiente absorción Pared D">
-                  <span class="focus-border"></span>
-                </div>
+                <table class="coef-table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Techo</td>
+                        <td>
+                          <input id="coef_techo" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Suelo</td>
+                        <td>
+                          <input id="coef_suelo" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared A</td>
+                        <td>
+                          <input id="coef_pared_a" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared B</td>
+                        <td>
+                          <input id="coef_pared_b" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared C</td>
+                        <td>
+                          <input id="coef_pared_c" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared D</td>
+                        <td>
+                          <input id="coef_pared_d" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <div class="empty"></div>
+                <button class="reset-button" onclick="clearCoef()">limpiar valores</button>
+                <div class="empty"></div>
               </div>
             </div>
             <div class="empty"></div>
@@ -343,18 +390,18 @@
               <div id="coefRecintoOctaves">
                 <h4>Coeficientes de absorción por bandas de octava</h4>
                 <table class="octaves-table">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>125Hz</th>
-                        <th>250Hz</th>
-                        <th>500Hz</th>
-                        <th>1000Hz</th>
-                        <th>2000Hz</th>
-                        <th>4000Hz</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>125Hz</th>
+                      <th>250Hz</th>
+                      <th>500Hz</th>
+                      <th>1000Hz</th>
+                      <th>2000Hz</th>
+                      <th>4000Hz</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                       <tr>
                         <td>Techo</td>
                         <td>
@@ -518,7 +565,8 @@
                         </td>
                       </tr>
                     </tbody>
-                  </table>
+                </table>
+                <button class="reset-button" onclick="clearOctaves()">limpiar valores</button>
                 <div class="empty"></div>
               </div>
               <div align="center">

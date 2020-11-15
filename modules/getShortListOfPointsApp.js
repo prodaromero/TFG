@@ -45,6 +45,7 @@ function optionGetShortList() {
 
     for (i = 0; i < list.length; i++) {
       var tbodyTr = document.createElement('tr');
+      tbodyTr.classList.add('table-style-'+i);
       var tbodyTdNumber = document.createElement('td');
       tbodyTdNumber.innerHTML = i+1;
       tbodyTr.appendChild(tbodyTdNumber);

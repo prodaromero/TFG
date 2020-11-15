@@ -142,6 +142,26 @@ button:hover {
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
+#how-to-distance {
+  z-index: 1;
+  float: right;
+  width: 300px;
+  height: 500px;
+  display: none;
+  margin-top: 100px;
+  background-color:red;
+}
+
+.menu-animation {
+  position:relative;
+  animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1};
+}
+
+.how-to-animation {
+  position:relative;
+  animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1};
+}
+
 .sidebar-button {
   display: block;
   padding: 20px;
@@ -190,7 +210,6 @@ button:hover {
 }
 
 .close-div a:hover {
-  font-weight: 900;
   background-color: white;
   color: black;
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
@@ -198,13 +217,12 @@ button:hover {
   transition: all 0.3s ease 0s;
 }
 
-
 .init-menu {
   width: auto;
   height: auto;
   z-index: 1;
   margin:auto;
-  padding: 5px;
+  padding: 0;
   margin-left:15px;
   float: left;
   text-align:center;
@@ -225,19 +243,38 @@ button:hover {
   background: #404040;
 }
 
+.how-to-info {
+  z-index: 1;
+  float: right;
+  width: 115px;
+  height: 25px;
+  background-color: red;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.how-to-info a {
+  z-index: 1;
+  text-align: center;
+  padding: 5px;
+  font-size:20px;
+  color: white;
+  text-decoration: none;
+}
+
 .calculate-button {
   position: relative;
   background: DodgerBlue;
 }
 
-.calculate-button a, .obatain-button a {
+.calculate-button a, .reset-button a {
   position: relative;
   text-decoration: none;
   outline: 0;
   color: inherit;
 }
 
-.obatain-button {
+.reset-button {
   width:150px;
   height:30px;
   padding: 0;
@@ -248,7 +285,7 @@ button:hover {
   background:SteelBlue;
 }
 
-.obatain-button:hover{
+.reset-button:hover{
   width: 200px;
   color: #404040;
   font-weight: 700;
@@ -257,6 +294,18 @@ button:hover {
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   transition: all 0.3s ease 0s;
+}
+
+.reset-distance div {
+  width: 100%;
+}
+
+.reset-distance button {
+  width: 250px;
+}
+
+.reset-distance:hover button {
+  width: 300px;
 }
 
 .bg-image {
@@ -360,7 +409,11 @@ button:hover {
   letter-spacing: 4px;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
   border-bottom:1px solid #ccc;
-  margin-top: 200px;
+  margin-top: 180px;
+}
+
+.how-title {
+  margin-top: 50px;
 }
 
 /* Style the tab */
@@ -397,7 +450,7 @@ button:hover {
   border-radius: 5px;
   display:inline-block;
   margin-top:15px;
-  padding: 10px 10px 0 10px;
+  padding: 0 10px 0 10px;
   text-align: center;
   vertical-align:middle;
 }
@@ -440,6 +493,11 @@ button:hover {
 #materials details {
   margin-top: 15px;
   margin-left: 100%;
+}
+
+#reverTime details {
+    margin-top: 0;
+    margin-left: 80%;
 }
 
 .distance-image {
@@ -593,7 +651,7 @@ button:hover {
 }
 
 #coefRecinto {
-  width: 50%;
+  width: 70%;
   height: auto;
 }
 
@@ -633,7 +691,7 @@ button:hover {
   border: 1px solid black;
 }
 
-.octaves-table {
+.octaves-table, .coef-table {
   margin: auto;
   vertical-align: middle;
   border-collapse: collapse;
@@ -645,12 +703,26 @@ button:hover {
   width: 90px;
 }
 
+.coef-table input {
+    margin: auto;
+    width: 250px;
+}
+
 .octaves-table td {
   border: 0px;
   border-bottom: 1px solid white;
 }
 
+.coef-table td {
+  border: 0px;
+  border-bottom: 1px solid white;
+}
+
 .octaves-table th {
+  border: 0px;
+}
+
+.coef-table th {
   border: 0px;
 }
 
@@ -728,6 +800,11 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5p
   display: none;
   text-align: center;
 }
+
+.table-style-0 {background-color: Snow;}
+.table-style-1 {background-color: MintCream;}
+.table-style-2 {background-color: Snow;}
+.table-style-3 {background-color: MintCream;}
 
 #rever-octaves-table, #rever-table {
   margin: auto;
