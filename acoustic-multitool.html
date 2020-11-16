@@ -124,8 +124,18 @@
 
       <div id="roomDimensions">
         <h3 class="content-title">Dimensiones del recinto</h3>
-
-        <div class="contenedor-principal">
+        <details class="how-area">
+          <summary>¿Cómo se usa?</summary>
+          <div>
+            <h2>Dimesiones del recinto</h2>
+            <br>
+            <p>
+              Por favor, introduzca las dimensiones del recinto en metros. Una vez realizado,
+              presione el botón "Guardar dimensiones" para establecerlas.
+            </p>
+          </div>
+        </details>
+        <div id="roomDimensions-container" class="contenedor-principal">
           <div class="empty"></div>
           <div class="distance-display">
             <details class="info-area">
@@ -137,6 +147,7 @@
                   Por favor, introduzca las dimensiones del recinto en metros. Una vez realizado,
                   presione el botón "Guardar dimensiones" para establecerlas.
                 </p>
+              </div>
             </details>
             <div id="dimRecinto">
               <h4>Dimensiones del recinto</h4>
@@ -164,7 +175,7 @@
 
       <div id="minDistance">
         <h3 class="content-title">Distancia mínima</h3>
-        <div class="contenedor-principal">
+        <div id="minDistance-container" class="contenedor-principal">
           <div class="canvas-display">
             <div class="display-one">
               <h2><i>Planta</i></h2>
@@ -276,8 +287,6 @@
         </div>
       </div>
 
-      <div id="mark-suggested"></div>
-
       <div id="mark-reverberation"></div>
 
       <div id="reverTime" onload="plotOctavesGraphEmpty()">
@@ -287,7 +296,7 @@
             <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'normal')">Coeficiente medio</button>
             <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Coeficientes por octavas</button>
           </div>
-          <div id="normal" class="reverberation-time">
+          <div id="reverTime-normal" class="reverberation-time">
             <div class="rever-display">
               <details class="info-area info-rever">
                 <summary>i</summary>
@@ -370,7 +379,7 @@
               'coef_suelo','coef_pared_a','coef_pared_b','coef_pared_c','coef_pared_d')">calcular tiempo de reverberación</button>
             </div>
           </div>
-          <div id="octaves" class="reverberation-time">
+          <div id="reverTime-octaves" class="reverberation-time">
             <div class="rever-display">
               <div id="coefRecintoOctaves">
                 <h4>Coeficientes de absorción por bandas de octava</h4>
