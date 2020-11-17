@@ -124,22 +124,11 @@
 
       <div id="roomDimensions">
         <h3 class="content-title">Dimensiones del recinto</h3>
-        <details class="how-area">
-          <summary>¿Cómo se usa?</summary>
-          <div>
-            <h2>Dimesiones del recinto</h2>
-            <br>
-            <p>
-              Por favor, introduzca las dimensiones del recinto en metros. Una vez realizado,
-              presione el botón "Guardar dimensiones" para establecerlas.
-            </p>
-          </div>
-        </details>
         <div id="roomDimensions-container" class="contenedor-principal">
           <div class="empty"></div>
           <div class="distance-display">
-            <details class="info-area">
-              <summary>i</summary>
+            <details class="how-area">
+              <summary>¿Cómo se usa?</summary>
               <div>
                 <h2>Dimesiones del recinto</h2>
                 <br>
@@ -193,8 +182,8 @@
           <div id="checkDisMsg"></div>
 
           <div class="distance-display">
-            <details class="info-area">
-              <summary>i</summary>
+            <details class="how-area">
+              <summary>¿Cómo se usa?</summary>
                 <div>
                   <h2>Cálculo de la distancia mínima</h2>
                   <p>
@@ -264,8 +253,8 @@
             </a>
 
             <div class="suggested-display">
-              <details class="info-area">
-                <summary>i</summary>
+              <details class="how-area">
+                <summary>¿Cómo se usa?</summary>
                 <div>
                   <h2>Propuesta de puntos de medición</h2>
                   <p>
@@ -293,13 +282,13 @@
         <h3 class="content-title">Tiempo de reverberación</h3>
         <div class="contenedor-principal">
           <div align="center">
-            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'normal')">Coeficiente medio</button>
-            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Coeficientes por octavas</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'reverTime-normal')">Coeficiente medio</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'reverTime-octaves')">Coeficientes por octavas</button>
           </div>
           <div id="reverTime-normal" class="reverberation-time">
             <div class="rever-display">
-              <details class="info-area info-rever">
-                <summary>i</summary>
+              <details class="how-area info-rever">
+                <summary>¿Cómo se usa?</summary>
                 <div>
                   <h2>Tiempo de Reverberación</h2>
                   <p>
@@ -595,20 +584,20 @@
       <div id="materials">
       <h3 class="content-title">Tablas de materiales</h3>
       <div class="contenedor-principal">
+        <details class="how-area info-material">
+          <summary>¿Cómo se usa?</summary>
+          <div>
+            <h2>Lista de materiales</h2>
+            <p>
+              En esta herramienta pueden ser consultados diferentes materiales
+              para el uso en traramientos acústicos de recintos.<br><br>
+              Las búsquedas pueden realizarse en función del nombre de material,
+              así como por su NRC (Noise Reduction Coeficient) o por su α medio (Coeficiente
+              de Absorción Medio).
+            </p>
+          </div>
+        </details>
         <div class="in-box">
-          <details class="info-area info-material">
-            <summary>i</summary>
-            <div>
-              <h2>Lista de materiales</h2>
-              <p>
-                En esta herramienta pueden ser consultados diferentes materiales
-                para el uso en traramientos acústicos de recintos.<br><br>
-                Las búsquedas pueden realizarse en función del nombre de material,
-                así como por su NRC (Noise Reduction Coeficient) o por su α medio (Coeficiente
-                de Absorción Medio).
-              </p>
-            </div>
-          </details>
           <input id="inputValue" class="info-input" onkeyup="searchInSelectionTable()" placeholder="Búsqueda por nombre, NRC o Alfa del material..."></input>
         </div>
         <div align="center">

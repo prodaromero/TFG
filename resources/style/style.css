@@ -508,9 +508,14 @@ details {
   z-index: 1;
 }
 
+#roomDimensions details {
+  margin-top:15px;
+  margin-left:91%;
+}
+
 #roomDimensions-container details, #minDistance-container details {
   margin-top:25px;
-  margin-left:80%;
+  margin-left:70%;
 }
 
 #reverTime-normal details {
@@ -523,23 +528,28 @@ details {
   margin-left: 80%;
 }
 
-#materials details {
-  margin-top: 15px;
-  margin-left: 100%;
+#reverTime-octaves {
+  display: none;
 }
 
-.info-area summary {
+#materials details {
+  margin-top: 15px;
+  margin-left: 90%;
+}
+
+/* .info-area summary {
   height: 20px;
   width: 20px;
   text-decoration: none;
   background-color: inherit;
   color: #404040;
   border-radius: 50%;
-  border: 3px solid #404040;
+  border: 2px solid #404040;
   font-size: 17px;
   font-weight: 700;
   font-style: italic;
   text-align: center;
+  cursor: pointer;
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
@@ -565,6 +575,63 @@ details {
   font-size: 15px;
   padding: 20px;
   padding-top: 10px;
+} */
+
+.how-area summary {
+  height: 20px;
+  width: auto;
+  margin-bottom: 3px;
+  text-decoration: none;
+  background-color: #404040;
+  color:white;
+  padding: 2px;
+  border-radius: 5px;
+  border: 2px solid #404040;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.how-area summary::-webkit-details-marker {
+  display: none;
+}
+
+.how-area div {
+  background-color: white;
+  width: 300px;
+  font-family: "Cambay";
+  border-radius:5px;
+  border: 2px solid #404040;
+}
+
+.how-area div {
+  background-color: white;
+  width: 300px;
+  font-family: "Cambay";
+  border-radius:5px;
+  border: 2px solid #404040;
+}
+
+.how-area h2 {
+  color: white;
+  background-color:#404040;
+}
+
+.how-area p {
+  text-align: left;
+  font-size: 15px;
+  padding: 20px;
+  padding-top: 10px;
+}
+
+.how-area div {
+  animation:animateleft 0.4s}@keyframes animateleft{from{top:-300px;opacity:0} to{top:0;opacity:1};
+}
+
+.info-material div, .info-rever div {
+  width: 200px;
 }
 
 .distance-image {
@@ -576,7 +643,6 @@ details {
   margin-right: auto;
   width: 60%;
 }
-
 
 .reverberation-image {
   width: 90%;
@@ -724,10 +790,6 @@ details {
 
 #coefRecintoOctaves {
   width:90%;
-}
-
-#octaves {
-  display: none;
 }
 
 #inputValue {
