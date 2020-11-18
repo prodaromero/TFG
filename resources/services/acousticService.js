@@ -240,7 +240,7 @@ function getSuggestedOnePoint(roomObject, listObject) {
       listObject[i][j].high = "-";
     }
   }
-  var msg = `<div class="warning">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
+  var msg = `<div class="red">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
               Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
               normativa aplicada NE-ISO 3382.<br>
               Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
@@ -289,7 +289,7 @@ function getSuggestedTwoPoints(roomObject, listObject) {
     listObject[i][3].high = "-";
   }
 
-  var msg = `<div class="warning">Solo se pueden obtener dos posiciones de medición para los micrófonos.<br><br>
+  var msg = `<div class="orange">Solo se pueden obtener dos posiciones de medición para los micrófonos.<br><br>
               Recuerde que la distancia entre los micrófonos debe ser de 2 metros segun la
               normativa aplicada UNE-ISO 3382.<br>
               Debido a las dimensiones del recinto, solo se pueden obtener dos posiciones válidas,
@@ -346,7 +346,7 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[3][3].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[3][3].high = DisMinimaSurface;
 
-  var msg = `<div class="warning">
+  var msg = `<div class="green">
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
             </div>`
@@ -413,7 +413,7 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
     }
   }
 
-  var msg = `<div class="warning">
+  var msg = `<div class="green">
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
             </div>`

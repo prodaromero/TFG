@@ -2,6 +2,7 @@
   CANVAS
 **********/
 
+// ** Generales ** \\
 function getScale(n, scale) {
 
   var in_area = false;
@@ -146,18 +147,22 @@ function drawDistance(canvas,x,y,scale,dis) {
   drawCircle(ctx,scaleWidth,scaleHeight,disScaled,Red,OpacityMin);
 }
 
-function renderDistances(canvasOne) {
+function render(canvasOne) {
   var ctxOne = canvasOne.getContext("2d");
 
   ctxOne.clearRect(0,0,canvasOne.width, canvasOne.height);
 }
 
+// ** Funciones getMinDistanceApp ** \\
+
 function myCanvas(a,b) {
   canvasPlanta  = document.getElementById("canvasPlanta");
   canvasAlzado  = document.getElementById("canvasAlzado");
   canvasOctaves = document.getElementById("canvasOctaves");
+  canvasSuggestedPlanta  = document.getElementById("suggestedPlanta");
+  canvasSuggestedAlzado = document.getElementById("suggestedAlzado");
 
-  if (!canvasPlanta && !canvasAlzado && !canvasOctaves) {
+  if (!canvasPlanta && !canvasAlzado && !canvasOctaves && !canvasSuggestedPlanta && !canvasSuggestedAlzado) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
   }
@@ -172,10 +177,26 @@ function myCanvas(a,b) {
   drawText(ctxFrontal,Arial20,"x [m]",[250,290]);
   drawText(ctxFrontal,Arial20,"z [m]",[10,20]);
 
+
+  ctxSuggPlanta = canvasSuggestedPlanta.getContext("2d");
+  ctxSuggAlzado = canvasSuggestedAlzado.getContext("2d");
+
+  drawAxes(ctxSuggPlanta);
+  drawText(ctxSuggPlanta,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggPlanta,Arial20,"y [m]",[10,20]);
+  drawAxes(ctxSuggAlzado);
+  drawText(ctxSuggAlzado,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggAlzado,Arial20,"z [m]",[10,20]);
+
   plotOctavesGraphEmpty(canvasOctaves);
+}
+
+// ** Funciones getShortListOfPointsApp ** \\
+function plotSuggestedPoints(canvas) {
 
 }
 
+// ** Funciones getReverberationTimeApp ** \\
 function plotOctavesGraphEmpty(canvas) {
   ctxOct = canvas.getContext("2d");
 

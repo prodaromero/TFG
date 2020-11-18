@@ -225,6 +225,56 @@ function createReverberationTable(listSabine, listEyring) {
   document.getElementById('rever-octaves-table').appendChild(table);
 }
 
+function createSuggestedTable(list) {
+  var tbl = document.getElementById('suggested-table');
+  if (tbl) {tbl.parentNode.removeChild(tbl);}
+
+  var table = document.createElement('table');
+  table.setAttribute("id", "suggested-table");
+  table.classList.add('table-style');
+  var thead = document.createElement('thead');
+  thead.classList.add('table-header');
+  var tbody = document.createElement('tbody');
+  var tr = document.createElement('tr');
+
+  var th_1 = document.createElement('th');
+  th_1.innerHTML = 'Medida';
+  tr.appendChild(th_1);
+  var th_2 = document.createElement('th');
+  th_2.innerHTML = 'Fuente (x,y,z) [m]';
+  tr.appendChild(th_2);
+  var th_3 = document.createElement('th');
+  th_3.innerHTML = 'Micrófono 1 (x,y,z) [m]';
+  tr.appendChild(th_3);
+  var th_4 = document.createElement('th');
+  th_4.innerHTML = 'Micrófono 2 (x,y,z) [m]';
+  tr.appendChild(th_4);
+  var th_5 = document.createElement('th');
+  th_5.innerHTML = 'Micrófono 3 (x,y,z) [m]';
+  tr.appendChild(th_5);
+
+  thead.appendChild(tr);
+  table.appendChild(thead);
+
+  for (i = 0; i < list.length; i++) {
+    var tbodyTr = document.createElement('tr');
+    tbodyTr.classList.add('table-style-'+i);
+    var tbodyTdNumber = document.createElement('td');
+    tbodyTdNumber.innerHTML = i+1;
+    tbodyTr.appendChild(tbodyTdNumber);
+    for (j = 0; j < list[i].length; j++) {
+      var tbodyTd = document.createElement('td');
+      tbodyTd.innerHTML = list[i][j].long+'[m],'+list[i][j].wide+'[m],'+list[i][j].high+'[m]';
+      tbodyTr.appendChild(tbodyTd);
+    }
+    tbody.appendChild(tbodyTr);
+  }
+  table.appendChild(tbody);
+
+  document.getElementById('suggested-list').appendChild(table);
+}
+
+
 function putMessage(id, msg) {document.getElementById(id).innerHTML = msg;}
 
 function clearInputValues(id) {document.getElementById(id).value = '';}

@@ -578,16 +578,17 @@ details {
 } */
 
 .how-area summary {
-  height: 20px;
+  height: 18px;
   width: auto;
   margin-bottom: 3px;
   text-decoration: none;
-  background-color: #404040;
-  color:white;
-  padding: 2px;
+  background-color:white;
+  color: #404040;
+  padding: 3px;
   border-radius: 5px;
   border: 2px solid #404040;
-  font-size: 15px;
+  font-family: "Cambay";
+  font-size: 12px;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
@@ -702,32 +703,32 @@ details {
   width: 40%;
 }
 
-.canvas-display, .distance-display, .rever-display, .suggested-display, .room-display, .canvas-rever-display {
+.canvas-display, .distance-display, .canvas-suggested-display, .rever-display, .suggested-display, .room-display, .canvas-rever-display {
   letter-spacing: 2px;
   margin: auto;
   border-radius: 1em;
 }
-.canvas-display, .canvas-rever-display {
+.canvas-display, .canvas-suggested-display, .canvas-rever-display {
   width: 80%;
   height: 45%;
   background-color: white;
 }
 
-.canvas-display {
-  display:inline-block;
-}
+.canvas-display, .canvas-suggested-display {display:inline-block;}
+
+.canvas-suggested-display {width: 100%;}
 
 .display-octaves{
   margin: auto;
 }
 
-.display-one {
+.display-one, .suggested-planta {
   position: relative;
   float: left;
   margin: 50px;
 }
 
-.display-two {
+.display-two, .suggested-alzado {
   position: relative;
   float: right;
   margin: 50px;
@@ -855,7 +856,7 @@ details {
   border: 0px;
 }
 
-.good, .error, .warning {
+.good, .error, .orange, .red, .green {
   width: 550px;
   height: auto;
   margin: auto;
@@ -879,11 +880,14 @@ details {
   border-color: Crimson;
 }
 
-.warning {
+.orange, .red, .green {
   width: 700px;
   text-align: justify;
-  border-color: Gold;
 }
+
+.orange {border-color: Gold;}
+.red {border-color: red;}
+.green {border-color:green;}
 
 .good-tr{
   height: auto;

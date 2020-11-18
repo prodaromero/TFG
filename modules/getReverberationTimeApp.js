@@ -136,7 +136,7 @@ function optionGetReverberationTimeOctaves(
     if (roomMeanAbsCoef<0.2){fcSchroeder = getSchroederFrecuency(trMeanSabine, volume);}
     else {fcSchroeder = getSchroederFrecuency(trMeanEyring, volume);}
     putReverTimeOctavesMsg(fcSchroeder);
-    renderDistances(canvasOct);
+    render(canvasOct);
     plotOctavesGraphEmpty(canvasOct);
     plotOctavesGraph(canvasOct);
   }

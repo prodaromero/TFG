@@ -3,8 +3,8 @@
 var canvas;
 var ctx;
 var pxScale = 20;
-var normalScale = 1;
-var globalScale = {
+var NormalScale = 1;
+var GlobalScale = {
   xScale : 1,
   yScale : 1,
   zScale : 1
