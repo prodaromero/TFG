@@ -934,10 +934,10 @@ th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5p
   text-align: center;
 }
 
-.table-style-0 {background-color: Snow;}
-.table-style-1 {background-color: MintCream;}
-.table-style-2 {background-color: Snow;}
-.table-style-3 {background-color: MintCream;}
+.table-style-0 {background-color: Snow;cursor: pointer;}
+.table-style-1 {background-color: MintCream;cursor: pointer;}
+.table-style-2 {background-color: Snow;cursor: pointer;}
+.table-style-3 {background-color: MintCream;cursor: pointer;}
 
 #rever-octaves-table, #rever-table {
   margin: auto;

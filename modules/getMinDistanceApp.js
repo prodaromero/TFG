@@ -86,7 +86,7 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
     drawObjet(canvasPlanta,source.long,source.wide,GlobalScale,Red);
     drawObjet(canvasAlzado,source.long,source.high,GlobalScale,Red);
 
-    // draw the source
+    // draw the micriphone
     drawObjet(canvasPlanta,microphone.long,microphone.wide,GlobalScale,Blue);
     drawObjet(canvasAlzado,microphone.long,microphone.high,GlobalScale,Blue);
 

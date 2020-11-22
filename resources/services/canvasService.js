@@ -147,14 +147,12 @@ function drawDistance(canvas,x,y,scale,dis) {
   drawCircle(ctx,scaleWidth,scaleHeight,disScaled,Red,OpacityMin);
 }
 
-function render(canvasOne) {
-  var ctxOne = canvasOne.getContext("2d");
-
-  ctxOne.clearRect(0,0,canvasOne.width, canvasOne.height);
+function render(canvas) {
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width, canvas.height);
 }
 
 // ** Funciones getMinDistanceApp ** \\
-
 function myCanvas(a,b) {
   canvasPlanta  = document.getElementById("canvasPlanta");
   canvasAlzado  = document.getElementById("canvasAlzado");
@@ -192,8 +190,59 @@ function myCanvas(a,b) {
 }
 
 // ** Funciones getShortListOfPointsApp ** \\
-function plotSuggestedPoints(canvas) {
+function initSuggestedPointsDraw(roomObject,canvasPlanta,canvasAlzado) {
+  ctxSuggPlanta = canvasPlanta.getContext("2d");
+  ctxSuggAlzado = canvasAlzado.getContext("2d");
 
+  GlobalScale.xScale = getScale(roomObject.long,NormalScale);
+  GlobalScale.yScale = getScale(roomObject.wide,NormalScale);
+  GlobalScale.zScale = getScale(roomObject.high,NormalScale);
+
+  render(canvasPlanta);
+  render(canvasAlzado);
+
+  drawAxes(ctxSuggPlanta);
+  drawText(ctxSuggPlanta,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggPlanta,Arial20,"y [m]",[10,20]);
+  drawAxes(ctxSuggAlzado);
+  drawText(ctxSuggAlzado,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggAlzado,Arial20,"z [m]",[10,20]);
+
+  drawRoom(canvasPlanta,roomObject.long,roomObject.wide, GlobalScale);
+  drawRoom(canvasAlzado,roomObject.long,roomObject.high, GlobalScale);
+}
+
+function plotSuggestedPoints(list) {
+  var room = RoomObject;
+  canvasSuggestedPlanta  = document.getElementById("suggestedPlanta");
+  canvasSuggestedAlzado = document.getElementById("suggestedAlzado");
+
+  if (!canvasPlanta && !canvasAlzado && !canvasOctaves && !canvasSuggestedPlanta && !canvasSuggestedAlzado) {
+    console.log('Failed to retrieve the <canvas> element');
+    return false;
+  }
+
+  initSuggestedPointsDraw(room,canvasSuggestedPlanta,canvasSuggestedAlzado);
+
+  // draw the source
+  drawObjet(canvasSuggestedPlanta,list[0].long,list[0].wide,GlobalScale,Red);
+  drawObjet(canvasSuggestedAlzado,list[0].long,list[0].high,GlobalScale,Red);
+
+  // draw the min distance
+  drawDistance(canvasSuggestedPlanta,list[0].long,list[0].wide,GlobalScale,MinDistance);
+  drawDistance(canvasSuggestedAlzado,list[0].long,list[0].high,GlobalScale,MinDistance);
+
+  // draw the micriphone 1
+  drawObjet(canvasSuggestedPlanta,list[1].long,list[1].wide,GlobalScale,Blue);
+  drawObjet(canvasSuggestedAlzado,list[1].long,list[1].high,GlobalScale,Blue);
+
+  // draw the micriphone 2
+  drawObjet(canvasSuggestedPlanta,list[2].long,list[2].wide,GlobalScale,Blue);
+  drawObjet(canvasSuggestedAlzado,list[2].long,list[2].high,GlobalScale,Blue);
+
+  // draw the micriphone 3
+  drawObjet(canvasSuggestedPlanta,list[3].long,list[3].wide,GlobalScale,Blue);
+  drawObjet(canvasSuggestedAlzado,list[3].long,list[3].high,GlobalScale,Blue);
 }
 
 // ** Funciones getReverberationTimeApp ** \\

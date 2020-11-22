@@ -18,5 +18,16 @@ function optionGetShortList() {
     initMultiplePoints(room, list, volume);
 
     createSuggestedTable(list);
+
+    var elementName0 = document.getElementById("element-0")
+    var elementName1 = document.getElementById("element-1")
+    var elementName2 = document.getElementById("element-2")
+    var elementName3 = document.getElementById("element-3")
+
+    elementName0.onclick = function(){plotSuggestedPoints(list[0]);}
+    elementName1.onclick = function(){plotSuggestedPoints(list[1]);}
+    elementName2.onclick = function(){plotSuggestedPoints(list[2]);}
+    elementName3.onclick = function(){plotSuggestedPoints(list[3]);}
+
   }
 }

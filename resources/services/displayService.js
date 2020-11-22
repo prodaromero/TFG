@@ -257,8 +257,17 @@ function createSuggestedTable(list) {
   table.appendChild(thead);
 
   for (i = 0; i < list.length; i++) {
+    var a = i;
     var tbodyTr = document.createElement('tr');
     tbodyTr.classList.add('table-style-'+i);
+    tbodyTr.setAttribute("id", "element-"+i);
+    // tbodyTr.onclick = function(){
+    //   var elm = documen.getElementById(i)
+    //   plotSuggestedPoints();
+    // }
+    // tbodyTr.onclick = plotSuggestedPoints(list[i]);
+    // tbodyTr.addEventListener("onclick",plotSuggestedPoints(tbodyTr));
+
     var tbodyTdNumber = document.createElement('td');
     tbodyTdNumber.innerHTML = i+1;
     tbodyTr.appendChild(tbodyTdNumber);
