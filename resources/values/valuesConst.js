@@ -132,7 +132,7 @@ var InfoSuggestedMsg = `<div class="info-dist">
         la fuente sonora y los micrófonos de medición cumpliendo con la normativa.
         Para ello, asegurese de haber introducido las dimensiones del recinto en el
         primer apartado y de haber calculado y establecido la distancia mínima.</p>
-      <img src="resources/style/images/info-sugerencia.png" class="img-sug"></img>
+      <img src="resources/style/images/info-sugerencia.png" class="img-middle"></img>
       <p>Una vez comprobado, pulse el boton "Sugerir tena de puntos" para obtener
         la lista de posiciones de medición.</p>
     </div>
@@ -148,7 +148,7 @@ var InfoSuggestedMsg = `<div class="info-dist">
   </div>`
 
 var InfoCoefMeandMsg = `<div class="info-dimensiones">
-  <h2>Dimensiones del recinto</h2>
+  <h2>Tiempo de Reverberación</h2>
   <img src="resources/style/images/info-coeficientes.png" class="img-coeficientes"></img>
   <div class="info-div-right info-coef-margin">
     <p>En esta apartado se obtiene el tiempo de reverberación medio dados los Coeficientes
@@ -161,4 +161,26 @@ var InfoCoefMeandMsg = `<div class="info-dimensiones">
      obtener los resultados deseados. Adicionalmente, se obtendrá el valor de la frecuencia
      de Schroeder a partir de la cual, los resultados obtenidos comienzan a ser fiables.</p>
   </div>
+  </div>`
+
+var InfoCoefOctavesMsg = `<div class="info-dist">
+    <h2>Tiempo de Reverberación en octavas</h2>
+      <img src="resources/style/images/info-coeficientes-octavas.png" class="img-coeficientes-octavas"></img>
+    <div class="info-div-coef-2">
+      <p>En esta apartado se obtiene el tiempo de reverberación medio dados los Coeficientes
+      de Absorción en bandas de octavas de la sala mediante los métodos de Sabine y Eyring.
+        Para ello, asegurese de haber introducido las dimensiones del recinto en el
+        primer apartado y de haber calculado y establecido la distancia mínima.
+        Una vez comprobado, introduzca todos los valores de los coeficientes de absorción
+        en bandas de ocutava de los materiales que conforman la sala y
+        pulse el boton "Sugerir tena de puntos" para obtener los resultados de tiempo
+        de reverberación.</p>
+    </div>
+    <h3>Resultados</h3>
+    <img src="resources/style/images/info-coeficientes-octavas-2.png" class=".img-middle"></img>
+    <div class="info-div-left">
+      <p>Como resultado se obtiene el Tiempo de Reverberación en bandas de octavas representado
+      mediante una tabla y graficamente.Adicionalmente, se obtendrá el valor de la frecuencia
+      de Schroeder a partir de la cual, los resultados obtenidos comienzan a ser fiables.</p>
+    </div>
   </div>`

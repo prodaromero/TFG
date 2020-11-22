@@ -4,7 +4,7 @@
 }
 
 body, html {
-  height: 80%;
+  height: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   background-color:white;
@@ -121,6 +121,7 @@ button:hover {
 
 .info-div-right {margin-left: 70%;}
 .info-coef-margin{margin-left: 60%;}
+.info-div-coef-2{margin-left: 65%;}
 
 .info-dimensiones h2, .info-tr h2, .info-dist h2, .info-dist h3 {
   text-align:center;
@@ -141,11 +142,11 @@ button:hover {
   width: 70%;
   padding: 5;
 }
-.img-coeficientes{float: left;width:50%;}
+.img-coeficientes{float:left;width:50%;}
+.img-coeficientes-octavas{float:left;width:60%;}
 .img-dist {float: left;}
-.img-dist-2 {float:right;width: 70%;}
-
-.img-sug {
+.img-dist-2{float:right;width: 70%;}
+.img-middle {
   display: block;
   margin-left: auto;
   margin-right: auto;

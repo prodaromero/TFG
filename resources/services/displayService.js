@@ -177,7 +177,7 @@ function howToUse(id) {
       openPopup(InfoCoefMeandMsg);
       break;
     case "coeficients-octaves":
-      openPopup();
+      openPopup(InfoCoefOctavesMsg);
       break;
     default:
       break;
