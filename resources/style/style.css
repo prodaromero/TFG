@@ -46,37 +46,6 @@ p {
   margin-top: 7px;
 }
 
-/* details {
-  position: absolute;
-  float: right;
-  width: 50px;
-  z-index: 2;
-  height: auto;
-  margin-top: 25px;
-  margin-left:70%;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-summary {
-  z-index: 2;
-  height: 20px;
-  width: 20px;text-decoration: none;
-  background-color: inherit;
-  color: #404040;
-  border-radius: 50%;
-  border: 3px solid #404040;
-  font-size: 17px;
-  font-weight: 700;
-  font-style: italic;
-  text-align: center;
-  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-}
-
-summary::-webkit-details-marker {
-  display: none;
-} */
-
 button {
   border: none;
   color: #ffffff;
@@ -110,7 +79,9 @@ button:hover {
 
 #popup {
   position: fixed;
-  top: 40%;
+  max-width: 95%;
+  max-height: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   width: auto;
@@ -119,16 +90,65 @@ button:hover {
   box-shadow: 0 5px 30px rgba(0,0,0,.30);
   background: #fff;
   visibility: hidden;
+  font-family:"Cabin";
   opacity: 0;
   transition: 0.5s;
   font-size: 20px;
+  overflow: scroll;
 }
 
 #popup.active {
-  top: 50%;
+  margin-top: 30px;;
   visibility: visible;
   opacity: 1;
   transition: 0.5s;
+}
+
+.popup-button{
+  margin-left: 50%;
+  transform: translate(-50%,-50%);
+  margin-top: 40px;
+}
+
+.info-dimensiones, .info-tr, .info-dist{width: 900px;}
+
+.info-div, .info-div-left, .info-div-right {
+  padding: 5px;
+  font-family: "Cabin";
+  line-height : 25px;
+  text-align: justify;
+}
+
+.info-div-right {margin-left: 70%;}
+.info-coef-margin{margin-left: 60%;}
+
+.info-dimensiones h2, .info-tr h2, .info-dist h2, .info-dist h3 {
+  text-align:center;
+  font-family:"Cabin";
+  font-size:40px;
+  margin-bottom:30px;
+  border-bottom:1px solid #ccc;
+}
+
+.info-dist h3{
+  margin-top: 20px;
+  text-align: center;
+  font-size:25px;
+}
+
+.img-dimensiones, .img-tr, .img-sug-2 {
+  float: left;
+  width: 70%;
+  padding: 5;
+}
+.img-coeficientes{float: left;width:50%;}
+.img-dist {float: left;}
+.img-dist-2 {float:right;width: 70%;}
+
+.img-sug {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #sidebar-menu {
@@ -267,17 +287,9 @@ button:hover {
   transition: all 0.3s ease 0s;
 }
 
-.reset-distance div {
-  width: 100%;
-}
-
-.reset-distance button {
-  width: 250px;
-}
-
-.reset-distance:hover button {
-  width: 300px;
-}
+.reset-distance div { width: 100%;}
+.reset-distance button { width: 250px;}
+.reset-distance:hover button {width: 300px;}
 
 .bg-image {
   height: 40%;
@@ -433,76 +445,6 @@ button:hover {
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-/*
-.info-area div {
-  background-color: white;
-  width: 300px;
-  font-family: "Cambay";
-  border-radius:5px;
-  border: 2px solid #404040;
-}
-
-.info-material div {
-  width: 230px;
-}
-
-details {
-  position: absolute;
-  float: right;
-  width: 50px;
-  z-index: 2;
-  height: auto;
-  margin-top: 25px;
-  margin-left:70%;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-summary {
-  z-index: 2;
-  height: 20px;
-  width: 20px;text-decoration: none;
-  background-color: inherit;
-  color: #404040;
-  border-radius: 50%;
-  border: 3px solid #404040;
-  font-size: 17px;
-  font-weight: 700;
-  font-style: italic;
-  text-align: center;
-  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-.info-area h2 {
-  color: white;
-  background-color:#404040;
-}
-
-.info-area p {
-  text-align: left;
-  font-size: 15px;
-  padding: 20px;
-  padding-top: 10px;
-}
-
-.tr-info-area details{
-  margin-top:85px;
-}
-
-#materials details {
-  margin-top: 15px;
-  margin-left: 100%;
-}
-
-#reverTime details {
-    margin-top: 0;
-    margin-left: 80%;
-} */
-
 details {
   position: absolute;
   z-index: 1;
@@ -537,59 +479,16 @@ details {
   margin-left: 90%;
 }
 
-/* .info-area summary {
+.how-area summary {
   height: 20px;
-  width: 20px;
-  text-decoration: none;
+  width: 20px;text-decoration: none;
   background-color: inherit;
   color: #404040;
   border-radius: 50%;
-  border: 2px solid #404040;
+  border: 3px solid #404040;
   font-size: 17px;
   font-weight: 700;
   font-style: italic;
-  text-align: center;
-  cursor: pointer;
-  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-}
-
-.info-area summary::-webkit-details-marker {
-  display: none;
-}
-
-.info-area div {
-  background-color: white;
-  width: 300px;
-  font-family: "Cambay";
-  border-radius:5px;
-  border: 2px solid #404040;
-}
-
-.info-area h2 {
-  color: white;
-  background-color:#404040;
-}
-
-.info-area p {
-  text-align: left;
-  font-size: 15px;
-  padding: 20px;
-  padding-top: 10px;
-} */
-
-.how-area summary {
-  height: 18px;
-  width: auto;
-  margin-bottom: 3px;
-  text-decoration: none;
-  background-color:white;
-  color: #404040;
-  padding: 3px;
-  border-radius: 5px;
-  border: 2px solid #404040;
-  font-family: "Cambay";
-  font-size: 12px;
-  font-weight: 700;
   text-align: center;
   cursor: pointer;
   box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
@@ -631,8 +530,20 @@ details {
   animation:animateleft 0.4s}@keyframes animateleft{from{top:-300px;opacity:0} to{top:0;opacity:1};
 }
 
-.info-material div, .info-rever div {
+.mas-info{
+  height: auto;
   width: 200px;
+  margin: auto;
+  font-family: "Cambay";
+  cursor: pointer;
+}
+
+.mas-info:hover {
+  color: DodgerBlue;
+}
+
+.info-material div, .info-rever div {
+  width: 250px;
 }
 
 .distance-image {

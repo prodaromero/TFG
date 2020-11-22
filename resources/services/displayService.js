@@ -101,7 +101,7 @@ function putOkDistanceMsg(isok,dmin) {
 function putReverTimeMsg(trS,trE,fcS) {
   var msg = `
   <div>
-    <div class="tr-info-area">
+    <div class="how-area">
       <details class="info-area">
         <summary>i</summary>
         <div>
@@ -133,7 +133,7 @@ function putReverTimeOctavesMsg(fcS) {
   var msg = `
   <div>
     <div class="tr-info-area">
-      <details class="info-area">
+      <details class="how-area">
         <summary>i</summary>
         <div>
           <h2>Frecuencia de Schroeder</h2>
@@ -157,6 +157,31 @@ function putReverTimeOctavesMsg(fcS) {
   </div>
   `
   putMessage('put-octaves-schroeder',msg)
+}
+
+function howToUse(id) {
+  switch (id) {
+    case "dimensions":
+      openPopup(InfoRoomMsg);
+      break;
+    case "reverberation":
+      openPopup(InfoReverberationMsg);
+      break;
+    case "distance":
+      openPopup(InfoDistancesMsg);
+      break;
+    case "suggested":
+      openPopup(InfoSuggestedMsg);
+      break;
+    case "coeficients-mean":
+      openPopup(InfoCoefMeandMsg);
+      break;
+    case "coeficients-octaves":
+      openPopup();
+      break;
+    default:
+      break;
+  }
 }
 
 function createReverberationTable(listSabine, listEyring) {

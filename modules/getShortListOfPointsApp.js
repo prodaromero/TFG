@@ -28,6 +28,5 @@ function optionGetShortList() {
     elementName1.onclick = function(){plotSuggestedPoints(list[1]);}
     elementName2.onclick = function(){plotSuggestedPoints(list[2]);}
     elementName3.onclick = function(){plotSuggestedPoints(list[3]);}
-
   }
 }

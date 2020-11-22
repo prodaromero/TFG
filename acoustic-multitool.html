@@ -128,7 +128,7 @@
           <div class="empty"></div>
           <div class="distance-display">
             <details class="how-area">
-              <summary>¿Cómo se usa?</summary>
+              <summary>i</summary>
               <div>
                 <h2>Dimesiones del recinto</h2>
                 <br>
@@ -154,6 +154,7 @@
               </div>
               <button class="reset-button" onclick="clearDimensions()">limpiar valores</button>
               <div class="empty"></div>
+              <p class="mas-info" onclick="howToUse('dimensions')">¿Cómo se utiliza?</p>
             </div>
             <button class="calculate-button" onclick="initRoom('long', 'wide', 'high')"><a>guardar dimensiones</a></button>
           </div>
@@ -183,7 +184,7 @@
 
           <div class="distance-display">
             <details class="how-area">
-              <summary>¿Cómo se usa?</summary>
+              <summary>i</summary>
                 <div>
                   <h2>Cálculo de la distancia mínima</h2>
                   <p>
@@ -208,6 +209,8 @@
                 <input  id="t" class="info-input" placeholder="Tiempo reverberación [s]">
                 <span class="focus-border"></span>
               </div>
+              <div class="empty"></div>
+              <p class="mas-info" onclick="howToUse('reverberation')">¿Cómo se utiliza?</p>
             </div>
 
             <div id="minDistanceMsg"></div>
@@ -244,17 +247,20 @@
                 <input  id="zm" class="info-input" placeholder="Distancia con techo [m]">
                 <span class="focus-border"></span>
               </div>
+              <div class="empty"></div>
+              <p class="mas-info" onclick="howToUse('distance')">¿Cómo se utiliza?</p>
             </div>
             <div class="reset-distance">
               <button class="reset-button" onclick="clearDistance()">limpiar todos los valores</button>
             </div>
+            <div class="empty"></div>
             <a href="#minDistance">
               <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">comprobar punto de medición</button>
             </a>
 
             <div class="suggested-display">
               <details class="how-area">
-                <summary>¿Cómo se usa?</summary>
+                <summary>i</summary>
                 <div>
                   <h2>Propuesta de puntos de medición</h2>
                   <p>
@@ -269,6 +275,7 @@
               </details>
 
               <button class="menu-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+              <p class="mas-info" onclick="howToUse('suggested')">¿Cómo se utiliza?</p>
 
               <div id="suggested-list"></div>
 
@@ -305,7 +312,7 @@
           <div id="reverTime-normal" class="reverberation-time">
             <div class="rever-display">
               <details class="how-area info-rever">
-                <summary>¿Cómo se usa?</summary>
+                <summary>i</summary>
                 <div>
                   <h2>Tiempo de Reverberación</h2>
                   <p>
@@ -373,9 +380,9 @@
                       </tr>
                     </tbody>
                   </table>
-                <div class="empty"></div>
                 <button class="reset-button" onclick="clearCoef()">limpiar valores</button>
                 <div class="empty"></div>
+                <p class="mas-info" onclick="howToUse('coeficients-mean')">¿Cómo se utiliza?</p>
               </div>
             </div>
             <div class="empty"></div>
@@ -568,6 +575,7 @@
                 </table>
                 <button class="reset-button" onclick="clearOctaves()">limpiar valores</button>
                 <div class="empty"></div>
+                <p class="mas-info" onclick="howToUse('coeficients-octaves')">¿Cómo se utiliza?</p>
               </div>
               <div align="center">
                 <a href="#mark-list-octaves">
@@ -602,7 +610,7 @@
       <h3 class="content-title">Tablas de materiales</h3>
       <div class="contenedor-principal">
         <details class="how-area info-material">
-          <summary>¿Cómo se usa?</summary>
+          <summary>i</summary>
           <div>
             <h2>Lista de materiales</h2>
             <p>
@@ -6916,7 +6924,7 @@
     </div>
       <div id="popup">
         <p id="popup-comment"><p>
-        <button class="menu-button" onclick="closePopup()">Cerrar</button>
+        <button class="menu-button popup-button" onclick="closePopup()">Cerrar</button>
       </div>
       <footer id="about">
         <div class="contact-area">
