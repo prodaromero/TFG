@@ -77,7 +77,7 @@ button:hover {
   user-select: none;
 }
 
-#popup {
+#popup, #popup-info {
   position: fixed;
   max-width: 95%;
   max-height: 60%;
@@ -94,7 +94,7 @@ button:hover {
   opacity: 0;
   transition: 0.5s;
   font-size: 20px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 #popup.active {
@@ -539,9 +539,9 @@ details {
   cursor: pointer;
 }
 
-.mas-info:hover {
-  color: DodgerBlue;
-}
+.mas-info:hover {color: DodgerBlue;}
+
+.mas-info-menu{width: auto;margin: inherit;}
 
 .info-material div, .info-rever div {
   width: 250px;

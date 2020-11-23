@@ -64,45 +64,59 @@
           <br>
           <ul>
             <li>Cálculo de la distancia mínima.</li>
-            <p class="description-text">
-              Con ella, podrás calcular de la distancia mínima a la que deben
-              situarse la fuente y el micrófono para realizar una medición. Además
-              podrás comprobar si la posición desde la que vas a realizar la medición
-              es correcta o no. Esta herramienta ha sido diseñada cumpliendo la normativa
-              UNE-ISO 3382. Los datos necesarios para estos cálculos serán los siguientes:
-            </p>
-            <br>
-            <ol class="description-numeration">
-              <li>Dimensiones de la sala, en metros.</li>
-              <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
-              <li>Posición de la fuente, en metros.</li>
-              <li>Posición del micrófono, en metros.</li>
-            </ol>
-            <br>
-            <p class="description-text">
-              Adicionalmente se ha incluido un apartado que sugiere una terna de
-              puntos para realizar las mediciones del tiempo de reverberación
-              cumpliendo con la distancia mínima.
+              <p class="description-text">
+                Con ella, podrás calcular de la distancia mínima a la que deben
+                situarse la fuente y el micrófono para realizar una medición. Además
+                podrás comprobar si la posición desde la que vas a realizar la medición
+                es correcta o no. Esta herramienta ha sido diseñada cumpliendo la normativa
+                UNE-ISO 3382.
+              </p>
               <br>
-              Se dará como resultado una terna de 4 posiciones diferentes de la
-              fuente sonora con 3 posiciones posibles en las que colocar los micrófonos.
-            </p>
-            <br>
+              <p class="description-text">
+                <b>¿Cómo se usa?</b>
+              </p>
+              <p class="description-text">
+              Para poder utilizar la herramienta, se necesitan los siguientes
+                datos:
+              </p>
+              <br>
+              <ol class="description-numeration">
+                <li>Determinar las dimensiones de la sala, en metros.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('dimensions')">Más información sobre las dimensiones de la sala.</p>
+                <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('reverberation')">Más información sobre el T.R esperado.</p>
+                <li>Posición de la fuente, en metros.</li>
+                <li>Posición del micrófono, en metros.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('distance')">Más información sobre el cálculo de las posiciones</p>
+              </ol>
+              <br>
+              <p class="description-text">
+                Adicionalmente se ha incluido un apartado que sugiere una terna de
+                puntos para realizar las mediciones del tiempo de reverberación
+                cumpliendo con la distancia mínima.
+                Se dará como resultado una terna de 4 posiciones diferentes de la
+                fuente sonora con 3 posiciones posibles en las que colocar los micrófonos.
+              </p>
+              <p class="description-text mas-info  mas-info-menu" onclick="howToUse('suggested')">Más información sobre el cálculo de los puntos sugeridos.</p>
+              <br>
             <li>Cálculo de tiempo de reverberación.</li>
-            <p class="description-text">
-              Con ella, podemos calcular de una manera estimada del tiempo
-              de reverberación de la sala, según la Teoría de Sabine y la Teoría de Eyring.
-              Este cálculo se podrá realizar para una frecuencia determinada o para
-              el conjunto de bandas de octava comprendido entre los 125Hz hasta los 4000Hz.
-              Se necesitarán datos tales como:
-            </p>
-            <br>
-            <ol class="description-numeration">
-              <li>Dimensiones de la sala, en metros.</li>
-              <li>Coeficientes de absorción de las superficies de la sala: techo,
-                suelo y paredes.</li>
-            </ol>
-            <br>
+              <p class="description-text">
+                Con ella, podemos calcular de una manera estimada del tiempo
+                de reverberación de la sala, según la Teoría de Sabine y la Teoría de Eyring.
+                Este cálculo se podrá realizar para una frecuencia determinada o para
+                el conjunto de bandas de octava comprendido entre los 125Hz hasta los 4000Hz.
+                Se necesitarán datos tales como:
+              </p>
+              <br>
+              <ol class="description-numeration">
+                <li>Dimensiones de la sala, en metros.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('dimensions')">Más información sobre las dimensiones de la sala.</p>
+                <li>Coeficientes de absorción de las superficies de la sala: techo,
+                  suelo y paredes.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('coeficients-mean')">Más información sobre el cálculo del T.R. medio.</p>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('coeficients-octaves')">Más información sobre el cálculo del T.R. por octavas.</p>
+              </ol>
+              <br>
             <li>Base de datos de materiales</li>
             <p class="description-text">
               Se proporciona una herramienta de búsqueda de materiales a modo de

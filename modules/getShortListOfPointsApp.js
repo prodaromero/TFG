@@ -6,7 +6,7 @@ function optionGetShortList() {
   var color;
 
   if (!volume) {
-    openPopup(CommentRoomKO);
+    openPopup(CommentRoomKOp);
   } else if (!MinDistance) {
     openPopup(CommentDistanceKO);
   } else if (volume < MinimalVolume || room.long < MinimalDimensionLong || room.wide < MinimalDimensionWide || room.high < MinimalDimensionHigh) {
