@@ -119,9 +119,11 @@ var InfoDistancesMsg = `<div class="info-dist">
   <img src="resources/style/images/info-distancias-2.png" class="img-dist-2"></img>
   <div class="info-div-left">
     <p>Una vez realizado el cálculo, en la zona superior de la herramienta se podrá visualizar
-    una representación en dos dimensiones de la situación estudiada:una visualización en
-    Planta y Alzadp. Asimismo, devuelve la comprobación del cumplimiento con la normativa y
-    la distancia que existe entre la fuente sonora y el micrófono.</p>
+    una representación en dos dimensiones de la situación estudiada: una visualización en
+    Planta y Alzado. Asimismo, devuelve la comprobación del cumplimiento con la normativa y
+    la distancia que existe entre la fuente sonora y el micrófono. Recuerde que la representación
+    es meramente ilustrativa y tiene como función la ayuda al entendimiento de la situación, no
+    debe tomarse como una representación exacta.</p>
   </div>
   </div>`
 
@@ -143,7 +145,9 @@ var InfoSuggestedMsg = `<div class="info-dist">
       Cada una de ellas, representan una terna de puntos diferente, veáse en cada una: 1 posición
       de fuente sonora y 3 posiciones donde colocar el micrófono para realizar las mediciones.<br><br>
       Además, si se pulsa sobre cada fila, se visualizará la terna seleccionada en 2 dimensiones
-       (Planta y Alzado) para ayudar a su entendimiento y puesta en práctica.</p>
+      (Planta y Alzado) para ayudar a su entendimiento y puesta en práctica. Recuerde que la representación
+      es meramente ilustrativa y tiene como función la ayuda al entendimiento de la situación, no
+      debe tomarse como una representación exacta.</p>
     </div>
   </div>`
 

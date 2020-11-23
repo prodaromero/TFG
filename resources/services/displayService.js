@@ -263,7 +263,7 @@ function createSuggestedTable(list) {
   var tr = document.createElement('tr');
 
   var th_1 = document.createElement('th');
-  th_1.innerHTML = 'Medida';
+  th_1.innerHTML = 'Escenario';
   tr.appendChild(th_1);
   var th_2 = document.createElement('th');
   th_2.innerHTML = 'Fuente (x,y,z) [m]';

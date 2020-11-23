@@ -543,13 +543,9 @@ details {
 
 .mas-info-menu{width: auto;margin: inherit;}
 
-.info-material div, .info-rever div {
-  width: 250px;
-}
+.info-material div, .info-rever div {width: 250px;}
 
-.distance-image {
-  width: 50%;
-}
+.distance-image {width: 50%;}
 
 .schroeder-image {
   margin-left: auto;
@@ -557,9 +553,14 @@ details {
   width: 60%;
 }
 
-.reverberation-image {
-  width: 90%;
+.escen-msg {
+  font-size: 20px;
+  padding: 20px;
+  font-family: "Cambay";
+  text-transform: uppercase;
 }
+
+.reverberation-image {width: 90%;}
 
 /* Style the tab content */
 .reverberation-time {

@@ -242,10 +242,12 @@ function getSuggestedOnePoint(roomObject, listObject) {
   }
   var msg = `<div class="red">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
               Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
-              normativa aplicada NE-ISO 3382.<br>
+              normativa aplicada NE-ISO 3382.<br><br>
               Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
               puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
-              no cumpliendo así con la normativa.<br><br>
+              no cumpliendo así con la normativa.
+              <br><br>Con estas dimensiones, <b>NO</b> se pueden realizar mediciones
+              ni de Control, ni de Ingeniería, ni de Precisión.<br><br>
               Disculpe las molestias.<br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
@@ -291,11 +293,13 @@ function getSuggestedTwoPoints(roomObject, listObject) {
 
   var msg = `<div class="orange">Solo se pueden obtener dos posiciones de medición para los micrófonos.<br><br>
               Recuerde que la distancia entre los micrófonos debe ser de 2 metros segun la
-              normativa aplicada UNE-ISO 3382.<br>
+              normativa aplicada UNE-ISO 3382.<br><br>
               Debido a las dimensiones del recinto, solo se pueden obtener dos posiciones válidas,
               puesto que, si se obtuviese una tercera posición de medición, los micrófonos estarían
-              situados a menos de 2 m, no cumpliendo así con la normativa.<br><br>
-              Disculpe las molestias.<br><br>
+              situados a menos de 2 m, no cumpliendo así con la normativa.
+              <br><br>Con estas dimensiones, podría cumplir
+              con los métodos de medición de <b>Control</b> y de <b>Ingeniería</b>.
+              <br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
               </div>`
@@ -347,6 +351,8 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[3][3].high = DisMinimaSurface;
 
   var msg = `<div class="green">
+              Con estas dimensiones, podría cumplir
+              con todos los métodos de medición: <b>Control</b>, <b>Ingeniería</b> y <b>Precisión</b>.<br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
             </div>`
@@ -414,6 +420,8 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
   }
 
   var msg = `<div class="green">
+              Con estas dimensiones, podría cumplir
+              con todos los métodos de medición: <b>Control</b>, <b>Ingeniería</b> y <b>Precisión</b>.<br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
             </div>`

@@ -24,9 +24,9 @@ function optionGetShortList() {
     var elementName2 = document.getElementById("element-2")
     var elementName3 = document.getElementById("element-3")
 
-    elementName0.onclick = function(){plotSuggestedPoints(list[0]);}
-    elementName1.onclick = function(){plotSuggestedPoints(list[1]);}
-    elementName2.onclick = function(){plotSuggestedPoints(list[2]);}
-    elementName3.onclick = function(){plotSuggestedPoints(list[3]);}
+    elementName0.onclick = function(){plotSuggestedPoints(0);}
+    elementName1.onclick = function(){plotSuggestedPoints(1);}
+    elementName2.onclick = function(){plotSuggestedPoints(2);}
+    elementName3.onclick = function(){plotSuggestedPoints(3);}
   }
 }

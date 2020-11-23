@@ -212,8 +212,12 @@ function initSuggestedPointsDraw(roomObject,canvasPlanta,canvasAlzado) {
   drawRoom(canvasAlzado,roomObject.long,roomObject.high, GlobalScale);
 }
 
-function plotSuggestedPoints(list) {
+function plotSuggestedPoints(escen) {
   var room = RoomObject;
+  var list = ListOfSuggestedPoints[escen];
+  var msg = '<h5 class="escen-msg">Representación escenario '+escen+'</h5>'
+
+  putMessage("suggested-escenario", msg);
   canvasSuggestedPlanta  = document.getElementById("suggestedPlanta");
   canvasSuggestedAlzado = document.getElementById("suggestedAlzado");
 
