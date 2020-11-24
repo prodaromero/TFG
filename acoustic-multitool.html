@@ -21,15 +21,15 @@
 
   <body onload="myCanvas()">
     <header class="tab">
-      <a href="javascript:void(0)" class="init-menu" onclick="openSidebar()">☰</a>
+      <a href="javascript:void(0)" class="init-menu" onclick="openSidebar('sidebar-menu')">☰</a>
       <div class="init-logo">
         <a href="#init">ACOUSTIC MULTI-TOOL</a>
       </div>
     </header>
 
-    <div id="sidebar-menu">
+    <div id="sidebar-menu" class="menu-animation">
       <div class="close-div">
-        <a onclick="closeSidebar()"></a>
+        <a onclick="closeSidebar('sidebar-menu')"></a>
       </div>
       <div>
         <a class="sidebar-button" href="#mark-menu">menú</a>
@@ -50,7 +50,6 @@
 
     <div class="body-content" id="body-content">
       <div id="mark-menu"></div>
-
       <h3 class="content-title">MENÚ</h3>
       <div class="contenedor-principal">
         <div class="description">
@@ -65,45 +64,59 @@
           <br>
           <ul>
             <li>Cálculo de la distancia mínima.</li>
-            <p class="description-text">
-              Con ella, podrás calcular de la distancia mínima a la que deben
-              situarse la fuente y el micrófono para realizar una medición. Además
-              podrás comprobar si la posición desde la que vas a realizar la medición
-              es correcta o no. Esta herramienta ha sido diseñada cumpliendo la normativa
-              UNE-ISO 3382. Los datos necesarios para estos cálculos serán los siguientes:
-            </p>
-            <br>
-            <ol class="description-numeration">
-              <li>Dimensiones de la sala, en metros.</li>
-              <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
-              <li>Posición de la fuente, en metros.</li>
-              <li>Posición del micrófono, en metros.</li>
-            </ol>
-            <br>
-            <p class="description-text">
-              Adicionalmente se ha incluido un apartado que sugiere una terna de
-              puntos para realizar las mediciones del tiempo de reverberación
-              cumpliendo con la distancia mínima.
+              <p class="description-text">
+                Con ella, podrás calcular de la distancia mínima a la que deben
+                situarse la fuente y el micrófono para realizar una medición. Además
+                podrás comprobar si la posición desde la que vas a realizar la medición
+                es correcta o no. Esta herramienta ha sido diseñada cumpliendo la normativa
+                UNE-ISO 3382.
+              </p>
               <br>
-              Se dará como resultado una terna de 4 posiciones diferentes de la
-              fuente sonora con 3 posiciones posibles en las que colocar los micrófonos.
-            </p>
-            <br>
+              <p class="description-text">
+                <b>¿Cómo se usa?</b>
+              </p>
+              <p class="description-text">
+              Para poder utilizar la herramienta, se necesitan los siguientes
+                datos:
+              </p>
+              <br>
+              <ol class="description-numeration">
+                <li>Determinar las dimensiones de la sala, en metros.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('dimensions')">Más información sobre las dimensiones de la sala.</p>
+                <li>Tiempo de reverberación esperado en la sala, en segundos.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('reverberation')">Más información sobre el T.R esperado.</p>
+                <li>Posición de la fuente, en metros.</li>
+                <li>Posición del micrófono, en metros.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('distance')">Más información sobre el cálculo de las posiciones</p>
+              </ol>
+              <br>
+              <p class="description-text">
+                Adicionalmente se ha incluido un apartado que sugiere una terna de
+                puntos para realizar las mediciones del tiempo de reverberación
+                cumpliendo con la distancia mínima.
+                Se dará como resultado una terna de 4 posiciones diferentes de la
+                fuente sonora con 3 posiciones posibles en las que colocar los micrófonos.
+              </p>
+              <p class="description-text mas-info  mas-info-menu" onclick="howToUse('suggested')">Más información sobre el cálculo de los puntos sugeridos.</p>
+              <br>
             <li>Cálculo de tiempo de reverberación.</li>
-            <p class="description-text">
-              Con ella, podemos calcular de una manera estimada del tiempo
-              de reverberación de la sala, según la Teoría de Sabine y la Teoría de Eyring.
-              Este cálculo se podrá realizar para una frecuencia determinada o para
-              el conjunto de bandas de octava comprendido entre los 125Hz hasta los 4000Hz.
-              Se necesitarán datos tales como:
-            </p>
-            <br>
-            <ol class="description-numeration">
-              <li>Dimensiones de la sala, en metros.</li>
-              <li>Coeficientes de absorción de las superficies de la sala: techo,
-                suelo y paredes.</li>
-            </ol>
-            <br>
+              <p class="description-text">
+                Con ella, podemos calcular de una manera estimada del tiempo
+                de reverberación de la sala, según la Teoría de Sabine y la Teoría de Eyring.
+                Este cálculo se podrá realizar para una frecuencia determinada o para
+                el conjunto de bandas de octava comprendido entre los 125Hz hasta los 4000Hz.
+                Se necesitarán datos tales como:
+              </p>
+              <br>
+              <ol class="description-numeration">
+                <li>Dimensiones de la sala, en metros.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('dimensions')">Más información sobre las dimensiones de la sala.</p>
+                <li>Coeficientes de absorción de las superficies de la sala: techo,
+                  suelo y paredes.</li>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('coeficients-mean')">Más información sobre el cálculo del T.R. medio.</p>
+                <p class="description-text mas-info mas-info-menu" onclick="howToUse('coeficients-octaves')">Más información sobre el cálculo del T.R. por octavas.</p>
+              </ol>
+              <br>
             <li>Base de datos de materiales</li>
             <p class="description-text">
               Se proporciona una herramienta de búsqueda de materiales a modo de
@@ -125,10 +138,10 @@
 
       <div id="roomDimensions">
         <h3 class="content-title">Dimensiones del recinto</h3>
-        <div class="contenedor-principal">
+        <div id="roomDimensions-container" class="contenedor-principal">
           <div class="empty"></div>
           <div class="distance-display">
-            <details class="info-area">
+            <details class="how-area">
               <summary>i</summary>
               <div>
                 <h2>Dimesiones del recinto</h2>
@@ -137,6 +150,7 @@
                   Por favor, introduzca las dimensiones del recinto en metros. Una vez realizado,
                   presione el botón "Guardar dimensiones" para establecerlas.
                 </p>
+              </div>
             </details>
             <div id="dimRecinto">
               <h4>Dimensiones del recinto</h4>
@@ -152,6 +166,9 @@
                 <input  id="high" class="info-input" placeholder="(z) Altura del recinto [m]">
                 <span class="focus-border"></span>
               </div>
+              <button class="reset-button" onclick="clearDimensions()">limpiar valores</button>
+              <div class="empty"></div>
+              <p class="mas-info" onclick="howToUse('dimensions')">¿Cómo se utiliza?</p>
             </div>
             <button class="calculate-button" onclick="initRoom('long', 'wide', 'high')"><a>guardar dimensiones</a></button>
           </div>
@@ -162,7 +179,7 @@
 
       <div id="minDistance">
         <h3 class="content-title">Distancia mínima</h3>
-        <div class="contenedor-principal">
+        <div id="minDistance-container" class="contenedor-principal">
           <div class="canvas-display">
             <div class="display-one">
               <h2><i>Planta</i></h2>
@@ -180,7 +197,7 @@
           <div id="checkDisMsg"></div>
 
           <div class="distance-display">
-            <details class="info-area">
+            <details class="how-area">
               <summary>i</summary>
                 <div>
                   <h2>Cálculo de la distancia mínima</h2>
@@ -206,6 +223,8 @@
                 <input  id="t" class="info-input" placeholder="Tiempo reverberación [s]">
                 <span class="focus-border"></span>
               </div>
+              <div class="empty"></div>
+              <p class="mas-info" onclick="howToUse('reverberation')">¿Cómo se utiliza?</p>
             </div>
 
             <div id="minDistanceMsg"></div>
@@ -242,13 +261,19 @@
                 <input  id="zm" class="info-input" placeholder="Distancia con techo [m]">
                 <span class="focus-border"></span>
               </div>
+              <div class="empty"></div>
+              <p class="mas-info" onclick="howToUse('distance')">¿Cómo se utiliza?</p>
             </div>
+            <div class="reset-distance">
+              <button class="reset-button" onclick="clearDistance()">limpiar todos los valores</button>
+            </div>
+            <div class="empty"></div>
             <a href="#minDistance">
               <button class="calculate-button" onclick="optionGetAndDrawMinDistance('t', 'xs', 'ys', 'zs','xm', 'ym', 'zm')">comprobar punto de medición</button>
             </a>
 
             <div class="suggested-display">
-              <details class="info-area">
+              <details class="how-area">
                 <summary>i</summary>
                 <div>
                   <h2>Propuesta de puntos de medición</h2>
@@ -262,8 +287,26 @@
                   <p>
                 </div>
               </details>
+
               <button class="menu-button" onclick="optionGetShortList()"><a>Obtener terna de puntos</a></button>
+              <p class="mas-info" onclick="howToUse('suggested')">¿Cómo se utiliza?</p>
+
               <div id="suggested-list"></div>
+              <div id="suggested-escenario"></div>
+              <div class="canvas-suggested-display">
+                <div class="suggested-planta">
+                  <h2><i>Planta</i></h2>
+                  <canvas id="suggestedPlanta" width="300" height="300" style="border:1px solid #000000;">
+                  Please use a browser that supports "canvas"
+                </div>
+
+                <div class="suggested-alzado">
+                  <h2><i>Alzado</i></h2>
+                  <canvas id="suggestedAlzado"  width="300" height="300" style="border:1px solid #000000;">
+                  Please use a browser that supports "canvas"
+                </div>
+              </div>
+
               <div id="info-suggested-list"></div>
             </div>
             <div class="empty"></div>
@@ -271,20 +314,18 @@
         </div>
       </div>
 
-      <div id="mark-suggested"></div>
-
       <div id="mark-reverberation"></div>
 
       <div id="reverTime" onload="plotOctavesGraphEmpty()">
         <h3 class="content-title">Tiempo de reverberación</h3>
         <div class="contenedor-principal">
           <div align="center">
-            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'normal')">Tiempo de reverberación</button>
-            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'octaves')">Tiempo de reverberación por octavas</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'reverTime-normal')">Coeficiente medio</button>
+            <button class="menu-button rever" onclick="displayService(event, 'reverberation-time', 'reverTime-octaves')">Coeficientes por octavas</button>
           </div>
-          <div id="normal" class="reverberation-time">
+          <div id="reverTime-normal" class="reverberation-time">
             <div class="rever-display">
-              <details class="info-area">
+              <details class="how-area info-rever">
                 <summary>i</summary>
                 <div>
                   <h2>Tiempo de Reverberación</h2>
@@ -305,71 +346,83 @@
               </details>
               <div id="coefRecinto">
                 <h4>Coeficientes de absorción</h4>
-                <div class="in-box">
-                  <input id="coef_techo" class="info-input" placeholder="Coeficiente absorción Techo">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_suelo" class="info-input" placeholder="Coeficiente absorción Suelo">
-                  <span class="focus-border"></span>
-                </div>
-                <div class="in-box">
-                  <input  id="coef_pared" class="info-input" placeholder="Coeficiente absorción Pared">
-                  <span class="focus-border"></span>
-                </div>
+                <table class="coef-table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Techo</td>
+                        <td>
+                          <input id="coef_techo" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Suelo</td>
+                        <td>
+                          <input id="coef_suelo" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared A</td>
+                        <td>
+                          <input id="coef_pared_a" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared B</td>
+                        <td>
+                          <input id="coef_pared_b" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared C</td>
+                        <td>
+                          <input id="coef_pared_c" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared D</td>
+                        <td>
+                          <input id="coef_pared_d" class="coef-input" placeholder="Valor entre 0 y 1" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <button class="reset-button" onclick="clearCoef()">limpiar valores</button>
+                <div class="empty"></div>
+                <p class="mas-info" onclick="howToUse('coeficients-mean')">¿Cómo se utiliza?</p>
               </div>
             </div>
             <div class="empty"></div>
             <div id="putTR"></div>
             <div align="center">
-              <button class="calculate-button" onclick="optionGetReverberationTime('Sabine',
-                'coef_techo','coef_suelo','coef_pared')">calcular tiempo de reverberación</button>
+              <button class="calculate-button" onclick="optionGetReverberationTime('coef_techo',
+              'coef_suelo','coef_pared_a','coef_pared_b','coef_pared_c','coef_pared_d')">calcular tiempo de reverberación</button>
             </div>
           </div>
-          <div id="octaves" class="reverberation-time">
+          <div id="reverTime-octaves" class="reverberation-time">
             <div class="rever-display">
               <div id="coefRecintoOctaves">
                 <h4>Coeficientes de absorción por bandas de octava</h4>
                 <table class="octaves-table">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>125Hz</th>
-                        <th>250Hz</th>
-                        <th>500Hz</th>
-                        <th>1000Hz</th>
-                        <th>2000Hz</th>
-                        <th>4000Hz</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Paredes</td>
-                        <td>
-                          <input id="pared_125" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_250" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_500" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_1000" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_2000" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                        <td>
-                          <input id="pared_4000" class="coef-input" placeholder="" />
-                          <span class="focus-border"></span>
-                        </td>
-                      </tr>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>125Hz</th>
+                      <th>250Hz</th>
+                      <th>500Hz</th>
+                      <th>1000Hz</th>
+                      <th>2000Hz</th>
+                      <th>4000Hz</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                       <tr>
                         <td>Techo</td>
                         <td>
@@ -424,17 +477,129 @@
                           <span class="focus-border"></span>
                         </td>
                       </tr>
+                      <tr>
+                        <td>Pared A</td>
+                        <td>
+                          <input id="pared_125_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_a" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared B</td>
+                        <td>
+                          <input id="pared_125_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_b" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared C</td>
+                        <td>
+                          <input id="pared_125_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_c" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Pared D</td>
+                        <td>
+                          <input id="pared_125_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_250_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_500_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_1000_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_2000_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                        <td>
+                          <input id="pared_4000_d" class="coef-input" placeholder="" />
+                          <span class="focus-border"></span>
+                        </td>
+                      </tr>
                     </tbody>
-                  </table>
+                </table>
+                <button class="reset-button" onclick="clearOctaves()">limpiar valores</button>
                 <div class="empty"></div>
+                <p class="mas-info" onclick="howToUse('coeficients-octaves')">¿Cómo se utiliza?</p>
               </div>
               <div align="center">
                 <a href="#mark-list-octaves">
-                  <button class="calculate-button" onclick="optionGetReverberationTimeOctaves('Sabine',
-                  'pared_125','pared_250','pared_500','pared_1000','pared_2000','pared_4000',
+                  <button class="calculate-button" onclick="optionGetReverberationTimeOctaves(
+                  'techo_125','techo_250','techo_500','techo_1000','techo_2000','techo_4000',
                   'suelo_125','suelo_250','suelo_500','suelo_1000','suelo_2000','suelo_4000',
-                  'techo_125','techo_250','techo_500','techo_1000','techo_2000','techo_4000')"
-                  >calcular tiempo de reverberación</button>
+                  'pared_125_a','pared_250_a','pared_500_a','pared_1000_a','pared_2000_a','pared_4000_a',
+                  'pared_125_b','pared_250_b','pared_500_b','pared_1000_b','pared_2000_b','pared_4000_b',
+                  'pared_125_c','pared_250_c','pared_500_c','pared_1000_c','pared_2000_c','pared_4000_c',
+                  'pared_125_d','pared_250_d','pared_500_d','pared_1000_d','pared_2000_d','pared_4000_d')">calcular tiempo de reverberación</button>
                 </a>
               </div>
               <div id="mark-list-octaves"></div>
@@ -458,20 +623,20 @@
       <div id="materials">
       <h3 class="content-title">Tablas de materiales</h3>
       <div class="contenedor-principal">
+        <details class="how-area info-material">
+          <summary>i</summary>
+          <div>
+            <h2>Lista de materiales</h2>
+            <p>
+              En esta herramienta pueden ser consultados diferentes materiales
+              para el uso en traramientos acústicos de recintos.<br><br>
+              Las búsquedas pueden realizarse en función del nombre de material,
+              así como por su NRC (Noise Reduction Coeficient) o por su α medio (Coeficiente
+              de Absorción Medio).
+            </p>
+          </div>
+        </details>
         <div class="in-box">
-          <details class="info-area info-material">
-            <summary>i</summary>
-            <div>
-              <h2>Lista de materiales</h2>
-              <p>
-                En esta herramienta pueden ser consultados diferentes materiales
-                para el uso en traramientos acústicos de recintos.<br><br>
-                Las búsquedas pueden realizarse en función del nombre de material,
-                así como por su NRC (Noise Reduction Coeficient) o por su α medio (Coeficiente
-                de Absorción Medio).
-              </p>
-            </div>
-          </details>
           <input id="inputValue" class="info-input" onkeyup="searchInSelectionTable()" placeholder="Búsqueda por nombre, NRC o Alfa del material..."></input>
         </div>
         <div align="center">
@@ -2877,7 +3042,7 @@
                 <td></td>
                 <td></td>
                 <td>0.71</td>
-                <td>#­DIV/0!</td>
+                <td>-</td>
               </tr>
               <tr class="table-body">
                 <td>Lana de vidrio</td>
@@ -2892,7 +3057,7 @@
                 <td></td>
                 <td></td>
                 <td>0.85</td>
-                <td>#­DIV/0!</td>
+                <td>-</td>
               </tr>
               <tr class="table-body">
                 <td>Lana de vidrio</td>
@@ -6773,7 +6938,7 @@
     </div>
       <div id="popup">
         <p id="popup-comment"><p>
-        <button class="menu-button" onclick="closePopup()">Cerrar</button>
+        <button class="menu-button popup-button" onclick="closePopup()">Cerrar</button>
       </div>
       <footer id="about">
         <div class="contact-area">

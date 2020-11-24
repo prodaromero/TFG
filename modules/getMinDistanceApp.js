@@ -65,12 +65,12 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
     ctxSuperior = canvasPlanta.getContext("2d");
     ctxFrontal = canvasAlzado.getContext("2d");
 
-    globalScale.xScale = getScale(room.long,normalScale);
-    globalScale.yScale = getScale(room.wide,normalScale);
-    globalScale.zScale = getScale(room.high,normalScale);
+    GlobalScale.xScale = getScale(room.long,NormalScale);
+    GlobalScale.yScale = getScale(room.wide,NormalScale);
+    GlobalScale.zScale = getScale(room.high,NormalScale);
 
-    renderDistances(canvasPlanta);
-    renderDistances(canvasAlzado);
+    render(canvasPlanta);
+    render(canvasAlzado);
 
     drawAxes(ctxSuperior);
     drawText(ctxSuperior,Arial20,"x [m]",[250,290]);
@@ -79,19 +79,19 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
     drawText(ctxFrontal,Arial20,"x [m]",[250,290]);
     drawText(ctxFrontal,Arial20,"z [m]",[10,20]);
 
-    drawRoom(canvasPlanta,room.long,room.wide, globalScale);
-    drawRoom(canvasAlzado,room.long,room.high, globalScale);
+    drawRoom(canvasPlanta,room.long,room.wide, GlobalScale);
+    drawRoom(canvasAlzado,room.long,room.high, GlobalScale);
 
     // draw the source
-    drawObjet(canvasPlanta,source.long,source.wide,globalScale,Red);
-    drawObjet(canvasAlzado,source.long,source.high,globalScale,Red);
+    drawObjet(canvasPlanta,source.long,source.wide,GlobalScale,Red);
+    drawObjet(canvasAlzado,source.long,source.high,GlobalScale,Red);
 
-    // draw the source
-    drawObjet(canvasPlanta,microphone.long,microphone.wide,globalScale,Blue);
-    drawObjet(canvasAlzado,microphone.long,microphone.high,globalScale,Blue);
+    // draw the micriphone
+    drawObjet(canvasPlanta,microphone.long,microphone.wide,GlobalScale,Blue);
+    drawObjet(canvasAlzado,microphone.long,microphone.high,GlobalScale,Blue);
 
     // draw the min distance
-    drawDistance(canvasPlanta,source.long,source.wide,globalScale,MinDistance);
-    drawDistance(canvasAlzado,source.long,source.high,globalScale,MinDistance);
+    drawDistance(canvasPlanta,source.long,source.wide,GlobalScale,MinDistance);
+    drawDistance(canvasAlzado,source.long,source.high,GlobalScale,MinDistance);
   }
 }

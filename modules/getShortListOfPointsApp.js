@@ -3,60 +3,30 @@ function optionGetShortList() {
   var list = ListOfSuggestedPoints;
   var opertiveRoomZone = RoomOperative;
   var volume = room.volume();
+  var color;
 
   if (!volume) {
-    openPopup(CommentRoomKO);
+    openPopup(CommentRoomKOp);
   } else if (!MinDistance) {
     openPopup(CommentDistanceKO);
   } else if (volume < MinimalVolume || room.long < MinimalDimensionLong || room.wide < MinimalDimensionWide || room.high < MinimalDimensionHigh) {
     openPopup(CommentRoomSmall);
   } else {
+    canvasPlanta = document.getElementById("canvasPlanta");
+    canvasAlzado = document.getElementById("canvasAlzado");
+
     initMultiplePoints(room, list, volume);
 
-    var tbl = document.getElementById('suggested-table');
-    if (tbl) {tbl.parentNode.removeChild(tbl);}
+    createSuggestedTable(list);
 
-    var table = document.createElement('table');
-    table.setAttribute("id", "suggested-table");
-    table.classList.add('table-style');
-    var thead = document.createElement('thead');
-    thead.classList.add('table-header');
-    var tbody = document.createElement('tbody');
-    var tr = document.createElement('tr');
+    var elementName0 = document.getElementById("element-0")
+    var elementName1 = document.getElementById("element-1")
+    var elementName2 = document.getElementById("element-2")
+    var elementName3 = document.getElementById("element-3")
 
-    var th_1 = document.createElement('th');
-    th_1.innerHTML = 'Medida';
-    tr.appendChild(th_1);
-    var th_2 = document.createElement('th');
-    th_2.innerHTML = 'Fuente (x,y,z) [m]';
-    tr.appendChild(th_2);
-    var th_3 = document.createElement('th');
-    th_3.innerHTML = 'Micrófono 1 (x,y,z) [m]';
-    tr.appendChild(th_3);
-    var th_4 = document.createElement('th');
-    th_4.innerHTML = 'Micrófono 2 (x,y,z) [m]';
-    tr.appendChild(th_4);
-    var th_5 = document.createElement('th');
-    th_5.innerHTML = 'Micrófono 3 (x,y,z) [m]';
-    tr.appendChild(th_5);
-
-    thead.appendChild(tr);
-    table.appendChild(thead);
-
-    for (i = 0; i < list.length; i++) {
-      var tbodyTr = document.createElement('tr');
-      var tbodyTdNumber = document.createElement('td');
-      tbodyTdNumber.innerHTML = i+1;
-      tbodyTr.appendChild(tbodyTdNumber);
-      for (j = 0; j < list[i].length; j++) {
-        var tbodyTd = document.createElement('td');
-        tbodyTd.innerHTML = list[i][j].long+'[m],'+list[i][j].wide+'[m],'+list[i][j].high+'[m]';
-        tbodyTr.appendChild(tbodyTd);
-      }
-      tbody.appendChild(tbodyTr);
-    }
-    table.appendChild(tbody);
-
-    document.getElementById('suggested-list').appendChild(table);
+    elementName0.onclick = function(){plotSuggestedPoints(0);}
+    elementName1.onclick = function(){plotSuggestedPoints(1);}
+    elementName2.onclick = function(){plotSuggestedPoints(2);}
+    elementName3.onclick = function(){plotSuggestedPoints(3);}
   }
 }

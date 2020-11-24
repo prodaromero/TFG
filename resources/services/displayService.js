@@ -10,12 +10,12 @@ function displayService(evt, app, mode) {
     evt.currentTarget.className += " active";
 }
 
-function openSidebar() {
-  document.getElementById("sidebar-menu").style.display = "inline";
+function openSidebar(id) {
+  document.getElementById(id).style.display = "inline";
 }
 
-function closeSidebar() {
-  document.getElementById("sidebar-menu").style.display = "none";
+function closeSidebar(id) {
+  document.getElementById(id).style.display = "none";
 }
 
 function searchInSelectionTable() {
@@ -98,10 +98,10 @@ function putOkDistanceMsg(isok,dmin) {
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
 
-function putReverTimeMsg(op,trS,trE,fcS,fcE) {
+function putReverTimeMsg(trS,trE,fcS) {
   var msg = `
   <div>
-    <div class="tr-info-area">
+    <div class="how-area">
       <details class="info-area">
         <summary>i</summary>
         <div>
@@ -122,18 +122,18 @@ function putReverTimeMsg(op,trS,trE,fcS,fcE) {
       El tiempo de reverberación por Sabine es de `+trS+`[s].<br>El tiempo de
       reverberación por Eyring es de `+trE+`[s].<br><br>
       Recuerde que la frecuencia de Schroeder es:<br>
-        Fc de Sabine = `+fcS+`[Hz]<br>Fc de Eyring = `+fcE+`[Hz]
+        Fc = `+fcS+`[Hz]
     </div>
   </div>
   `
   putMessage('putTR',msg)
 }
 
-function putReverTimeOctavesMsg(op,fcS,fcE) {
+function putReverTimeOctavesMsg(fcS) {
   var msg = `
   <div>
     <div class="tr-info-area">
-      <details class="info-area">
+      <details class="how-area">
         <summary>i</summary>
         <div>
           <h2>Frecuencia de Schroeder</h2>
@@ -152,11 +152,36 @@ function putReverTimeOctavesMsg(op,fcS,fcE) {
     </div>
     <div class="good good-tr-octaves">
       Recuerde que la frecuencia de Schroeder es:<br>
-        Fc de Sabine = `+fcS+`[Hz]<br>Fc de Eyring = `+fcE+`[Hz]
+        Fc = `+fcS+`[Hz]
     </div>
   </div>
   `
   putMessage('put-octaves-schroeder',msg)
+}
+
+function howToUse(id) {
+  switch (id) {
+    case "dimensions":
+      openPopup(InfoRoomMsg);
+      break;
+    case "reverberation":
+      openPopup(InfoReverberationMsg);
+      break;
+    case "distance":
+      openPopup(InfoDistancesMsg);
+      break;
+    case "suggested":
+      openPopup(InfoSuggestedMsg);
+      break;
+    case "coeficients-mean":
+      openPopup(InfoCoefMeandMsg);
+      break;
+    case "coeficients-octaves":
+      openPopup(InfoCoefOctavesMsg);
+      break;
+    default:
+      break;
+  }
 }
 
 function createReverberationTable(listSabine, listEyring) {
@@ -225,4 +250,178 @@ function createReverberationTable(listSabine, listEyring) {
   document.getElementById('rever-octaves-table').appendChild(table);
 }
 
+function createSuggestedTable(list) {
+  var tbl = document.getElementById('suggested-table');
+  if (tbl) {tbl.parentNode.removeChild(tbl);}
+
+  var table = document.createElement('table');
+  table.setAttribute("id", "suggested-table");
+  table.classList.add('table-style');
+  var thead = document.createElement('thead');
+  thead.classList.add('table-header');
+  var tbody = document.createElement('tbody');
+  var tr = document.createElement('tr');
+
+  var th_1 = document.createElement('th');
+  th_1.innerHTML = 'Escenario';
+  tr.appendChild(th_1);
+  var th_2 = document.createElement('th');
+  th_2.innerHTML = 'Fuente (x,y,z) [m]';
+  tr.appendChild(th_2);
+  var th_3 = document.createElement('th');
+  th_3.innerHTML = 'Micrófono 1 (x,y,z) [m]';
+  tr.appendChild(th_3);
+  var th_4 = document.createElement('th');
+  th_4.innerHTML = 'Micrófono 2 (x,y,z) [m]';
+  tr.appendChild(th_4);
+  var th_5 = document.createElement('th');
+  th_5.innerHTML = 'Micrófono 3 (x,y,z) [m]';
+  tr.appendChild(th_5);
+
+  thead.appendChild(tr);
+  table.appendChild(thead);
+
+  for (i = 0; i < list.length; i++) {
+    var a = i;
+    var tbodyTr = document.createElement('tr');
+    tbodyTr.classList.add('table-style-'+i);
+    tbodyTr.setAttribute("id", "element-"+i);
+    // tbodyTr.onclick = function(){
+    //   var elm = documen.getElementById(i)
+    //   plotSuggestedPoints();
+    // }
+    // tbodyTr.onclick = plotSuggestedPoints(list[i]);
+    // tbodyTr.addEventListener("onclick",plotSuggestedPoints(tbodyTr));
+
+    var tbodyTdNumber = document.createElement('td');
+    tbodyTdNumber.innerHTML = i+1;
+    tbodyTr.appendChild(tbodyTdNumber);
+    for (j = 0; j < list[i].length; j++) {
+      var tbodyTd = document.createElement('td');
+      tbodyTd.innerHTML = list[i][j].long+'[m],'+list[i][j].wide+'[m],'+list[i][j].high+'[m]';
+      tbodyTr.appendChild(tbodyTd);
+    }
+    tbody.appendChild(tbodyTr);
+  }
+  table.appendChild(tbody);
+
+  document.getElementById('suggested-list').appendChild(table);
+}
+
+
 function putMessage(id, msg) {document.getElementById(id).innerHTML = msg;}
+
+function clearInputValues(id) {document.getElementById(id).value = '';}
+
+function clearDimensions() {
+  var room = RoomObject;
+  clearInputValues('long');
+  clearInputValues('wide');
+  clearInputValues('high');
+  room.long = 0;
+  room.wide = 0;
+  room.high = 0;
+}
+
+function clearDistance() {
+  clearInputValues('t');
+  clearInputValues('xs');
+  clearInputValues('ys');
+  clearInputValues('zs');
+  clearInputValues('xm');
+  clearInputValues('ym');
+  clearInputValues('zm');
+  MinDistance = 0;
+}
+
+function clearCoef() {
+  var room = RoomObject;
+  clearInputValues('coef_techo');
+  clearInputValues('coef_suelo');
+  clearInputValues('coef_pared_a');
+  clearInputValues('coef_pared_b');
+  clearInputValues('coef_pared_c');
+  clearInputValues('coef_pared_d');
+  room.coef_abs_roof    = 0;
+  room.coef_abs_floor   = 0;
+  room.coef_abs_wall_a  = 0;
+  room.coef_abs_wall_b  = 0;
+  room.coef_abs_wall_c  = 0;
+  room.coef_abs_wall_d  = 0;
+}
+
+function clearOctaves() {
+  var room = RoomObject;
+  clearInputValues('techo_125');
+  clearInputValues('techo_250');
+  clearInputValues('techo_500');
+  clearInputValues('techo_1000');
+  clearInputValues('techo_2000');
+  clearInputValues('techo_4000');
+  clearInputValues('suelo_125');
+  clearInputValues('suelo_250');
+  clearInputValues('suelo_500');
+  clearInputValues('suelo_1000');
+  clearInputValues('suelo_2000');
+  clearInputValues('suelo_4000');
+  clearInputValues('pared_125_a');
+  clearInputValues('pared_250_a');
+  clearInputValues('pared_500_a');
+  clearInputValues('pared_1000_a');
+  clearInputValues('pared_2000_a');
+  clearInputValues('pared_4000_a');
+  clearInputValues('pared_125_b');
+  clearInputValues('pared_250_b');
+  clearInputValues('pared_500_b');
+  clearInputValues('pared_1000_b');
+  clearInputValues('pared_2000_b');
+  clearInputValues('pared_4000_b');
+  clearInputValues('pared_125_c');
+  clearInputValues('pared_250_c');
+  clearInputValues('pared_500_c');
+  clearInputValues('pared_1000_c');
+  clearInputValues('pared_2000_c');
+  clearInputValues('pared_4000_c');
+  clearInputValues('pared_125_d');
+  clearInputValues('pared_250_d');
+  clearInputValues('pared_500_d');
+  clearInputValues('pared_1000_d');
+  clearInputValues('pared_2000_d');
+  clearInputValues('pared_4000_d');
+  room.coef_abs_roof_125   = 0;
+  room.coef_abs_roof_250   = 0;
+  room.coef_abs_roof_500   = 0;
+  room.coef_abs_roof_1000  = 0;
+  room.coef_abs_roof_2000  = 0;
+  room.coef_abs_roof_4000  = 0;
+  room.coef_abs_floor_125  = 0;
+  room.coef_abs_floor_250  = 0;
+  room.coef_abs_floor_500  = 0;
+  room.coef_abs_floor_1000 = 0;
+  room.coef_abs_floor_2000 = 0;
+  room.coef_abs_floor_4000 = 0;
+  room.coef_abs_wall_a_125   = 0;
+  room.coef_abs_wall_a_250   = 0;
+  room.coef_abs_wall_a_500   = 0;
+  room.coef_abs_wall_a_1000  = 0;
+  room.coef_abs_wall_a_2000  = 0;
+  room.coef_abs_wall_a_4000  = 0;
+  room.coef_abs_wall_b_125   = 0;
+  room.coef_abs_wall_b_250   = 0;
+  room.coef_abs_wall_b_500   = 0;
+  room.coef_abs_wall_b_1000  = 0;
+  room.coef_abs_wall_b_2000  = 0;
+  room.coef_abs_wall_b_4000  = 0;
+  room.coef_abs_wall_c_125   = 0;
+  room.coef_abs_wall_c_250   = 0;
+  room.coef_abs_wall_c_500   = 0;
+  room.coef_abs_wall_c_1000  = 0;
+  room.coef_abs_wall_c_2000  = 0;
+  room.coef_abs_wall_c_4000  = 0;
+  room.coef_abs_wall_d_125   = 0;
+  room.coef_abs_wall_d_250   = 0;
+  room.coef_abs_wall_d_500   = 0;
+  room.coef_abs_wall_d_1000  = 0;
+  room.coef_abs_wall_d_2000  = 0;
+  room.coef_abs_wall_d_4000  = 0;
+}

@@ -2,6 +2,7 @@
   CANVAS
 **********/
 
+// ** Generales ** \\
 function getScale(n, scale) {
 
   var in_area = false;
@@ -146,18 +147,20 @@ function drawDistance(canvas,x,y,scale,dis) {
   drawCircle(ctx,scaleWidth,scaleHeight,disScaled,Red,OpacityMin);
 }
 
-function renderDistances(canvasOne) {
-  var ctxOne = canvasOne.getContext("2d");
-
-  ctxOne.clearRect(0,0,canvasOne.width, canvasOne.height);
+function render(canvas) {
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width, canvas.height);
 }
 
+// ** Funciones getMinDistanceApp ** \\
 function myCanvas(a,b) {
   canvasPlanta  = document.getElementById("canvasPlanta");
   canvasAlzado  = document.getElementById("canvasAlzado");
   canvasOctaves = document.getElementById("canvasOctaves");
+  canvasSuggestedPlanta  = document.getElementById("suggestedPlanta");
+  canvasSuggestedAlzado = document.getElementById("suggestedAlzado");
 
-  if (!canvasPlanta && !canvasAlzado && !canvasOctaves) {
+  if (!canvasPlanta && !canvasAlzado && !canvasOctaves && !canvasSuggestedPlanta && !canvasSuggestedAlzado) {
     console.log('Failed to retrieve the <canvas> element');
     return false;
   }
@@ -172,10 +175,81 @@ function myCanvas(a,b) {
   drawText(ctxFrontal,Arial20,"x [m]",[250,290]);
   drawText(ctxFrontal,Arial20,"z [m]",[10,20]);
 
-  plotOctavesGraphEmpty(canvasOctaves);
 
+  ctxSuggPlanta = canvasSuggestedPlanta.getContext("2d");
+  ctxSuggAlzado = canvasSuggestedAlzado.getContext("2d");
+
+  drawAxes(ctxSuggPlanta);
+  drawText(ctxSuggPlanta,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggPlanta,Arial20,"y [m]",[10,20]);
+  drawAxes(ctxSuggAlzado);
+  drawText(ctxSuggAlzado,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggAlzado,Arial20,"z [m]",[10,20]);
+
+  plotOctavesGraphEmpty(canvasOctaves);
 }
 
+// ** Funciones getShortListOfPointsApp ** \\
+function initSuggestedPointsDraw(roomObject,canvasPlanta,canvasAlzado) {
+  ctxSuggPlanta = canvasPlanta.getContext("2d");
+  ctxSuggAlzado = canvasAlzado.getContext("2d");
+
+  GlobalScale.xScale = getScale(roomObject.long,NormalScale);
+  GlobalScale.yScale = getScale(roomObject.wide,NormalScale);
+  GlobalScale.zScale = getScale(roomObject.high,NormalScale);
+
+  render(canvasPlanta);
+  render(canvasAlzado);
+
+  drawAxes(ctxSuggPlanta);
+  drawText(ctxSuggPlanta,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggPlanta,Arial20,"y [m]",[10,20]);
+  drawAxes(ctxSuggAlzado);
+  drawText(ctxSuggAlzado,Arial20,"x [m]",[250,290]);
+  drawText(ctxSuggAlzado,Arial20,"z [m]",[10,20]);
+
+  drawRoom(canvasPlanta,roomObject.long,roomObject.wide, GlobalScale);
+  drawRoom(canvasAlzado,roomObject.long,roomObject.high, GlobalScale);
+}
+
+function plotSuggestedPoints(escen) {
+  var room = RoomObject;
+  var list = ListOfSuggestedPoints[escen];
+  var msg = '<h5 class="escen-msg">Representación escenario '+escen+'</h5>'
+
+  putMessage("suggested-escenario", msg);
+  canvasSuggestedPlanta  = document.getElementById("suggestedPlanta");
+  canvasSuggestedAlzado = document.getElementById("suggestedAlzado");
+
+  if (!canvasPlanta && !canvasAlzado && !canvasOctaves && !canvasSuggestedPlanta && !canvasSuggestedAlzado) {
+    console.log('Failed to retrieve the <canvas> element');
+    return false;
+  }
+
+  initSuggestedPointsDraw(room,canvasSuggestedPlanta,canvasSuggestedAlzado);
+
+  // draw the source
+  drawObjet(canvasSuggestedPlanta,list[0].long,list[0].wide,GlobalScale,Red);
+  drawObjet(canvasSuggestedAlzado,list[0].long,list[0].high,GlobalScale,Red);
+
+  // draw the min distance
+  drawDistance(canvasSuggestedPlanta,list[0].long,list[0].wide,GlobalScale,MinDistance);
+  drawDistance(canvasSuggestedAlzado,list[0].long,list[0].high,GlobalScale,MinDistance);
+
+  // draw the micriphone 1
+  drawObjet(canvasSuggestedPlanta,list[1].long,list[1].wide,GlobalScale,Blue);
+  drawObjet(canvasSuggestedAlzado,list[1].long,list[1].high,GlobalScale,Blue);
+
+  // draw the micriphone 2
+  drawObjet(canvasSuggestedPlanta,list[2].long,list[2].wide,GlobalScale,Blue);
+  drawObjet(canvasSuggestedAlzado,list[2].long,list[2].high,GlobalScale,Blue);
+
+  // draw the micriphone 3
+  drawObjet(canvasSuggestedPlanta,list[3].long,list[3].wide,GlobalScale,Blue);
+  drawObjet(canvasSuggestedAlzado,list[3].long,list[3].high,GlobalScale,Blue);
+}
+
+// ** Funciones getReverberationTimeApp ** \\
 function plotOctavesGraphEmpty(canvas) {
   ctxOct = canvas.getContext("2d");
 

@@ -62,16 +62,22 @@ function getMinDistance(roomObject,reverTime) {
 // ** Funciones getReverberationTimeApp ** \\
 
 function getRoomDimensions(roomObject) {
-  var walls = 2*getSurface(roomObject.long,roomObject.high) + 2*getSurface(roomObject.wide,roomObject.high);
   roomObject.surface_floor = getSurface(roomObject.wide,roomObject.long);
   roomObject.surface_roof  = getSurface(roomObject.wide,roomObject.long);
-  roomObject.surface_wall  = walls;
+  roomObject.surface_wall_a = getSurface(roomObject.long,roomObject.high);
+  roomObject.surface_wall_b = getSurface(roomObject.wide,roomObject.high);
+  roomObject.surface_wall_c = getSurface(roomObject.long,roomObject.high);
+  roomObject.surface_wall_d = getSurface(roomObject.wide,roomObject.high);
 }
 
-function getRoomAbsortionArea(roomObject,coef_techo,coef_suelo,coef_pared) {
-  return roomObject.surface_wall*coef_pared +
-          roomObject.surface_roof*coef_techo +
-          roomObject.surface_floor*coef_suelo;
+function getRoomAbsortionArea(roomObject,coef_techo,coef_suelo,coef_pared_a,
+                            coef_pared_b,coef_pared_c,coef_pared_d){
+  return roomObject.surface_roof*coef_techo +
+          roomObject.surface_floor*coef_suelo +
+          roomObject.surface_wall_a*coef_pared_a +
+          roomObject.surface_wall_b*coef_pared_b +
+          roomObject.surface_wall_c*coef_pared_c +
+          roomObject.surface_wall_d*coef_pared_d;
 }
 
 function getReverTimeSabine(vol,area_absorcion) {
@@ -80,9 +86,12 @@ function getReverTimeSabine(vol,area_absorcion) {
 }
 
 function getRoomSurface(roomObject) {
-  return roomObject.surface_wall +
+  return roomObject.surface_roof +
           roomObject.surface_floor +
-          roomObject.surface_roof;
+          roomObject.surface_wall_a +
+          roomObject.surface_wall_b +
+          roomObject.surface_wall_c +
+          roomObject.surface_wall_d;
 }
 
 function getReverTimeEyring(roomObject,vol,area_absorcion) {
@@ -94,65 +103,116 @@ function getReverTimeEyring(roomObject,vol,area_absorcion) {
 
 function getSchroederFrecuency(tr, volumeObject) {return getRound2Decimals(2000*Math.sqrt(tr/volumeObject));}
 
-function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared) {
+function getRoomAbsocionCoef(roomObject,coef_techo,coef_suelo,coef_pared_a,
+                            coef_pared_b,coef_pared_c,coef_pared_d) {
   roomObject.coef_abs_roof  = coef_techo;
   roomObject.coef_abs_floor = coef_suelo;
-  roomObject.coef_abs_wall  = coef_pared;
+  roomObject.coef_abs_wall_a = coef_pared_a;
+  roomObject.coef_abs_wall_b = coef_pared_b;
+  roomObject.coef_abs_wall_c = coef_pared_c;
+  roomObject.coef_abs_wall_d = coef_pared_d;
 }
 
-function getRoomAbsocionCoefOctaves(roomObject,
-                            pared_125,pared_250,pared_500,pared_1000,pared_2000,pared_4000,
-                            suelo_125,suelo_250,suelo_500,suelo_1000,suelo_2000,suelo_4000,
-                            techo_125,techo_250,techo_500,techo_1000,techo_2000,techo_4000) {
-  roomObject.coef_abs_wall_125   = pared_125
-  roomObject.coef_abs_wall_250   = pared_250
-  roomObject.coef_abs_wall_500   = pared_500
-  roomObject.coef_abs_wall_1000  = pared_1000
-  roomObject.coef_abs_wall_2000  = pared_2000
-  roomObject.coef_abs_wall_4000  = pared_4000;
-  roomObject.coef_abs_floor_125  = suelo_125;
-  roomObject.coef_abs_floor_250  = suelo_250;
-  roomObject.coef_abs_floor_500  = suelo_500;
-  roomObject.coef_abs_floor_1000 = suelo_1000;
-  roomObject.coef_abs_floor_2000 = suelo_2000;
-  roomObject.coef_abs_floor_4000 = suelo_4000;
-  roomObject.coef_abs_roof_125   = techo_125;
-  roomObject.coef_abs_roof_250   = techo_250;
-  roomObject.coef_abs_roof_500   = techo_500;
-  roomObject.coef_abs_roof_1000  = techo_1000;
-  roomObject.coef_abs_roof_2000  = techo_2000;
-  roomObject.coef_abs_roof_4000  = techo_4000;
+function getRoomAbsocionCoefOctaves(roomObject,cTecho_125,cTecho_250,cTecho_500,cTecho_1000,cTecho_2000,cTecho_4000,
+                    cSuelo_125,cSuelo_250,cSuelo_500,cSuelo_1000,cSuelo_2000,cSuelo_4000,
+                    cParedA_125,cParedA_250,cParedA_500,cParedA_1000,cParedA_2000,cParedA_4000,
+                    cParedB_125,cParedB_250,cParedB_500,cParedB_1000,cParedB_2000,cParedB_4000,
+                    cParedC_125,cParedC_250,cParedC_500,cParedC_1000,cParedC_2000,cParedC_4000,
+                    cParedD_125,cParedD_250,cParedD_500,cParedD_1000,cParedD_2000,cParedD_4000) {
+
+  roomObject.coef_abs_roof_125   = cTecho_125;
+  roomObject.coef_abs_roof_250   = cTecho_250;
+  roomObject.coef_abs_roof_500   = cTecho_500;
+  roomObject.coef_abs_roof_1000  = cTecho_1000;
+  roomObject.coef_abs_roof_2000  = cTecho_2000;
+  roomObject.coef_abs_roof_4000  = cTecho_4000;
+  roomObject.coef_abs_floor_125  = cSuelo_125;
+  roomObject.coef_abs_floor_250  = cSuelo_250;
+  roomObject.coef_abs_floor_500  = cSuelo_500;
+  roomObject.coef_abs_floor_1000 = cSuelo_1000;
+  roomObject.coef_abs_floor_2000 = cSuelo_2000;
+  roomObject.coef_abs_floor_4000 = cSuelo_4000;
+  roomObject.coef_abs_wall_a_125 = cParedA_125;
+  roomObject.coef_abs_wall_a_250 = cParedA_250;
+  roomObject.coef_abs_wall_a_500 = cParedA_500;
+  roomObject.coef_abs_wall_a_1000 = cParedA_1000;
+  roomObject.coef_abs_wall_a_2000 = cParedA_2000;
+  roomObject.coef_abs_wall_a_4000 = cParedA_4000;
+  roomObject.coef_abs_wall_b_125 = cParedB_125;
+  roomObject.coef_abs_wall_b_250 = cParedB_250;
+  roomObject.coef_abs_wall_b_500 = cParedB_500;
+  roomObject.coef_abs_wall_b_1000 = cParedB_1000;
+  roomObject.coef_abs_wall_b_2000 = cParedB_2000;
+  roomObject.coef_abs_wall_b_4000 = cParedB_4000;
+  roomObject.coef_abs_wall_c_125 = cParedC_125;
+  roomObject.coef_abs_wall_c_250 = cParedC_250;
+  roomObject.coef_abs_wall_c_500 = cParedC_500;
+  roomObject.coef_abs_wall_c_1000 = cParedC_1000;
+  roomObject.coef_abs_wall_c_2000 = cParedC_2000;
+  roomObject.coef_abs_wall_c_4000 = cParedC_4000;
+  roomObject.coef_abs_wall_d_125 = cParedD_125;
+  roomObject.coef_abs_wall_d_250 = cParedD_250;
+  roomObject.coef_abs_wall_d_500 = cParedD_500;
+  roomObject.coef_abs_wall_d_1000 = cParedD_1000;
+  roomObject.coef_abs_wall_d_2000 = cParedD_2000;
+  roomObject.coef_abs_wall_d_4000 = cParedD_4000;
 }
 
 function absortionCoefOk(roomObject) {
   return (
     isCorrectCoef(roomObject.coef_abs_roof) &&
     isCorrectCoef(roomObject.coef_abs_floor) &&
-    isCorrectCoef(roomObject.coef_abs_wall)
+    isCorrectCoef(roomObject.coef_abs_wall_a) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d)
   )
 }
 
 function absortionCoefOkOctaves(roomObject) {
   return (
-    isCorrectCoef(roomObject.coef_abs_wall_125) &&
-    isCorrectCoef(roomObject.coef_abs_wall_250) &&
-    isCorrectCoef(roomObject.coef_abs_wall_500) &&
-    isCorrectCoef(roomObject.coef_abs_wall_1000) &&
-    isCorrectCoef(roomObject.coef_abs_wall_2000) &&
-    isCorrectCoef(roomObject.coef_abs_wall_4000) &&
+    isCorrectCoef(roomObject.coef_abs_roof_125) &&
+    isCorrectCoef(roomObject.coef_abs_roof_250) &&
+    isCorrectCoef(roomObject.coef_abs_roof_500) &&
+    isCorrectCoef(roomObject.coef_abs_roof_1000) &&
+    isCorrectCoef(roomObject.coef_abs_roof_2000) &&
+    isCorrectCoef(roomObject.coef_abs_roof_4000) &&
     isCorrectCoef(roomObject.coef_abs_floor_125) &&
     isCorrectCoef(roomObject.coef_abs_floor_250) &&
     isCorrectCoef(roomObject.coef_abs_floor_500) &&
     isCorrectCoef(roomObject.coef_abs_floor_1000) &&
     isCorrectCoef(roomObject.coef_abs_floor_2000) &&
     isCorrectCoef(roomObject.coef_abs_floor_4000) &&
-    isCorrectCoef(roomObject.coef_abs_roof_125) &&
-    isCorrectCoef(roomObject.coef_abs_roof_250) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_500) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_1000) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_2000) &&
-  	isCorrectCoef(roomObject.coef_abs_roof_4000)
+    isCorrectCoef(roomObject.coef_abs_wall_a_125) &&
+    isCorrectCoef(roomObject.coef_abs_wall_a_250) &&
+    isCorrectCoef(roomObject.coef_abs_wall_a_500) &&
+    isCorrectCoef(roomObject.coef_abs_wall_a_1000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_a_2000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_a_4000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b_125) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b_250) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b_500) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b_1000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b_2000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_b_4000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c_125) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c_250) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c_500) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c_1000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c_2000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_c_4000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d_125) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d_250) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d_500) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d_1000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d_2000) &&
+    isCorrectCoef(roomObject.coef_abs_wall_d_4000)
   )
+}
+
+function getMeanAbsCoef(roomObject,coefTecho,coefSuelo,coefParedA,coefParedB,coefParedC,coefParedD) {
+  var coef = coefTecho+coefSuelo+coefParedA+coefParedB+coefParedC+coefParedD;
+  return (getRound2Decimals(coef/6));
 }
 
 // ** Funciones getShortListOfPointsApp ** \\
@@ -180,12 +240,14 @@ function getSuggestedOnePoint(roomObject, listObject) {
       listObject[i][j].high = "-";
     }
   }
-  var msg = `<div class="warning">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
+  var msg = `<div class="red">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
               Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
-              normativa aplicada NE-ISO 3382.<br>
+              normativa aplicada NE-ISO 3382.<br><br>
               Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
               puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
-              no cumpliendo así con la normativa.<br><br>
+              no cumpliendo así con la normativa.
+              <br><br>Con estas dimensiones, <b>NO</b> se pueden realizar mediciones
+              ni de Control, ni de Ingeniería, ni de Precisión.<br><br>
               Disculpe las molestias.<br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
@@ -229,13 +291,15 @@ function getSuggestedTwoPoints(roomObject, listObject) {
     listObject[i][3].high = "-";
   }
 
-  var msg = `<div class="warning">Solo se pueden obtener dos posiciones de medición para los micrófonos.<br><br>
+  var msg = `<div class="orange">Solo se pueden obtener dos posiciones de medición para los micrófonos.<br><br>
               Recuerde que la distancia entre los micrófonos debe ser de 2 metros segun la
-              normativa aplicada UNE-ISO 3382.<br>
+              normativa aplicada UNE-ISO 3382.<br><br>
               Debido a las dimensiones del recinto, solo se pueden obtener dos posiciones válidas,
               puesto que, si se obtuviese una tercera posición de medición, los micrófonos estarían
-              situados a menos de 2 m, no cumpliendo así con la normativa.<br><br>
-              Disculpe las molestias.<br><br>
+              situados a menos de 2 m, no cumpliendo así con la normativa.
+              <br><br>Con estas dimensiones, podría cumplir
+              con los métodos de medición de <b>Control</b> y de <b>Ingeniería</b>.
+              <br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
               </div>`
@@ -286,7 +350,9 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[3][3].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[3][3].high = DisMinimaSurface;
 
-  var msg = `<div class="warning">
+  var msg = `<div class="green">
+              Con estas dimensiones, podría cumplir
+              con todos los métodos de medición: <b>Control</b>, <b>Ingeniería</b> y <b>Precisión</b>.<br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
             </div>`
@@ -353,7 +419,9 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
     }
   }
 
-  var msg = `<div class="warning">
+  var msg = `<div class="green">
+              Con estas dimensiones, podría cumplir
+              con todos los métodos de medición: <b>Control</b>, <b>Ingeniería</b> y <b>Precisión</b>.<br><br>
               <h5>Números mínimos de posiciones y mediciones</h5>
               <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
             </div>`
