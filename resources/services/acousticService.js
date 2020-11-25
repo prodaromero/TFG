@@ -29,7 +29,6 @@ function getMean(min,max) {return getRound2Decimals((min+max)/2);}
 
 // ** Funciones getMinDistanceApp ** \\
 function distance(surceObject, microphoneObject) {
-
   // X axis difference
   var xDifference = difference(surceObject.long, microphoneObject.long);
   // Y axis difference
@@ -382,6 +381,40 @@ function getMicroMultiplePoints(roomObject, suggestedObject) {
   suggestedObject.high = list[2];
 }
 
+function getSuggestedOnePointsRandom(roomObject,listObject) {
+  var dis;
+  for (var i = 0; i < listObject.length; i++) {
+    getMicroMultiplePoints(roomObject,listObject[i][1]);
+    dis = distance(listObject[i][0], listObject[i][1]);
+    while (dis < MinDistance) {
+      getMicroMultiplePoints(roomObject,listObject[i][1]);
+      dis = distance(listObject[i][0], listObject[i][1]);
+    }
+  }
+  for (var i = 0; i < listObject.length; i++) {
+    for (var j = 2; j < listObject[i].length; j++) {
+      listObject[i][j].long = "-";
+      listObject[i][j].wide = "-";
+      listObject[i][j].high = "-";
+    }
+  }
+  var msg = `<div class="red">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
+              Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
+              normativa aplicada NE-ISO 3382.<br><br>
+              Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
+              puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
+              no cumpliendo así con la normativa.
+              <br><br>Con estas dimensiones, <b>NO</b> se pueden realizar mediciones
+              ni de Control, ni de Ingeniería, ni de Precisión.<br><br>
+              Disculpe las molestias.<br><br>
+              <h5>Números mínimos de posiciones y mediciones</h5>
+              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
+              </div>`
+
+  putMessage("info-suggested-list", msg);
+}
+
+
 function getSuggestedMultiplePointsRandom(roomObject, listObject) {
   var dis, dis1, dis2;
   for (var i = 0; i < listObject.length; i++) {
@@ -397,7 +430,7 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
           break;
         case 2:
           dis1 = distance(listObject[i][j-1], listObject[i][j]);
-          while (dis < MinDistance || dis1 < DisMinimaMicro) {
+          while ((dis < MinDistance) && (dis1 < DisMinimaMicro)) {
             getMicroMultiplePoints(roomObject, listObject[i][j]);
             dis = distance(listObject[i][0], listObject[i][j]);
             dis1 = distance(listObject[i][j-1], listObject[i][j]);
@@ -406,7 +439,7 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
         case 3:
           dis1 = distance(listObject[i][j-1], listObject[i][j]);
           dis2 = distance(listObject[i][j-2], listObject[i][j]);
-          while (dis < DisMinimaMicro || dis1 < DisMinimaMicro || dis2 < DisMinimaMicro) {
+          while ((dis < DisMinimaMicro) && (dis1 < DisMinimaMicro) || (dis2 < DisMinimaMicro)) {
             getMicroMultiplePoints(roomObject, listObject[i][j])
             dis = distance(listObject[i][0], listObject[i][j]);
             dis1 = distance(listObject[i][j-1], listObject[i][j]);
@@ -446,13 +479,14 @@ function initMultiplePoints(roomObject, listObject, volumeObject) {
   listObject[3][0].wide = DisMinimaSurface;
   listObject[3][0].high = DisMinimaSurface;
 
-  if (volumeObject>MinimalVolume && volumeObject<=31.4) {
+  if ((volumeObject>MinimalVolume) && (volumeObject<=31.4)) {
     // One Suggested Point
-    getSuggestedOnePoint(roomObject,listObject);
-  } else if (volumeObject>31.4 && volumeObject<42.8) {
+    // getSuggestedOnePoint(roomObject,listObject);
+    getSuggestedOnePointsRandom(roomObject,listObject);
+  } else if ((volumeObject>31.4) && (volumeObject<42.8)) {
     // Two Suggested Points
     getSuggestedTwoPoints(roomObject,listObject);
-  } else if (volumeObject>=42.8 && volumeObject<110) {
+  } else if ((volumeObject>=42.8) && (volumeObject<110)) {
     // Three Suggested Points Determined
     getSuggestedThreePoints(roomObject,listObject);
   } else {
