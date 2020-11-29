@@ -6,7 +6,7 @@ function optionGetShortList() {
   var color;
 
   if (!volume) {
-    openPopup(CommentRoomKOp);
+    openPopup(CommentRoomKO);
   } else if (!MinDistance) {
     openPopup(CommentDistanceKO);
   } else if (volume < MinimalVolume || room.long < MinimalDimensionLong || room.wide < MinimalDimensionWide || room.high < MinimalDimensionHigh) {
@@ -29,4 +29,9 @@ function optionGetShortList() {
     elementName2.onclick = function(){plotSuggestedPoints(2);}
     elementName3.onclick = function(){plotSuggestedPoints(3);}
   }
+
+  // Test execution
+  // distanceBtwSourceAndMicroTest();
+  // distanceBtwMicrosTest();
+
 }
