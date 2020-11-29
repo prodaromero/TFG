@@ -213,8 +213,19 @@ function absortionCoefOkOctaves(roomObject) {
 }
 
 function getMeanAbsCoef(roomObject,coefTecho,coefSuelo,coefParedA,coefParedB,coefParedC,coefParedD) {
-  var coef = coefTecho+coefSuelo+coefParedA+coefParedB+coefParedC+coefParedD;
-  return (getRound2Decimals(coef/6));
+  var aTecho = roomObject.surface_roof*coefTecho;
+  var aSuelo = roomObject.surface_floor*coefSuelo;
+  var aParedA = roomObject.surface_wall_a*coefParedA;
+  var aParedB = roomObject.surface_wall_b*coefParedB;
+  var aParedC = roomObject.surface_wall_c*coefParedC;
+  var aParedD = roomObject.surface_wall_d*coefParedD;
+
+  var tCoef = aTecho+aSuelo+aParedA+aParedB+aParedC+aParedD;
+
+  var tSurface = roomObject.surface_roof+roomObject.surface_floor+roomObject.surface_wall_a+
+          roomObject.surface_wall_b+roomObject.surface_wall_c+roomObject.surface_wall_d;
+
+  return (getRound2Decimals(tCoef/tSurface));
 }
 
 // ** Funciones getShortListOfPointsApp ** \\
