@@ -470,7 +470,6 @@ function initMultiplePoints(roomObject, listObject, volumeObject) {
   if ((volumeObject>MinimalVolume) && (volumeObject<=31.4)) {
     // One Suggested Point
     getSuggestedOnePoint(roomObject,listObject);
-    // getSuggestedOnePointsRandom(roomObject,listObject);
   } else if ((volumeObject>31.4) && (volumeObject<=50.7)) {
     // Two Suggested Points
     getSuggestedTwoPoints(roomObject,listObject);
