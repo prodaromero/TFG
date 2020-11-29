@@ -13,7 +13,10 @@ function difference(nf, np) {return Math.pow(nf - np, 2);}
 
 function isCorrect(dis, dmin) { return dis > dmin;}
 
-function compliesRegulation(object) {return (object.long >= 1) && (object.wide >= 1) && (object.high >= 1);}
+function compliesRegulation(room,object) {
+  return (object.long >= 1) && (object.wide >= 1) && (object.high >= 1)
+      && (object.long <= (room.long-1)) && (object.wide <= (room.wide-1)) && (object.high <= (room.high-1));
+}
 
 function minDistance(v) {return v*2;}
 
