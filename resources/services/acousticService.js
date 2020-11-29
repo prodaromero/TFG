@@ -215,45 +215,87 @@ function getMeanAbsCoef(roomObject,coefTecho,coefSuelo,coefParedA,coefParedB,coe
 }
 
 // ** Funciones getShortListOfPointsApp ** \\
-function getSuggestedOnePoint(roomObject, listObject) {
-  listObject[0][1].long = roomObject.long - DisMinimaSurface;
-  listObject[0][1].wide = roomObject.wide - DisMinimaSurface;
-  listObject[0][1].high = DisMinimaSurface;
+function getOkRandomPoint(roomObject,listObject,object) {
+  var dis1, dis2, dis3;
+  getMicroMultiplePoints(roomObject,object);
+  dis1 = distance(listObject[0], object);
+  dis2 = distance(listObject[1], object);
+  dis3 = distance(listObject[2], object);
 
-  listObject[1][1].long = roomObject.long - DisMinimaSurface;
-  listObject[1][1].wide = DisMinimaSurface;
-  listObject[1][1].high = DisMinimaSurface;
+  while ((dis1 < MinDistance) || (dis2 < DisMinimaMicro) || (dis3 < DisMinimaMicro)) {
+    getMicroMultiplePoints(roomObject, object)
+    dis = distance(listObject[0], object);
+    dis1 = distance(listObject[1], object);
+    dis2 = distance(listObject[2], object);
+  }
+}
 
-  listObject[2][1].long = DisMinimaSurface;
-  listObject[2][1].wide = DisMinimaSurface;
-  listObject[2][1].high = DisMinimaSurface;
+function getRandomCoordinate(maxL) {
+  min = DisMinimaSurface;
+  max = maxL - DisMinimaSurface;
+  return getRound2Decimals(Math.random() * (max - min) + min);
+}
 
-  listObject[3][1].long = DisMinimaSurface;
-  listObject[3][1].wide = roomObject.wide - DisMinimaSurface;
-  listObject[3][1].high = DisMinimaSurface;
+function getRandomPosition(roomObject) {
+  var list = [0.0,0.0,0.0];
+  list[0] = getRandomCoordinate(roomObject.long);
+  list[1] = getRandomCoordinate(roomObject.wide);
+  list[2] = getRandomCoordinate(roomObject.high);
+  return list;
+}
 
+function getMicroMultiplePoints(roomObject, suggestedObject) {
+  var list;
+  list = getRandomPosition(roomObject);
+  suggestedObject.long = list[0];
+  suggestedObject.wide = list[1];
+  suggestedObject.high = list[2];
+}
+
+function getDistance1D(a,b) {return getRound2Decimals(Math.abs(a-b));}
+
+function getDistance2D(a,b) {
+  var x_dis = difference(a.long,b.long);
+  var y_dis = difference(a.wide,b.wide);
+  return Math.sqrt(x_dis + x_dis);
+}
+
+function getSuggestedOnePoint(roomObject,listObject) {
+  var source, aux, dis;
   for (var i = 0; i < listObject.length; i++) {
+    source = listObject[i][0]
+    aux = getRandomCoordinate(roomObject.long);
+    dis = getDistance1D(aux,source.long);
+    while (dis < MinDistance) {
+      aux  = getRandomCoordinate(roomObject.long);
+      dis = getDistance1D(aux,source.long);
+    }
+    listObject[i][1].long = aux;
+    listObject[i][1].wide = getRandomCoordinate(roomObject.wide);
+    listObject[i][1].high = getRandomCoordinate(roomObject.high);
     for (var j = 2; j < listObject[i].length; j++) {
       listObject[i][j].long = "-";
       listObject[i][j].wide = "-";
       listObject[i][j].high = "-";
     }
   }
+
   var msg = `<div class="red">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
-              Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
-              normativa aplicada NE-ISO 3382.<br><br>
-              Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
-              puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
-              no cumpliendo así con la normativa.
-              <br><br>Con estas dimensiones, <b>NO</b> se pueden realizar mediciones
-              ni de Control, ni de Ingeniería, ni de Precisión.<br><br>
-              Disculpe las molestias.<br><br>
-              <h5>Números mínimos de posiciones y mediciones</h5>
-              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
+                Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
+                normativa aplicada NE-ISO 3382.<br><br>
+                Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
+                puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
+                no cumpliendo así con la normativa.
+                <br><br>Con estas dimensiones, <b>NO</b> se pueden realizar mediciones
+                ni de Control, ni de Ingeniería, ni de Precisión.<br><br>
+                Disculpe las molestias.<br><br>
+                <h5>Números mínimos de posiciones y mediciones</h5>
+                <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
               </div>`
 
   putMessage("info-suggested-list", msg);
 }
+
 function getSuggestedTwoPoints(roomObject, listObject) {
   // Micro positions for first source
   listObject[0][1].long = DisMinimaSurface;
@@ -307,17 +349,16 @@ function getSuggestedTwoPoints(roomObject, listObject) {
 }
 
 function getSuggestedThreePoints(roomObject, listObject) {
-  var minDis = getRound2Decimals(MinDistance);
-
   listObject[0][1].long = DisMinimaSurface;
   listObject[0][1].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[0][1].high = DisMinimaSurface;
   listObject[0][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
-  listObject[0][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[0][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
-  listObject[0][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
-  listObject[0][3].wide = DisMinimaSurface;
-  listObject[0][3].high = DisMinimaSurface;
+  listObject[0][2].wide = DisMinimaSurface;
+  listObject[0][2].high = DisMinimaSurface;
+  // getOkRandomPoint(roomObject,listObject[0],listObject[0][3]);
+  listObject[0][3].long = getRound2Decimals(roomObject.long/2 + 0.5);
+  listObject[0][3].wide = getRound2Decimals(roomObject.wide/2 + 0.5);
+  listObject[0][3].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
 
   listObject[1][1].long = DisMinimaSurface;
   listObject[1][1].wide = DisMinimaSurface;
@@ -325,29 +366,32 @@ function getSuggestedThreePoints(roomObject, listObject) {
   listObject[1][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[1][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
   listObject[1][2].high = DisMinimaSurface;
-  listObject[1][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
-  listObject[1][3].wide = DisMinimaSurface;
+  // getOkRandomPoint(roomObject,listObject[1],listObject[1][3]);
+  listObject[1][3].long = getRound2Decimals(roomObject.long/2 + 0.5);
+  listObject[1][3].wide = getRound2Decimals(roomObject.wide/2 - 0.5);
   listObject[1][3].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
 
   listObject[2][1].long = DisMinimaSurface;
-  listObject[2][1].wide = DisMinimaSurface;
-  listObject[2][1].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
-  listObject[2][2].long = DisMinimaSurface;
-  listObject[2][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
+  listObject[2][1].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
+  listObject[2][1].high = DisMinimaSurface;
+  listObject[2][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
+  listObject[2][2].wide = DisMinimaSurface;
   listObject[2][2].high = DisMinimaSurface;
-  listObject[2][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
-  listObject[2][3].wide = DisMinimaSurface;
-  listObject[2][3].high = DisMinimaSurface;
+  // getOkRandomPoint(roomObject,listObject[2],listObject[2][3]);
+  listObject[2][3].long = getRound2Decimals(roomObject.long/2 - 0.5);
+  listObject[2][3].wide = getRound2Decimals(roomObject.wide/2 - 0.5);
+  listObject[2][3].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
 
   listObject[3][1].long = DisMinimaSurface;
   listObject[3][1].wide = DisMinimaSurface;
   listObject[3][1].high = DisMinimaSurface;
-  listObject[3][2].long = DisMinimaSurface;
+  listObject[3][2].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
   listObject[3][2].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[3][2].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
-  listObject[3][3].long = getRound2Decimals(roomObject.long - DisMinimaSurface);
-  listObject[3][3].wide = getRound2Decimals(roomObject.wide - DisMinimaSurface);
-  listObject[3][3].high = DisMinimaSurface;
+  listObject[3][2].high = DisMinimaSurface;
+  // getOkRandomPoint(roomObject,listObject[3],listObject[3][3]);
+  listObject[3][3].long = getRound2Decimals(roomObject.long/2 - 0.5);
+  listObject[3][3].wide = getRound2Decimals(roomObject.wide/2 + 0.5);
+  listObject[3][3].high = getRound2Decimals(roomObject.high - DisMinimaSurface);
 
   var msg = `<div class="green">
               Con estas dimensiones, podría cumplir
@@ -358,62 +402,6 @@ function getSuggestedThreePoints(roomObject, listObject) {
 
   putMessage("info-suggested-list", msg);
 }
-
-function getRandomPoint(maxL) {
-  min = DisMinimaSurface;
-  max = maxL - DisMinimaSurface;
-  return getRound2Decimals(Math.random() * (max - min) + min);
-}
-
-function getRandomPosition(roomObject) {
-  var list = [0.0,0.0,0.0];
-  list[0] = getRandomPoint(roomObject.long);
-  list[1] = getRandomPoint(roomObject.wide);
-  list[2] = getRandomPoint(roomObject.high);
-  return list;
-}
-
-function getMicroMultiplePoints(roomObject, suggestedObject) {
-  var list;
-  list = getRandomPosition(roomObject);
-  suggestedObject.long = list[0];
-  suggestedObject.wide = list[1];
-  suggestedObject.high = list[2];
-}
-
-function getSuggestedOnePointsRandom(roomObject,listObject) {
-  var dis;
-  for (var i = 0; i < listObject.length; i++) {
-    getMicroMultiplePoints(roomObject,listObject[i][1]);
-    dis = distance(listObject[i][0], listObject[i][1]);
-    while (dis < MinDistance) {
-      getMicroMultiplePoints(roomObject,listObject[i][1]);
-      dis = distance(listObject[i][0], listObject[i][1]);
-    }
-  }
-  for (var i = 0; i < listObject.length; i++) {
-    for (var j = 2; j < listObject[i].length; j++) {
-      listObject[i][j].long = "-";
-      listObject[i][j].wide = "-";
-      listObject[i][j].high = "-";
-    }
-  }
-  var msg = `<div class="red">Solo se puede obtener una posición de medición para los micrófonos.<br><br>
-              Recuerde que la distancia entre los micrófonos debe ser de 2 metros según la
-              normativa aplicada NE-ISO 3382.<br><br>
-              Debido a las dimensiones del recinto, solo se puede obtener una posición válida,
-              puesto que, si se obtuviese otra posición de medición, estaría situado a menos de 2 m,
-              no cumpliendo así con la normativa.
-              <br><br>Con estas dimensiones, <b>NO</b> se pueden realizar mediciones
-              ni de Control, ni de Ingeniería, ni de Precisión.<br><br>
-              Disculpe las molestias.<br><br>
-              <h5>Números mínimos de posiciones y mediciones</h5>
-              <img src="resources/style/images/puntos-medicion.png" class="points-image"></img>
-              </div>`
-
-  putMessage("info-suggested-list", msg);
-}
-
 
 function getSuggestedMultiplePointsRandom(roomObject, listObject) {
   var dis, dis1, dis2;
@@ -430,7 +418,7 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
           break;
         case 2:
           dis1 = distance(listObject[i][j-1], listObject[i][j]);
-          while ((dis < MinDistance) && (dis1 < DisMinimaMicro)) {
+          while ((dis < MinDistance) || (dis1 < DisMinimaMicro)) {
             getMicroMultiplePoints(roomObject, listObject[i][j]);
             dis = distance(listObject[i][0], listObject[i][j]);
             dis1 = distance(listObject[i][j-1], listObject[i][j]);
@@ -439,7 +427,7 @@ function getSuggestedMultiplePointsRandom(roomObject, listObject) {
         case 3:
           dis1 = distance(listObject[i][j-1], listObject[i][j]);
           dis2 = distance(listObject[i][j-2], listObject[i][j]);
-          while ((dis < DisMinimaMicro) && (dis1 < DisMinimaMicro) || (dis2 < DisMinimaMicro)) {
+          while ((dis < MinDistance) || (dis1 < DisMinimaMicro) || (dis2 < DisMinimaMicro)) {
             getMicroMultiplePoints(roomObject, listObject[i][j])
             dis = distance(listObject[i][0], listObject[i][j]);
             dis1 = distance(listObject[i][j-1], listObject[i][j]);
@@ -481,12 +469,12 @@ function initMultiplePoints(roomObject, listObject, volumeObject) {
 
   if ((volumeObject>MinimalVolume) && (volumeObject<=31.4)) {
     // One Suggested Point
-    // getSuggestedOnePoint(roomObject,listObject);
-    getSuggestedOnePointsRandom(roomObject,listObject);
-  } else if ((volumeObject>31.4) && (volumeObject<42.8)) {
+    getSuggestedOnePoint(roomObject,listObject);
+    // getSuggestedOnePointsRandom(roomObject,listObject);
+  } else if ((volumeObject>31.4) && (volumeObject<=50.7)) {
     // Two Suggested Points
     getSuggestedTwoPoints(roomObject,listObject);
-  } else if ((volumeObject>=42.8) && (volumeObject<110)) {
+  } else if ((volumeObject>50.7) && (volumeObject<=110)) {
     // Three Suggested Points Determined
     getSuggestedThreePoints(roomObject,listObject);
   } else {

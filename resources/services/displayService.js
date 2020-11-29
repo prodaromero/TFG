@@ -98,7 +98,7 @@ function putOkDistanceMsg(isok,dmin) {
   if (isok) {putMessage('checkDisMsg',msgOK);} else {putMessage('checkDisMsg',msgKO);}
 }
 
-function putReverTimeMsg(trS,trE,fcS) {
+function putReverTimeMsg(trS,trE,coefM,fcS) {
   var msg = `
   <div>
     <div class="how-area">
@@ -121,6 +121,7 @@ function putReverTimeMsg(trS,trE,fcS) {
     <div class="good good-tr">
       El tiempo de reverberación por Sabine es de `+trS+`[s].<br>El tiempo de
       reverberación por Eyring es de `+trE+`[s].<br><br>
+      El coeficiente de absorción medio de la sala o el α<sub>mid</sub> es de `+coefM+`.<br><br>
       Recuerde que la frecuencia de Schroeder es:<br>
         Fc = `+fcS+`[Hz]
     </div>
@@ -129,7 +130,7 @@ function putReverTimeMsg(trS,trE,fcS) {
   putMessage('putTR',msg)
 }
 
-function putReverTimeOctavesMsg(fcS) {
+function putReverTimeOctavesMsg(coefM,fcS) {
   var msg = `
   <div>
     <div class="tr-info-area">
@@ -151,6 +152,7 @@ function putReverTimeOctavesMsg(fcS) {
       </details>
     </div>
     <div class="good good-tr-octaves">
+      El coeficiente de absorción medio de la sala o el α<sub>mid</sub> es de `+coefM+`.<br><br>
       Recuerde que la frecuencia de Schroeder es:<br>
         Fc = `+fcS+`[Hz]
     </div>

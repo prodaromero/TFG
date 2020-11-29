@@ -30,7 +30,7 @@ function optionGetReverberationTime(coef_techo,coef_suelo,coef_pared_a,
     if (roomMeanAbsCoef<0.2){fcSchroeder = getSchroederFrecuency(trSabine, volume);}
     else {fcSchroeder = getSchroederFrecuency(trEyring, volume);}
 
-    putReverTimeMsg(trSabine,trEyring,fcSchroeder);
+    putReverTimeMsg(trSabine,trEyring,roomMeanAbsCoef,fcSchroeder);
   }
 }
 
@@ -135,7 +135,7 @@ function optionGetReverberationTimeOctaves(
 
     if (roomMeanAbsCoef<0.2){fcSchroeder = getSchroederFrecuency(trMeanSabine, volume);}
     else {fcSchroeder = getSchroederFrecuency(trMeanEyring, volume);}
-    putReverTimeOctavesMsg(fcSchroeder);
+    putReverTimeOctavesMsg(roomMeanAbsCoef,fcSchroeder);
     render(canvasOct);
     plotOctavesGraphEmpty(canvasOct);
     plotOctavesGraph(canvasOct);

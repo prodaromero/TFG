@@ -28,8 +28,6 @@ var SpeedSound = 341;
 var Arial20 = "20px Arial";
 var Arial10 = "10px Arial";
 
-var FactorConversionTR = 60;
-
 /* ACOUSTIC VALUES */
 
 var ReverberationTime;
