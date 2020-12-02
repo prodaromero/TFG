@@ -215,7 +215,7 @@ function initSuggestedPointsDraw(roomObject,canvasPlanta,canvasAlzado) {
 function plotSuggestedPoints(escen) {
   var room = RoomObject;
   var list = ListOfSuggestedPoints[escen];
-  var msg = '<h5 class="escen-msg">Representación escenario '+escen+'</h5>'
+  var msg = '<h5 class="escen-msg">Representación escenario '+(escen+1)+'</h5>'
 
   putMessage("suggested-escenario", msg);
   canvasSuggestedPlanta  = document.getElementById("suggestedPlanta");
@@ -255,17 +255,14 @@ function plotOctavesGraphEmpty(canvas) {
 
   drawAxes(ctxOct);
   drawText(ctxOct,Arial20,"T.R [s]",[10,20]);
-  drawText(ctxOct,Arial10,"4",[20,50]);
-  drawText(ctxOct,Arial10,"2.5",[10,160]);
   drawText(ctxOct,Arial10,"0",[20,270]);
   drawText(ctxOct,Arial20,"Hz",[290,290]);
-  drawText(ctxOct,Arial10,"0",[30,282]);
-  drawText(ctxOct,Arial10,"125",[30,295]);
-  drawText(ctxOct,Arial10,"250",[75,295]);
-  drawText(ctxOct,Arial10,"500",[120,295]);
-  drawText(ctxOct,Arial10,"1K",[165,295]);
-  drawText(ctxOct,Arial10,"2K",[210,295]);
-  drawText(ctxOct,Arial10,"4K",[255,295]);
+  drawText(ctxOct,Arial10,"125",[30,285]);
+  drawText(ctxOct,Arial10,"250",[75,285]);
+  drawText(ctxOct,Arial10,"500",[120,285]);
+  drawText(ctxOct,Arial10,"1K",[165,285]);
+  drawText(ctxOct,Arial10,"2K",[210,285]);
+  drawText(ctxOct,Arial10,"4K",[255,285]);
 }
 
 function plotMeasureInGraph(ctx,xPre,yPre,xPost,yPost,color) {
@@ -277,16 +274,28 @@ function plotOctavesGraph(canvas) {
   var c125,c250,c500,c1000,c2000,c4000;
   var trSabine = ReverberationTimeOctavesSabine;
   var trEyring = ReverberationTimeOctavesEyring;
+
   ctxOct = canvas.getContext("2d");
 
-  //Plot Sabine
-  c125S  = 270-trSabine[0]*FactorConversionTR;
-  c250S  = 270-trSabine[1]*FactorConversionTR;
-  c500S  = 270-trSabine[2]*FactorConversionTR;
-  c1000S = 270-trSabine[3]*FactorConversionTR;
-  c2000S = 270-trSabine[4]*FactorConversionTR;
-  c4000S = 270-trSabine[5]*FactorConversionTR;
+  var maxHighSabine = Math.max.apply(Math, ReverberationTimeOctavesSabine);
+  var maxHighEyring = Math.max.apply(Math, ReverberationTimeOctavesEyring);
+  var maxHigh = Math.max(maxHighSabine,maxHighEyring);
 
+  var factorConversionTR = 200/maxHigh;
+
+  // Plot y-axe
+  drawText(ctxOct,Arial10,getRound2Decimals(maxHigh),[5,getRound2Decimals(270-maxHigh*factorConversionTR)]);
+  drawText(ctxOct,Arial10,getRound2Decimals(maxHigh/2),[5,getRound2Decimals(270-(maxHigh/2)*factorConversionTR)]);
+
+  // Set high Sabine
+  c125S  = 270-trSabine[0]*factorConversionTR;
+  c250S  = 270-trSabine[1]*factorConversionTR;
+  c500S  = 270-trSabine[2]*factorConversionTR;
+  c1000S = 270-trSabine[3]*factorConversionTR;
+  c2000S = 270-trSabine[4]*factorConversionTR;
+  c4000S = 270-trSabine[5]*factorConversionTR;
+
+  // Plot Sabine
   plotMeasureInGraph(ctxOct,40,c125S,85,c250S,Blue);
   plotMeasureInGraph(ctxOct,85,c250S,130,c500S,Blue);
   plotMeasureInGraph(ctxOct,130,c500S,175,c1000S,Blue);
@@ -295,12 +304,12 @@ function plotOctavesGraph(canvas) {
   drawCircle(ctxOct,265,c4000S,ObjectRadius,Blue,OpacityMax);
 
   // Plot Eyring
-  c125E  = 270-trEyring[0]*FactorConversionTR;
-  c250E  = 270-trEyring[1]*FactorConversionTR;
-  c500E  = 270-trEyring[2]*FactorConversionTR;
-  c1000E = 270-trEyring[3]*FactorConversionTR;
-  c2000E = 270-trEyring[4]*FactorConversionTR;
-  c4000E = 270-trEyring[5]*FactorConversionTR;
+  c125E  = 270-trEyring[0]*factorConversionTR;
+  c250E  = 270-trEyring[1]*factorConversionTR;
+  c500E  = 270-trEyring[2]*factorConversionTR;
+  c1000E = 270-trEyring[3]*factorConversionTR;
+  c2000E = 270-trEyring[4]*factorConversionTR;
+  c4000E = 270-trEyring[5]*factorConversionTR;
 
   plotMeasureInGraph(ctxOct,40,c125E,85,c250E,Red);
   plotMeasureInGraph(ctxOct,85,c250E,130,c500E,Red);

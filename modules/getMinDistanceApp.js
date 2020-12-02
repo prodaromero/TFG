@@ -44,7 +44,7 @@ function optionGetAndDrawMinDistance(t,xs,ys,zs,xm,ym,zm) {
     openPopup(CommentObjectKO);
   } else if (!isObjectInsideRoom(source,room) || !isObjectInsideRoom(microphone,room)) {
     openPopup(CommentObjectOutside);
-  } else if (!compliesRegulation(source) || !compliesRegulation(microphone)) {
+  } else if (!compliesRegulation(room,source) || !compliesRegulation(room,microphone)) {
     openPopup(CommentRegulationKO);
   } else {
     MinDistance = getMinDistance(room, reverTime)

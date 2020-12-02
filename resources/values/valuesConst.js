@@ -28,8 +28,6 @@ var SpeedSound = 341;
 var Arial20 = "20px Arial";
 var Arial10 = "10px Arial";
 
-var FactorConversionTR = 60;
-
 /* ACOUSTIC VALUES */
 
 var ReverberationTime;
@@ -66,16 +64,16 @@ var RoomVolumeThreshold = 110;
 var CommentRoomOK = '<p>¡Dimensiones recogidas correctamente!</p>'
 
 // Error messages
-var CommentRoomKO = '<p>Por favor, asegurese de haber introducido los datos del recinto correctamente. ¡Gracias!</p>'
-var CommentObjectKO = '<p>Por favor, asegurese de haber introducido las posociones de los objetos correctamente. ¡Gracias!</p>'
+var CommentRoomKO = '<p>Por favor, asegúrese de haber introducido los datos del recinto correctamente. ¡Gracias!</p>'
+var CommentObjectKO = '<p>Por favor, asegúrese de haber introducido las posociones de los objetos correctamente. ¡Gracias!</p>'
 var CommentRoomSmall = `<p>El recinto tiene unas dimensiones demasiado pequeñas como para poder obtener una terna de puntos y cumplir con la normativa
   UNE-EN ISO 3382. Para poder obtener un resultado que cumpla, se ha establecido unas dimensiones mínimas de 3mx3mx2.5m.<br><br>
   Según este estándar, la fuente sonora y los micrófonos deben de estar separados al menos <b>1m de las superficies</b>.
   Además, los micrófonos deben tener una separación entre sí de <b>2m</b>. Recuerde que el micrófono y la fuente deben de estar separados entre sí
   una distancia mínima que depende de las dimensiones del recinto y del tiempo de reverberación esperado.<br><br>Discupe las molestias.</p>`
-var CommentCoefKO = '<p>Por favor, asegurese de haber introducido los datos de los coeficientes de absorción correctamente. Recuerde que deben estar comprendidos entre 0 y 1. ¡Gracias!</p>'
-var CommentObjectOutside = '<p>Por favor, asegurese de que la posición de los objetos se encuentra dentro del recinto. ¡Gracias!</p>'
-var CommentReverTimeKO = '<p>Por favor, asegurese de haber introducido un tiempo de reverberación es correcto. ¡Gracias!</p>'
+var CommentCoefKO = '<p>Por favor, asegúrese de haber introducido los datos de los coeficientes de absorción correctamente. Recuerde que deben estar comprendidos entre 0 y 1. ¡Gracias!</p>'
+var CommentObjectOutside = '<p>Por favor, asegúrese de que la posición de los objetos se encuentra dentro del recinto. ¡Gracias!</p>'
+var CommentReverTimeKO = '<p>Por favor, asegúrese de haber introducido un tiempo de reverberación es correcto. ¡Gracias!</p>'
 var CommentRegulationKO = '<p>Recuerda que según la normativa UNE-ISO 3382, la distancia mínima entre micro/fuente y cualquier superficie, debe ser de al menos 1 m. Revise los datos por favor. ¡Gracias!</p>'
 var CommentDistanceKO = '<p>No se ha establecido una distancia mínima. Para ello, introduzca el tiempo de reverberación y calcule la distancia mínima en este mismo apartado. ¡Gracias!</p>'
 
@@ -86,7 +84,7 @@ var InfoRoomMsg = `<div class="info-dimensiones">
   <div class="info-div-right">
     <p>Antes de realizar cualquier operación de cálculo, en primer lugar se han de introducir las dimensiones del recinto
     en las casillas señaladas. Recuerde que las dimensiones son en metros [m].</p> <br>
-    <p>Una vez introcucidos, pulse el boton "Guardar dimensiones" para establecer los valores del rencinto y, de esta manera,
+    <p>Una vez introcucidos, pulse el botón "Guardar dimensiones" para establecer los valores del rencinto y, de esta manera,
     poder procedera utilizar el resto de herramientas libremente</p>
   </div>
   </div>`
@@ -95,10 +93,10 @@ var InfoReverberationMsg = `<div class="info-tr">
   <h2>Distancia mínima</h2>
   <img src="resources/style/images/info-tr.png" class="img-tr"></img>
   <div class="info-div-right">
-    <p>Para realizar el cálculo de la distancia mínima, asegurese en primer lugar de haber introducido las dimensiones
+    <p>Para realizar el cálculo de la distancia mínima, asegúrese en primer lugar de haber introducido las dimensiones
       del recinto en el apartado anterior. Una vez comprobado, introduzca un valor para el tiempo de reverberación esperado
       en la sala en segundos [s]. <br><br>
-      Una vez introcucido, pulse el boton "Calcular la distancia mínima" para obtener la distancia mínima que que debe haber
+      Una vez introcucido, pulse el botón "Calcular la distancia mínima" para obtener la distancia mínima que que debe haber
       entre el micrófono y la fuente, según la normativa UNE-EN ISO 3382.</p>
   </div>
   </div>`
@@ -108,11 +106,11 @@ var InfoDistancesMsg = `<div class="info-dist">
   <img src="resources/style/images/info-distancias.png" class="img-dist"></img>
   <div class="info-div-right">
     <p>En este apartado se comprueba si las distancias entre la posición del micrófono y la posición de la fuente es o no correcta.
-      Para ello, asegurese en primer lugar de haber introducido las dimensiones
+      Para ello, asegúrese en primer lugar de haber introducido las dimensiones
       del recinto en el primer apartado y de haber calculado una distancia mínima.
       Una vez comprobado, introduzca las posiciones de la fuente sonora y el micrófono
       en metros [m]. <br><br>
-      Pulse el boton "Comprobar punto de medición" para validar si las posiciones
+      Pulse el botón "Comprobar punto de medición" para validar si las posiciones
       están correctamente situadas, según la normativa UNE-EN ISO 3382.</p>
   </div>
   <h3>Resultados</h3>
@@ -132,10 +130,10 @@ var InfoSuggestedMsg = `<div class="info-dist">
     <div class="info-div">
       <p>En esta apartado se sugiere una terna de puntos en los que poder colocar
         la fuente sonora y los micrófonos de medición cumpliendo con la normativa.
-        Para ello, asegurese de haber introducido las dimensiones del recinto en el
+        Para ello, asegúrese de haber introducido las dimensiones del recinto en el
         primer apartado y de haber calculado y establecido la distancia mínima.</p>
       <img src="resources/style/images/info-sugerencia.png" class="img-middle"></img>
-      <p>Una vez comprobado, pulse el boton "Sugerir tena de puntos" para obtener
+      <p>Una vez comprobado, pulse el botón "Sugerir tena de puntos" para obtener
         la lista de posiciones de medición.</p>
     </div>
     <h3>Resultados</h3>
@@ -159,9 +157,9 @@ var InfoCoefMeandMsg = `<div class="info-dimensiones">
     de Absorción Medios de la sala mediante los métodos de Sabine y Eyring. Para ello
     introduzca estos coeficientes en las casillas señaladas. Recuerde que los coeficiente
     deben de estar entre 0 y 1.<br><br>
-    Antes de realizar la operación, asegurese de haber introducido las dimensiones del
+    Antes de realizar la operación, asegúrese de haber introducido las dimensiones del
     recinto en el primer apartado.<br><br>
-    <p>Una vez introcucidos, pulse el boton "Calcular el tiempo de reverberación" para
+    <p>Una vez introcucidos, pulse el botón "Calcular el tiempo de reverberación" para
      obtener los resultados deseados. Adicionalmente, se obtendrá el valor de la frecuencia
      de Schroeder a partir de la cual, los resultados obtenidos comienzan a ser fiables.</p>
   </div>
@@ -173,11 +171,11 @@ var InfoCoefOctavesMsg = `<div class="info-dist">
     <div class="info-div-coef-2">
       <p>En esta apartado se obtiene el tiempo de reverberación medio dados los Coeficientes
       de Absorción en bandas de octavas de la sala mediante los métodos de Sabine y Eyring.
-        Para ello, asegurese de haber introducido las dimensiones del recinto en el
+        Para ello, asegúrese de haber introducido las dimensiones del recinto en el
         primer apartado y de haber calculado y establecido la distancia mínima.
         Una vez comprobado, introduzca todos los valores de los coeficientes de absorción
         en bandas de ocutava de los materiales que conforman la sala y
-        pulse el boton "Sugerir tena de puntos" para obtener los resultados de tiempo
+        pulse el botón "Sugerir tena de puntos" para obtener los resultados de tiempo
         de reverberación.</p>
     </div>
     <h3>Resultados</h3>
