@@ -121,7 +121,7 @@ function putReverTimeMsg(trS,trE,coefM,fcS) {
     <div class="good good-tr">
       El tiempo de reverberación por Sabine es de `+trS+`[s].<br>El tiempo de
       reverberación por Eyring es de `+trE+`[s].<br><br>
-      El coeficiente de absorción medio de la sala o el α<sub>mid</sub> es de `+coefM+`.<br><br>
+      El coeficiente de absorción medio de la sala o el &#8113; es de `+coefM+`.<br><br>
       Recuerde que la frecuencia de Schroeder es:<br>
         Fc = `+fcS+`[Hz]
     </div>
@@ -130,9 +130,9 @@ function putReverTimeMsg(trS,trE,coefM,fcS) {
   putMessage('putTR',msg)
 }
 
-function putReverTimeOctavesMsg(coefM,fcS) {
+function putReverTimeOctavesMsg(fcS) {
   var msg = `
-  <div>
+  <div id="schroeder-area">
     <div class="tr-info-area">
       <details class="how-area">
         <summary>i</summary>
@@ -152,7 +152,6 @@ function putReverTimeOctavesMsg(coefM,fcS) {
       </details>
     </div>
     <div class="good good-tr-octaves">
-      El coeficiente de absorción medio de la sala o el α<sub>mid</sub> es de `+coefM+`.<br><br>
       Recuerde que la frecuencia de Schroeder es:<br>
         Fc = `+fcS+`[Hz]
     </div>
@@ -175,10 +174,10 @@ function howToUse(id) {
     case "suggested":
       openPopup(InfoSuggestedMsg);
       break;
-    case "coeficients-mean":
+    case "coefficients-mean":
       openPopup(InfoCoefMeandMsg);
       break;
-    case "coeficients-octaves":
+    case "coefficients-octaves":
       openPopup(InfoCoefOctavesMsg);
       break;
     default:
@@ -252,6 +251,71 @@ function createReverberationTable(listSabine, listEyring) {
   document.getElementById('rever-octaves-table').appendChild(table);
 }
 
+function createCoefficientsTable(c_125,c_250,c_500,c_1000,c_2000,c_4000) {
+
+  var tbl = document.getElementById('coef-table');
+
+  var table = document.createElement('table');
+  table.classList.add('table-style');
+  var thead = document.createElement('thead');
+  thead.classList.add('table-header');
+  var tbody = document.createElement('tbody');
+  var tr = document.createElement('tr');
+
+  var th_1 = document.createElement('th');
+  th_1.innerHTML = '&#8113;<sub>125Hz</sub>';
+  tr.appendChild(th_1);
+  var th_2 = document.createElement('th');
+  th_2.innerHTML = '&#8113;<sub>250Hz</sub>';
+  tr.appendChild(th_2);
+  var th_3 = document.createElement('th');
+  th_3.innerHTML = '&#8113;<sub>500Hz</sub>';
+  tr.appendChild(th_3);
+  var th_4 = document.createElement('th');
+  th_4.innerHTML = '&#8113;<sub>1000Hz</sub>';
+  tr.appendChild(th_4);
+  var th_5 = document.createElement('th');
+  th_5.innerHTML = '&#8113;<sub>2000Hz</sub>';
+  tr.appendChild(th_5);
+  var th_6 = document.createElement('th');
+  th_6.innerHTML = '&#8113;<sub>4000Hz</sub>';
+  tr.appendChild(th_6);
+
+  thead.appendChild(tr);
+  table.appendChild(thead);
+
+
+  var tbodyC = document.createElement('tr');
+
+  var tbodyTdC125 = document.createElement('td');
+  tbodyTdC125.innerHTML= c_125;
+  tbodyC.appendChild(tbodyTdC125);
+
+  var tbodyTdC250 = document.createElement('td');
+  tbodyTdC250.innerHTML= c_250;
+  tbodyC.appendChild(tbodyTdC250);
+
+  var tbodyTdC500 = document.createElement('td');
+  tbodyTdC500.innerHTML= c_500;
+  tbodyC.appendChild(tbodyTdC500);
+
+  var tbodyTdC1000 = document.createElement('td');
+  tbodyTdC1000.innerHTML= c_1000;
+  tbodyC.appendChild(tbodyTdC1000);
+
+  var tbodyTdC2000 = document.createElement('td');
+  tbodyTdC2000.innerHTML= c_2000;
+  tbodyC.appendChild(tbodyTdC2000);
+
+  var tbodyTdC4000 = document.createElement('td');
+  tbodyTdC4000.innerHTML= c_4000;
+  tbodyC.appendChild(tbodyTdC4000);
+
+  table.appendChild(tbodyC);
+
+  document.getElementById('rever-octaves-table').appendChild(table);
+}
+
 function createSuggestedTable(list) {
   var tbl = document.getElementById('suggested-table');
   if (tbl) {tbl.parentNode.removeChild(tbl);}
@@ -288,12 +352,6 @@ function createSuggestedTable(list) {
     var tbodyTr = document.createElement('tr');
     tbodyTr.classList.add('table-style-'+i);
     tbodyTr.setAttribute("id", "element-"+i);
-    // tbodyTr.onclick = function(){
-    //   var elm = documen.getElementById(i)
-    //   plotSuggestedPoints();
-    // }
-    // tbodyTr.onclick = plotSuggestedPoints(list[i]);
-    // tbodyTr.addEventListener("onclick",plotSuggestedPoints(tbodyTr));
 
     var tbodyTdNumber = document.createElement('td');
     tbodyTdNumber.innerHTML = i+1;

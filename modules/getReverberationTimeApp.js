@@ -108,10 +108,12 @@ function optionGetReverberationTimeOctaves(
     absortionArea_2000 = getRoomAbsortionArea(room,cTecho_2000,cSuelo_2000,cParedA_2000,cParedB_2000,cParedC_2000,cParedD_2000);
     absortionArea_4000 = getRoomAbsortionArea(room,cTecho_4000,cSuelo_4000,cParedA_4000,cParedB_4000,cParedC_4000,cParedD_4000);
 
+    roomMeanAbsCoef_125 = getMeanAbsCoef(room,cTecho_125,cSuelo_125,cParedA_125,cParedB_125,cParedC_125,cParedD_125);
+    roomMeanAbsCoef_250 = getMeanAbsCoef(room,cTecho_250,cSuelo_250,cParedA_250,cParedB_250,cParedC_250,cParedD_250);
     roomMeanAbsCoef_500 = getMeanAbsCoef(room,cTecho_500,cSuelo_500,cParedA_500,cParedB_500,cParedC_500,cParedD_500);
     roomMeanAbsCoef_1000 = getMeanAbsCoef(room,cTecho_1000,cSuelo_1000,cParedA_1000,cParedB_1000,cParedC_1000,cParedD_1000);
     roomMeanAbsCoef_2000 = getMeanAbsCoef(room,cTecho_2000,cSuelo_2000,cParedA_2000,cParedB_2000,cParedC_2000,cParedD_2000);
-    roomMeanAbsCoef = getRound2Decimals((roomMeanAbsCoef_500+roomMeanAbsCoef_1000+roomMeanAbsCoef_2000)/3);
+    roomMeanAbsCoef_4000 = getMeanAbsCoef(room,cTecho_4000,cSuelo_4000,cParedA_4000,cParedB_4000,cParedC_4000,cParedD_4000);
 
     // Sabine
     trSabine[0] = getReverTimeSabine(volume,absortionArea_125);
@@ -135,7 +137,9 @@ function optionGetReverberationTimeOctaves(
 
     if (roomMeanAbsCoef<0.2){fcSchroeder = getSchroederFrecuency(trMeanSabine, volume);}
     else {fcSchroeder = getSchroederFrecuency(trMeanEyring, volume);}
-    putReverTimeOctavesMsg(roomMeanAbsCoef,fcSchroeder);
+    putReverTimeOctavesMsg(fcSchroeder);
+    createCoefficientsTable(roomMeanAbsCoef_125,roomMeanAbsCoef_250,roomMeanAbsCoef_500,
+      roomMeanAbsCoef_1000,roomMeanAbsCoef_2000,roomMeanAbsCoef_4000);
     render(canvasOct);
     plotOctavesGraphEmpty(canvasOct);
     plotOctavesGraph(canvasOct);

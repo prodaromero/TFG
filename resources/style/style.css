@@ -480,6 +480,11 @@ details {
   margin-left: 90%;
 }
 
+#schroeder-area details {
+  margin-top: 0;
+  margin-left: 70%;
+}
+
 .how-area summary {
   height: 20px;
   width: 20px;text-decoration: none;
