@@ -3,6 +3,7 @@
 **********/
 
 // ** Generales ** \\
+
 function getScale(n, scale) {
 
   var in_area = false;
@@ -14,13 +15,12 @@ function getScale(n, scale) {
       this.scale = getScale(n,this.scale);
 
     }else if (long < minLong) {
-      this.scale = this.scale*1.15;
+      this.scale = this.scale*1.04;
       this.scale = getScale(n,this.scale);
     } else {
       in_area = true;
     }
   }
-
   return this.scale;
 }
 
