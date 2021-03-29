@@ -451,6 +451,10 @@ details {
   z-index: 1;
 }
 
+details > summary {
+  list-style: none;
+}
+
 #roomDimensions details {
   margin-top:15px;
   margin-left:91%;
